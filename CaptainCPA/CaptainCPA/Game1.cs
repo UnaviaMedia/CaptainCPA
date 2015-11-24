@@ -26,6 +26,7 @@ namespace CaptainCPA
         //scene declaration
         private StartScene startScene;
         private ActionScene actionScene;
+        private HelpScene helpScene;
 
         private void hideAllScenes()
         {
@@ -80,6 +81,9 @@ namespace CaptainCPA
             actionScene = new ActionScene(this, spriteBatch);
             this.Components.Add(actionScene);
 
+            helpScene = new HelpScene(this, spriteBatch);
+            this.Components.Add(helpScene);
+
             startScene.show();
 
             // TODO: use this.Content to load your game content here
@@ -112,16 +116,16 @@ namespace CaptainCPA
             if (startScene.Enabled)
             {
                 selectedIndex = startScene.Menu.SelectedIndex;
-                if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter))
+                if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter))
                 {
                     hideAllScenes();
                     actionScene.show();
                 }
-                //if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
-                //{
-                //    hideAllScenes();
-                //    helpScene.show();
-                //}
+                if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
+                {
+                    hideAllScenes();
+                    helpScene.show();
+                }
                 //if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
                 //{
                 //    hideAllScenes();
