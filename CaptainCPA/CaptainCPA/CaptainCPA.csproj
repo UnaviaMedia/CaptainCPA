@@ -76,6 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Tiles\MoveableTile.cs" />
+    <Compile Include="Tiles\Tile.cs" />
+    <Compile Include="Tiles\TileType.cs" />
     <Compile Include="Scenes\ActionScene.cs" />
     <Compile Include="Scenes\GameScene.cs" />
     <Compile Include="Scenes\StartScene.cs" />
@@ -117,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Managers\" />
+    <Folder Include="Scenes\Levels\" />
     <Folder Include="Tiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
