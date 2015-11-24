@@ -49,9 +49,10 @@ namespace CaptainCPA
 		/// </summary>
 		protected override void Initialize()
         {
+            graphics.PreferredBackBufferWidth = Settings.TileSize * 25f;
             Settings.Stage = new Vector2(graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight);
-
+            
 			base.Initialize();
 		}
 
@@ -63,7 +64,7 @@ namespace CaptainCPA
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
             //create all scenes and add to the Components list
             startScene = new StartScene(this, spriteBatch);
             Components.Add(startScene);
@@ -130,7 +131,7 @@ namespace CaptainCPA
                 //}
                 //... other scenes here
 
-                if (selectedIndex == 5 && ks.IsKeyDown(Keys.Enter))
+                if (selectedIndex == 7 && ks.IsKeyDown(Keys.Enter))
                 {
                     Exit();
                 }
