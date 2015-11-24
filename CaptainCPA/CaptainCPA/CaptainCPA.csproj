@@ -84,7 +84,7 @@
     <Compile Include="Scenes\ActionScene.cs" />
     <Compile Include="Scenes\GameScene.cs" />
     <Compile Include="Scenes\StartScene.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Utilities\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
