@@ -15,28 +15,13 @@ namespace CaptainCPA
 	/// <summary>
 	/// This is a game component that implements IUpdateable.
 	/// </summary>
-	public class MoveableTile : Tile
+	public class Character : MoveableTile
 	{
-		protected Vector2 velocity;
-		protected bool onGround;
-
-		public Vector2 Velocity
-		{
-			get { return velocity; }
-			set { velocity = value; }
-		}
-
-		public bool OnGround
-		{
-			get { return onGround; }
-		}
-
-		public MoveableTile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth, 
+		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
 							Vector2 velocity, bool onGround)
-			: base(game, spriteBatch, texture, tileType, color, position, rotation, scale, layerDepth)
+			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
-			this.velocity = velocity;
-			this.onGround = onGround;
+			
 		}
 
 		/// <summary>
@@ -45,6 +30,8 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
+			
+
 			base.Initialize();
 		}
 
@@ -54,16 +41,9 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			base.Update(gameTime);
-		}
+			
 
-		/// <summary>
-		/// Allows the game component to draw itself.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		public override void Draw(GameTime gameTime)
-		{
-			base.Draw(gameTime);
+			base.Update(gameTime);
 		}
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CaptainCPA.Tiles
+namespace CaptainCPA
 {
 	public enum TileType
 	{
