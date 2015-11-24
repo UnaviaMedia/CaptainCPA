@@ -41,7 +41,25 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			
+			KeyboardState ks = Keyboard.GetState();
+
+			if (ks.IsKeyDown(Keys.Left))
+			{
+				position.X -= velocity.X;
+			}
+			if (ks.IsKeyDown(Keys.Right))
+			{
+				position.X += velocity.X;
+			}
+
+			if (ks.IsKeyDown(Keys.Up))
+			{
+				position.Y -= velocity.Y;
+			}
+			if (ks.IsKeyDown(Keys.Down))
+			{
+				position.Y += velocity.Y;
+			}
 
 			base.Update(gameTime);
 		}
