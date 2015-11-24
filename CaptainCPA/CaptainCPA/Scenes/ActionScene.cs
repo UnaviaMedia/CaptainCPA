@@ -17,11 +17,26 @@ namespace CaptainCPA
     /// </summary>
     public class ActionScene : GameScene
     {
+		protected LevelLoadManager levelLoader;
+		protected List<Tile> tileList;
+
         private SpriteBatch spriteBatch;
+
         public ActionScene(Game game, SpriteBatch spriteBatch)
             : base(game)
         {
             this.spriteBatch = spriteBatch;
+
+			//Add a level creator, and create the level
+			levelLoader = new LevelLoadManager(game, spriteBatch);
+			levelLoader.LoadGame();
+			tileList = levelLoader.tileList;
+
+			//Add each tile to the tile list
+			foreach (Tile tile in tileList)
+			{
+				this.Components.Add(tile);
+			}
         }
 
         /// <summary>

@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace CaptainCPA
 {
-	class LevelLoadManager
+	public class LevelLoadManager
 	{
 		private Game game;
 		private SpriteBatch spriteBatch;
@@ -30,7 +30,7 @@ namespace CaptainCPA
 			tileList = new List<Tile>();
 
 			//Load the different block textures
-			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
+			Texture2D characterTexture = game.Content.Load<Texture2D>("Images/Braid");
 
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
@@ -66,8 +66,8 @@ namespace CaptainCPA
 							break;
 						case "character":
 							texture = characterTexture;
-							//Vector2 velocity = new Vector2(int.Parse(tile.Attributes["velocityX"].Value), int.Parse(tile.Attributes["velocityY"].Value));
-							Vector2 velocity = new Vector2(0.0f, 0.0f);
+							Vector2 velocity = new Vector2(int.Parse(tile.Attributes["velocityX"].Value), int.Parse(tile.Attributes["velocityY"].Value));
+							//Vector2 velocity = new Vector2(0.0f, 0.0f);
 							bool onGround = true;
 							newTile = new Character(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
 							tileList.Add(newTile);
