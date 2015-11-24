@@ -19,6 +19,6 @@ namespace CaptainCPA
     {
         public static Vector2 Stage;
 
-		public static Vector2 TileSize;
+		public static float TileSize;
     }
 }
