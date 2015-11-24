@@ -46,7 +46,7 @@ namespace CaptainCPA
             this.regularFont = regularFont;
             this.hilightFont = hilightFont;
             this.menuItems = menuItems.ToList();
-            position = new Vector2(Settings.stage.X / 2, Settings.stage.Y / 2);
+            position = new Vector2(Settings.Stage.X / 2, Settings.Stage.Y / 2);
         }
 
         /// <summary>
