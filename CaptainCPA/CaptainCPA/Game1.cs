@@ -49,7 +49,7 @@ namespace CaptainCPA
 		/// </summary>
 		protected override void Initialize()
         {
-            Settings.stage = new Vector2(graphics.PreferredBackBufferWidth,
+            Settings.Stage = new Vector2(graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight);
 
 			base.Initialize();
@@ -136,7 +136,7 @@ namespace CaptainCPA
                 }
             }
 
-            if (actionScene.Enabled)
+            if (!startScene.Enabled)
             {
                 if (ks.IsKeyDown(Keys.Escape))
                 {
