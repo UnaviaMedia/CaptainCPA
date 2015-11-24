@@ -78,7 +78,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Scenes\HelpScene.cs" />
+    <Compile Include="Tiles\Block.cs" />
     <Compile Include="Tiles\Character.cs" />
+    <Compile Include="Tiles\FixedTile.cs" />
     <Compile Include="Tiles\MoveableTile.cs" />
     <Compile Include="Tiles\Tile.cs" />
     <Compile Include="Tiles\TileType.cs" />
