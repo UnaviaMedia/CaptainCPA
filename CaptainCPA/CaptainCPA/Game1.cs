@@ -11,12 +11,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace CaptainCPA
 {
-	/// <summary>
-	/// This is the main type for your game
-	/// </summary>
-	public class Game1 : Microsoft.Xna.Framework.Game
-	{
-		GraphicsDeviceManager graphics;
+    /// <summary>
+    /// This is the main type for your game
+    /// </summary>
+    public class Game1 : Microsoft.Xna.Framework.Game
+    {
+        const float TILE_SIZE = 64;
+        const float X_SCALE_FACTOR = 25f;
+        const float Y_SCALE_FACTOR = 13f;
+
+        GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         //scene declaration
@@ -35,36 +39,40 @@ namespace CaptainCPA
                 }
             }
         }
-		public Game1()
-		{
-			graphics = new GraphicsDeviceManager(this);
-			Content.RootDirectory = "Content";
-		}
-
-		/// <summary>
-		/// Allows the game to perform any initialization it needs to before starting to run.
-		/// This is where it can query for any required services and load any non-graphic
-		/// related content.  Calling base.Initialize will enumerate through any components
-		/// and initialize them as well.
-		/// </summary>
-		protected override void Initialize()
+        public Game1()
         {
-            graphics.PreferredBackBufferWidth = Settings.TileSize * 25f;
+            Settings.TileSize = TILE_SIZE;
+            graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = (int)(Settings.TileSize * X_SCALE_FACTOR);
+            graphics.PreferredBackBufferHeight = (int)(Settings.TileSize * Y_SCALE_FACTOR);
+            Content.RootDirectory = "Content";
+        }
+
+        /// <summary>
+        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  Calling base.Initialize will enumerate through any components
+        /// and initialize them as well.
+        /// </summary>
+        protected override void Initialize()
+        {
+            graphics.PreferredBackBufferWidth = (int)(Settings.TileSize * X_SCALE_FACTOR);
+            graphics.PreferredBackBufferHeight = (int)(Settings.TileSize * Y_SCALE_FACTOR);
             Settings.Stage = new Vector2(graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight);
-            
-			base.Initialize();
-		}
 
-		/// <summary>
-		/// LoadContent will be called once per game and is the place to load
-		/// all of your content.
-		/// </summary>
-		protected override void LoadContent()
+            base.Initialize();
+        }
+
+        /// <summary>
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// </summary>
+        protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             //create all scenes and add to the Components list
             startScene = new StartScene(this, spriteBatch);
             Components.Add(startScene);
@@ -74,24 +82,24 @@ namespace CaptainCPA
 
             startScene.show();
 
-			// TODO: use this.Content to load your game content here
-		}
+            // TODO: use this.Content to load your game content here
+        }
 
-		/// <summary>
-		/// UnloadContent will be called once per game and is the place to unload
-		/// all content.
-		/// </summary>
-		protected override void UnloadContent()
-		{
-			// TODO: Unload any non ContentManager content here
-		}
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// all content.
+        /// </summary>
+        protected override void UnloadContent()
+        {
+            // TODO: Unload any non ContentManager content here
+        }
 
-		/// <summary>
-		/// Allows the game to run logic such as updating the world,
-		/// checking for collisions, gathering input, and playing audio.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Update(GameTime gameTime)
+        /// <summary>
+        /// Allows the game to run logic such as updating the world,
+        /// checking for collisions, gathering input, and playing audio.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
@@ -147,19 +155,19 @@ namespace CaptainCPA
             }
 
             base.Update(gameTime);
-		}
+        }
 
-		/// <summary>
-		/// This is called when the game should draw itself.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Draw(GameTime gameTime)
-		{
-			GraphicsDevice.Clear(Color.CornflowerBlue);
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			// TODO: Add your drawing code here
+            // TODO: Add your drawing code here
 
-			base.Draw(gameTime);
-		}
-	}
+            base.Draw(gameTime);
+        }
+    }
 }
