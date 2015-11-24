@@ -17,6 +17,8 @@ namespace CaptainCPA
     /// </summary>
     public class Settings
     {
-        public static Vector2 stage;
+        public static Vector2 Stage;
+
+		public static Rectangle TileSize;
     }
 }
