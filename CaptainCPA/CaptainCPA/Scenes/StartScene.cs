@@ -26,6 +26,8 @@ namespace CaptainCPA
         }
         private SpriteBatch spriteBatch;
         string[] menuItems = {"Start Game",
+                             "Resume",
+                             "Select Level",
                              "Help",
                              "High Score",
                              "About/Credit",
