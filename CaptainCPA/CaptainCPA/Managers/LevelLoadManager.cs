@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -24,17 +25,20 @@ namespace CaptainCPA
 		/// Loads an nPuzzle game save and sets up the board
 		/// </summary>
 		/// <param name="filePath">File path to the save file</param>
-		public void LoadGame(string filePath = "C:\\Level.xml")
+		public void LoadGame(string filePath)
 		{
 			//Create list of level tiles
 			tileList = new List<Tile>();
 
 			//Load the different block textures
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Images/Braid");
+			Texture2D blockTexture = game.Content.Load<Texture2D>("Images/Block");
 
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
-			loadFile.Load(filePath);
+			loadFile.Load(Path.Combine(typeof(Game1).Assembly, filePath, ".xml"));
+
+			//loadFile.Load(filePath);
 			var rows = loadFile.SelectNodes("/PlatformGame/Rows/*");
 
 			foreach (XmlNode row in rows)
@@ -63,6 +67,11 @@ namespace CaptainCPA
 					switch (tileType)
 					{
 						case " ":
+							break;
+						case "block":
+							texture = blockTexture;
+							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
+							tileList.Add(newTile);
 							break;
 						case "character":
 							texture = characterTexture;

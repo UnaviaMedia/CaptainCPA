@@ -29,7 +29,7 @@ namespace CaptainCPA
 
 			//Add a level creator, and create the level
 			levelLoader = new LevelLoadManager(game, spriteBatch);
-			levelLoader.LoadGame();
+			levelLoader.LoadGame("Level1");
 			tileList = levelLoader.tileList;
 
 			//Add each tile to the tile list

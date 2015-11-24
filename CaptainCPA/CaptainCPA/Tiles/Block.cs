@@ -10,17 +10,17 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 
-namespace CaptainCPA.Tiles
+namespace CaptainCPA
 {
 	/// <summary>
 	/// This is a game component that implements IUpdateable.
 	/// </summary>
 	public class Block : FixedTile
 	{
-		public Block(Game game)
-			: base(game)
+		public Block(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
+			: base(game, spriteBatch, texture, TileType.Block, color, position, rotation, scale, layerDepth)
 		{
-			// TODO: Construct any child components here
+			
 		}
 
 		/// <summary>
