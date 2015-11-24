@@ -12,13 +12,17 @@ using Microsoft.Xna.Framework.Media;
 
 namespace CaptainCPA
 {
+    public enum menuItemTitles
+    {
+        Start, Resume, Select, Help, HighScore, About, HowTo, Quit
+    }
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
     public class StartScene : GameScene
     {
         private MenuComponent menu;
-
+        
         public MenuComponent Menu
         {
             get { return menu; }
