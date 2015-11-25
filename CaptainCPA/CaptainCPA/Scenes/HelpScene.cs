@@ -17,14 +17,12 @@ namespace CaptainCPA
     /// </summary>
     public class HelpScene : GameScene
     {
-        private SpriteBatch spriteBatch;
         private SpriteFont font;
 
         public HelpScene(Game game, SpriteBatch spriteBatch)
-            : base(game)
+            : base(game, spriteBatch)
         {
-            this.spriteBatch = spriteBatch;
-            font = game.Content.Load<SpriteFont>("Fonts/Font");
+            font = game.Content.Load<SpriteFont>("Fonts/MenuFont");
         }
 
         /// <summary>
