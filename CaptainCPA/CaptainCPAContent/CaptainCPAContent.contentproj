@@ -41,8 +41,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fonts\Font.spritefont">
-      <Name>Font</Name>
+    <Compile Include="Fonts\MenuFont.spritefont">
+      <Name>MenuFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

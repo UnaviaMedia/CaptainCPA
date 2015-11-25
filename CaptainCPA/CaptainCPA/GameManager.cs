@@ -74,7 +74,7 @@ namespace CaptainCPA
 			helpScene = new HelpScene(this, spriteBatch);
 			this.Components.Add(helpScene);
 
-			startScene.show();
+			startScene.Show();
 		}
 
 		/// <summary>
@@ -88,7 +88,7 @@ namespace CaptainCPA
 				if (item is GameScene)
 				{
 					gs = (GameScene)item;
-					gs.hide();
+					gs.Hide();
 				}
 			}
 		}
@@ -123,12 +123,12 @@ namespace CaptainCPA
 				if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter))
 				{
 					hideAllScenes();
-					actionScene.show();
+					actionScene.Show();
 				}
 				if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
 				{
 					hideAllScenes();
-					helpScene.show();
+					helpScene.Show();
 				}
 				//if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
 				//{
@@ -158,7 +158,7 @@ namespace CaptainCPA
 				if (ks.IsKeyDown(Keys.Escape))
 				{
 					hideAllScenes();
-					startScene.show();
+					startScene.Show();
 				}
 			}
 

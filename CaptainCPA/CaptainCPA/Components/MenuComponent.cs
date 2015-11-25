@@ -15,7 +15,7 @@ namespace CaptainCPA
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class MenuComponent : Microsoft.Xna.Framework.DrawableGameComponent
+    public class MenuComponent : DrawableGameComponent
     {
         private SpriteBatch spriteBatch;
         private SpriteFont regularFont, hilightFont;
@@ -41,7 +41,6 @@ namespace CaptainCPA
             string[] menuItems)
             : base(game)
         {
-            // TODO: Construct any child components here
             this.spriteBatch = spriteBatch;
             this.regularFont = regularFont;
             this.hilightFont = hilightFont;
