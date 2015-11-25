@@ -31,6 +31,12 @@ namespace CaptainCPA
 		protected TileType tileType;
 		protected Rectangle bounds;
 
+		public Texture2D Texture
+		{
+			get { return texture; }
+			set { texture = value; }
+		}
+
 		public Color Color
 		{
 			get { return color; }
@@ -47,6 +53,12 @@ namespace CaptainCPA
 		{
 			get { return tileType; }
 			set { tileType = value; }
+		}
+
+		public SpriteEffects SpriteEffects
+		{
+			get { return spriteEffect; }
+			set { spriteEffect = value; }
 		}
 
 		public Rectangle Bounds

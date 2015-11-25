@@ -33,6 +33,7 @@ namespace CaptainCPA
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
+			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
 
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
@@ -52,7 +53,7 @@ namespace CaptainCPA
 					string tileType = tile.Attributes["tileType"].Value;
 
 					//Declare new Tile properties
-					Tile newTile;
+					Tile newTile = null;
 					Texture2D texture;
 					string colorString = tile.Attributes["color"].Value;
 					Color color = ColorConverter.ConvertColor(colorString);
@@ -70,17 +71,32 @@ namespace CaptainCPA
 						case "block":
 							texture = blockTexture;
 							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
-							tileList.Add(newTile);
+							break;
+						case "platform":
+							texture = platformTexture;
+							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
+							break;
+						case "platform-left":
+							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
+							break;
+						case "platform-right":
+							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
+							newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
 							break;
 						case "character":
 							texture = characterTexture;
 							Vector2 velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
 							bool onGround = true;
 							newTile = new Character(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
-							tileList.Add(newTile);
 							break;
 						default:
 							break;
+					}
+
+					//If the tile is not null, add it to the tile list
+					if (newTile != null)
+					{
+						tileList.Add(newTile); 
 					}
 				}
 			}
