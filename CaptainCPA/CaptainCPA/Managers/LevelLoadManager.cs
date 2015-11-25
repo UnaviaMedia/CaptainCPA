@@ -54,7 +54,8 @@ namespace CaptainCPA
 					//Declare new Tile properties
 					Tile newTile;
 					Texture2D texture;
-					Color color = Color.White;
+					string colorString = tile.Attributes["color"].Value;
+					Color color = ColorConverter.ConvertColor(colorString);
 					Vector2 position = new Vector2(xValue * Settings.TILE_SIZE, yValue * Settings.TILE_SIZE);
 					float rotation = 0.0f;
 					float scale = 1.0f;
@@ -73,7 +74,7 @@ namespace CaptainCPA
 							break;
 						case "character":
 							texture = characterTexture;
-							Vector2 velocity = new Vector2(int.Parse(tile.Attributes["velocityX"].Value), int.Parse(tile.Attributes["velocityY"].Value));
+							Vector2 velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
 							bool onGround = true;
 							newTile = new Character(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
 							tileList.Add(newTile);
