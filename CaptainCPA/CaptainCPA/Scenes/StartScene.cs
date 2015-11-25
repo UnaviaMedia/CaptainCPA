@@ -28,7 +28,6 @@ namespace CaptainCPA
             get { return menu; }
             set { menu = value; }
         }
-        private SpriteBatch spriteBatch;
         string[] menuItems = {"Start Game",
                              "Resume",
                              "Select Level",
@@ -37,13 +36,13 @@ namespace CaptainCPA
                              "About/Credit",
                              "How to play",
                              "Quit"};
+
         public StartScene(Game game, SpriteBatch spriteBatch)
-            : base(game)
+            : base(game, spriteBatch)
         {
-            this.spriteBatch = spriteBatch;
             menu = new MenuComponent(game, spriteBatch,
-                game.Content.Load<SpriteFont>("Fonts/Font"),
-                game.Content.Load<SpriteFont>("Fonts/Font"),
+                game.Content.Load<SpriteFont>("Fonts/MenuFont"),
+                game.Content.Load<SpriteFont>("Fonts/MenuFont"),
                 menuItems);
             this.Components.Add(menu);
         }
