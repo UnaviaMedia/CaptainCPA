@@ -37,6 +37,9 @@ namespace CaptainCPA
 			graphics.PreferredBackBufferWidth = (int)(Settings.TILE_SIZE * X_SCALE_FACTOR);
 			graphics.PreferredBackBufferHeight = (int)(Settings.TILE_SIZE * Y_SCALE_FACTOR);
 
+			//Initialize GameScene list
+			scenes = new List<GameScene>();
+
 			Content.RootDirectory = "Content";
 		}
 
