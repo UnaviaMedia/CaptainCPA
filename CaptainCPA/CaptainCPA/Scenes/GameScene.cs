@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - GameScene.cs
+ * Purpose: Base GameScene component
+ *
+ * History:
+ *		Doug Epp		Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +21,7 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Base GameScene component
 	/// </summary>
 	public class GameScene : DrawableGameComponent
 	{

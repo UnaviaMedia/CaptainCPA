@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - StartScene.cs
+ * Purpose: Display a StartScene screen with a game menu
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +25,7 @@ namespace CaptainCPA
         Start, Resume, Select, Help, HighScore, About, HowTo, Quit
     }
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// Display a StartScene screen with a game menu
     /// </summary>
     public class StartScene : GameScene
     {

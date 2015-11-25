@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - GameManager.cs
+ * Purpose: Main game manager
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +20,7 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is the main type for your game
+	/// Main game manager class
 	/// </summary>
 	public class GameManager : Game
 	{

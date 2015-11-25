@@ -1,4 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * Project: CaptainCPA - Utilities.cs
+ * Purpose: Class that contains various utility methods
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ */
+
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +14,9 @@ using System.Text;
 
 namespace CaptainCPA
 {
+	/// <summary>
+	/// Class that contains various utility methods
+	/// </summary>
 	public class Utilities
 	{
 		/// <summary>

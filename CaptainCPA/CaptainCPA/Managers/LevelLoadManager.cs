@@ -1,4 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * Project: CaptainCPA - LevelLoadManager.cs
+ * Purpose: Loads the specified XML level file
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ */
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -8,6 +16,9 @@ using System.Xml;
 
 namespace CaptainCPA
 {
+	/// <summary>
+	/// Loads the specified XMl level file
+	/// </summary>
 	public class LevelLoadManager
 	{
 		private Game game;

@@ -1,9 +1,20 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * Project: CaptainCPA - ColorConverter.cs
+ * Purpose: Utility class for converting strings to colors
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ */
+
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
 namespace CaptainCPA
 {
+	/// <summary>
+	/// Utility class for converting strings to colors
+	/// </summary>
 	public static class ColorConverter
 	{
 		public static Dictionary<string, Color> TileColors = new Dictionary<string, Color>()

@@ -1,3 +1,12 @@
+/*
+ * Project: CaptainCPA - Character.cs
+ * Purpose: Character class
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ *										Movement physics added
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +22,7 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Character tile and logic
 	/// </summary>
 	public class Character : MoveableTile
 	{
@@ -30,8 +39,6 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
-			
-
 			base.Initialize();
 		}
 

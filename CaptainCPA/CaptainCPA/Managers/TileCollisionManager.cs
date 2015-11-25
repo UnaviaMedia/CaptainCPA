@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - TileCollisionManager.cs
+ * Purpose: Manages collisions and post-collision positioning between tiles
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +21,7 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Manages collisions and post-collision positioning between tiles
 	/// </summary>
 	public class TileCollisionManager : CollisionManager
 	{
