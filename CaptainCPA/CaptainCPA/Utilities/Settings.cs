@@ -12,13 +12,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
-    public class Settings
-    {
-        public static Vector2 Stage;
+	/// <summary>
+	/// This is a game component that implements IUpdateable.
+	/// </summary>
+	public class Settings
+	{
+		public static Vector2 Stage;
 
-		public static float TileSize;
-    }
+		public const float TILE_SIZE = 64.0f;
+	}
 }

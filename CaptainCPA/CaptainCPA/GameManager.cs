@@ -11,167 +11,169 @@ using Microsoft.Xna.Framework.Media;
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
-    public class GameManager : Microsoft.Xna.Framework.Game
-    {
-        const float TILE_SIZE = 64;
-        const float X_SCALE_FACTOR = 25f;
-        const float Y_SCALE_FACTOR = 13f;
+	/// <summary>
+	/// This is the main type for your game
+	/// </summary>
+	public class GameManager : Game
+	{
+		const float X_SCALE_FACTOR = 25f;
+		const float Y_SCALE_FACTOR = 14f;
 
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+		GraphicsDeviceManager graphics;
+		SpriteBatch spriteBatch;
 
-        //scene declaration
-        private StartScene startScene;
-        private ActionScene actionScene;
-        private HelpScene helpScene;
+		#region Scenes
+		//Scene declaration
+		private StartScene startScene;
+		private ActionScene actionScene;
+		private HelpScene helpScene;
+		#endregion
 
-        private void hideAllScenes()
-        {
-            GameScene gs = null;
-            foreach (GameComponent item in Components)
-            {
-                if (item is GameScene)
-                {
-                    gs = (GameScene)item;
-                    gs.hide();
-                }
-            }
-        }
-        public GameManager()
-        {
-            Settings.TileSize = TILE_SIZE;
-            graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = (int)(Settings.TileSize * X_SCALE_FACTOR);
-            graphics.PreferredBackBufferHeight = (int)(Settings.TileSize * Y_SCALE_FACTOR);
-            Content.RootDirectory = "Content";
-        }
+		public GameManager()
+		{
+			//Initialize graphics manager properties
+			graphics = new GraphicsDeviceManager(this);
+			graphics.PreferredBackBufferWidth = (int)(Settings.TILE_SIZE * X_SCALE_FACTOR);
+			graphics.PreferredBackBufferHeight = (int)(Settings.TILE_SIZE * Y_SCALE_FACTOR);
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
-        {
-            graphics.PreferredBackBufferWidth = (int)(Settings.TileSize * X_SCALE_FACTOR);
-            graphics.PreferredBackBufferHeight = (int)(Settings.TileSize * Y_SCALE_FACTOR);
-            Settings.Stage = new Vector2(graphics.PreferredBackBufferWidth,
-                graphics.PreferredBackBufferHeight);
+			Content.RootDirectory = "Content";
+		}
 
-            base.Initialize();
-        }
+		/// <summary>
+		/// Allows the game to perform any initialization it needs to before starting to run.
+		/// This is where it can query for any required services and load any non-graphic
+		/// related content.  Calling base.Initialize will enumerate through any components
+		/// and initialize them as well.
+		/// </summary>
+		protected override void Initialize()
+		{
+			IsMouseVisible = true;
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+			//Initialize game stage viarable
+			Settings.Stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
-            //create all scenes and add to the Components list
-            startScene = new StartScene(this, spriteBatch);
-            Components.Add(startScene);
+			base.Initialize();
+		}
 
-            actionScene = new ActionScene(this, spriteBatch);
-            this.Components.Add(actionScene);
+		/// <summary>
+		/// LoadContent will be called once per game and is the place to load
+		/// all of your content.
+		/// </summary>
+		protected override void LoadContent()
+		{
+			// Create a new SpriteBatch, which can be used to draw textures.
+			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            helpScene = new HelpScene(this, spriteBatch);
-            this.Components.Add(helpScene);
+			//Create all scenes and add to the Components list
+			startScene = new StartScene(this, spriteBatch);
+			this.Components.Add(startScene);
 
-            startScene.show();
+			actionScene = new ActionScene(this, spriteBatch);
+			this.Components.Add(actionScene);
 
-            // TODO: use this.Content to load your game content here
-        }
+			helpScene = new HelpScene(this, spriteBatch);
+			this.Components.Add(helpScene);
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
+			startScene.show();
+		}
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+		/// <summary>
+		/// Hide all game scenes
+		/// </summary>
+		private void hideAllScenes()
+		{
+			GameScene gs = null;
+			foreach (GameComponent item in Components)
+			{
+				if (item is GameScene)
+				{
+					gs = (GameScene)item;
+					gs.hide();
+				}
+			}
+		}
 
-            // TODO: Add your update logic here
-            int selectedIndex = 0;
-            KeyboardState ks = Keyboard.GetState();
+		/// <summary>
+		/// UnloadContent will be called once per game and is the place to unload
+		/// all content.
+		/// </summary>
+		protected override void UnloadContent()
+		{
+			
+		}
 
-            if (startScene.Enabled)
-            {
-                selectedIndex = startScene.Menu.SelectedIndex;
-                if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter))
-                {
-                    hideAllScenes();
-                    actionScene.show();
-                }
-                if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
-                {
-                    hideAllScenes();
-                    helpScene.show();
-                }
-                //if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
-                //{
-                //    hideAllScenes();
-                //    //highScoreScene.show();
-                //}
-                //if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
-                //{
-                //    hideAllScenes();
-                //    //aboutCreditScene.show();
-                //}
-                //if (selectedIndex == 4 && ks.IsKeyDown(Keys.Enter))
-                //{
-                //    hideAllScenes();
-                //    //howToPlayScene.show();
-                //}
-                //... other scenes here
+		/// <summary>
+		/// Allows the game to run logic such as updating the world,
+		/// checking for collisions, gathering input, and playing audio.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
+		protected override void Update(GameTime gameTime)
+		{
+			// Allows the game to exit
+			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+				this.Exit();
 
-                if (selectedIndex == 7 && ks.IsKeyDown(Keys.Enter))
-                {
-                    Exit();
-                }
-            }
+			// TODO: Add your update logic here
+			int selectedIndex = 0;
+			KeyboardState ks = Keyboard.GetState();
 
-            if (!startScene.Enabled)
-            {
-                if (ks.IsKeyDown(Keys.Escape))
-                {
-                    hideAllScenes();
-                    startScene.show();
-                }
-            }
+			if (startScene.Enabled)
+			{
+				selectedIndex = startScene.Menu.SelectedIndex;
+				if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter))
+				{
+					hideAllScenes();
+					actionScene.show();
+				}
+				if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
+				{
+					hideAllScenes();
+					helpScene.show();
+				}
+				//if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
+				//{
+				//    hideAllScenes();
+				//    //highScoreScene.show();
+				//}
+				//if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
+				//{
+				//    hideAllScenes();
+				//    //aboutCreditScene.show();
+				//}
+				//if (selectedIndex == 4 && ks.IsKeyDown(Keys.Enter))
+				//{
+				//    hideAllScenes();
+				//    //howToPlayScene.show();
+				//}
+				//... other scenes here
 
-            base.Update(gameTime);
-        }
+				if (selectedIndex == 7 && ks.IsKeyDown(Keys.Enter))
+				{
+					Exit();
+				}
+			}
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+			if (!startScene.Enabled)
+			{
+				if (ks.IsKeyDown(Keys.Escape))
+				{
+					hideAllScenes();
+					startScene.show();
+				}
+			}
 
-            // TODO: Add your drawing code here
+			base.Update(gameTime);
+		}
 
-            base.Draw(gameTime);
-        }
-    }
+		/// <summary>
+		/// This is called when the game should draw itself.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
+		protected override void Draw(GameTime gameTime)
+		{
+			GraphicsDevice.Clear(Color.CornflowerBlue);
+
+			base.Draw(gameTime);
+		}
+	}
 }
