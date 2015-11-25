@@ -7,6 +7,6 @@ namespace CaptainCPA
 {
 	public enum TileType
 	{
-		Platform, Block, Character, Decoration
+		Platform, Block, Character, Enemy, Decoration, Pickup
 	}
 }
