@@ -20,13 +20,9 @@ namespace CaptainCPA
 		protected LevelLoadManager levelLoader;
 		protected List<Tile> tileList;
 
-		private SpriteBatch spriteBatch;
-
 		public ActionScene(Game game, SpriteBatch spriteBatch)
-			: base(game)
+			: base(game, spriteBatch)
 		{
-			this.spriteBatch = spriteBatch;
-
 			//Add a level creator, and create the level
 			levelLoader = new LevelLoadManager(game, spriteBatch);
 			levelLoader.LoadGame("Level1");
