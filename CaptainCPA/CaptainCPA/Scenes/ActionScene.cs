@@ -12,20 +12,20 @@ using Microsoft.Xna.Framework.Media;
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
-    public class ActionScene : GameScene
-    {
+	/// <summary>
+	/// This is a game component that implements IUpdateable.
+	/// </summary>
+	public class ActionScene : GameScene
+	{
 		protected LevelLoadManager levelLoader;
 		protected List<Tile> tileList;
 
-        private SpriteBatch spriteBatch;
+		private SpriteBatch spriteBatch;
 
-        public ActionScene(Game game, SpriteBatch spriteBatch)
-            : base(game)
-        {
-            this.spriteBatch = spriteBatch;
+		public ActionScene(Game game, SpriteBatch spriteBatch)
+			: base(game)
+		{
+			this.spriteBatch = spriteBatch;
 
 			//Add a level creator, and create the level
 			levelLoader = new LevelLoadManager(game, spriteBatch);
@@ -37,26 +37,26 @@ namespace CaptainCPA
 			{
 				this.Components.Add(tile);
 			}
-        }
+		}
 
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
-        public override void Initialize()
-        {
+		/// <summary>
+		/// Allows the game component to perform any initialization it needs to before starting
+		/// to run.  This is where it can query for any required services and load content.
+		/// </summary>
+		public override void Initialize()
+		{
 
-            base.Initialize();
-        }
+			base.Initialize();
+		}
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime)
-        {
+		/// <summary>
+		/// Allows the game component to update itself.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
+		public override void Update(GameTime gameTime)
+		{
 
-            base.Update(gameTime);
-        }
-    }
+			base.Update(gameTime);
+		}
+	}
 }

@@ -24,8 +24,8 @@ namespace CaptainCPA
 		/// <summary>
 		/// Loads an nPuzzle game save and sets up the board
 		/// </summary>
-		/// <param name="filePath">File path to the save file</param>
-		public void LoadGame(string filePath)
+		/// <param name="levelName">File path to the save file</param>
+		public void LoadGame(string levelName)
 		{
 			//Create list of level tiles
 			tileList = new List<Tile>();
@@ -36,10 +36,9 @@ namespace CaptainCPA
 
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
-			loadFile.Load(Path.Combine(typeof(Game1).Assembly, filePath, ".xml"));
-
-			//loadFile.Load(filePath);
-			var rows = loadFile.SelectNodes("/PlatformGame/Rows/*");
+			loadFile.Load(@"Content/Levels/" + levelName + ".xml");
+			
+			var rows = loadFile.SelectNodes("/XnaContent/PlatformGame/Rows/*");
 
 			foreach (XmlNode row in rows)
 			{
@@ -56,7 +55,6 @@ namespace CaptainCPA
 					Tile newTile;
 					Texture2D texture;
 					string colorString = tile.Attributes["color"].Value;
-					//Color color = Settings.TileColors[colorString];
 					Color color = Color.White;
 					Vector2 position = new Vector2(xValue * Settings.TileSize, yValue * Settings.TileSize);
 					float rotation = 0.0f;
@@ -76,7 +74,6 @@ namespace CaptainCPA
 						case "character":
 							texture = characterTexture;
 							Vector2 velocity = new Vector2(int.Parse(tile.Attributes["velocityX"].Value), int.Parse(tile.Attributes["velocityY"].Value));
-							//Vector2 velocity = new Vector2(0.0f, 0.0f);
 							bool onGround = true;
 							newTile = new Character(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
 							tileList.Add(newTile);

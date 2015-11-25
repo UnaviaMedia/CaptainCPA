@@ -14,7 +14,7 @@ namespace CaptainCPA
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class GameManager : Microsoft.Xna.Framework.Game
     {
         const float TILE_SIZE = 64;
         const float X_SCALE_FACTOR = 25f;
@@ -40,7 +40,7 @@ namespace CaptainCPA
                 }
             }
         }
-        public Game1()
+        public GameManager()
         {
             Settings.TileSize = TILE_SIZE;
             graphics = new GraphicsDeviceManager(this);
