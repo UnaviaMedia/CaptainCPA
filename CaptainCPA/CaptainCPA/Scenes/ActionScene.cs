@@ -20,6 +20,8 @@ namespace CaptainCPA
 		protected LevelLoadManager levelLoader;
 		protected List<Tile> tileList;
 
+		protected CollisionManager tileCollisionManager;
+
 		public ActionScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
 		{
@@ -33,6 +35,10 @@ namespace CaptainCPA
 			{
 				this.Components.Add(tile);
 			}
+
+			//Create tile collision manager and add to list of components
+			tileCollisionManager = new TileCollisionManager(game, tileList);
+			this.Components.Add(tileCollisionManager);
 		}
 
 		/// <summary>

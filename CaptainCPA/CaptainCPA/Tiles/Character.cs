@@ -43,23 +43,26 @@ namespace CaptainCPA
 		{
 			KeyboardState ks = Keyboard.GetState();
 
+			//Reset horizontal velocity to zero
+			velocity.X = 0;
+
 			if (ks.IsKeyDown(Keys.Left))
 			{
-				position.X -= velocity.X;
-			}
-			if (ks.IsKeyDown(Keys.Right))
-			{
-				position.X += velocity.X;
+				velocity.X = -3;
 			}
 
-			if (ks.IsKeyDown(Keys.Up))
+			if (ks.IsKeyDown(Keys.Right))
 			{
-				position.Y -= velocity.Y;
+				velocity.X = 3;
 			}
-			if (ks.IsKeyDown(Keys.Down))
+
+			if (ks.IsKeyDown(Keys.Up) && onGround == true)
 			{
-				position.Y += velocity.Y;
+				gravity.X = velocity.X;
+				velocity.Y = -6;
+				onGround = false;
 			}
+
 
 			base.Update(gameTime);
 		}
