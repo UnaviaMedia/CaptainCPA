@@ -112,10 +112,15 @@ namespace CaptainCPA
 						else if (collisionRectangle.Width < collisionRectangle.Height)
 						{
 							//If the moveable tile collides sideways with something and is still going up, make it drop straight down
-							/*if (moveableTile.Velocity.Y < 0)
+							if (moveableTile.Velocity.Y < 0)
 							{
-								moveableTile.Velocity = new Vector2(0.0f, 1.0f); 
-							}*/
+								moveableTile.Velocity = new Vector2(0.0f, 0.0f);
+							}
+							else
+							{
+								moveableTile.Velocity = new Vector2(0.0f, moveableTile.Velocity.Y);
+								moveableTile.Gravity = new Vector2(0.0f, moveableTile.Gravity.Y);
+							}
 
 							//Horizontal collision
 							if (moveableTile.Bounds.Right - fixedTile.Bounds.Right < 0)

@@ -26,7 +26,7 @@ namespace CaptainCPA
 	public class MoveableTile : Tile
 	{
 		protected Vector2 velocity;
-		protected Vector2 gravity = new Vector2(0.0f, 0.15f);
+		protected Vector2 gravity = new Vector2(0.0f, 0.2f);
 		protected bool onGround;
 
 		public Vector2 Velocity
