@@ -161,7 +161,7 @@ namespace CaptainCPA
 				//}
 				//... other scenes here
 
-				if (selectedIndex == 7 && ks.IsKeyDown(Keys.Enter))
+				if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter))
 				{
 					Exit();
 				}

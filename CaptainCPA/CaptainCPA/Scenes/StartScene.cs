@@ -22,7 +22,7 @@ namespace CaptainCPA
 {
     public enum menuItemTitles
     {
-        Start, Resume, Select, Help, HighScore, About, HowTo, Quit
+        Start, Select, Help, HighScore, About, HowTo, Quit
     }
     /// <summary>
     /// Display a StartScene screen with a game menu
@@ -37,7 +37,6 @@ namespace CaptainCPA
             set { menu = value; }
         }
         string[] menuItems = {"Start Game",
-                             "Resume",
                              "Select Level",
                              "Help",
                              "High Score",
