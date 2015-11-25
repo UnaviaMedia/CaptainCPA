@@ -24,6 +24,7 @@ namespace CaptainCPA
 
 		#region Scenes
 		//Scene declaration
+		private List<GameScene> scenes;
 		private StartScene startScene;
 		private ActionScene actionScene;
 		private HelpScene helpScene;
@@ -66,14 +67,21 @@ namespace CaptainCPA
 
 			//Create all scenes and add to the Components list
 			startScene = new StartScene(this, spriteBatch);
-			this.Components.Add(startScene);
+			scenes.Add(startScene);
 
 			actionScene = new ActionScene(this, spriteBatch);
-			this.Components.Add(actionScene);
+			scenes.Add(actionScene);
 
 			helpScene = new HelpScene(this, spriteBatch);
-			this.Components.Add(helpScene);
+			scenes.Add(helpScene);
 
+			//Add each GameScene to the game's components
+			foreach (GameScene gameScene in scenes)
+			{
+				this.Components.Add(gameScene);
+			}
+
+			//Display the home screen
 			startScene.Show();
 		}
 
@@ -82,14 +90,9 @@ namespace CaptainCPA
 		/// </summary>
 		private void hideAllScenes()
 		{
-			GameScene gs = null;
-			foreach (GameComponent item in Components)
+			foreach (GameScene gameScene in scenes)
 			{
-				if (item is GameScene)
-				{
-					gs = (GameScene)item;
-					gs.Hide();
-				}
+				gameScene.Hide();
 			}
 		}
 
