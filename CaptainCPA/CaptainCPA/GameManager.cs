@@ -36,6 +36,7 @@ namespace CaptainCPA
 		private StartScene startScene;
 		private ActionScene actionScene;
 		private HelpScene helpScene;
+        private AboutScene aboutScene;
 		#endregion
 
 		public GameManager()
@@ -85,6 +86,9 @@ namespace CaptainCPA
 
 			helpScene = new HelpScene(this, spriteBatch);
 			scenes.Add(helpScene);
+
+            aboutScene = new AboutScene(this, spriteBatch);
+            scenes.Add(aboutScene);
 
 			//Add each GameScene to the game's components
 			foreach (GameScene gameScene in scenes)
@@ -144,6 +148,11 @@ namespace CaptainCPA
 					hideAllScenes();
 					helpScene.Show();
 				}
+                if(selectedIndex==(int)menuItemTitles.About && ks.IsKeyDown(Keys.Enter))
+                {
+                    hideAllScenes();
+                    aboutScene.Show();
+                }
 				//if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
 				//{
 				//    hideAllScenes();
