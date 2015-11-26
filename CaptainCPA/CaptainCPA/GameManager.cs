@@ -40,6 +40,8 @@ namespace CaptainCPA
         private AboutScene aboutScene;
         private HighScoreScene highScoreScene;
         private HowToPlayScene howToPlayScene;
+
+        private KeyboardState oldState;
         #endregion
 
         public GameManager()
@@ -143,16 +145,16 @@ namespace CaptainCPA
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            #region menu navigation
             int selectedIndex = 0;
             KeyboardState ks = Keyboard.GetState();
-            #region menu navigation
             if (startScene.Enabled)
             {
                 selectedIndex = startScene.Menu.SelectedIndex;
-                if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter))
+                if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
                 {
                     hideAllScenes();
+                    //TODO: Reset action scene
                     actionScene.Show();
                 }
                 if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
@@ -183,7 +185,7 @@ namespace CaptainCPA
 
             if (actionScene.Enabled)
             {
-                if (ks.IsKeyDown(Keys.Escape))
+                if (ks.IsKeyDown(Keys.Escape))//display pause menu
                 {
                     foreach (var item in actionScene.Components)
                     {
@@ -235,7 +237,9 @@ namespace CaptainCPA
                     startScene.Show();
                 }
             }
+            oldState = ks;
             #endregion
+
             base.Update(gameTime);
         }
 
