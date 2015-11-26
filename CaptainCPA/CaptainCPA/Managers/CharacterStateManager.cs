@@ -15,16 +15,16 @@ namespace CaptainCPA
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class CharacterPositionManager : Microsoft.Xna.Framework.GameComponent
+    public class CharacterStateManager : Microsoft.Xna.Framework.GameComponent
     {
         private static Vector2 characterPosition;
 
         public static Vector2 CharacterPosition
         {
-            get { return CharacterPositionManager.characterPosition; }
-            set { CharacterPositionManager.characterPosition = value; }
+            get { return CharacterStateManager.characterPosition; }
+            set { CharacterStateManager.characterPosition = value; }
         }
-        public CharacterPositionManager(Game game)
+        public CharacterStateManager(Game game)
             : base(game)
         {
 

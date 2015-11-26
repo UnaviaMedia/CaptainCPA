@@ -73,7 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MenuComponent.cs" />
-    <Compile Include="Managers\CharacterPositionManager.cs" />
+    <Compile Include="Managers\CharacterStateManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\LevelLoadManager.cs" />
     <Compile Include="Managers\TileCollisionManager.cs" />

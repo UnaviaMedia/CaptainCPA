@@ -42,11 +42,11 @@ namespace CaptainCPA
         public override void Update(GameTime gameTime)
         {
 
-            if (position.X > CharacterPositionManager.CharacterPosition.X)
+            if (position.X > CharacterStateManager.CharacterPosition.X)
             {
                 velocity.X = -(Math.Abs(velocity.X));
             }
-            else if (position.X < CharacterPositionManager.CharacterPosition.X)
+            else if (position.X < CharacterStateManager.CharacterPosition.X)
             {
                 velocity.X = Math.Abs(velocity.X);
             }

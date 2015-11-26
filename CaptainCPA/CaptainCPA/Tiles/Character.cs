@@ -69,7 +69,7 @@ namespace CaptainCPA
 				velocity.Y = -8;
 				onGround = false;
 			}
-            CharacterPositionManager.CharacterPosition = position;
+            CharacterStateManager.CharacterPosition = position;
 			base.Update(gameTime);
 		}
 	}
