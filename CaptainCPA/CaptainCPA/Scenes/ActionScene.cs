@@ -22,6 +22,7 @@ namespace CaptainCPA
 		protected List<Tile> tileList;
 
 		protected CollisionManager tileCollisionManager;
+        protected CharacterPositionManager characterPositionManager;
 
 		public ActionScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)

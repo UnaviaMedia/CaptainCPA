@@ -25,7 +25,8 @@ namespace CaptainCPA
 			{ "Blue", Color.Blue },
 			{ "LightRed", Color.PaleVioletRed },
 			{ "LightGreen", Color.LightGreen },
-			{ "LightBlue", Color.LightBlue }
+			{ "LightBlue", Color.LightBlue },
+            { "Yellow", Color.Yellow }
 		};
 
 		public static Color ConvertColor(string input)

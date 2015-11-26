@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MenuComponent.cs" />
+    <Compile Include="Managers\CharacterPositionManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\LevelLoadManager.cs" />
     <Compile Include="Managers\TileCollisionManager.cs" />
@@ -84,12 +85,14 @@
     <Compile Include="Scenes\HighScoreScene.cs" />
     <Compile Include="Scenes\HowToPlayScene.cs" />
     <Compile Include="Scenes\PauseMenuScene.cs" />
+    <Compile Include="Tiles\Enemy.cs" />
     <Compile Include="Tiles\Platform.cs" />
     <Compile Include="Tiles\Block.cs" />
     <Compile Include="Tiles\Character.cs" />
     <Compile Include="Components\FixedTile.cs" />
     <Compile Include="Components\MoveableTile.cs" />
     <Compile Include="Components\Tile.cs" />
+    <Compile Include="Tiles\PursuingEnemy.cs" />
     <Compile Include="Tiles\TileType.cs" />
     <Compile Include="Scenes\ActionScene.cs" />
     <Compile Include="Scenes\GameScene.cs" />
