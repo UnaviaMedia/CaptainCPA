@@ -1,1 +1,1 @@
-test test one two three
+Copyright 2015, Doug Epp and Kendall Roth

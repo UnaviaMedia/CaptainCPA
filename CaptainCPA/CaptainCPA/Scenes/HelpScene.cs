@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 
 namespace CaptainCPA
@@ -25,12 +26,14 @@ namespace CaptainCPA
     /// </summary>
     public class HelpScene : GameScene
     {
+        private string message;
         private SpriteFont font;
 
         public HelpScene(Game game, SpriteBatch spriteBatch)
             : base(game, spriteBatch)
         {
             font = game.Content.Load<SpriteFont>("Fonts/MenuFont");
+            message = readFile(@"Text/HelpMessage.txt");
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace CaptainCPA
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "Heeelp Meeeee", new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(font, message, new Vector2(0, 0), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

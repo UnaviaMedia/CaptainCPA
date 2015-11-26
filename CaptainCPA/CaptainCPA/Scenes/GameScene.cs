@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 
 namespace CaptainCPA
@@ -100,5 +101,18 @@ namespace CaptainCPA
 
 			base.Draw(gameTime);
 		}
+        public string readFile(string path)
+        {
+            string message = null;
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    message += line + "\n";
+                }
+            }
+            return message;
+        }
 	}
 }

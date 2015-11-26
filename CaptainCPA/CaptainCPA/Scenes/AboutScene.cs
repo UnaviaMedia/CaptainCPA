@@ -55,18 +55,5 @@ namespace CaptainCPA
 
             base.Draw(gameTime);
         }
-        public string readFile(string path)
-        {
-            string message = null;
-            using (StreamReader sr = new StreamReader(path))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    message += line + "\n";
-                }
-            }
-            return message;
-        }
     }
 }
