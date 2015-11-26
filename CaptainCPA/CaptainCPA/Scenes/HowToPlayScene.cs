@@ -50,7 +50,7 @@ namespace CaptainCPA
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, message, new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(font, message, new Vector2(Settings.TILE_SIZE * 13, Settings.TILE_SIZE * 6), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);

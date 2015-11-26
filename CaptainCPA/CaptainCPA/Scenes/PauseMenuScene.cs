@@ -17,7 +17,7 @@ namespace CaptainCPA
     /// </summary>
     public enum PauseMenuItems
     {
-        Resume, MainMenu, HowTo, Quit
+        Resume, HowTo, MainMenu, Quit
     }
     /// <summary>
     /// Displays the pause menu while game is being played
@@ -32,8 +32,8 @@ namespace CaptainCPA
             set { menu = value; }
         }
         string[] menuItems = {"Resume Game",
-                             "Exit to Main Menu",
                              "How to play",
+                             "Exit to Main Menu",
                              "Quit"};
         /// <summary>
         /// Constructor for the Pause Menu Scene
