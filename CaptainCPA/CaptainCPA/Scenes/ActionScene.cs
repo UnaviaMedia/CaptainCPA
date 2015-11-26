@@ -28,7 +28,7 @@ namespace CaptainCPA
 		protected LevelLoadManager levelLoader;
 		protected List<Tile> tileList;
 
-		protected CollisionManager tileCollisionManager;
+		//protected CollisionManager tileCollisionManager;
 		protected PhysicsManager physicsManager;
 
 		public ActionScene(Game game, SpriteBatch spriteBatch)

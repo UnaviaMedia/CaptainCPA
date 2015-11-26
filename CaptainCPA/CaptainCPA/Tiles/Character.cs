@@ -52,24 +52,37 @@ namespace CaptainCPA
 
 			//Reset horizontal velocity to zero
 			velocity.X = 0;
-
+			
 			if (ks.IsKeyDown(Keys.Left))
 			{
-				velocity.X = -3;
+				velocity.X = -3.5f;
 			}
 
 			if (ks.IsKeyDown(Keys.Right))
 			{
-				velocity.X = 3;
+				velocity.X = 3.5f;
 			}
+
+			/*if (ks.IsKeyDown(Keys.Up))
+			{
+				velocity.Y = -4;
+			}
+
+			if (ks.IsKeyDown(Keys.Down))
+			{
+				velocity.Y = 4;
+			}*/
 
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
 			{
-				//gravity.X = velocity.X;
-				//velocity.Y = -8;
-				//onGround = false;
+				velocity.Y = -8.0f;
+				onGround = false;
 			}
 
+			if (ks.IsKeyDown(Keys.Space))
+			{
+				Console.WriteLine("d");
+			}
 
 			base.Update(gameTime);
 		}
