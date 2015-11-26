@@ -1,23 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+/*
+ * Project: CaptainCPA - PauseMenuScene.cs
+ * Purpose: Display the pause menu
+ *
+ * History:
+ *		Doug Epp		Nov-26-2015:	Created
+ */
+
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
 {
+    /// <summary>
+    /// Enumerates the menu items in the Pause menu
+    /// </summary>
     public enum PauseMenuItems
     {
         Resume, MainMenu, HowTo, Quit
     }
     /// <summary>
-    /// Display a StartScene screen with a game menu
+    /// Displays the pause menu while game is being played
     /// </summary>
     public class PauseMenuScene : GameScene
     {
@@ -32,7 +35,11 @@ namespace CaptainCPA
                              "Return to Main Menu",
                              "How to play",
                              "Quit"};
-
+        /// <summary>
+        /// Constructor for the Pause Menu Scene
+        /// </summary>
+        /// <param name="game">The game which calls the pause menu</param>
+        /// <param name="spriteBatch">The spritebatch used to draw this menu</param>
         public PauseMenuScene(Game game, SpriteBatch spriteBatch)
             : base(game, spriteBatch)
         {
@@ -49,8 +56,6 @@ namespace CaptainCPA
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
-
             base.Initialize();
         }
 
@@ -60,8 +65,6 @@ namespace CaptainCPA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
-
             base.Update(gameTime);
         }
     }

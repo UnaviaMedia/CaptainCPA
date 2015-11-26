@@ -1,19 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+/*
+ * Project: CaptainCPA - HowToPlayScene.cs
+ * Purpose: Displays the game instructions
+ *
+ * History:
+ *		Doug Epp		Nov-26-2015:	Created
+ */
+
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
 {
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// This is a game scene which displays gameplay instruction from a text file
     /// </summary>
     public class HowToPlayScene : GameScene
     {

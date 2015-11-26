@@ -1,18 +1,18 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/*
+ * Project: CaptainCPA - About.cs
+ * Purpose: Display the game's about information
+ *
+ * History:
+ *		Doug Epp		Nov-26-2015:	Created
+ */
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using System.IO;
 
 namespace CaptainCPA
 {
+    /// <summary>
+    /// Displays the game's about information from a text file
+    /// </summary>
     class AboutScene : GameScene
     {
         string message;
