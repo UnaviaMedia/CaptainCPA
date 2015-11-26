@@ -1,6 +1,6 @@
 /*
  * Project: CaptainCPA - PhysicsManager.cs
- * Purpose: Manages physics
+ * Purpose: Manages physics for moveable tiles
  *
  * History:
  *		Kendall Roth	Nov-26-2015:	Created
@@ -139,10 +139,12 @@ namespace CaptainCPA
 				
 				if (moveableTile.Velocity.X < 0)
 				{
+					//Moveable distance to player's left (negative)
 					distanceToMove = Math.Min(moveableTile.Velocity.X, closestTile.Bounds.Right - moveableTile.Bounds.Left);
 				}
 				else if (moveableTile.Velocity.X > 0)
 				{
+					//Moveable distance to player's right (positive)
 					distanceToMove = Math.Min(moveableTile.Velocity.X, closestTile.Bounds.Left - moveableTile.Bounds.Right);
 				}
 
