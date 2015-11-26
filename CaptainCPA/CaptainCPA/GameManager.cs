@@ -67,7 +67,7 @@ namespace CaptainCPA
         {
             IsMouseVisible = true;
 
-            //Initialize game stage viarable
+            //Initialize game stage variable
             Settings.Stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             base.Initialize();
