@@ -29,6 +29,7 @@ namespace CaptainCPA
 		protected List<Tile> tileList;
 
 		protected CollisionManager tileCollisionManager;
+		protected PhysicsManager physicsManager;
 
 		public ActionScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
@@ -45,8 +46,11 @@ namespace CaptainCPA
 			}
 
 			//Create tile collision manager and add to list of components
-			tileCollisionManager = new TileCollisionManager(game, tileList);
-			this.Components.Add(tileCollisionManager);
+			//tileCollisionManager = new TileCollisionManager(game, tileList);
+			//this.Components.Add(tileCollisionManager);
+
+			physicsManager = new PhysicsManager(game, tileList);
+			this.Components.Add(physicsManager);
 		}
 
 		/// <summary>

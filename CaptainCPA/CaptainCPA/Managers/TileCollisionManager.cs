@@ -98,7 +98,7 @@ namespace CaptainCPA
 								collisionPosition = new Vector2(moveableTile.Position.X, fixedTile.Bounds.Top - (moveableTile.Bounds.Height / 2));
 
 								//Moveable tile is on the ground (just hit it)
-								moveableTile.OnGround = true;
+								//moveableTile.OnGround = true;
 							}
 							else
 							{
@@ -106,7 +106,7 @@ namespace CaptainCPA
 								collisionPosition = new Vector2(moveableTile.Position.X, fixedTile.Bounds.Bottom + (moveableTile.Bounds.Height / 2));
 
 								//If the moveable tile collides at its top, reset its velocity in order to cause it to fall instantly
-								moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 1);
+								//moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 1);
 							}
 						}
 						else if (collisionRectangle.Width < collisionRectangle.Height)
@@ -114,12 +114,12 @@ namespace CaptainCPA
 							//If the moveable tile collides sideways with something and is still going up, make it drop straight down
 							if (moveableTile.Velocity.Y < 0)
 							{
-								moveableTile.Velocity = new Vector2(0.0f, 0.0f);
+								//moveableTile.Velocity = new Vector2(0.0f, 0.0f);
 							}
 							else
 							{
-								moveableTile.Velocity = new Vector2(0.0f, moveableTile.Velocity.Y);
-								moveableTile.Gravity = new Vector2(0.0f, moveableTile.Gravity.Y);
+								//moveableTile.Velocity = new Vector2(0.0f, moveableTile.Velocity.Y);
+								//moveableTile.Gravity = new Vector2(0.0f, moveableTile.Gravity.Y);
 							}
 
 							//Horizontal collision

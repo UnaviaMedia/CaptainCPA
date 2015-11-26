@@ -65,9 +65,9 @@ namespace CaptainCPA
 
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
 			{
-				gravity.X = velocity.X;
-				velocity.Y = -8;
-				onGround = false;
+				//gravity.X = velocity.X;
+				//velocity.Y = -8;
+				//onGround = false;
 			}
 
 
