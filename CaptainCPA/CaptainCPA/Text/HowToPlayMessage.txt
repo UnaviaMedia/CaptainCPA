@@ -1,0 +1,5 @@
+﻿Controls:
+
+Jump: Up
+Left: Left
+Right: Right

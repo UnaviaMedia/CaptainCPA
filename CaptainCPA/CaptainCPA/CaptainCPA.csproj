@@ -81,6 +81,8 @@
     <Compile Include="GameManager.cs" />
     <Compile Include="Scenes\AboutScene.cs" />
     <Compile Include="Scenes\HelpScene.cs" />
+    <Compile Include="Scenes\HighScoreScene.cs" />
+    <Compile Include="Scenes\HowToPlayScene.cs" />
     <Compile Include="Tiles\Platform.cs" />
     <Compile Include="Tiles\Block.cs" />
     <Compile Include="Tiles\Character.cs" />
@@ -104,6 +106,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Text\HelpMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text\HighScoreMessage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text\HowToPlayMessage.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -37,6 +37,8 @@ namespace CaptainCPA
 		private ActionScene actionScene;
 		private HelpScene helpScene;
         private AboutScene aboutScene;
+        private HighScoreScene highScoreScene;
+        private HowToPlayScene howToPlayScene;
 		#endregion
 
 		public GameManager()
@@ -89,6 +91,12 @@ namespace CaptainCPA
 
             aboutScene = new AboutScene(this, spriteBatch);
             scenes.Add(aboutScene);
+
+            highScoreScene = new HighScoreScene(this, spriteBatch);
+            scenes.Add(highScoreScene);
+
+            howToPlayScene = new HowToPlayScene(this, spriteBatch);
+            scenes.Add(howToPlayScene);
 
 			//Add each GameScene to the game's components
 			foreach (GameScene gameScene in scenes)
@@ -153,21 +161,16 @@ namespace CaptainCPA
                     hideAllScenes();
                     aboutScene.Show();
                 }
-				//if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
-				//{
-				//    hideAllScenes();
-				//    //highScoreScene.show();
-				//}
-				//if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
-				//{
-				//    hideAllScenes();
-				//    //aboutCreditScene.show();
-				//}
-				//if (selectedIndex == 4 && ks.IsKeyDown(Keys.Enter))
-				//{
-				//    hideAllScenes();
-				//    //howToPlayScene.show();
-				//}
+                if (selectedIndex == (int)menuItemTitles.HighScore && ks.IsKeyDown(Keys.Enter))
+                {
+                    hideAllScenes();
+                    highScoreScene.Show();
+                }
+                if (selectedIndex == (int)menuItemTitles.HowTo && ks.IsKeyDown(Keys.Enter))
+                {
+                    hideAllScenes();
+                    howToPlayScene.Show();
+                }
 				//... other scenes here
 
 				if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter))
