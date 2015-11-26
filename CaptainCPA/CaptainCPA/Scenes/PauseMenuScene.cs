@@ -32,7 +32,7 @@ namespace CaptainCPA
             set { menu = value; }
         }
         string[] menuItems = {"Resume Game",
-                             "Return to Main Menu",
+                             "Exit to Main Menu",
                              "How to play",
                              "Quit"};
         /// <summary>

@@ -157,6 +157,11 @@ namespace CaptainCPA
                     //TODO: Reset action scene
                     actionScene.Show();
                 }
+                if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter))
+                {
+                    hideAllScenes();
+                    //TODO: Add level select scene
+                }
                 if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
                 {
                     hideAllScenes();
