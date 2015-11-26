@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - GameManager.cs
+ * Purpose: Main game manager
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +20,7 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is the main type for your game
+	/// Main game manager class
 	/// </summary>
 	public class GameManager : Game
 	{
@@ -24,6 +32,7 @@ namespace CaptainCPA
 
 		#region Scenes
 		//Scene declaration
+		private List<GameScene> scenes;
 		private StartScene startScene;
 		private ActionScene actionScene;
 		private HelpScene helpScene;
@@ -35,6 +44,9 @@ namespace CaptainCPA
 			graphics = new GraphicsDeviceManager(this);
 			graphics.PreferredBackBufferWidth = (int)(Settings.TILE_SIZE * X_SCALE_FACTOR);
 			graphics.PreferredBackBufferHeight = (int)(Settings.TILE_SIZE * Y_SCALE_FACTOR);
+
+			//Initialize GameScene list
+			scenes = new List<GameScene>();
 
 			Content.RootDirectory = "Content";
 		}
@@ -66,14 +78,21 @@ namespace CaptainCPA
 
 			//Create all scenes and add to the Components list
 			startScene = new StartScene(this, spriteBatch);
-			this.Components.Add(startScene);
+			scenes.Add(startScene);
 
 			actionScene = new ActionScene(this, spriteBatch);
-			this.Components.Add(actionScene);
+			scenes.Add(actionScene);
 
 			helpScene = new HelpScene(this, spriteBatch);
-			this.Components.Add(helpScene);
+			scenes.Add(helpScene);
 
+			//Add each GameScene to the game's components
+			foreach (GameScene gameScene in scenes)
+			{
+				this.Components.Add(gameScene);
+			}
+
+			//Display the home screen
 			startScene.Show();
 		}
 
@@ -82,14 +101,9 @@ namespace CaptainCPA
 		/// </summary>
 		private void hideAllScenes()
 		{
-			GameScene gs = null;
-			foreach (GameComponent item in Components)
+			foreach (GameScene gameScene in scenes)
 			{
-				if (item is GameScene)
-				{
-					gs = (GameScene)item;
-					gs.Hide();
-				}
+				gameScene.Hide();
 			}
 		}
 
@@ -147,7 +161,7 @@ namespace CaptainCPA
 				//}
 				//... other scenes here
 
-				if (selectedIndex == 7 && ks.IsKeyDown(Keys.Enter))
+				if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter))
 				{
 					Exit();
 				}

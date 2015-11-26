@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - Utilities.cs
+ * Purpose: Display a HelpScene screne
+ *
+ * History:
+ *		Doug Epp		Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +21,16 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// Displays Help Scene screne
     /// </summary>
     public class HelpScene : GameScene
     {
-        private SpriteBatch spriteBatch;
         private SpriteFont font;
 
         public HelpScene(Game game, SpriteBatch spriteBatch)
-            : base(game)
+            : base(game, spriteBatch)
         {
-            this.spriteBatch = spriteBatch;
-            font = game.Content.Load<SpriteFont>("Fonts/Font");
+            font = game.Content.Load<SpriteFont>("Fonts/MenuFont");
         }
 
         /// <summary>

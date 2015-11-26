@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - MenuComponent.cs
+ * Purpose: Game menu component
+ *
+ * History:
+ *		Doug Epp		Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +21,7 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// Game menu component
     /// </summary>
     public class MenuComponent : DrawableGameComponent
     {

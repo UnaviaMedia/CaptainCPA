@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - ActionScene.cs
+ * Purpose: Displays the game to the user
+ *
+ * History:
+ *		Doug Epp		Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +21,14 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Displays the game to the user
 	/// </summary>
 	public class ActionScene : GameScene
 	{
 		protected LevelLoadManager levelLoader;
 		protected List<Tile> tileList;
+
+		protected CollisionManager tileCollisionManager;
 
 		public ActionScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
@@ -33,6 +43,10 @@ namespace CaptainCPA
 			{
 				this.Components.Add(tile);
 			}
+
+			//Create tile collision manager and add to list of components
+			tileCollisionManager = new TileCollisionManager(game, tileList);
+			this.Components.Add(tileCollisionManager);
 		}
 
 		/// <summary>

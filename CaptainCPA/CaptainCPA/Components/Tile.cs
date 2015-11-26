@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - Tile.cs
+ * Purpose: Platform tile
+ *
+ * History:
+ *		Kendall Roth	Nov-24-2015:	Created
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +21,7 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Platform tile
 	/// </summary>
 	public class Tile : DrawableGameComponent
 	{
@@ -31,6 +39,12 @@ namespace CaptainCPA
 		protected TileType tileType;
 		protected Rectangle bounds;
 
+		public Texture2D Texture
+		{
+			get { return texture; }
+			set { texture = value; }
+		}
+
 		public Color Color
 		{
 			get { return color; }
@@ -47,6 +61,12 @@ namespace CaptainCPA
 		{
 			get { return tileType; }
 			set { tileType = value; }
+		}
+
+		public SpriteEffects SpriteEffects
+		{
+			get { return spriteEffect; }
+			set { spriteEffect = value; }
 		}
 
 		public Rectangle Bounds

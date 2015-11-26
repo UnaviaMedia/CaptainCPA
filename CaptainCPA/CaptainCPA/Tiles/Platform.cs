@@ -1,6 +1,6 @@
 /*
- * Project: CaptainCPA - Block.cs
- * Purpose: Block tile
+ * Project: CaptainCPA - Platform.cs
+ * Purpose: Platform tile
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
@@ -21,12 +21,12 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Block tile
+	/// Platform tile
 	/// </summary>
-	public class Block : FixedTile
+	public class Platform : FixedTile
 	{
-		public Block(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
-			: base(game, spriteBatch, texture, TileType.Block, color, position, rotation, scale, layerDepth)
+		public Platform(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
+			: base(game, spriteBatch, texture, TileType.Platform, color, position, rotation, scale, layerDepth)
 		{
 			
 		}
