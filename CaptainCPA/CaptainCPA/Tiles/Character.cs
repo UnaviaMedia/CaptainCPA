@@ -5,6 +5,7 @@
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
  *										Movement physics added
+ *						Nov-26-2015:	Movement physics overhauled
  */
 
 using System;

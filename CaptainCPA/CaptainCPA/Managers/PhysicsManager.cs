@@ -4,6 +4,7 @@
  *
  * History:
  *		Kendall Roth	Nov-26-2015:	Created
+ *										TileCollision checking and avoidance positioning added
  */
 
 using System;

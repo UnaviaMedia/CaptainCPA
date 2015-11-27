@@ -4,6 +4,7 @@
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
+ *						Nov-26-2015:	Removed dependency on TileCollisionManager, using PhysicsManager instead
  */
 
 using System;
@@ -68,7 +69,7 @@ namespace CaptainCPA
 					//If the moveable tile is hidden or disabled, skip collsion detection for it.
 					//	Also skip tiles that are too far away
 					if (moveableTile.Visible == false || moveableTile.Enabled == false ||
-						Vector2.Distance(Utilities.PointToVector2(fixedTile.Bounds.Center), Utilities.PointToVector2(moveableTile.Bounds.Center)) > 100)
+						Vector2.Distance(Utilities.PointToVector2(fixedTile.Bounds.Center), Utilities.PointToVector2(moveableTile.Bounds.Center)) > Settings.TILE_SIZE * 4)
 					{
 						continue;
 					}
@@ -80,11 +81,13 @@ namespace CaptainCPA
 						//Get the intersection rectangle
 						Rectangle collisionRectangle = Rectangle.Intersect(moveableTile.Bounds, fixedTile.Bounds);
 
+						#region PixelCollisionChecking
 						//Check for pixel collision
 						/*if (Utilities.PerPixelCollision(moveableTile, fixedTile, collisionRectangle) == false)
 						{
 							continue;
 						}*/
+						#endregion
 
 						//Temporarily store post-collision position
 						Vector2 collisionPosition = moveableTile.Position;
@@ -111,7 +114,8 @@ namespace CaptainCPA
 						}
 						else if (collisionRectangle.Width < collisionRectangle.Height)
 						{
-							//If the moveable tile collides sideways with something and is still going up, make it drop straight down
+							#region OldCollisionCodeDelete
+							/*//If the moveable tile collides sideways with something and is still going up, make it drop straight down
 							if (moveableTile.Velocity.Y < 0)
 							{
 								//moveableTile.Velocity = new Vector2(0.0f, 0.0f);
@@ -120,7 +124,8 @@ namespace CaptainCPA
 							{
 								//moveableTile.Velocity = new Vector2(0.0f, moveableTile.Velocity.Y);
 								//moveableTile.Gravity = new Vector2(0.0f, moveableTile.Gravity.Y);
-							}
+							}*/
+							#endregion
 
 							//Horizontal collision
 							if (moveableTile.Bounds.Right - fixedTile.Bounds.Right < 0)
