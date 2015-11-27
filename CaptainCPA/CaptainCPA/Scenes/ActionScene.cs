@@ -23,6 +23,7 @@ namespace CaptainCPA
 
 		protected PhysicsManager physicsManager;
 		protected CollisionManager tileCollisionManager;
+		protected CharacterCollisionManager characterCollisionManager;
 
 		public ActionScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
@@ -43,8 +44,11 @@ namespace CaptainCPA
 			this.Components.Add(physicsManager);
 
 			//Create tile collision manager (in case a collision actually does occur) and add to list of components
-			tileCollisionManager = new TileCollisionManager(game, tileList);
+			tileCollisionManager = new TileCollisionPositioningManager(game, tileList);
 			this.Components.Add(tileCollisionManager);
+
+			characterCollisionManager = new CharacterCollisionManager(game, tileList);
+			this.Components.Add(characterCollisionManager);
 		}
 
 		/// <summary>

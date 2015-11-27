@@ -85,6 +85,11 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
+					if (fixedTile.TileType == TileType.Pickup)
+					{
+						continue;
+					}
+
 					//Get the row that the current fixed tile is in
 					int fixedTileRow = (int)Math.Floor(fixedTile.Position.Y / Settings.TILE_SIZE);
 
@@ -203,6 +208,11 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
+					if (fixedTile.TileType == TileType.Pickup)
+					{
+						continue;
+					}
+
 					//Get the column that the current fixed tile is in
 					int fixedTileColumn = (int)Math.Floor(fixedTile.Position.X / Settings.TILE_SIZE);
 

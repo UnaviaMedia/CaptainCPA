@@ -28,11 +28,28 @@ namespace CaptainCPA
 	/// </summary>
 	public class Character : MoveableTile
 	{
+		protected int score;
+
+		public int Score
+		{
+			get { return score;}
+			set { score = value; }
+		}
+
 		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
 							Vector2 velocity, bool onGround)
 			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
-			
+			//Reset player score
+			ResetScore();
+		}
+
+		/// <summary>
+		/// Reset player score
+		/// </summary>
+		private void ResetScore()
+		{
+			score = 0;
 		}
 
 		/// <summary>

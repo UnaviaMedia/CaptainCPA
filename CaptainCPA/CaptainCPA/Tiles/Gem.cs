@@ -1,9 +1,10 @@
 /*
- * Project: CaptainCPA - CollisionManager.cs
- * Purpose: Base CollisionManager component
+ * Project:	PlatformGame - AudioManager.cs
+ * Purpose:	Manage audio for the levels by implementing an Observer pattern
  *
  * History:
- *		Kendall Roth	Nov-24-2015:	Created
+ *		Kendall Roth	Nov-27-2015:	Created
+ *										Points added
  */
 
 using System;
@@ -21,33 +22,33 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Base CollisionManager component
+	/// This is a game component that implements IUpdateable.
 	/// </summary>
-	public class CollisionManager : Subject
+	public class Gem : FixedTile
 	{
-		protected List<Tile> tiles;
-		protected List<FixedTile> fixedTiles;
-		protected List<MoveableTile> moveableTiles;
+		private int points;
 
-		public CollisionManager(Game game, List<Tile> tiles)
-			: base(game)
+		//Observers
+		private Observer audioManager;
+		private Observer soundManager;
+
+		public int Points
 		{
-			this.tiles = tiles;
+			get { return points; }
+			set { points = value; }
+		}
 
-			fixedTiles = new List<FixedTile>();
-			moveableTiles = new List<MoveableTile>();
+		public Gem(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth, int points)
+			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth)
+		{
+			this.points = points;
 
-			foreach (Tile tile in tiles)
-			{
-				if (tile is FixedTile)
-				{
-					fixedTiles.Add((FixedTile)tile);
-				}
-				else if (tile is MoveableTile)
-				{
-					moveableTiles.Add((MoveableTile)tile);
-				}
-			}
+			//Add observers
+			audioManager = new AudioManager(game);
+			this.AddObserver(audioManager);
+
+			soundManager = new ScoreManager(game);
+			this.AddObserver(soundManager);
 		}
 
 		/// <summary>

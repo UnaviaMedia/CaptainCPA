@@ -40,11 +40,14 @@ namespace CaptainCPA
 			//Create list of level tiles
 			tileList = new List<Tile>();
 
+			#region LoadTextures
 			//Load the different block textures
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
+			Texture2D gemTexture = game.Content.Load<Texture2D>("Sprites/Gem");
+			#endregion
 
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
@@ -93,6 +96,10 @@ namespace CaptainCPA
 						case "platform-right":
 							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
 							newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
+							break;
+						case "gem":
+							int points = int.Parse(tile.Attributes["points"].Value);
+							newTile = new Gem(game, spriteBatch, gemTexture, color, position, rotation, scale, layerDepth, points);
 							break;
 						case "character":
 							texture = characterTexture;

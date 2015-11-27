@@ -23,7 +23,7 @@ namespace CaptainCPA
 	/// <summary>
 	/// Platform tile
 	/// </summary>
-	public class Tile : DrawableGameComponent
+	public class Tile : Subject
 	{
 		protected SpriteBatch spriteBatch;
 		protected Texture2D texture;

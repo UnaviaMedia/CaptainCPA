@@ -1,10 +1,10 @@
 /*
- * Project: CaptainCPA - TileCollisionManager.cs
+ * Project: CaptainCPA - TileCollisionPositioningManager.cs
  * Purpose: Manages collisions and post-collision positioning between tiles
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
- *						Nov-26-2015:	Removed dependency on TileCollisionManager, using PhysicsManager instead
+ *						Nov-26-2015:	Removed dependency on TileCollisionPositioningManager, using PhysicsManager instead
  */
 
 using System;
@@ -24,9 +24,9 @@ namespace CaptainCPA
 	/// <summary>
 	/// Manages collisions and post-collision positioning between tiles
 	/// </summary>
-	public class TileCollisionManager : CollisionManager
+	public class TileCollisionPositioningManager : CollisionManager
 	{
-		public TileCollisionManager(Game game, List<Tile> tiles)
+		public TileCollisionPositioningManager(Game game, List<Tile> tiles)
 			: base(game, tiles)
 		{
 			// TODO: Construct any child components here
