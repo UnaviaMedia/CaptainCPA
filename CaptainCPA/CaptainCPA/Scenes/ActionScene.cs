@@ -45,10 +45,11 @@ namespace CaptainCPA
 				this.Components.Add(tile);
 			}
 
+			//Create physics manager and add it to list of components
 			physicsManager = new PhysicsManager(game, tileList);
 			this.Components.Add(physicsManager);
 
-			//Create tile collision manager and add to list of components
+			//Create tile collision manager (in case a collision actually does occur) and add to list of components
 			tileCollisionManager = new TileCollisionManager(game, tileList);
 			this.Components.Add(tileCollisionManager);
 		}

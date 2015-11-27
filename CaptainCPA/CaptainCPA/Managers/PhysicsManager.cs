@@ -258,8 +258,15 @@ namespace CaptainCPA
 				//	Minimum between distance to closest fixed tile and usual player movement
 				float verticalMoveDistance = 0;
 
+
 				//Update moveable tile with gravity
-				moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, moveableTile.Velocity.Y + moveableTile.Gravity.Y);
+				if (moveableTile.OnGround == false)
+				{
+					moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, moveableTile.Velocity.Y + moveableTile.Gravity.Y);
+				}
+
+				//moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, moveableTile.Velocity.Y + moveableTile.Gravity.Y);
+				
 
 				if (verticalDirection == Direction.Up)
 				{
@@ -271,6 +278,7 @@ namespace CaptainCPA
 						if (verticalMoveDistance < moveableTile.Velocity.Y)
 						{
 							//moveableTile.OnGround = true;
+							moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 0);
 						}
 					}
 					else
@@ -290,10 +298,15 @@ namespace CaptainCPA
 						{
 							moveableTile.OnGround = true;
 						}
+						else
+						{
+							moveableTile.OnGround = false;
+						}
 					}
 					else
 					{
 						verticalMoveDistance = moveableTile.Velocity.Y;
+						moveableTile.OnGround = false;
 					}
 				}
 

@@ -53,6 +53,11 @@ namespace CaptainCPA
 
 			//Reset horizontal velocity to zero
 			velocity.X = 0;
+
+			/*if (onGround == true)
+			{
+				velocity.Y = 0;
+			}*/
 			
 			if (ks.IsKeyDown(Keys.Left))
 			{
