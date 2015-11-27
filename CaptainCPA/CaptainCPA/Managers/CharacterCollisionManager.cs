@@ -3,11 +3,11 @@
  * Purpose:	Manage non-positioning collision (extra logic)
  *
  * History:
- *		Kendall Roth	Nov-22-2015:	Created
+ *		Kendall Roth	Nov-27-2015:	Created
  *										Collision detection with observers added
+ *										Pixel-checking added
  */
 
-using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
@@ -61,7 +61,7 @@ namespace CaptainCPA
 
 					//Skip collision detection if the moveable tile is too far away or doesn't intersect
 					if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(tile.Bounds.Center)) > 100 ||
-						character.Bounds.Intersects(tile.Bounds) == false)
+						character.Bounds.Intersects(tile.Bounds) == false || Utilities.PerPixelCollision(character, tile) == false)
 					{
 						continue;
 					}

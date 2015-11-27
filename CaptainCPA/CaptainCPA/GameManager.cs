@@ -89,7 +89,7 @@ namespace CaptainCPA
             pauseMenuScene = new PauseMenuScene(this, spriteBatch);
             scenes.Add(pauseMenuScene);
 
-            actionScene = new ActionScene(this, spriteBatch);
+            actionScene = new ActionScene(this, spriteBatch, "Level1");
             scenes.Add(actionScene);
 
             helpScene = new HelpScene(this, spriteBatch);

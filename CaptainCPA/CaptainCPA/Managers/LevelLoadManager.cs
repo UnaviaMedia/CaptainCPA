@@ -4,6 +4,7 @@
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
+ *						Nov-27-2015:	Added Character property
  */
 
 using Microsoft.Xna.Framework;
@@ -23,7 +24,20 @@ namespace CaptainCPA
 	{
 		private Game game;
 		private SpriteBatch spriteBatch;
-		public List<Tile> tileList;
+		private List<Tile> tileList;
+		private Character character;
+
+		public List<Tile> TileList
+		{
+			get { return tileList; }
+			set { tileList = value; }
+		}
+
+		public Character Character
+		{
+			get { return character; }
+			set { character = value; }
+		}
 
 		public LevelLoadManager(Game game, SpriteBatch spriteBatch)
 		{
@@ -106,6 +120,7 @@ namespace CaptainCPA
 							Vector2 velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
 							bool onGround = true;
 							newTile = new Character(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
+							character = (Character)newTile;
 							break;
 						default:
 							break;

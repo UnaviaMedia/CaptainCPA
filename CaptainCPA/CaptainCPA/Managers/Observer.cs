@@ -6,8 +6,6 @@
  *		Kendall Roth	Nov-27-2015:	Created and abstract notification method added
  */
 
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace CaptainCPA

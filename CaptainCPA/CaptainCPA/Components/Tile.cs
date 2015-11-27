@@ -23,7 +23,7 @@ namespace CaptainCPA
 	/// <summary>
 	/// Platform tile
 	/// </summary>
-	public class Tile : Subject
+	public class Tile : Subject, IBounds
 	{
 		protected SpriteBatch spriteBatch;
 		protected Texture2D texture;
@@ -90,7 +90,7 @@ namespace CaptainCPA
 			spriteEffect = SpriteEffects.None;
 			this.layerDepth = layerDepth;
 
-			UpdateCollisionBounds();
+			UpdateBounds();
 		}
 
 		/// <summary>
@@ -99,15 +99,13 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
-			// TODO: Add your initialization code here
-
 			base.Initialize();
 		}
 
 		/// <summary>
 		/// Updates the collision bounds of the Tile
 		/// </summary>
-		public virtual void UpdateCollisionBounds()
+		public virtual void UpdateBounds()
 		{
 			//Find the rectangle representing the collision bounds of the object
 			bounds = new Rectangle(
@@ -123,7 +121,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			UpdateCollisionBounds();
+			UpdateBounds();
 
 			base.Update(gameTime);
 		}
