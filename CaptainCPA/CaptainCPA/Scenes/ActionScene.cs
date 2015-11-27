@@ -1,6 +1,6 @@
 /*
  * Project: CaptainCPA - ActionScene.cs
- * Purpose: Displays the game to the user
+ * Purpose:	Displays the game to the user
  *
  * History:
  *		Doug Epp		Nov-24-2015:	Created

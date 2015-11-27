@@ -64,6 +64,7 @@ namespace CaptainCPA
 				velocity.X = 3.5f;
 			}
 
+			#region OldDebuggingMovement
 			/*if (ks.IsKeyDown(Keys.Up))
 			{
 				velocity.Y = -4;
@@ -73,16 +74,17 @@ namespace CaptainCPA
 			{
 				velocity.Y = 4;
 			}*/
+			#endregion
 
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
 			{
-				velocity.Y = -8.0f;
+				velocity.Y = -10.0f;
 				onGround = false;
 			}
 
 			if (ks.IsKeyDown(Keys.Space))
 			{
-				Console.WriteLine("d");
+				Console.WriteLine("Debug Mode");
 			}
 
 			base.Update(gameTime);
