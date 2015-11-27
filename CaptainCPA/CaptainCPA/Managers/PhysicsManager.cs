@@ -258,16 +258,12 @@ namespace CaptainCPA
 				//Find total movement of player
 				//	Minimum between distance to closest fixed tile and usual player movement
 				float verticalMoveDistance = 0;
-
-
+				
 				//Update moveable tile with gravity
 				if (moveableTile.OnGround == false)
 				{
 					moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, moveableTile.Velocity.Y + moveableTile.Gravity.Y);
 				}
-
-				//moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, moveableTile.Velocity.Y + moveableTile.Gravity.Y);
-				
 
 				if (verticalDirection == Direction.Up)
 				{
@@ -276,14 +272,16 @@ namespace CaptainCPA
 						//Moveable distance to player's top (negative)
 						verticalMoveDistance = Math.Max(moveableTile.Velocity.Y, closestVerticalTile.Bounds.Bottom - moveableTile.Bounds.Top);
 
-						if (verticalMoveDistance < moveableTile.Velocity.Y)
+						//If the distance to the nearest tile is less than the moveable tile's velocity, it will be hit at its top in the next frame
+						if (verticalMoveDistance > moveableTile.Velocity.Y)
 						{
-							//moveableTile.OnGround = true;
-							moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 0);
+							//Start the moveable tile falling again
+							moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 0.0f);
 						}
 					}
 					else
 					{
+						//If this is ever reached there may be a problem (will happen if there are no tiles above it)
 						verticalMoveDistance = moveableTile.Velocity.Y;
 					}
 				}
@@ -308,7 +306,7 @@ namespace CaptainCPA
 					}
 					else
 					{
-						//If this is ever reached there may be a problem (investigate only if so)
+						//If this is ever reached there may be a problem (will happen if there are no tiles below it)
 						verticalMoveDistance = moveableTile.Velocity.Y;
 						//moveableTile.OnGround = false;
 					}
