@@ -184,7 +184,8 @@ namespace CaptainCPA
 					verticalDirection = Direction.Up;
 					frontY = moveableTile.Bounds.Top;
 				}
-				else if (moveableTile.Velocity.Y > 0) //Down movement
+				//else if (moveableTile.Velocity.Y > 0) //Down movement
+				else // Down movement (default - gravity :) )
 				{
 					verticalDirection = Direction.Down;
 					frontY = moveableTile.Bounds.Bottom;
@@ -293,20 +294,23 @@ namespace CaptainCPA
 						//Moveable distance to player's bottom (positive)
 						verticalMoveDistance = Math.Min(moveableTile.Velocity.Y, closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom);
 
-						//Moveable tile is now on the ground
+						//If the distance to the nearest tile is less than the moveable tile's velocity, it will be on the ground in the next frame
 						if (verticalMoveDistance < moveableTile.Velocity.Y)
 						{
+							//Tile is on the ground
 							moveableTile.OnGround = true;
 						}
 						else
 						{
+							//Tile is still in the air
 							moveableTile.OnGround = false;
 						}
 					}
 					else
 					{
+						//If this is ever reached there may be a problem (investigate only if so)
 						verticalMoveDistance = moveableTile.Velocity.Y;
-						moveableTile.OnGround = false;
+						//moveableTile.OnGround = false;
 					}
 				}
 
