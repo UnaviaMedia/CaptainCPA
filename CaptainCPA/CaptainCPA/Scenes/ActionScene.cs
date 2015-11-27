@@ -1,6 +1,6 @@
 /*
  * Project: CaptainCPA - ActionScene.cs
- * Purpose: Displays the game to the user
+ * Purpose:	Displays the game to the user
  *
  * History:
  *		Doug Epp		Nov-24-2015:	Created
@@ -21,6 +21,7 @@ namespace CaptainCPA
 		protected LevelLoadManager levelLoader;
 		protected List<Tile> tileList;
 
+		protected PhysicsManager physicsManager;
 		protected CollisionManager tileCollisionManager;
 
 		public ActionScene(Game game, SpriteBatch spriteBatch)
@@ -37,7 +38,11 @@ namespace CaptainCPA
 				this.Components.Add(tile);
 			}
 
-			//Create tile collision manager and add to list of components
+			//Create physics manager and add it to list of components
+			physicsManager = new PhysicsManager(game, tileList);
+			this.Components.Add(physicsManager);
+
+			//Create tile collision manager (in case a collision actually does occur) and add to list of components
 			tileCollisionManager = new TileCollisionManager(game, tileList);
 			this.Components.Add(tileCollisionManager);
 		}

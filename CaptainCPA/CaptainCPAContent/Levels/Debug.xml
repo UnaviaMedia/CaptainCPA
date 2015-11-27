@@ -3,34 +3,7 @@
 	<PlatformGame>
 		<Rows>
 			<Row y="0">
-				<Tile x="0" tileType="block" color="LightRed"></Tile>
-				<Tile x="1" tileType="block" color="White"></Tile>
-				<Tile x="2" tileType="block" color="White"></Tile>
-				<Tile x="3" tileType="block" color="White"></Tile>
-				<Tile x="4" tileType="block" color="White"></Tile>
-				<Tile x="5" tileType="block" color="White"></Tile>
-				<Tile x="6" tileType="block" color="White"></Tile>
-				<Tile x="7" tileType="block" color="White"></Tile>
-				<Tile x="8" tileType="block" color="White"></Tile>
-				<Tile x="9" tileType="block" color="White"></Tile>
-				<Tile x="10" tileType="block" color="White"></Tile>
-				<Tile x="11" tileType="block" color="White"></Tile>
-				<Tile x="12" tileType="block" color="White"></Tile>
-				<Tile x="13" tileType="block" color="White"></Tile>
-				<Tile x="14" tileType="block" color="White"></Tile>
-				<Tile x="15" tileType="block" color="White"></Tile>
-				<Tile x="16" tileType="block" color="White"></Tile>
-				<Tile x="17" tileType="block" color="White"></Tile>
-				<Tile x="18" tileType="block" color="White"></Tile>
-				<Tile x="19" tileType="block" color="White"></Tile>
-				<Tile x="20" tileType="block" color="White"></Tile>
-				<Tile x="21" tileType="block" color="White"></Tile>
-				<Tile x="22" tileType="block" color="White"></Tile>
-				<Tile x="23" tileType="block" color="White"></Tile>
-				<Tile x="24" tileType="block" color="White"></Tile>
-			</Row>
-			<Row y="1">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="LightRed"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
@@ -56,9 +29,36 @@
 				<Tile x="23" tileType="" color="White"></Tile>
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
+			<Row y="1">
+				<Tile x="0" tileType="" color="White"></Tile>
+				<Tile x="1" tileType="block" color="White"></Tile>
+				<Tile x="2" tileType="block" color="White"></Tile>
+				<Tile x="3" tileType="block" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
+				<Tile x="5" tileType="block" color="White"></Tile>
+				<Tile x="6" tileType="block" color="White"></Tile>
+				<Tile x="7" tileType="" color="White"></Tile>
+				<Tile x="8" tileType="" color="White"></Tile>
+				<Tile x="9" tileType="" color="White"></Tile>
+				<Tile x="10" tileType="" color="White"></Tile>
+				<Tile x="11" tileType="" color="White"></Tile>
+				<Tile x="12" tileType="" color="White"></Tile>
+				<Tile x="13" tileType="" color="White"></Tile>
+				<Tile x="14" tileType="" color="White"></Tile>
+				<Tile x="15" tileType="" color="White"></Tile>
+				<Tile x="16" tileType="" color="White"></Tile>
+				<Tile x="17" tileType="" color="White"></Tile>
+				<Tile x="18" tileType="" color="White"></Tile>
+				<Tile x="19" tileType="" color="White"></Tile>
+				<Tile x="20" tileType="" color="White"></Tile>
+				<Tile x="21" tileType="" color="White"></Tile>
+				<Tile x="22" tileType="" color="White"></Tile>
+				<Tile x="23" tileType="" color="White"></Tile>
+				<Tile x="24" tileType="" color="White"></Tile>
+			</Row>
 			<Row y="2">
-				<Tile x="0" tileType="block" color="White"></Tile>
-				<Tile x="1" tileType="" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
+				<Tile x="1" tileType="block" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
@@ -84,8 +84,8 @@
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="3">
-				<Tile x="0" tileType="block" color="White"></Tile>
-				<Tile x="1" tileType="" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
+				<Tile x="1" tileType="block" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
@@ -111,7 +111,34 @@
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="4">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
+				<Tile x="1" tileType="block" color="White"></Tile>
+				<Tile x="2" tileType="" color="White"></Tile>
+				<Tile x="3" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="5" tileType="" color="White"></Tile>
+				<Tile x="6" tileType="" color="White"></Tile>
+				<Tile x="7" tileType="" color="White"></Tile>
+				<Tile x="8" tileType="" color="White"></Tile>
+				<Tile x="9" tileType="" color="White"></Tile>
+				<Tile x="10" tileType="" color="White"></Tile>
+				<Tile x="11" tileType="" color="White"></Tile>
+				<Tile x="12" tileType="block" color="White"></Tile>
+				<Tile x="13" tileType="" color="White"></Tile>
+				<Tile x="14" tileType="" color="White"></Tile>
+				<Tile x="15" tileType="" color="White"></Tile>
+				<Tile x="16" tileType="" color="White"></Tile>
+				<Tile x="17" tileType="" color="White"></Tile>
+				<Tile x="18" tileType="" color="White"></Tile>
+				<Tile x="19" tileType="" color="White"></Tile>
+				<Tile x="20" tileType="" color="White"></Tile>
+				<Tile x="21" tileType="" color="White"></Tile>
+				<Tile x="22" tileType="" color="White"></Tile>
+				<Tile x="23" tileType="" color="White"></Tile>
+				<Tile x="24" tileType="" color="White"></Tile>
+			</Row>
+			<Row y="5">
+				<Tile x="0" tileType="" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
@@ -137,35 +164,8 @@
 				<Tile x="23" tileType="" color="White"></Tile>
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
-			<Row y="5">
-				<Tile x="0" tileType="block" color="White"></Tile>
-				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="" color="White"></Tile>
-				<Tile x="6" tileType="" color="White"></Tile>
-				<Tile x="7" tileType="" color="White"></Tile>
-				<Tile x="8" tileType="" color="White"></Tile>
-				<Tile x="9" tileType="" color="White"></Tile>
-				<Tile x="10" tileType="" color="White"></Tile>
-				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="12" tileType="platform-left" color="White"></Tile>
-				<Tile x="13" tileType="platform" color="White"></Tile>
-				<Tile x="14" tileType="platform-right" color="White"></Tile>
-				<Tile x="15" tileType="" color="White"></Tile>
-				<Tile x="16" tileType="" color="White"></Tile>
-				<Tile x="17" tileType="" color="White"></Tile>
-				<Tile x="18" tileType="" color="White"></Tile>
-				<Tile x="19" tileType="" color="White"></Tile>
-				<Tile x="20" tileType="" color="White"></Tile>
-				<Tile x="21" tileType="" color="White"></Tile>
-				<Tile x="22" tileType="" color="White"></Tile>
-				<Tile x="23" tileType="" color="White"></Tile>
-				<Tile x="24" tileType="" color="White"></Tile>
-			</Row>
 			<Row y="6">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
@@ -192,25 +192,25 @@
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="7">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
-				<Tile x="6" tileType="" color="White"></Tile>
+				<Tile x="6" tileType="block" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="12" tileType="" color="White"></Tile>
+				<Tile x="12" tileType="character" color="White" velocityX="3.5" velocityY="3.5"></Tile>
 				<Tile x="13" tileType="" color="White"></Tile>
 				<Tile x="14" tileType="" color="White"></Tile>
 				<Tile x="15" tileType="" color="White"></Tile>
 				<Tile x="16" tileType="" color="White"></Tile>
 				<Tile x="17" tileType="" color="White"></Tile>
-				<Tile x="18" tileType="" color="White"></Tile>
+				<Tile x="18" tileType="block" color="White"></Tile>
 				<Tile x="19" tileType="" color="White"></Tile>
 				<Tile x="20" tileType="" color="White"></Tile>
 				<Tile x="21" tileType="" color="White"></Tile>
@@ -219,14 +219,14 @@
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="8">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="platform-left" color="Red"></Tile>
-				<Tile x="4" tileType="platform" color="Red"></Tile>
-				<Tile x="5" tileType="platform" color="Red"></Tile>
-				<Tile x="6" tileType="platform" color="Red"></Tile>
-				<Tile x="7" tileType="platform-right" color="Red"></Tile>
+				<Tile x="3" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="5" tileType="" color="White"></Tile>
+				<Tile x="6" tileType="" color="White"></Tile>
+				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
@@ -246,7 +246,7 @@
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="9">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
@@ -265,15 +265,15 @@
 				<Tile x="16" tileType="" color="White"></Tile>
 				<Tile x="17" tileType="" color="White"></Tile>
 				<Tile x="18" tileType="" color="White"></Tile>
-				<Tile x="19" tileType="platform-left" color="Blue"></Tile>
-				<Tile x="20" tileType="platform-right" color="Blue"></Tile>
+				<Tile x="19" tileType="" color="White"></Tile>
+				<Tile x="20" tileType="" color="White"></Tile>
 				<Tile x="21" tileType="" color="White"></Tile>
 				<Tile x="22" tileType="" color="White"></Tile>
 				<Tile x="23" tileType="" color="White"></Tile>
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="10">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
@@ -282,13 +282,13 @@
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
-				<Tile x="9" tileType="" color="White"></Tile>
-				<Tile x="10" tileType="" color="White"></Tile>
-				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="11" tileType="platform-left" color="White"></Tile>
-				<Tile x="12" tileType="platform" color="White"></Tile>
-				<Tile x="13" tileType="platform-right" color="White"></Tile>
-				<Tile x="15" tileType="" color="White"></Tile>
+				<Tile x="9" tileType="block" color="White"></Tile>
+				<Tile x="10" tileType="block" color="White"></Tile>
+				<Tile x="11" tileType="block" color="White"></Tile>
+				<Tile x="12" tileType="block" color="White"></Tile>
+				<Tile x="13" tileType="block" color="White"></Tile>
+				<Tile x="14" tileType="block" color="White"></Tile>
+				<Tile x="15" tileType="block" color="White"></Tile>
 				<Tile x="16" tileType="" color="White"></Tile>
 				<Tile x="17" tileType="" color="White"></Tile>
 				<Tile x="18" tileType="" color="White"></Tile>
@@ -300,7 +300,7 @@
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="11">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
@@ -327,10 +327,10 @@
 				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="12">
-				<Tile x="0" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="character" color="White" velocityX="3.5" velocityY="3.5"></Tile>
+				<Tile x="3" tileType="" color="White"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
@@ -351,34 +351,34 @@
 				<Tile x="21" tileType="" color="White"></Tile>
 				<Tile x="22" tileType="" color="White"></Tile>
 				<Tile x="23" tileType="" color="White"></Tile>
-				<Tile x="24" tileType="block" color="White"></Tile>
+				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 			<Row y="13">
-				<Tile x="0" tileType="block" color="White"></Tile>
-				<Tile x="1" tileType="block" color="White"></Tile>
-				<Tile x="2" tileType="block" color="White"></Tile>
-				<Tile x="3" tileType="block" color="White"></Tile>
-				<Tile x="4" tileType="block" color="White"></Tile>
-				<Tile x="5" tileType="block" color="White"></Tile>
-				<Tile x="6" tileType="block" color="White"></Tile>
-				<Tile x="7" tileType="block" color="White"></Tile>
-				<Tile x="8" tileType="block" color="White"></Tile>
-				<Tile x="9" tileType="block" color="White"></Tile>
-				<Tile x="10" tileType="block" color="White"></Tile>
-				<Tile x="11" tileType="block" color="White"></Tile>
-				<Tile x="12" tileType="block" color="White"></Tile>
-				<Tile x="13" tileType="block" color="White"></Tile>
-				<Tile x="14" tileType="block" color="White"></Tile>
-				<Tile x="15" tileType="block" color="White"></Tile>
-				<Tile x="16" tileType="block" color="White"></Tile>
-				<Tile x="17" tileType="block" color="White"></Tile>
-				<Tile x="18" tileType="block" color="White"></Tile>
-				<Tile x="19" tileType="block" color="White"></Tile>
-				<Tile x="20" tileType="block" color="White"></Tile>
-				<Tile x="21" tileType="block" color="White"></Tile>
-				<Tile x="22" tileType="block" color="White"></Tile>
-				<Tile x="23" tileType="block" color="White"></Tile>
-				<Tile x="24" tileType="block" color="White"></Tile>
+				<Tile x="0" tileType="" color="White"></Tile>
+				<Tile x="1" tileType="" color="White"></Tile>
+				<Tile x="2" tileType="" color="White"></Tile>
+				<Tile x="3" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="5" tileType="" color="White"></Tile>
+				<Tile x="6" tileType="" color="White"></Tile>
+				<Tile x="7" tileType="" color="White"></Tile>
+				<Tile x="8" tileType="" color="White"></Tile>
+				<Tile x="9" tileType="" color="White"></Tile>
+				<Tile x="10" tileType="" color="White"></Tile>
+				<Tile x="11" tileType="" color="White"></Tile>
+				<Tile x="12" tileType="" color="White"></Tile>
+				<Tile x="13" tileType="" color="White"></Tile>
+				<Tile x="14" tileType="" color="White"></Tile>
+				<Tile x="15" tileType="" color="White"></Tile>
+				<Tile x="16" tileType="" color="White"></Tile>
+				<Tile x="17" tileType="" color="White"></Tile>
+				<Tile x="18" tileType="" color="White"></Tile>
+				<Tile x="19" tileType="" color="White"></Tile>
+				<Tile x="20" tileType="" color="White"></Tile>
+				<Tile x="21" tileType="" color="White"></Tile>
+				<Tile x="22" tileType="" color="White"></Tile>
+				<Tile x="23" tileType="" color="White"></Tile>
+				<Tile x="24" tileType="" color="White"></Tile>
 			</Row>
 		</Rows>
 	</PlatformGame>

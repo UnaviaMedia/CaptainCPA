@@ -5,6 +5,8 @@
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
  *										Movement physics added
+ *						Nov-26-2015:	Movement physics overhauled
+ *						Nov-27-2015:	Physics adjusted again
  */
 
 using System;
@@ -53,23 +55,48 @@ namespace CaptainCPA
 			//Reset horizontal velocity to zero
 			velocity.X = 0;
 
+			//If the character is on the ground, reset vertical velocity to 0
+			if (onGround == true)
+			{
+				velocity.Y = 0;
+			}
+
+			//If the Left key is pressed, subtract horizontal velocity to move left
 			if (ks.IsKeyDown(Keys.Left))
 			{
-				velocity.X = -3;
+				velocity.X -= 3.5f;
 			}
 
+			//If the Right key is pressed, add horizontal velocity to move right
 			if (ks.IsKeyDown(Keys.Right))
 			{
-				velocity.X = 3;
+				velocity.X += 3.5f;
 			}
 
+			#region OldDebuggingMovement
+			/*if (ks.IsKeyDown(Keys.Up))
+			{
+				velocity.Y = -4;
+			}
+
+			if (ks.IsKeyDown(Keys.Down))
+			{
+				velocity.Y = 4;
+			}*/
+			#endregion
+
+			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
 			{
-				gravity.X = velocity.X;
-				velocity.Y = -8;
+				velocity.Y = -10.0f;
 				onGround = false;
 			}
 
+			//Debug Mode
+			if (ks.IsKeyDown(Keys.Space))
+			{
+				Console.WriteLine("Debug Mode");
+			}
 
 			base.Update(gameTime);
 		}
