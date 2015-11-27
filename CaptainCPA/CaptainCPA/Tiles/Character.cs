@@ -54,19 +54,22 @@ namespace CaptainCPA
 			//Reset horizontal velocity to zero
 			velocity.X = 0;
 
+			//If the character is on the ground, reset vertical velocity to 0
 			if (onGround == true)
 			{
 				velocity.Y = 0;
 			}
-			
+
+			//If the Left key is pressed, set the player's horizontal velocity to be negative
 			if (ks.IsKeyDown(Keys.Left))
 			{
-				velocity.X = -3.5f;
+				velocity.X -= 3.5f;
 			}
 
+			//If the Right key is pressed, set the player's horizontal velocity to be positive
 			if (ks.IsKeyDown(Keys.Right))
 			{
-				velocity.X = 3.5f;
+				velocity.X += 3.5f;
 			}
 
 			#region OldDebuggingMovement
@@ -87,6 +90,7 @@ namespace CaptainCPA
 				onGround = false;
 			}
 
+			//Debug Mode
 			if (ks.IsKeyDown(Keys.Space))
 			{
 				Console.WriteLine("Debug Mode");
