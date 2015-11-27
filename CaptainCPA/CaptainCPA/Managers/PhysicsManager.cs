@@ -170,9 +170,6 @@ namespace CaptainCPA
 
 
 
-
-
-
 				//------------------------------------------------------------------------------
 				//Y-axis
 				//------------------------------------------------------------------------------
@@ -290,7 +287,7 @@ namespace CaptainCPA
 						//Moveable tile is now on the ground
 						if (verticalMoveDistance < moveableTile.Velocity.Y)
 						{
-							//moveableTile.OnGround = true;
+							moveableTile.OnGround = true;
 						}
 					}
 					else
@@ -303,8 +300,8 @@ namespace CaptainCPA
 				moveableTile.Position = new Vector2(moveableTile.Position.X, moveableTile.Position.Y + verticalMoveDistance);
 			}
 
-
-			foreach (MoveableTile moveableTile in moveableTiles)
+			#region CheckForPlatform
+			/*foreach (MoveableTile moveableTile in moveableTiles)
 			{
 				if (moveableTile.OnGround == true)
 				{
@@ -321,7 +318,8 @@ namespace CaptainCPA
 						break;
 					}
 				}
-			}
+			}*/
+			#endregion
 
 			base.Update(gameTime);
 		}
