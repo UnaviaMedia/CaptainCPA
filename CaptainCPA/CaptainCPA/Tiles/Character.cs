@@ -6,6 +6,7 @@
  *		Kendall Roth	Nov-24-2015:	Created
  *										Movement physics added
  *						Nov-26-2015:	Movement physics overhauled
+ *						Nov-27-2015:	Physics adjusted again
  */
 
 using System;
@@ -60,13 +61,13 @@ namespace CaptainCPA
 				velocity.Y = 0;
 			}
 
-			//If the Left key is pressed, set the player's horizontal velocity to be negative
+			//If the Left key is pressed, subtract horizontal velocity to move left
 			if (ks.IsKeyDown(Keys.Left))
 			{
 				velocity.X -= 3.5f;
 			}
 
-			//If the Right key is pressed, set the player's horizontal velocity to be positive
+			//If the Right key is pressed, add horizontal velocity to move right
 			if (ks.IsKeyDown(Keys.Right))
 			{
 				velocity.X += 3.5f;
@@ -84,6 +85,7 @@ namespace CaptainCPA
 			}*/
 			#endregion
 
+			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
 			{
 				velocity.Y = -10.0f;

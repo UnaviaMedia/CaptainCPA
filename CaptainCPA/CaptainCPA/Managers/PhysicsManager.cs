@@ -5,6 +5,7 @@
  * History:
  *		Kendall Roth	Nov-26-2015:	Created
  *										TileCollision checking and avoidance positioning added
+ *						Nov-27-2015:	Added top collision checking (player immediately starts falling again)
  */
 
 using System;
