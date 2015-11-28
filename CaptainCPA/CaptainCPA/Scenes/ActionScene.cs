@@ -61,7 +61,7 @@ namespace CaptainCPA
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
 			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
 			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
-			this.components.Add(scoreDisplay);
+			this.components.Add(scoreDisplay);			
 		}
 
 		/// <summary>
