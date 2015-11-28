@@ -58,7 +58,8 @@ namespace CaptainCPA
 			//Load the different block textures
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
-			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
+			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
+			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
 			Texture2D gemTexture = game.Content.Load<Texture2D>("Sprites/Gem");
 			#endregion
@@ -97,12 +98,10 @@ namespace CaptainCPA
 						case " ":
 							break;
 						case "block":
-							texture = blockTexture;
 							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
 							break;
-						case "platform":
-							texture = platformTexture;
-							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
+						case "platform-middle":
+							newTile = new Platform(game, spriteBatch, platformMiddleTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "platform-left":
 							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
@@ -111,15 +110,17 @@ namespace CaptainCPA
 							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
 							newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
 							break;
+						case "platform":
+							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
+							break;
 						case "gem":
 							int points = int.Parse(tile.Attributes["points"].Value);
 							newTile = new Gem(game, spriteBatch, gemTexture, color, position, rotation, scale, layerDepth, points);
 							break;
 						case "character":
-							texture = characterTexture;
 							Vector2 velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
 							bool onGround = true;
-							newTile = new Character(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
+							newTile = new Character(game, spriteBatch, characterTexture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
 							character = (Character)newTile;
 							break;
 						default:
