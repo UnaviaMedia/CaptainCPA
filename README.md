@@ -29,7 +29,7 @@ Simple platformer game created as a Final Assignment for Year 2 Object Orientate
 | Nov-22-2015 | Created |
 | Nov-22-2015 | Basic structure added |
 | Nov-26-2015 | Menu System added |
-| Nov-27-2015 | Basic physics finished<br>[Observer-Subject design pattern implemented](http://http://gameprogrammingpatterns.com/observer.html)
+| Nov-27-2015 | Basic physics finished<br>[Observer-Subject design pattern implemented](http://gameprogrammingpatterns.com/observer.html)
 
 ##Collaborators
 - Kendall Roth
