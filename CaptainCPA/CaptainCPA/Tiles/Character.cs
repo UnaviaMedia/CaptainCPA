@@ -7,18 +7,13 @@
  *										Movement physics added
  *						Nov-26-2015:	Movement physics overhauled
  *						Nov-27-2015:	Physics adjusted again
+ *						Nov-29-2015:	Added speed, jumpspeed, lives, and losing life methods
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
@@ -28,9 +23,19 @@ namespace CaptainCPA
 	/// </summary>
 	public class Character : MoveableTile
 	{
+		protected int lives;
 		protected int score;
 		protected float speed;
 		protected float jumpSpeed;
+
+		//Store characters's starting position
+		protected Vector2 startingPosition;
+
+		public int Lives
+		{
+			get { return lives; }
+			set { lives = value; }
+		}
 
 		public int Score
 		{
@@ -50,15 +55,31 @@ namespace CaptainCPA
 			set { jumpSpeed = value; }
 		}
 
+		public Vector2 StartingPosition
+		{
+			get { return startingPosition; }
+		}
+
 		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
-							Vector2 velocity, bool onGround, float speed, float jumpSpeed)
+							Vector2 velocity, bool onGround, int lives, float speed, float jumpSpeed)
 			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
+			this.lives = lives;
 			this.speed = speed;
 			this.jumpSpeed = jumpSpeed;
+			startingPosition = position;
 
 			//Reset player score
 			ResetScore();
+		}
+
+		/// <summary>
+		/// Allows the game component to perform any initialization it needs to before starting
+		/// to run.  This is where it can query for any required services and load content.
+		/// </summary>
+		public override void Initialize()
+		{
+			base.Initialize();
 		}
 
 		/// <summary>
@@ -70,12 +91,34 @@ namespace CaptainCPA
 		}
 
 		/// <summary>
-		/// Allows the game component to perform any initialization it needs to before starting
-		/// to run.  This is where it can query for any required services and load content.
+		/// Make the character lose one life. If the number of lives is under zero, the character loses
 		/// </summary>
-		public override void Initialize()
+		public void LoseLife()
 		{
-			base.Initialize();
+			if (lives-- <= 0)
+			{
+				Die();
+			}
+			else
+			{
+				ResetPosition();
+			}
+		}
+		
+		/// <summary>
+		/// Reset the character's position
+		/// </summary>
+		private void ResetPosition()
+		{
+			position = startingPosition;
+		}
+
+		/// <summary>
+		/// Make the character die once he runs out of lives
+		/// </summary>
+		private void Die()
+		{
+
 		}
 
 		/// <summary>

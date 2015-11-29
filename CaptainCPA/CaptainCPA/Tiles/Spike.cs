@@ -1,39 +1,26 @@
 /*
- * Project:	PlatformGame - ScoreManager.cs
- * Purpose:	Manage level score
+ * Project:	PlatformGame - Spike.cs
+ * Purpose:	Spike obstacle for the character to avoid
  *
  * History:
- *		Kendall Roth	Nov-27-2015:	Created
+ *		Kendall Roth	Nov-28-2015:	Created
  */
 
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Manage level score
+	/// Spike obstacle for the character to avoid
 	/// </summary>
-	public class ScoreManager : Observer
+	public class Spike : FixedTile
 	{
-		public ScoreManager(Game game)
-			: base(game)
+		public Spike(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth)
+			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth)
 		{
-
-		}
-
-		public override void OnNotify(object sender, string notification, object secondarySender = null)
-		{
-			switch (notification)
-			{
-				case "GemCollected":
-					((Gem)sender).Destroy();
-					((Character)secondarySender).Score += ((Gem)sender).Points;
-					break;
-				default:
-					break;
-			}
+			
 		}
 
 		/// <summary>

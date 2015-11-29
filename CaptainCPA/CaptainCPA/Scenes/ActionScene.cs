@@ -42,7 +42,7 @@ namespace CaptainCPA
 			fixedTileList = levelLoader.FixedTileList;
 			character = levelLoader.Character;
 
-			//Add each tile to the tile list
+			//Add each tile to the scene components
 			foreach (MoveableTile moveableTile in moveableTileList)
 			{
 				this.Components.Add(moveableTile);
@@ -78,7 +78,6 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
-
 			base.Initialize();
 		}
 

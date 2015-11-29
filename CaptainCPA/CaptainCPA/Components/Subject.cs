@@ -36,7 +36,7 @@ namespace CaptainCPA
 			observers.Remove(observer);
 		}
 
-		public void Notify(object sender, string notification, object secondarySender = null)
+		protected void Notify(object sender, string notification, object secondarySender = null)
 		{
 			foreach (Observer observer in observers)
 			{

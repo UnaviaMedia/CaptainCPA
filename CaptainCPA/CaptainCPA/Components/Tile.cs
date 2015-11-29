@@ -116,6 +116,15 @@ namespace CaptainCPA
 		}
 
 		/// <summary>
+		/// Destroy the tile by hiding and disabling it
+		/// </summary>
+		public virtual void Destroy()
+		{
+			this.Visible = false;
+			this.Enabled = false;
+		}
+
+		/// <summary>
 		/// Allows the game component to update itself.
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>

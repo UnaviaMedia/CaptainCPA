@@ -68,6 +68,7 @@ namespace CaptainCPA
 			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
 			Texture2D gemTexture = game.Content.Load<Texture2D>("Sprites/Gem");
+			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
 			#endregion
 
 			//Create a new XML document and load the selected save file
@@ -118,12 +119,15 @@ namespace CaptainCPA
 							int points = int.Parse(tile.Attributes["points"].Value);
 							newTile = new Gem(game, spriteBatch, gemTexture, color, position, rotation, scale, layerDepth, points);
 							break;
+						case "spike":
+							newTile = new Spike(game, spriteBatch, spikeTexture, color, position, rotation, scale, layerDepth);
+							break;
 						case "character":
+							int lives = int.Parse(tile.Attributes["lives"].Value);
 							float speed = float.Parse(tile.Attributes["speed"].Value);
 							float jumpSpeed = float.Parse(tile.Attributes["jumpSpeed"].Value);
-							bool onGround = true;
 							newTile = new Character(game, spriteBatch, characterTexture, TileType.Character, color, position, rotation, scale, layerDepth, 
-								Vector2.Zero, onGround, speed, jumpSpeed);
+								Vector2.Zero, true, lives, speed, jumpSpeed);
 							character = (Character)newTile;
 							break;
 						default:

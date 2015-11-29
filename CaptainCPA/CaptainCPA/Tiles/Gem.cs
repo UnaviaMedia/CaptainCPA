@@ -1,10 +1,11 @@
 /*
- * Project:	PlatformGame - AudioManager.cs
- * Purpose:	Manage audio for the levels by implementing an Observer pattern
+ * Project:	PlatformGame - Gem.cs
+ * Purpose:	Gem pickup that gives character points
  *
  * History:
  *		Kendall Roth	Nov-27-2015:	Created
  *										Points added
+ *										Removed Observers (put into other places)
  */
 
 using System;
@@ -22,15 +23,11 @@ using Microsoft.Xna.Framework.Media;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Gem pickup that gives character points
 	/// </summary>
 	public class Gem : FixedTile
 	{
 		private int points;
-
-		//Observers
-		private Observer audioManager;
-		private Observer soundManager;
 
 		public int Points
 		{
@@ -42,13 +39,6 @@ namespace CaptainCPA
 			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth)
 		{
 			this.points = points;
-
-			//Add observers
-			audioManager = new AudioManager(game);
-			this.AddObserver(audioManager);
-
-			soundManager = new ScoreManager(game);
-			this.AddObserver(soundManager);
 		}
 
 		/// <summary>

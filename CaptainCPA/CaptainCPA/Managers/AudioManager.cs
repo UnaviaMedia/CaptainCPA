@@ -32,6 +32,10 @@ namespace CaptainCPA
 					SoundEffect ding = Game.Content.Load<SoundEffect>("Sounds/Ding");
 					ding.Play();
 					break;
+				case "PlayerLandedOnSpike":
+					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/hurtflesh3");
+					spike.Play();
+					break;
 				default:
 					break;
 			}

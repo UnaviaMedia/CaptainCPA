@@ -1,23 +1,21 @@
 /*
- * Project:	PlatformGame - ScoreManager.cs
- * Purpose:	Manage level score
+ * Project:	PlatformGame - LevelEventManager.cs
+ * Purpose:	Manage level events for a level
  *
  * History:
- *		Kendall Roth	Nov-27-2015:	Created
+ *		Kendall Roth	Nov-28-2015:	Created
  */
 
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Manage level score
+	/// Manage level events for the levels by implementing an Observer pattern
 	/// </summary>
-	public class ScoreManager : Observer
+	public class LevelEventManager : Observer
 	{
-		public ScoreManager(Game game)
+		public LevelEventManager(Game game)
 			: base(game)
 		{
 
@@ -26,10 +24,10 @@ namespace CaptainCPA
 		public override void OnNotify(object sender, string notification, object secondarySender = null)
 		{
 			switch (notification)
-			{
-				case "GemCollected":
-					((Gem)sender).Destroy();
-					((Character)secondarySender).Score += ((Gem)sender).Points;
+			{				
+				case "PlayerLandedOnSpike":
+					((Spike)sender).Color = Color.Red;
+					((Character)secondarySender).LoseLife();
 					break;
 				default:
 					break;
