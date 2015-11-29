@@ -32,7 +32,7 @@ namespace CaptainCPA
 							Vector2 velocity, bool onGround)
 			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
-			
+            facingRight = true;
 		}
 
 		/// <summary>
@@ -65,12 +65,14 @@ namespace CaptainCPA
 			if (ks.IsKeyDown(Keys.Left))
 			{
 				velocity.X -= 3.5f;
+                facingRight = false;
 			}
 
 			//If the Right key is pressed, add horizontal velocity to move right
 			if (ks.IsKeyDown(Keys.Right))
 			{
 				velocity.X += 3.5f;
+                facingRight = true;
 			}
 
 			#region OldDebuggingMovement

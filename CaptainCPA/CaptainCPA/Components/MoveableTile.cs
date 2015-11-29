@@ -25,6 +25,7 @@ namespace CaptainCPA
 	/// </summary>
 	public class MoveableTile : Tile
 	{
+        protected bool facingRight;
 		protected Vector2 velocity;
 		protected Vector2 gravity = new Vector2(0.0f, 0.2f);
 		protected bool onGround;
@@ -116,6 +117,15 @@ namespace CaptainCPA
 			//	Minimum between distance to closest fixed tile and usual player movement
 
 			//Update player's horizontal position
+
+            if(facingRight)
+            {
+                spriteEffect = SpriteEffects.None;
+            }
+            else
+            {
+                spriteEffect = SpriteEffects.FlipHorizontally;
+            }
 
 			base.Update(gameTime);
 		}
