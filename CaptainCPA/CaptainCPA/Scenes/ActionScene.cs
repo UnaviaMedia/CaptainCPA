@@ -6,6 +6,7 @@
  *		Doug Epp		Nov-24-2015:	Created
  *		Kendall Roth	Nov-27-2015:	Added physics manager, tile collision positioning manager, and character collision manager
  *										Added score display
+ *						Nov-29-2015:	Optimizations
  */
 
 using System.Collections.Generic;
@@ -20,8 +21,9 @@ namespace CaptainCPA
 	/// </summary>
 	public class ActionScene : GameScene
 	{
-		protected LevelLoadManager levelLoader;
-		protected List<Tile> tileList;
+		protected LevelLoader levelLoader;
+		protected List<MoveableTile> moveableTileList;
+		protected List<FixedTile> fixedTileList;
 		protected Character character;
 
 		protected PhysicsManager physicsManager;
@@ -34,28 +36,34 @@ namespace CaptainCPA
 			: base(game, spriteBatch)
 		{
 			//Add a level creator, and create the level
-			levelLoader = new LevelLoadManager(game, spriteBatch);
+			levelLoader = new LevelLoader(game, spriteBatch);
 			levelLoader.LoadGame(level);
-			tileList = levelLoader.TileList;
+			moveableTileList = levelLoader.MoveableTileList;
+			fixedTileList = levelLoader.FixedTileList;
 			character = levelLoader.Character;
 
 			//Add each tile to the tile list
-			foreach (Tile tile in tileList)
+			foreach (MoveableTile moveableTile in moveableTileList)
 			{
-				this.Components.Add(tile);
+				this.Components.Add(moveableTile);
+			}
+
+			foreach (FixedTile fixedTile in fixedTileList)
+			{
+				this.Components.Add(fixedTile);
 			}
 
 			//Create physics manager and add it to list of components
-			physicsManager = new PhysicsManager(game, tileList);
+			physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
 			this.Components.Add(physicsManager);
 
-			//Create tile collision manager (in case a collision actually does occur) and add to list of components
-			//tileCollisionPositioningManager = new TileCollisionPositioningManager(game, tileList);
-			//this.Components.Add(tileCollisionPositioningManager);
-
 			//Create character collision manager (for pickups, death, etc) and add to list of components
-			characterCollisionManager = new CharacterCollisionManager(game, tileList);
+			characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
 			this.Components.Add(characterCollisionManager);
+
+			//Create tile collision manager (in case a collision actually does occur) and add to list of components
+			//tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
+			//this.Components.Add(tileCollisionPositioningManager);
 
 			//Create display components
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
@@ -80,6 +88,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
+			//Update the score
 			scoreDisplay.Message = character.Score.ToString();
 
 			base.Update(gameTime);

@@ -1,22 +1,15 @@
 /*
  * Project: CaptainCPA - TileCollisionPositioningManager.cs
- * Purpose: Manages collisions and post-collision positioning between tiles
+ * Purpose: Manages collisions and post-collision positioning between tiles (backup to PhysicsManager)
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
  *						Nov-26-2015:	Removed dependency on TileCollisionPositioningManager, using PhysicsManager instead
+ *						Nov-29-2015:	Optimizations
  */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
@@ -26,8 +19,8 @@ namespace CaptainCPA
 	/// </summary>
 	public class TileCollisionPositioningManager : CollisionManager
 	{
-		public TileCollisionPositioningManager(Game game, List<Tile> tiles)
-			: base(game, tiles)
+		public TileCollisionPositioningManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
+			: base(game, moveableTiles, fixedTiles)
 		{
 			// TODO: Construct any child components here
 		}
@@ -38,8 +31,6 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
-			// TODO: Add your initialization code here
-
 			base.Initialize();
 		}
 
@@ -53,13 +44,9 @@ namespace CaptainCPA
 			foreach (FixedTile fixedTile in fixedTiles)
 			{
 				//If the tile is hidden or disabled, skip collision detection for it
-				if (fixedTile.Visible == false || fixedTile.Enabled == false)
-				{
-					continue;
-				}
-
-				//If the tile is a decoration tile, skip collision positioning for it
-				if (fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup)
+				//	Also skip detection if the TileType shouldn't have detection for it
+				if (fixedTile.Visible == false || fixedTile.Enabled == false ||
+					fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup)
 				{
 					continue;
 				}
@@ -77,7 +64,6 @@ namespace CaptainCPA
 					//Check for collision
 					if (moveableTile.Bounds.Intersects(fixedTile.Bounds))
 					{
-
 						//Get the intersection rectangle
 						Rectangle collisionRectangle = Rectangle.Intersect(moveableTile.Bounds, fixedTile.Bounds);
 
@@ -99,34 +85,15 @@ namespace CaptainCPA
 							{
 								//Top collision
 								collisionPosition = new Vector2(moveableTile.Position.X, fixedTile.Bounds.Top - (moveableTile.Bounds.Height / 2));
-
-								//Moveable tile is on the ground (just hit it)
-								//moveableTile.OnGround = true;
 							}
 							else
 							{
 								//Bottom collision
 								collisionPosition = new Vector2(moveableTile.Position.X, fixedTile.Bounds.Bottom + (moveableTile.Bounds.Height / 2));
-
-								//If the moveable tile collides at its top, reset its velocity in order to cause it to fall instantly
-								//moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 1);
 							}
 						}
 						else if (collisionRectangle.Width < collisionRectangle.Height)
 						{
-							#region OldCollisionCodeDelete
-							/*//If the moveable tile collides sideways with something and is still going up, make it drop straight down
-							if (moveableTile.Velocity.Y < 0)
-							{
-								//moveableTile.Velocity = new Vector2(0.0f, 0.0f);
-							}
-							else
-							{
-								//moveableTile.Velocity = new Vector2(0.0f, moveableTile.Velocity.Y);
-								//moveableTile.Gravity = new Vector2(0.0f, moveableTile.Gravity.Y);
-							}*/
-							#endregion
-
 							//Horizontal collision
 							if (moveableTile.Bounds.Right - fixedTile.Bounds.Right < 0)
 							{

@@ -1,11 +1,18 @@
+/*
+ * Project: CaptainCPA - FPSManager.cs
+ * Purpose: Track FPS to increase optimizations
+ *
+ * History:
+ *		Kendall Roth	Nov-28-2015:	Created
+ */
+
 using System;
 using Microsoft.Xna.Framework;
-
 
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Track FPS to increase optimisability
 	/// </summary>
 	public class FPSManager : DrawableGameComponent
 	{
@@ -18,12 +25,20 @@ namespace CaptainCPA
 			get { return frameRate; }
 		}
 
+		/// <summary>
+		/// Constructor for FPSManager
+		/// </summary>
+		/// <param name="game">Reference to the Game instance</param>
 		public FPSManager(Game game)
 			: base(game)
 		{
 			
 		}
 
+		/// <summary>
+		/// Allows the game component to update itself
+		/// </summary>
+		/// <param name="gameTime">Reference to game timing values</param>
 		public override void Update(GameTime gameTime)
 		{
 			elapsedTime += gameTime.ElapsedGameTime;
@@ -36,19 +51,15 @@ namespace CaptainCPA
 			}
 		}
 
+		/// <summary>
+		/// Allows the game components to draw itself (or at least update)
+		/// </summary>
+		/// <param name="gameTime">Reference to game timing values</param>
 		public override void Draw(GameTime gameTime)
 		{
 			frameCounter++;
 
 			Game.Window.Title = frameRate.ToString();
-			/*string fps = string.Format("fps: {0}", frameRate);
-
-			spriteBatch.Begin();
-
-			spriteBatch.DrawString(spriteFont, fps, new Vector2(33, 33), Color.Black);
-			spriteBatch.DrawString(spriteFont, fps, new Vector2(32, 32), Color.White);
-
-			spriteBatch.End();*/
 		}
 	}
 }
