@@ -62,8 +62,9 @@ namespace CaptainCPA
 
 			Content.RootDirectory = "Content";
 
-			graphics.SynchronizeWithVerticalRetrace = false;
-			IsFixedTimeStep = false;
+			//Enable to uncap FPS (unplayable)
+			//graphics.SynchronizeWithVerticalRetrace = false;
+			//IsFixedTimeStep = false;
 
 			Components.Add(new FPSManager(this));
 		}

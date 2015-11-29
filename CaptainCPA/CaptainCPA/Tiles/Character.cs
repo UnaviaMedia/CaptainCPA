@@ -29,6 +29,8 @@ namespace CaptainCPA
 	public class Character : MoveableTile
 	{
 		protected int score;
+		protected float speed;
+		protected float jumpSpeed;
 
 		public int Score
 		{
@@ -36,10 +38,25 @@ namespace CaptainCPA
 			set { score = value; }
 		}
 
+		public float Speed
+		{
+			get { return speed; }
+			set { speed = value; }
+		}
+		
+		public float JumpSpeed
+		{
+			get { return jumpSpeed; }
+			set { jumpSpeed = value; }
+		}
+
 		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
-							Vector2 velocity, bool onGround)
+							Vector2 velocity, bool onGround, float speed, float jumpSpeed)
 			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
+			this.speed = speed;
+			this.jumpSpeed = jumpSpeed;
+
 			//Reset player score
 			ResetScore();
 		}
@@ -81,13 +98,13 @@ namespace CaptainCPA
 			//If the Left key is pressed, subtract horizontal velocity to move left
 			if (ks.IsKeyDown(Keys.Left))
 			{
-				velocity.X -= 3.5f;
+				velocity.X -= speed;
 			}
 
 			//If the Right key is pressed, add horizontal velocity to move right
 			if (ks.IsKeyDown(Keys.Right))
 			{
-				velocity.X += 3.5f;
+				velocity.X += speed;
 			}
 
 			#region OldDebuggingMovement
@@ -105,7 +122,7 @@ namespace CaptainCPA
 			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
 			{
-				velocity.Y = -10.0f;
+				velocity.Y = jumpSpeed;
 				onGround = false;
 			}
 

@@ -119,9 +119,11 @@ namespace CaptainCPA
 							newTile = new Gem(game, spriteBatch, gemTexture, color, position, rotation, scale, layerDepth, points);
 							break;
 						case "character":
-							Vector2 velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
+							float speed = float.Parse(tile.Attributes["speed"].Value);
+							float jumpSpeed = float.Parse(tile.Attributes["jumpSpeed"].Value);
 							bool onGround = true;
-							newTile = new Character(game, spriteBatch, characterTexture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
+							newTile = new Character(game, spriteBatch, characterTexture, TileType.Character, color, position, rotation, scale, layerDepth, 
+								Vector2.Zero, onGround, speed, jumpSpeed);
 							character = (Character)newTile;
 							break;
 						default:
