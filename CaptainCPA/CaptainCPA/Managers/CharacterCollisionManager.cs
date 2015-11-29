@@ -6,6 +6,7 @@
  *		Kendall Roth	Nov-27-2015:	Created
  *										Collision detection with observers added
  *										Pixel-checking added
+ *						Nov-28-2015:	Optimizations
  */
 
 using System.Collections.Generic;
@@ -18,20 +19,12 @@ namespace CaptainCPA
 	/// </summary>
 	public class CharacterCollisionManager : CollisionManager
 	{
-		private List<Character> characters;
+		private Character character;
 
-		public CharacterCollisionManager(Game game, List<Tile> tiles)
-			: base(game, tiles)
+		public CharacterCollisionManager(Game game, Character character, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
+			: base(game, moveableTiles, fixedTiles)
 		{
-			characters = new List<Character>();
-
-			foreach (Tile tile in tiles)
-			{
-				if (tile is Character)
-				{
-					characters.Add((Character)tile);
-				}
-			}
+			this.character = character;
 		}
 
 		/// <summary>
@@ -49,27 +42,24 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			foreach (Character character in characters)
+			foreach (FixedTile fixedTile in fixedTiles)
 			{
-				foreach (Tile tile in tiles)
+				//Skip collision detection if the moveable tile is hidden or disabled
+				if (fixedTile.Visible == false || fixedTile.Enabled == false || character.Equals(fixedTile))
 				{
-					//Skip collision detection if the moveable tile is hidden or disabled
-					if (tile.Visible == false || tile.Enabled == false || character.Equals(tile))
-					{
-						continue;
-					}
+					continue;
+				}
 
-					//Skip collision detection if the moveable tile is too far away or doesn't intersect
-					if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(tile.Bounds.Center)) > 100 ||
-						character.Bounds.Intersects(tile.Bounds) == false || Utilities.PerPixelCollision(character, tile) == false)
-					{
-						continue;
-					}
+				//Skip collision detection if the moveable tile is too far away or doesn't intersect
+				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 100 ||
+					character.Bounds.Intersects(fixedTile.Bounds) == false || Utilities.PerPixelCollision(character, fixedTile) == false)
+				{
+					continue;
+				}
 
-					if (tile is Gem)
-					{
-						tile.Notify(tile, "GemCollected", character);
-					}
+				if (fixedTile is Gem)
+				{
+					fixedTile.Notify(fixedTile, "GemCollected", character);
 				}
 			}
 

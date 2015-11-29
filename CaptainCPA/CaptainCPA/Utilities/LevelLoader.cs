@@ -1,18 +1,16 @@
 ﻿/*
- * Project: CaptainCPA - LevelLoadManager.cs
+ * Project: CaptainCPA - LevelLoader.cs
  * Purpose: Loads the specified XML level file
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
  *						Nov-27-2015:	Added Character property
+ *						Nov-29-2015:	Optimizations
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace CaptainCPA
@@ -20,17 +18,24 @@ namespace CaptainCPA
 	/// <summary>
 	/// Loads the specified XMl level file
 	/// </summary>
-	public class LevelLoadManager
+	public class LevelLoader
 	{
 		private Game game;
 		private SpriteBatch spriteBatch;
-		private List<Tile> tileList;
+		private List<MoveableTile> moveableTileList;
+		private List<FixedTile> fixedTileList;
 		private Character character;
 
-		public List<Tile> TileList
+		public List<MoveableTile> MoveableTileList
 		{
-			get { return tileList; }
-			set { tileList = value; }
+			get { return moveableTileList; }
+			set { moveableTileList = value; }
+		}
+
+		public List<FixedTile> FixedTileList
+		{
+			get { return fixedTileList; }
+			set { fixedTileList = value; }
 		}
 
 		public Character Character
@@ -39,20 +44,21 @@ namespace CaptainCPA
 			set { character = value; }
 		}
 
-		public LevelLoadManager(Game game, SpriteBatch spriteBatch)
+		public LevelLoader(Game game, SpriteBatch spriteBatch)
 		{
 			this.game = game;
 			this.spriteBatch = spriteBatch;
 		}
 
 		/// <summary>
-		/// Loads an nPuzzle game save and sets up the board
+		/// Loads the specified CaptainCPA XML level file
 		/// </summary>
 		/// <param name="levelName">File path to the save file</param>
 		public void LoadGame(string levelName)
 		{
-			//Create list of level tiles
-			tileList = new List<Tile>();
+			//Create lists of level tiles
+			moveableTileList = new List<MoveableTile>();
+			fixedTileList = new List<FixedTile>();
 
 			#region LoadTextures
 			//Load the different block textures
@@ -83,9 +89,7 @@ namespace CaptainCPA
 
 					//Declare new Tile properties
 					Tile newTile = null;
-					Texture2D texture;
-					string colorString = tile.Attributes["color"].Value;
-					Color color = ColorConverter.ConvertColor(colorString);
+					Color color = ColorConverter.ConvertColor(tile.Attributes["color"].Value);
 					Vector2 position = new Vector2(xValue * Settings.TILE_SIZE, yValue * Settings.TILE_SIZE);
 					float rotation = 0.0f;
 					float scale = 1.0f;
@@ -94,9 +98,6 @@ namespace CaptainCPA
 					//Initialize the tile depending on its type
 					switch (tileType)
 					{
-						case "":
-						case " ":
-							break;
 						case "block":
 							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
 							break;
@@ -127,10 +128,14 @@ namespace CaptainCPA
 							break;
 					}
 
-					//If the tile is not null, add it to the tile list
-					if (newTile != null)
+					//If the tile is not null, add it to the correct tile list
+					if (newTile is MoveableTile)
 					{
-						tileList.Add(newTile); 
+						moveableTileList.Add((MoveableTile)newTile);
+					}
+					else if (newTile is FixedTile)
+					{
+						fixedTileList.Add((FixedTile)newTile);
 					}
 				}
 			}

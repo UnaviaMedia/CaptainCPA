@@ -80,7 +80,7 @@
     <Compile Include="Managers\CharacterCollisionManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Managers\FPSManager.cs" />
-    <Compile Include="Managers\LevelLoadManager.cs" />
+    <Compile Include="Utilities\LevelLoader.cs" />
     <Compile Include="Managers\Observer.cs" />
     <Compile Include="Managers\PhysicsManager.cs" />
     <Compile Include="Managers\ScoreManager.cs" />
