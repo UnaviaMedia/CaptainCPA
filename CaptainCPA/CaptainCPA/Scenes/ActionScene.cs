@@ -23,6 +23,7 @@ namespace CaptainCPA
 
 		protected PhysicsManager physicsManager;
 		protected CollisionManager tileCollisionManager;
+        protected CharacterStateManager characterPositionManager;
 
 		public ActionScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
