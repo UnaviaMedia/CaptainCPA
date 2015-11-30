@@ -124,7 +124,7 @@ namespace CaptainCPA
                         frameIndex++;
                         if (frameIndex == 27)
                             frameIndex = 0;
-                    } 
+                    }
                 }
                 else
                 {
@@ -136,7 +136,7 @@ namespace CaptainCPA
                             frameIndex++;
                             if (frameIndex == 27)
                                 frameIndex = 0;
-                        } 
+                        }
                     }
                     else
                     {
@@ -164,8 +164,8 @@ namespace CaptainCPA
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    int x = j * (int)dimension.X +5*j;
-                    int y = i * (int)dimension.Y+5*i+5;
+                    int x = j * (int)dimension.X + 5 * j;
+                    int y = i * (int)dimension.Y + 5 * i + 5;
                     Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
                     frames.Add(r);
                 }
