@@ -33,15 +33,16 @@ namespace CaptainCPA
         private Vector2 dimension;
         private int delay;
         private int delayCounter;
-        private int frameIndex = -1;
+        private int frameIndex = 0;
         public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
                             Vector2 velocity, bool onGround)
             : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
             this.spriteBatch = spriteBatch;
-            dimension = new Vector2(64, 64);
-            delay = 3;
+            dimension = new Vector2(128, 128);
+            delay = 9;
             facingRight = true;
+            position = new Vector2(100, 100);
             createFrames();
         }
 
@@ -118,9 +119,13 @@ namespace CaptainCPA
                 if (delayCounter % delay == 0)
                 {
                     frameIndex++;
-                    if (frameIndex == 28)
+                    if (frameIndex == 27)
                         frameIndex = 0;
                 } 
+            }
+            else
+            {
+                frameIndex = 0;
             }
             base.Update(gameTime);
         }
@@ -129,10 +134,10 @@ namespace CaptainCPA
             spriteBatch.Begin();
             if (frameIndex >= 0)
             {
-                spriteBatch.Draw(texture, position, frames.ElementAt<Rectangle>(frameIndex), Color.Red);
+                spriteBatch.Draw(texture, new Vector2(128, 128), frames.ElementAt<Rectangle>(frameIndex), Color.White);
             }
             spriteBatch.End();
-            base.Draw(gameTime);
+            //base.Draw(gameTime);
         }
         private void createFrames()
         {
