@@ -41,8 +41,10 @@ namespace CaptainCPA
 			tileList = new List<Tile>();
 
 			//Load the different block textures
-			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
-			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
+			//Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
+            Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
+
+            Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
 
