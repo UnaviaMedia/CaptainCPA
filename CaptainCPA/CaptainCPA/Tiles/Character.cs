@@ -34,15 +34,16 @@ namespace CaptainCPA
         private int delay;
         private int delayCounter;
         private int frameIndex = 0;
+        private Texture2D bigTexture;
         public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
                             Vector2 velocity, bool onGround)
             : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
             this.spriteBatch = spriteBatch;
-            dimension = new Vector2(128, 128);
-            delay = 9;
+            dimension = new Vector2(64, 64);
+            delay = 2;
             facingRight = true;
-            position = new Vector2(100, 100);
+            bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
             createFrames();
         }
 
@@ -115,18 +116,35 @@ namespace CaptainCPA
             //animation, hopefully
             if (isMoving)
             {
-                delayCounter++;
-                if (delayCounter % delay == 0)
+                if (velocity.Y == 0)
                 {
-                    frameIndex++;
-                    if (frameIndex == 27)
+                    delayCounter++;
+                    if (delayCounter % delay == 0)
+                    {
+                        frameIndex++;
+                        if (frameIndex == 27)
+                            frameIndex = 0;
+                    } 
+                }
+                else
+                {
+                    if (frameIndex != 1)
+                    {
+                        delayCounter++;
+                        if (delayCounter % delay == 0)
+                        {
+                            frameIndex++;
+                            if (frameIndex == 27)
+                                frameIndex = 0;
+                        } 
+                    }
+                    else
+                    {
                         frameIndex = 0;
-                } 
+                    }
+                }
             }
-            else
-            {
-                frameIndex = 0;
-            }
+            //texture = bigTexture.GetData<Texture2D>()
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
@@ -134,7 +152,7 @@ namespace CaptainCPA
             spriteBatch.Begin();
             if (frameIndex >= 0)
             {
-                spriteBatch.Draw(texture, new Vector2(128, 128), frames.ElementAt<Rectangle>(frameIndex), Color.White);
+                spriteBatch.Draw(bigTexture, position, frames.ElementAt<Rectangle>(frameIndex), Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
             }
             spriteBatch.End();
             //base.Draw(gameTime);
@@ -146,8 +164,8 @@ namespace CaptainCPA
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    int x = j * (int)dimension.X;
-                    int y = i * (int)dimension.Y;
+                    int x = j * (int)dimension.X +5*j;
+                    int y = i * (int)dimension.Y+5*i+5;
                     Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
                     frames.Add(r);
                 }
