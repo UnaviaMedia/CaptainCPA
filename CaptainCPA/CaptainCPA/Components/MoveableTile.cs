@@ -26,6 +26,7 @@ namespace CaptainCPA
 	public class MoveableTile : Tile
 	{
         protected bool facingRight;
+        protected bool isMoving;
 		protected Vector2 velocity;
 		protected Vector2 gravity = new Vector2(0.0f, 0.2f);
 		protected bool onGround;
@@ -125,6 +126,15 @@ namespace CaptainCPA
             else
             {
                 spriteEffect = SpriteEffects.FlipHorizontally;
+            }
+
+            if (velocity.X == 0)
+            {
+                isMoving = false;
+            }
+            else
+            {
+                isMoving = true;
             }
 
 			base.Update(gameTime);
