@@ -28,6 +28,7 @@ namespace CaptainCPA
     /// </summary>
     public class Character : MoveableTile
     {
+        private SpriteBatch spriteBatch;
         private List<Rectangle> frames;
         private Vector2 dimension;
         private int delay;
@@ -37,6 +38,7 @@ namespace CaptainCPA
                             Vector2 velocity, bool onGround)
             : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
+            this.spriteBatch = spriteBatch;
             dimension = new Vector2(64, 64);
             delay = 3;
             facingRight = true;
@@ -120,7 +122,6 @@ namespace CaptainCPA
                         frameIndex = 0;
                 } 
             }
-
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
