@@ -28,7 +28,6 @@ namespace CaptainCPA
     /// </summary>
     public class Character : MoveableTile
     {
-        private SpriteBatch spriteBatch;
         private List<Rectangle> frames;
         private Vector2 dimension;
         private int delay;
@@ -39,10 +38,10 @@ namespace CaptainCPA
                             Vector2 velocity, bool onGround)
             : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
-            this.spriteBatch = spriteBatch;
             dimension = new Vector2(64, 64);
             delay = 2;
             facingRight = true;
+            //source: http://www.swingswingsubmarine.com/2010/11/25/seasons-after-fall-spritesheet-animation/
             bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
             createFrames();
         }
