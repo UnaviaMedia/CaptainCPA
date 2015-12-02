@@ -110,7 +110,7 @@ namespace CaptainCPA
 		/// </summary>
 		private void ResetPosition()
 		{
-			position = startingPosition;
+			position = new Vector2(startingPosition.X + origin.X, startingPosition.Y + origin.Y);
 		}
 
 		/// <summary>
@@ -149,18 +149,6 @@ namespace CaptainCPA
 			{
 				velocity.X += speed;
 			}
-
-			#region OldDebuggingMovement
-			/*if (ks.IsKeyDown(Keys.Up))
-			{
-				velocity.Y = -4;
-			}
-
-			if (ks.IsKeyDown(Keys.Down))
-			{
-				velocity.Y = 4;
-			}*/
-			#endregion
 
 			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)

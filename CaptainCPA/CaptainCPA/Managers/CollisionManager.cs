@@ -21,11 +21,25 @@ namespace CaptainCPA
 		protected List<MoveableTile> moveableTiles;
 		protected List<FixedTile> fixedTiles;
 
+		//Observers
+		protected Observer audioManager;
+		protected Observer soundManager;
+		protected Observer levelEventsManager;
+
 		public CollisionManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game)
 		{
 			this.moveableTiles = moveableTiles;
 			this.fixedTiles = fixedTiles;
+
+			audioManager = new AudioManager(game);
+			this.AddObserver(audioManager);
+
+			soundManager = new ScoreManager(game);
+			this.AddObserver(soundManager);
+
+			levelEventsManager = new LevelEventManager(game);
+			this.AddObserver(levelEventsManager);
 		}
 
 		/// <summary>

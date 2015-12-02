@@ -7,7 +7,7 @@
  *										Collision detection with observers added
  *										Pixel-checking added
  *						Nov-28-2015:	Optimizations
- *										Improved Observer pattern
+ *										Removed observers to place in base class
  */
 
 using System.Collections.Generic;
@@ -22,25 +22,10 @@ namespace CaptainCPA
 	{
 		private Character character;
 
-		//Observers
-		private Observer audioManager;
-		private Observer soundManager;
-		private Observer levelEventsManager;
-
 		public CharacterCollisionManager(Game game, Character character, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)
 		{
 			this.character = character;
-
-			//Add observers
-			audioManager = new AudioManager(game);
-			this.AddObserver(audioManager);
-
-			soundManager = new ScoreManager(game);
-			this.AddObserver(soundManager);
-
-			levelEventsManager = new LevelEventManager(game);
-			this.AddObserver(levelEventsManager);
 		}
 
 		/// <summary>

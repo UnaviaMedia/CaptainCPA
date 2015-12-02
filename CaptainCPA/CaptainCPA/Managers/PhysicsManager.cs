@@ -20,6 +20,7 @@ namespace CaptainCPA
 	/// </summary>
 	public class PhysicsManager : CollisionManager
 	{
+		string notified = "";
 		public PhysicsManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)
 		{
@@ -264,53 +265,50 @@ namespace CaptainCPA
 				{
 					if (closestVerticalTile != null)
 					{
-						//Moveable distance to player's bottom (positive)
-						verticalMoveDistance = Math.Min(moveableTile.Velocity.Y, closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom);
+						closestVerticalTile.Color = Color.Red;
 
-						//If the distance to the nearest tile is less than the moveable tile's velocity, it will be on the ground in the next frame
-						if (verticalMoveDistance < moveableTile.Velocity.Y)
+						//If the closest tile is right below, the moveable tile is on the ground
+						if (closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom == 0)
 						{
-							//Tile is on the ground
 							moveableTile.OnGround = true;
 						}
 						else
 						{
-							//Tile is still in the air
-							moveableTile.OnGround = false;
-						}
+							//Moveable distance to player's bottom (positive)
+							verticalMoveDistance = Math.Min(moveableTile.Velocity.Y, closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom);
+
+							//If the distance to the nearest tile is less than the moveable tile's velocity, it will be on the ground in the next frame
+							if (verticalMoveDistance < moveableTile.Velocity.Y)
+							{
+								//Send a notification that the player hit the ground
+								if (moveableTile is Character && moveableTile.OnGround == false)
+								{
+									Notify(moveableTile, "PlayerHitGround");
+									notified += "*";
+								}
+
+								//Tile is on the ground
+								moveableTile.OnGround = true;
+							}
+							else
+							{
+								//Tile is still in the air
+								moveableTile.OnGround = false;
+							}
+						}						
 					}
 					else
 					{
 						//If this is ever reached there may be a problem (will happen if there are no tiles below it)
 						verticalMoveDistance = moveableTile.Velocity.Y;
-						//moveableTile.OnGround = false;
 					}
 				}
+
+				Game.Window.Title = notified;
 
 				//Update player's vertical position
 				moveableTile.Position = new Vector2(moveableTile.Position.X, moveableTile.Position.Y + verticalMoveDistance);
 			}
-
-			#region CheckForPlatform
-			/*foreach (MoveableTile moveableTile in moveableTiles)
-			{
-				if (moveableTile.OnGround == true)
-				{
-					continue;
-				}
-
-				foreach (FixedTile fixedTile in fixedTiles)
-				{
-					Rectangle platformRectangleCheck = new Rectangle(moveableTile.Bounds.Left, moveableTile.Bounds.Bottom, 1, 1);
-
-					if (platformRectangleCheck.Intersects(fixedTile.Bounds))
-					{
-						moveableTile.OnGround = true;
-						break;
-					}
-				}
-			}*/
-			#endregion
 
 			base.Update(gameTime);
 		}

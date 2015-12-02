@@ -36,6 +36,10 @@ namespace CaptainCPA
 					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/hurtflesh3");
 					spike.Play();
 					break;
+				case "PlayerHitGround":
+					SoundEffect hitGround = Game.Content.Load<SoundEffect>("Sounds/hurtflesh3");
+					hitGround.Play();
+					break;
 				default:
 					break;
 			}

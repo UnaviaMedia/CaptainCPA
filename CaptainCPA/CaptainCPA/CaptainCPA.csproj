@@ -80,7 +80,6 @@
     <Compile Include="Managers\AudioManager.cs" />
     <Compile Include="Managers\CharacterCollisionManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
-    <Compile Include="Managers\FPSManager.cs" />
     <Compile Include="Tiles\Spike.cs" />
     <Compile Include="Utilities\LevelLoader.cs" />
     <Compile Include="Components\Observer.cs" />

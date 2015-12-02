@@ -65,8 +65,6 @@ namespace CaptainCPA
 			//Enable to uncap FPS (unplayable)
 			//graphics.SynchronizeWithVerticalRetrace = false;
 			//IsFixedTimeStep = false;
-
-			Components.Add(new FPSManager(this));
 		}
 
 		/// <summary>
@@ -153,7 +151,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
-			//Update FPS
+			/*//Update FPS
 			elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
 			//1 Second has passed
@@ -162,9 +160,8 @@ namespace CaptainCPA
 				fps = totalFrames;
 				totalFrames = 0;
 				elapsedTime = 0;
-				Window.Title = fps.ToString();
-			}
-
+				//Window.Title = fps.ToString();
+			}*/
 
 			#region menu navigation
 			int selectedIndex = 0;
