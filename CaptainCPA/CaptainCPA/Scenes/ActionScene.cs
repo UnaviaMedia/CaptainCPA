@@ -29,6 +29,7 @@ namespace CaptainCPA
 		protected PhysicsManager physicsManager;
 		protected CollisionManager tileCollisionPositioningManager;
 		protected CharacterCollisionManager characterCollisionManager;
+		protected CharacterStateManager characterPositionManager;
 
 		protected ScoreDisplay scoreDisplay;
 
@@ -78,6 +79,7 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
+
 			base.Initialize();
 		}
 

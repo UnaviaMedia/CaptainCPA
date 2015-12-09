@@ -1,5 +1,5 @@
 ﻿/*
- * Project: CaptainCPA - LevelLoader.cs
+ * Project: CaptainCPA - LevelLoadManager.cs
  * Purpose: Loads the specified XML level file
  *
  * History:
@@ -10,7 +10,10 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Xml;
 
 namespace CaptainCPA
@@ -99,7 +102,11 @@ namespace CaptainCPA
 					//Initialize the tile depending on its type
 					switch (tileType)
 					{
+						case "":
+						case " ":
+							break;
 						case "block":
+							texture = blockTexture;
 							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "platform-middle":
@@ -130,6 +137,18 @@ namespace CaptainCPA
 								Vector2.Zero, true, lives, speed, jumpSpeed);
 							character = (Character)newTile;
 							break;
+                        case "enemy":
+                            texture = blockTexture;
+                            velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
+                            onGround = true;
+                            newTile = new Enemy(game, spriteBatch, texture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+                            break;
+                        case "pursuingEnemy":
+                            texture = blockTexture;
+                            velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
+                            onGround = true;
+                            newTile = new PursuingEnemy(game, spriteBatch, texture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+                            break;
 						default:
 							break;
 					}

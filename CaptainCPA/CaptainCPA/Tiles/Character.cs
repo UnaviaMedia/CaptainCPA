@@ -156,6 +156,7 @@ namespace CaptainCPA
 				velocity.Y = jumpSpeed;
 				onGround = false;
 			}
+            CharacterStateManager.CharacterPosition = position;
 
 			//Debug Mode
 			if (ks.IsKeyDown(Keys.Space))
