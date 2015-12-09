@@ -87,8 +87,18 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\ControlsMenu.png">
-      <Name>ControlsMenu</Name>
+    <Compile Include="Images\ControlsScreen.png">
+      <Name>ControlsScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\AboutScreen.png">
+      <Name>AboutScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\HighScoreScreen.png">
+      <Name>HighScoreScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

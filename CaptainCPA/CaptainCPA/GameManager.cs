@@ -38,8 +38,8 @@ namespace CaptainCPA
 
 		private KeyboardState oldState;
 
-		//FPS Tracking
-		/*int totalFrames = 0;
+		/*//FPS Tracking
+		int totalFrames = 0;
 		float elapsedTime = 0.0f;
 		int fps = 0;*/
 
@@ -147,6 +147,7 @@ namespace CaptainCPA
 		{
 			/*//Update FPS
 			elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+			totalFrames++;
 
 			//1 Second has passed
 			if (elapsedTime > 1000.0f)
@@ -154,7 +155,7 @@ namespace CaptainCPA
 				fps = totalFrames;
 				totalFrames = 0;
 				elapsedTime = 0;
-				//Window.Title = fps.ToString();
+				Window.Title = fps.ToString();
 			}*/
 
 			#region menu navigation

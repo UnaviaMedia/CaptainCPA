@@ -10,7 +10,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
 namespace CaptainCPA
 {
 	/// <summary>
@@ -29,7 +28,7 @@ namespace CaptainCPA
 		{
 			//font = game.Content.Load<SpriteFont>("Fonts/MenuFont");
 			//message = readFile(@"Text/HowToPlayMessage.txt");
-			menuImage = game.Content.Load<Texture2D>("Images/ControlsMenu");
+			menuImage = game.Content.Load<Texture2D>("Images/ControlsScreen");
 		}
 
 		/// <summary>
@@ -38,8 +37,6 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
-			// TODO: Add your initialization code here
-
 			base.Initialize();
 		}
 
@@ -49,10 +46,13 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			// TODO: Add your update code here
-
 			base.Update(gameTime);
 		}
+
+		/// <summary>
+		/// Allows the game component to draw itself.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();

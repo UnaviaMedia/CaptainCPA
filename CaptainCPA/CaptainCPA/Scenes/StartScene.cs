@@ -4,7 +4,7 @@
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
- *						Dec-08-2015:	Added draw method, menu image
+ *						Dec-08-2015:	Added draw method, menu image, scrolling backgrounds
  */
 
 using Microsoft.Xna.Framework;
@@ -99,24 +99,28 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
+			Random r = new Random();
+
 			if (scrollingPosition1.X > -scrollingTexture1.Width)
 			{
 				scrollingPosition1.X -= scrollingSpeed.X;
 			}
 			else
 			{
-				scrollingPosition1.X = scrollingPosition2.X + scrollingTexture1.Width;
+				scrollingPosition1.X = scrollingPosition2.X + scrollingTexture2.Width;
+				scrollingTexture1 = backgroundImages[r.Next(0, backgroundImages.Count)];
 			}
 
-			if (scrollingPosition2.X > -scrollingTexture1.Width)
+			if (scrollingPosition2.X > -scrollingTexture2.Width)
 			{
 				scrollingPosition2.X -= scrollingSpeed.X;
 			}
 			else
 			{
 				scrollingPosition2.X = scrollingPosition1.X + scrollingTexture1.Width;
+				scrollingTexture2 = backgroundImages[r.Next(0, backgroundImages.Count)];
 			}
-
+			
 			base.Update(gameTime);
 		}
 
