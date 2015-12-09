@@ -98,6 +98,8 @@ namespace CaptainCPA
 					float rotation = 0.0f;
 					float scale = 1.0f;
 					float layerDepth = 1.0f;
+					Vector2 velocity = Vector2.Zero;
+					bool onGround = true;
 
 					//Initialize the tile depending on its type
 					switch (tileType)
@@ -106,7 +108,6 @@ namespace CaptainCPA
 						case " ":
 							break;
 						case "block":
-							texture = blockTexture;
 							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "platform-middle":
@@ -137,18 +138,16 @@ namespace CaptainCPA
 								Vector2.Zero, true, lives, speed, jumpSpeed);
 							character = (Character)newTile;
 							break;
-                        case "enemy":
-                            texture = blockTexture;
-                            velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-                            onGround = true;
-                            newTile = new Enemy(game, spriteBatch, texture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
-                            break;
-                        case "pursuingEnemy":
-                            texture = blockTexture;
-                            velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-                            onGround = true;
-                            newTile = new PursuingEnemy(game, spriteBatch, texture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
-                            break;
+						case "enemy":
+							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
+							onGround = true;
+							newTile = new Enemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+							break;
+						case "pursuingEnemy":
+							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
+							onGround = true;
+							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+							break;
 						default:
 							break;
 					}

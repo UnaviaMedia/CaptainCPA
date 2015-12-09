@@ -76,10 +76,12 @@
     <Compile Include="Components\Display\ScoreDisplay.cs" />
     <Compile Include="Components\MenuComponent.cs" />
     <Compile Include="Interfaces\IBounds.cs" />
+    <Compile Include="Managers\CharacterStateManager.cs" />
     <Compile Include="Managers\LevelEventManager.cs" />
     <Compile Include="Managers\AudioManager.cs" />
     <Compile Include="Managers\CharacterCollisionManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
+    <Compile Include="Tiles\Enemy.cs" />
     <Compile Include="Tiles\Spike.cs" />
     <Compile Include="Utilities\LevelLoader.cs" />
     <Compile Include="Components\Observer.cs" />
