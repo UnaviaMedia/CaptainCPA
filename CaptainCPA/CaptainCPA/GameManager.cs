@@ -6,16 +6,10 @@
  *		Kendall Roth	Nov-24-2015:	Created
  */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace CaptainCPA
 {
@@ -36,6 +30,7 @@ namespace CaptainCPA
 		private StartScene startScene;
 		private PauseMenuScene pauseMenuScene;
 		private ActionScene actionScene;
+		private LevelSelectScene levelSelectScene;
 		private HelpScene helpScene;
 		private AboutScene aboutScene;
 		private HighScoreScene highScoreScene;
@@ -44,8 +39,8 @@ namespace CaptainCPA
 
 		private KeyboardState oldState;
 
-		//FPS Tracking
-		/*int totalFrames = 0;
+		/*//FPS Tracking
+		int totalFrames = 0;
 		float elapsedTime = 0.0f;
 		int fps = 0;*/
 
@@ -96,11 +91,14 @@ namespace CaptainCPA
 			startScene = new StartScene(this, spriteBatch);
 			scenes.Add(startScene);
 
+			actionScene = new ActionScene(this, spriteBatch, "Level1");
+			scenes.Add(actionScene);
+
 			pauseMenuScene = new PauseMenuScene(this, spriteBatch);
 			scenes.Add(pauseMenuScene);
 
-			actionScene = new ActionScene(this, spriteBatch, "Level1");
-			scenes.Add(actionScene);
+			levelSelectScene = new LevelSelectScene(this, spriteBatch);
+			scenes.Add(levelSelectScene);
 
 			helpScene = new HelpScene(this, spriteBatch);
 			scenes.Add(helpScene);
@@ -153,6 +151,7 @@ namespace CaptainCPA
 		{
 			/*//Update FPS
 			elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+			totalFrames++;
 
 			//1 Second has passed
 			if (elapsedTime > 1000.0f)
@@ -160,7 +159,7 @@ namespace CaptainCPA
 				fps = totalFrames;
 				totalFrames = 0;
 				elapsedTime = 0;
-				//Window.Title = fps.ToString();
+				Window.Title = fps.ToString();
 			}*/
 
 			#region menu navigation
@@ -178,7 +177,7 @@ namespace CaptainCPA
 				if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter))
 				{
 					hideAllScenes();
-					//TODO: Add level select scene
+					levelSelectScene.Show();
 				}
 				if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
 				{
@@ -214,8 +213,11 @@ namespace CaptainCPA
 					{
 						item.Enabled = false;
 					}
+
+					//Show the pause menu
 					pauseMenuScene.Show();
 				}
+
 				if (pauseMenuScene.Enabled)
 				{
 					selectedIndex = pauseMenuScene.Menu.SelectedIndex;
@@ -226,6 +228,7 @@ namespace CaptainCPA
 						{
 							item.Enabled = true;
 						}
+
 						pauseMenuScene.Hide();
 					}
 					if (selectedIndex == (int)PauseMenuItems.MainMenu && ks.IsKeyDown(Keys.Enter))

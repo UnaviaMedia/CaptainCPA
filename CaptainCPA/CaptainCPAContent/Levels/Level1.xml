@@ -328,7 +328,7 @@
 			</Row>
 			<Row y="12">
 				<Tile x="0" tileType="block" color="White"></Tile>
-        <Tile x="1" tileType="" color="White"></Tile>
+		<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="character" color="White" speed="4" jumpSpeed="-9.5" lives="3"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
