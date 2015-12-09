@@ -75,7 +75,6 @@
     <Compile Include="Components\DisplayString.cs" />
     <Compile Include="Components\Display\ScoreDisplay.cs" />
     <Compile Include="Components\MenuComponent.cs" />
-    <Compile Include="Components\ScrollingBackground.cs" />
     <Compile Include="Interfaces\IBounds.cs" />
     <Compile Include="Managers\CharacterStateManager.cs" />
     <Compile Include="Managers\LevelEventManager.cs" />
