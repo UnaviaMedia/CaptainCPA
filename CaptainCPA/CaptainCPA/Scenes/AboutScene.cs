@@ -4,7 +4,7 @@
  *
  * History:
  *		Doug Epp		Nov-26-2015:	Created
- *						Dec-09-2015:	Updated User Interface Design
+ *		Kendall Roth	Dec-09-2015:	Updated User Interface Design
  */
 
 using Microsoft.Xna.Framework;

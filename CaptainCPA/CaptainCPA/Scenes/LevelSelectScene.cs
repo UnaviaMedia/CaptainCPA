@@ -1,10 +1,9 @@
 /*
- * Project: CaptainCPA - HowToPlayScene.cs
- * Purpose: Displays the game instructions
+ * Project: CaptainCPA - LevelSelectScene.cs
+ * Purpose: Display a Level Select screen
  *
  * History:
- *		Doug Epp		Nov-26-2015:	Created
- *		Kendall Roth	Dec-09-2015:	Updated User Interface Design
+ *		Kendall Roth	Dec-09-2015:	Created, updated User Interface Design
  */
 
 using Microsoft.Xna.Framework;
@@ -13,22 +12,16 @@ using Microsoft.Xna.Framework.Graphics;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game scene which displays gameplay instruction from a text file
+	/// This is the scene which allows users to select a level
 	/// </summary>
-	public class HowToPlayScene : GameScene
+	public class LevelSelectScene : GameScene
 	{
 		private Texture2D menuImage;
 
-		//private string message;
-		//private SpriteFont font;
-
-
-		public HowToPlayScene(Game game, SpriteBatch spriteBatch)
+		public LevelSelectScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
 		{
-			//font = game.Content.Load<SpriteFont>("Fonts/MenuFont");
-			//message = readFile(@"Text/HowToPlayMessage.txt");
-			menuImage = game.Content.Load<Texture2D>("Images/ControlsScreen");
+			menuImage = game.Content.Load<Texture2D>("Images/LevelSelectMenu");
 		}
 
 		/// <summary>
@@ -56,7 +49,6 @@ namespace CaptainCPA
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
-			//spriteBatch.DrawString(font, message, new Vector2(Settings.TILE_SIZE * 13, Settings.TILE_SIZE * 6), Color.White);
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
 			spriteBatch.End();
 

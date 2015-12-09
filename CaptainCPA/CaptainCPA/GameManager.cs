@@ -30,6 +30,7 @@ namespace CaptainCPA
 		private StartScene startScene;
 		private PauseMenuScene pauseMenuScene;
 		private ActionScene actionScene;
+		private LevelSelectScene levelSelectScene;
 		private HelpScene helpScene;
 		private AboutScene aboutScene;
 		private HighScoreScene highScoreScene;
@@ -95,6 +96,9 @@ namespace CaptainCPA
 
 			pauseMenuScene = new PauseMenuScene(this, spriteBatch);
 			scenes.Add(pauseMenuScene);
+
+			levelSelectScene = new LevelSelectScene(this, spriteBatch);
+			scenes.Add(levelSelectScene);
 
 			helpScene = new HelpScene(this, spriteBatch);
 			scenes.Add(helpScene);
@@ -173,7 +177,7 @@ namespace CaptainCPA
 				if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter))
 				{
 					hideAllScenes();
-					//TODO: Add level select scene
+					levelSelectScene.Show();
 				}
 				if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
 				{
