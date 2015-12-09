@@ -6,16 +6,10 @@
  *		Kendall Roth	Nov-24-2015:	Created
  */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace CaptainCPA
 {
@@ -214,8 +208,11 @@ namespace CaptainCPA
 					{
 						item.Enabled = false;
 					}
+
+					//Show the pause menu
 					pauseMenuScene.Show();
 				}
+
 				if (pauseMenuScene.Enabled)
 				{
 					selectedIndex = pauseMenuScene.Menu.SelectedIndex;
@@ -226,6 +223,7 @@ namespace CaptainCPA
 						{
 							item.Enabled = true;
 						}
+
 						pauseMenuScene.Hide();
 					}
 					if (selectedIndex == (int)PauseMenuItems.MainMenu && ks.IsKeyDown(Keys.Enter))
