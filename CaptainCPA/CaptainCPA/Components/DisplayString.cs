@@ -80,9 +80,11 @@ namespace CaptainCPA
 			base.Update(gameTime);
 		}
 
+		/// <summary>
+		/// Find the rectangle representing the bounds of the string
+		/// </summary>
 		public void UpdateBounds()
 		{
-			//Find the rectangle representing the bounds of the string
 			Bounds = new Rectangle(
 				(int)(Position.X),
 				(int)(Position.Y),
