@@ -105,7 +105,6 @@
     <Compile Include="Components\MoveableTile.cs" />
     <Compile Include="Components\Tile.cs" />
     <Compile Include="Tiles\PursuingEnemy.cs" />
-    <Compile Include="Tiles\TileType.cs" />
     <Compile Include="Utilities\Directions.cs" />
     <Compile Include="Utilities\TileType.cs" />
     <Compile Include="Scenes\ActionScene.cs" />

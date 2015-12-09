@@ -45,9 +45,9 @@ namespace CaptainCPA
 		private KeyboardState oldState;
 
 		//FPS Tracking
-		int totalFrames = 0;
+		/*int totalFrames = 0;
 		float elapsedTime = 0.0f;
-		int fps = 0;
+		int fps = 0;*/
 
 
 		public GameManager()

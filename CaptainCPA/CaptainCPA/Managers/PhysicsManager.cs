@@ -280,13 +280,6 @@ namespace CaptainCPA
 							//If the distance to the nearest tile is less than the moveable tile's velocity, it will be on the ground in the next frame
 							if (verticalMoveDistance < moveableTile.Velocity.Y)
 							{
-								//Send a notification that the player hit the ground
-								if (moveableTile is Character && moveableTile.OnGround == false)
-								{
-									Notify(moveableTile, "PlayerHitGround");
-									notified += "*";
-								}
-
 								//Tile is on the ground
 								moveableTile.OnGround = true;
 							}
