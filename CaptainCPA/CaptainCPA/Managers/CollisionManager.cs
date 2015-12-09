@@ -4,18 +4,11 @@
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
+ *						Nov-29-2015:	Optimizations
  */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
@@ -23,31 +16,30 @@ namespace CaptainCPA
 	/// <summary>
 	/// Base CollisionManager component
 	/// </summary>
-	public class CollisionManager : GameComponent
+	public class CollisionManager : Subject
 	{
-		protected List<Tile> tiles;
-		protected List<FixedTile> fixedTiles;
 		protected List<MoveableTile> moveableTiles;
+		protected List<FixedTile> fixedTiles;
 
-		public CollisionManager(Game game, List<Tile> tiles)
+		//Observers
+		protected Observer audioManager;
+		protected Observer soundManager;
+		protected Observer levelEventsManager;
+
+		public CollisionManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game)
 		{
-			this.tiles = tiles;
+			this.moveableTiles = moveableTiles;
+			this.fixedTiles = fixedTiles;
 
-			fixedTiles = new List<FixedTile>();
-			moveableTiles = new List<MoveableTile>();
+			audioManager = new AudioManager(game);
+			this.AddObserver(audioManager);
 
-			foreach (Tile tile in tiles)
-			{
-				if (tile is FixedTile)
-				{
-					fixedTiles.Add((FixedTile)tile);
-				}
-				else if (tile is MoveableTile)
-				{
-					moveableTiles.Add((MoveableTile)tile);
-				}
-			}
+			soundManager = new ScoreManager(game);
+			this.AddObserver(soundManager);
+
+			levelEventsManager = new LevelEventManager(game);
+			this.AddObserver(levelEventsManager);
 		}
 
 		/// <summary>

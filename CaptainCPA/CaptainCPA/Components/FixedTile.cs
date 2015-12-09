@@ -1,34 +1,46 @@
 /*
  * Project: CaptainCPA - FixedTile.cs
- * Purpose: Fixed platform tile
+ * Purpose: Base class for fixed tiles
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
+ *						Nov-28-2015:	Added X and Y coordinates
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-
+using System;
 
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Fixed platform tile
+	/// Base class for fixed tiles
 	/// </summary>
 	public class FixedTile : Tile
 	{
+		protected int xPosition;
+		protected int yPosition;
+
+		public int XPosition
+		{
+			get
+			{
+				return (int)Math.Floor(position.X / Settings.TILE_SIZE);
+			}
+		}
+
+		public int YPosition
+		{
+			get
+			{
+				return (int)Math.Floor(position.Y / Settings.TILE_SIZE);
+			}
+		}
+
 		public FixedTile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth)
 			: base(game, spriteBatch, texture, tileType, color, position, rotation, scale, layerDepth)
 		{
-			// TODO: Construct any child components here
+			
 		}
 
 		/// <summary>
@@ -37,8 +49,6 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
-			// TODO: Add your initialization code here
-
 			base.Initialize();
 		}
 
@@ -48,8 +58,6 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			// TODO: Add your update code here
-
 			base.Update(gameTime);
 		}
 	}

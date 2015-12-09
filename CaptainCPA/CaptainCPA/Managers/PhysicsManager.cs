@@ -6,29 +6,23 @@
  *		Kendall Roth	Nov-26-2015:	Created
  *										TileCollision checking and avoidance positioning added
  *						Nov-27-2015:	Added top collision checking (player immediately starts falling again)
+ *						Nov-29-2015:	Optimizations
  */
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-
 
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Manages collisions and post-collision positioning between tiles
+	/// Manages physics and collision avoidance for tiles
 	/// </summary>
 	public class PhysicsManager : CollisionManager
 	{
-		public PhysicsManager(Game game, List<Tile> tiles)
-			: base(game, tiles)
+		string notified = "";
+		public PhysicsManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
+			: base(game, moveableTiles, fixedTiles)
 		{
 			// TODO: Construct any child components here
 		}
@@ -39,8 +33,6 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
-			// TODO: Add your initialization code here
-
 			base.Initialize();
 		}
 
@@ -85,6 +77,11 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
+					if (fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup)
+					{
+						continue;
+					}
+
 					//Get the row that the current fixed tile is in
 					int fixedTileRow = (int)Math.Floor(fixedTile.Position.Y / Settings.TILE_SIZE);
 
@@ -93,8 +90,7 @@ namespace CaptainCPA
 					{
 						continue;
 					}
-
-					//Left movement
+					
 					if (horizontalDirection == Direction.Left)
 					{
 						//If the current fixed tile is behind the player (to the right) skip to the next iteration
@@ -102,20 +98,7 @@ namespace CaptainCPA
 						{
 							continue;
 						}
-
-						if (closestHorizontalTile == null)
-						{
-							closestHorizontalTile = fixedTile;
-						}
-						else
-						{
-							if (Vector2.Distance(moveableTile.Position, closestHorizontalTile.Position) > Vector2.Distance(moveableTile.Position, fixedTile.Position))
-							{
-								closestHorizontalTile = fixedTile;
-							}
-						}
 					}
-					//Right movement
 					else if (horizontalDirection == Direction.Right)
 					{
 						//If the current fixed tile is behind the player (to the left) skip to the next iteration
@@ -123,17 +106,17 @@ namespace CaptainCPA
 						{
 							continue;
 						}
-
-						if (closestHorizontalTile == null)
+					}
+					
+					if (closestHorizontalTile == null)
+					{
+						closestHorizontalTile = fixedTile;
+					}
+					else
+					{
+						if (Vector2.Distance(moveableTile.Position, closestHorizontalTile.Position) > Vector2.Distance(moveableTile.Position, fixedTile.Position))
 						{
 							closestHorizontalTile = fixedTile;
-						}
-						else
-						{
-							if (Vector2.Distance(moveableTile.Position, closestHorizontalTile.Position) > Vector2.Distance(moveableTile.Position, fixedTile.Position))
-							{
-								closestHorizontalTile = fixedTile;
-							}
 						}
 					}
 				}
@@ -185,7 +168,6 @@ namespace CaptainCPA
 					verticalDirection = Direction.Up;
 					frontY = moveableTile.Bounds.Top;
 				}
-				//else if (moveableTile.Velocity.Y > 0) //Down movement
 				else // Down movement (default - gravity :) )
 				{
 					verticalDirection = Direction.Down;
@@ -203,6 +185,11 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
+					if (fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.Decoration)
+					{
+						continue;
+					}
+
 					//Get the column that the current fixed tile is in
 					int fixedTileColumn = (int)Math.Floor(fixedTile.Position.X / Settings.TILE_SIZE);
 
@@ -220,18 +207,6 @@ namespace CaptainCPA
 						{
 							continue;
 						}
-
-						if (closestVerticalTile == null)
-						{
-							closestVerticalTile = fixedTile;
-						}
-						else
-						{
-							if (Vector2.Distance(moveableTile.Position, closestVerticalTile.Position) > Vector2.Distance(moveableTile.Position, fixedTile.Position))
-							{
-								closestVerticalTile = fixedTile;
-							}
-						}
 					}
 					//Down movement
 					else if (verticalDirection == Direction.Down)
@@ -241,17 +216,17 @@ namespace CaptainCPA
 						{
 							continue;
 						}
+					}
 
-						if (closestVerticalTile == null)
+					if (closestVerticalTile == null)
+					{
+						closestVerticalTile = fixedTile;
+					}
+					else
+					{
+						if (Vector2.Distance(moveableTile.Position, closestVerticalTile.Position) > Vector2.Distance(moveableTile.Position, fixedTile.Position))
 						{
 							closestVerticalTile = fixedTile;
-						}
-						else
-						{
-							if (Vector2.Distance(moveableTile.Position, closestVerticalTile.Position) > Vector2.Distance(moveableTile.Position, fixedTile.Position))
-							{
-								closestVerticalTile = fixedTile;
-							}
 						}
 					}
 				}
@@ -290,53 +265,43 @@ namespace CaptainCPA
 				{
 					if (closestVerticalTile != null)
 					{
-						//Moveable distance to player's bottom (positive)
-						verticalMoveDistance = Math.Min(moveableTile.Velocity.Y, closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom);
+						closestVerticalTile.Color = Color.Red;
 
-						//If the distance to the nearest tile is less than the moveable tile's velocity, it will be on the ground in the next frame
-						if (verticalMoveDistance < moveableTile.Velocity.Y)
+						//If the closest tile is right below, the moveable tile is on the ground
+						if (closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom == 0)
 						{
-							//Tile is on the ground
 							moveableTile.OnGround = true;
 						}
 						else
 						{
-							//Tile is still in the air
-							moveableTile.OnGround = false;
-						}
+							//Moveable distance to player's bottom (positive)
+							verticalMoveDistance = Math.Min(moveableTile.Velocity.Y, closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom);
+
+							//If the distance to the nearest tile is less than the moveable tile's velocity, it will be on the ground in the next frame
+							if (verticalMoveDistance < moveableTile.Velocity.Y)
+							{
+								//Tile is on the ground
+								moveableTile.OnGround = true;
+							}
+							else
+							{
+								//Tile is still in the air
+								moveableTile.OnGround = false;
+							}
+						}						
 					}
 					else
 					{
 						//If this is ever reached there may be a problem (will happen if there are no tiles below it)
 						verticalMoveDistance = moveableTile.Velocity.Y;
-						//moveableTile.OnGround = false;
 					}
 				}
+
+				Game.Window.Title = notified;
 
 				//Update player's vertical position
 				moveableTile.Position = new Vector2(moveableTile.Position.X, moveableTile.Position.Y + verticalMoveDistance);
 			}
-
-			#region CheckForPlatform
-			/*foreach (MoveableTile moveableTile in moveableTiles)
-			{
-				if (moveableTile.OnGround == true)
-				{
-					continue;
-				}
-
-				foreach (FixedTile fixedTile in fixedTiles)
-				{
-					Rectangle platformRectangleCheck = new Rectangle(moveableTile.Bounds.Left, moveableTile.Bounds.Bottom, 1, 1);
-
-					if (platformRectangleCheck.Intersects(fixedTile.Bounds))
-					{
-						moveableTile.OnGround = true;
-						break;
-					}
-				}
-			}*/
-			#endregion
 
 			base.Update(gameTime);
 		}

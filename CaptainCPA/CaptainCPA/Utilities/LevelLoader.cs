@@ -4,6 +4,8 @@
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
+ *						Nov-27-2015:	Added Character property
+ *						Nov-29-2015:	Optimizations
  */
 
 using Microsoft.Xna.Framework;
@@ -19,34 +21,60 @@ namespace CaptainCPA
 	/// <summary>
 	/// Loads the specified XMl level file
 	/// </summary>
-	public class LevelLoadManager
+	public class LevelLoader
 	{
 		private Game game;
 		private SpriteBatch spriteBatch;
-		public List<Tile> tileList;
+		private List<MoveableTile> moveableTileList;
+		private List<FixedTile> fixedTileList;
+		private Character character;
 
-		public LevelLoadManager(Game game, SpriteBatch spriteBatch)
+		public List<MoveableTile> MoveableTileList
+		{
+			get { return moveableTileList; }
+			set { moveableTileList = value; }
+		}
+
+		public List<FixedTile> FixedTileList
+		{
+			get { return fixedTileList; }
+			set { fixedTileList = value; }
+		}
+
+		public Character Character
+		{
+			get { return character; }
+			set { character = value; }
+		}
+
+		public LevelLoader(Game game, SpriteBatch spriteBatch)
 		{
 			this.game = game;
 			this.spriteBatch = spriteBatch;
 		}
 
 		/// <summary>
-		/// Loads an nPuzzle game save and sets up the board
+		/// Loads the specified CaptainCPA XML level file
 		/// </summary>
 		/// <param name="levelName">File path to the save file</param>
 		public void LoadGame(string levelName)
 		{
-			//Create list of level tiles
-			tileList = new List<Tile>();
+			//Create lists of level tiles
+			moveableTileList = new List<MoveableTile>();
+			fixedTileList = new List<FixedTile>();
 
+			#region LoadTextures
 			//Load the different block textures
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
             //Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
 
-            Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
-			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
+			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
+			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
+			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
+			Texture2D gemTexture = game.Content.Load<Texture2D>("Sprites/Gem");
+			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
+			#endregion
 
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
@@ -67,15 +95,13 @@ namespace CaptainCPA
 
 					//Declare new Tile properties
 					Tile newTile = null;
-					Texture2D texture;
-                    Vector2 velocity;
-                    bool onGround;
-					string colorString = tile.Attributes["color"].Value;
-					Color color = ColorConverter.ConvertColor(colorString);
+					Color color = ColorConverter.ConvertColor(tile.Attributes["color"].Value);
 					Vector2 position = new Vector2(xValue * Settings.TILE_SIZE, yValue * Settings.TILE_SIZE);
 					float rotation = 0.0f;
 					float scale = 1.0f;
 					float layerDepth = 1.0f;
+					Vector2 velocity = Vector2.Zero;
+					bool onGround = true;
 
 					//Initialize the tile depending on its type
 					switch (tileType)
@@ -84,12 +110,10 @@ namespace CaptainCPA
 						case " ":
 							break;
 						case "block":
-							texture = blockTexture;
 							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
 							break;
-						case "platform":
-							texture = platformTexture;
-							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
+						case "platform-middle":
+							newTile = new Platform(game, spriteBatch, platformMiddleTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "platform-left":
 							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
@@ -98,32 +122,46 @@ namespace CaptainCPA
 							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
 							newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
 							break;
+						case "platform":
+							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
+							break;
+						case "gem":
+							int points = int.Parse(tile.Attributes["points"].Value);
+							newTile = new Gem(game, spriteBatch, gemTexture, color, position, rotation, scale, layerDepth, points);
+							break;
+						case "spike":
+							newTile = new Spike(game, spriteBatch, spikeTexture, color, position, rotation, scale, layerDepth);
+							break;
 						case "character":
-							texture = characterTexture;
-							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-							onGround = true;
-							newTile = new Character(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround);
+							int lives = int.Parse(tile.Attributes["lives"].Value);
+							float speed = float.Parse(tile.Attributes["speed"].Value);
+							float jumpSpeed = float.Parse(tile.Attributes["jumpSpeed"].Value);
+							newTile = new Character(game, spriteBatch, characterTexture, TileType.Character, color, position, rotation, scale, layerDepth, 
+								Vector2.Zero, true, lives, speed, jumpSpeed);
+							character = (Character)newTile;
 							break;
                         case "enemy":
-                            texture = blockTexture;
                             velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
                             onGround = true;
-                            newTile = new Enemy(game, spriteBatch, texture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+							newTile = new Enemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
                             break;
                         case "pursuingEnemy":
-                            texture = blockTexture;
                             velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
                             onGround = true;
-                            newTile = new PursuingEnemy(game, spriteBatch, texture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
                             break;
 						default:
 							break;
 					}
 
-					//If the tile is not null, add it to the tile list
-					if (newTile != null)
+					//If the tile is not null, add it to the correct tile list
+					if (newTile is MoveableTile)
 					{
-						tileList.Add(newTile); 
+						moveableTileList.Add((MoveableTile)newTile);
+					}
+					else if (newTile is FixedTile)
+					{
+						fixedTileList.Add((FixedTile)newTile);
 					}
 				}
 			}

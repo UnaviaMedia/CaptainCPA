@@ -28,5 +28,42 @@ namespace CaptainCPA
 		{
 			return new Vector2(point.X, point.Y);
 		}
+
+
+		/// <summary>
+		/// Determine whether or not a pixel-perfect collision has occurred
+		/// </summary>
+		/// <param name="a">Possibly colliding tile</param>
+		/// <param name="b">Tile to check against</param>
+		/// <returns></returns>
+		public static bool PerPixelCollision(Tile a, Tile b)
+		{
+			// Get Color data of each Texture
+			Color[] bitsA = new Color[a.Texture.Width * a.Texture.Height];
+			a.Texture.GetData(bitsA);
+			Color[] bitsB = new Color[b.Texture.Width * b.Texture.Height];
+			b.Texture.GetData(bitsB);
+
+			//Get rough collision rectangle
+			Rectangle intersection = Rectangle.Intersect(a.Bounds, b.Bounds);
+
+			for (int y = intersection.Top; y < intersection.Bottom; ++y)
+			{
+				for (int x = intersection.Left; x < intersection.Right; ++x)
+				{
+					// Get the color from each texture
+					Color colorA = bitsA[(x - a.Bounds.X) + (y - a.Bounds.Y) * a.Texture.Width];
+					Color colorB = bitsB[(x - b.Bounds.X) + (y - b.Bounds.Y) * b.Texture.Width];
+
+					// If both colors are not transparent (the alpha channel is not 0), then there is a collision
+					if (colorA.A != 0 && colorB.A != 0)
+					{
+						return true;
+					}
+				}
+			}
+
+			return false;
+		}
 	}
 }

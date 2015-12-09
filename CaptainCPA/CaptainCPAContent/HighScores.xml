@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+	<PlatformGame>
+		<Scores>
+			<HighScore rank="1" score="75" name="Sabbhir Ahmed"></HighScore>
+			<HighScore rank="2" score="50" name="Doug Epp"></HighScore>
+			<HighScore rank="3" score="25" name="Kendall Roth"></HighScore>
+		</Scores>
+	</PlatformGame>
+</XnaContent>
