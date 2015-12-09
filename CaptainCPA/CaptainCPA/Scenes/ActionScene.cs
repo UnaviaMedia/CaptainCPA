@@ -63,8 +63,8 @@ namespace CaptainCPA
 			this.Components.Add(characterCollisionManager);
 
 			//Create tile collision manager (in case a collision actually does occur) and add to list of components
-			//tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
-			//this.Components.Add(tileCollisionPositioningManager);
+			tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
+			this.Components.Add(tileCollisionPositioningManager);
 
 			//Create display components
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
