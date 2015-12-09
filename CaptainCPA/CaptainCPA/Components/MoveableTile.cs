@@ -6,16 +6,8 @@
  *		Kendall Roth	Nov-24-2015:	Created
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
@@ -70,53 +62,6 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			#region OldCode
-			/*if (onGround == false)
-			{
-				velocity.Y += gravity.Y;
-				position.Y += velocity.Y;
-				position.X += gravity.X;
-				position.X += velocity.X * 0.25f;
-			}
-			else
-			{
-				position.X += velocity.X;
-			}*/
-			#endregion
-
-			//------------------------------------------------------------------------------
-			//X-axis
-			//------------------------------------------------------------------------------
-
-			/*int frontX;
-
-			//Get forward rectangle bounds x-coordinate
-			if (velocity.X < 0) //Left movement
-			{
-				//Console.WriteLine("Left movement");
-				frontX = bounds.Left;
-			}
-			else if (velocity.X > 0) //Right movement
-			{
-				//Console.WriteLine("Right movement");
-				frontX = bounds.Right;
-			}
-
-			//Find horizontal rows character intersects with (two max)
-			//	Horizontal row that contains upper bounds (y)
-			//	Horizontal row that contains lower bounds (y)
-			foreach (FixedTile fixedTile in fixedTiles)
-			{
-				
-			}*/
-
-			//Check these horizontal rows - in direction of movement - and determine which is fixed tile
-
-			//Find total movement of player
-			//	Minimum between distance to closest fixed tile and usual player movement
-
-			//Update player's horizontal position
-
 			base.Update(gameTime);
 		}
 

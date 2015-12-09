@@ -72,11 +72,21 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\DisplayString.cs" />
+    <Compile Include="Components\Display\ScoreDisplay.cs" />
     <Compile Include="Components\MenuComponent.cs" />
+    <Compile Include="Interfaces\IBounds.cs" />
+    <Compile Include="Managers\LevelEventManager.cs" />
+    <Compile Include="Managers\AudioManager.cs" />
+    <Compile Include="Managers\CharacterCollisionManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
-    <Compile Include="Managers\LevelLoadManager.cs" />
+    <Compile Include="Tiles\Spike.cs" />
+    <Compile Include="Utilities\LevelLoader.cs" />
+    <Compile Include="Components\Observer.cs" />
     <Compile Include="Managers\PhysicsManager.cs" />
-    <Compile Include="Managers\TileCollisionManager.cs" />
+    <Compile Include="Managers\ScoreManager.cs" />
+    <Compile Include="Components\Subject.cs" />
+    <Compile Include="Managers\TileCollisionPositioningManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="GameManager.cs" />
@@ -85,6 +95,7 @@
     <Compile Include="Scenes\HighScoreScene.cs" />
     <Compile Include="Scenes\HowToPlayScene.cs" />
     <Compile Include="Scenes\PauseMenuScene.cs" />
+    <Compile Include="Tiles\Gem.cs" />
     <Compile Include="Tiles\Platform.cs" />
     <Compile Include="Tiles\Block.cs" />
     <Compile Include="Tiles\Character.cs" />

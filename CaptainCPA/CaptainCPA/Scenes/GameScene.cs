@@ -28,12 +28,18 @@ namespace CaptainCPA
 			set { components = value; }
 		}
 
+		/// <summary>
+		/// Show the game scene
+		/// </summary>
 		public virtual void Show()
 		{
 			this.Enabled = true;
 			this.Visible = true;
 		}
 
+		/// <summary>
+		/// Hide the game scene
+		/// </summary>
 		public virtual void Hide()
 		{
 			this.Enabled = false;
@@ -94,23 +100,23 @@ namespace CaptainCPA
 
 			base.Draw(gameTime);
 		}
-        /// <summary>
-        /// Reads a text file and returns the contents as a string
-        /// </summary>
-        /// <param name="path">The path to the specified text file</param>
-        /// <returns>The contents of the text file as a string</returns>
-        public string readFile(string path)
-        {
-            string message = null;
-            using (StreamReader sr = new StreamReader(path))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    message += line + "\n";
-                }
-            }
-            return message;
-        }
+		/// <summary>
+		/// Reads a text file and returns the contents as a string
+		/// </summary>
+		/// <param name="path">The path to the specified text file</param>
+		/// <returns>The contents of the text file as a string</returns>
+		public string readFile(string path)
+		{
+			string message = null;
+			using (StreamReader sr = new StreamReader(path))
+			{
+				string line;
+				while ((line = sr.ReadLine()) != null)
+				{
+					message += line + "\n";
+				}
+			}
+			return message;
+		}
 	}
 }
