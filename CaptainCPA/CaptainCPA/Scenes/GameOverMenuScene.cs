@@ -44,7 +44,7 @@ namespace CaptainCPA
 		public GameOverMenuScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
 		{
-			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 - 155, Settings.Stage.Y / 2 - 110);
+			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 - 155, Settings.Stage.Y / 2 - 50);
 			menu = new MenuComponent(game, spriteBatch,
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
