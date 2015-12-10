@@ -6,8 +6,9 @@
  *		Kendall Roth	Nov-24-2015:	Created
  *										Movement physics added
  *						Nov-26-2015:	Movement physics overhauled
- *						Nov-27-2015:	Physics adjusted again
+ *						Nov-27-2015:	Updated physics
  *						Nov-29-2015:	Added speed, jumpspeed, lives, and losing life methods
+ *						Dec-09-2015:	Added player death
  */
 
 using System;
@@ -34,6 +35,7 @@ namespace CaptainCPA
 		protected int score;
 		protected float speed;
 		protected float jumpSpeed;
+		protected bool isAlive;
 
 		//Store characters's starting position
 		protected Vector2 startingPosition;
@@ -62,6 +64,12 @@ namespace CaptainCPA
 			set { jumpSpeed = value; }
 		}
 
+		public bool IsAlive
+		{
+			get { return isAlive; }
+			set { isAlive = value; }
+		}
+
 		public Vector2 StartingPosition
 		{
 			get { return startingPosition; }
@@ -80,6 +88,8 @@ namespace CaptainCPA
 			this.lives = lives;
 			this.speed = speed;
 			this.jumpSpeed = jumpSpeed;
+
+			isAlive = true;
 			startingPosition = position;
 
 			//Reset player score
@@ -104,13 +114,15 @@ namespace CaptainCPA
 		}
 
 		/// <summary>
-		/// Make the character lose one life. If the number of lives is under zero, the character loses
+		/// Make the character lose one life. If the number of lives is under zero, the game ends
 		/// </summary>
 		public void LoseLife()
 		{
-			if (lives-- <= 0)
+			if (--lives <= 0)
 			{
-				Die();
+				isAlive = false;
+				this.Enabled = false;
+				this.Visible = false;
 			}
 			else
 			{
@@ -124,14 +136,6 @@ namespace CaptainCPA
 		private void ResetPosition()
 		{
 			position = new Vector2(startingPosition.X + origin.X, startingPosition.Y + origin.Y);
-		}
-
-		/// <summary>
-		/// Make the character die once he runs out of lives
-		/// </summary>
-		private void Die()
-		{
-
 		}
 
 		/// <summary>
