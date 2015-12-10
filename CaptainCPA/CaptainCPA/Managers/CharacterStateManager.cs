@@ -85,18 +85,6 @@ namespace CaptainCPA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            if(IsMoving)
-            {
-                Console.WriteLine("moving");
-            }
-            if (facingRight)
-            {
-                Console.WriteLine("facing right");
-            }
-            else
-            {
-                Console.WriteLine("facing left");
-            }
             base.Update(gameTime);
         }
     }

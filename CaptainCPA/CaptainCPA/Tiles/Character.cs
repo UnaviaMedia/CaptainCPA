@@ -216,7 +216,6 @@ namespace CaptainCPA
                         frameIndex = 0;
                     }
                 }
-                Console.WriteLine(velocity.X);
             }
             //texture = bigTexture.GetData<Texture2D>()
             CharacterStateManager.CharacterPosition = position;
