@@ -7,7 +7,7 @@
  *		Kendall Roth	Nov-27-2015:	Added physics manager, tile collision positioning manager, and character collision manager
  *										Added score display
  *						Nov-29-2015:	Optimizations
- *						Dec-09-2015:	Added game end and reset
+ *						Dec-09-2015:	Added health display
  */
 
 using System.Collections.Generic;
@@ -56,6 +56,7 @@ namespace CaptainCPA
 				this.Components.Add(fixedTile);
 			}
 
+			#region Managers
 			//Create physics manager and add it to list of components
 			physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
 			this.Components.Add(physicsManager);
@@ -67,7 +68,9 @@ namespace CaptainCPA
 			//Create tile collision manager (in case a collision actually does occur) and add to list of components
 			tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
 			this.Components.Add(tileCollisionPositioningManager);
+			#endregion
 
+			#region DisplayComponents
 			//Create display components
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
 			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
@@ -76,6 +79,7 @@ namespace CaptainCPA
 			
 			healthDisplay = new HealthDisplay(game, spriteBatch, character);
 			this.components.Add(healthDisplay);
+			#endregion
 		}
 
 		/// <summary>
