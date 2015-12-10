@@ -24,7 +24,7 @@ namespace CaptainCPA
 		public PhysicsManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)
 		{
-			// TODO: Construct any child components here
+
 		}
 
 		/// <summary>

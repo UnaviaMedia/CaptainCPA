@@ -167,8 +167,10 @@ namespace CaptainCPA
                 facingRight = true;
 			}
 
+            //If the screen is moving character stays still on screen
             if (CharacterStateManager.ScreenMoving && (ks.IsKeyDown(Keys.Right) || ks.IsKeyDown(Keys.Left)))
             {
+                //TODO fix broken wall jumping
                 velocity.X = 0.1f;
             }
 
