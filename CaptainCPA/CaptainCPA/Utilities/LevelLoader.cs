@@ -66,6 +66,8 @@ namespace CaptainCPA
 			#region LoadTextures
 			//Load the different block textures
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
+            //Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
+
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
 			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
@@ -138,16 +140,16 @@ namespace CaptainCPA
 								Vector2.Zero, true, lives, speed, jumpSpeed);
 							character = (Character)newTile;
 							break;
-						case "enemy":
-							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-							onGround = true;
+                        case "enemy":
+                            velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
+                            onGround = true;
 							newTile = new Enemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
-							break;
-						case "pursuingEnemy":
-							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-							onGround = true;
+                            break;
+                        case "pursuingEnemy":
+                            velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
+                            onGround = true;
 							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
-							break;
+                            break;
 						default:
 							break;
 					}

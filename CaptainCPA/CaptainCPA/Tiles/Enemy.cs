@@ -39,6 +39,14 @@ namespace CaptainCPA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            if (velocity.X == Math.Abs(velocity.X))
+            {
+                facingRight = true;
+            }
+            else
+            {
+                facingRight = false;
+            }
             base.Update(gameTime);
         }
     }

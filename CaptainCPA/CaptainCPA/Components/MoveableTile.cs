@@ -17,6 +17,8 @@ namespace CaptainCPA
 	/// </summary>
 	public class MoveableTile : Tile
 	{
+        protected bool facingRight;
+        protected bool isMoving;
 		protected Vector2 velocity;
 		protected Vector2 gravity = new Vector2(0.0f, 0.2f);
 		protected bool onGround;
@@ -62,6 +64,71 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
+			#region OldCode
+			/*if (onGround == false)
+			{
+				velocity.Y += gravity.Y;
+				position.Y += velocity.Y;
+				position.X += gravity.X;
+				position.X += velocity.X * 0.25f;
+			}
+			else
+			{
+				position.X += velocity.X;
+			}*/
+			#endregion
+
+			//------------------------------------------------------------------------------
+			//X-axis
+			//------------------------------------------------------------------------------
+
+			/*int frontX;
+
+			//Get forward rectangle bounds x-coordinate
+			if (velocity.X < 0) //Left movement
+			{
+				//Console.WriteLine("Left movement");
+				frontX = bounds.Left;
+			}
+			else if (velocity.X > 0) //Right movement
+			{
+				//Console.WriteLine("Right movement");
+				frontX = bounds.Right;
+			}
+
+			//Find horizontal rows character intersects with (two max)
+			//	Horizontal row that contains upper bounds (y)
+			//	Horizontal row that contains lower bounds (y)
+			foreach (FixedTile fixedTile in fixedTiles)
+			{
+				
+			}*/
+
+			//Check these horizontal rows - in direction of movement - and determine which is fixed tile
+
+			//Find total movement of player
+			//	Minimum between distance to closest fixed tile and usual player movement
+
+			//Update player's horizontal position
+
+            if(facingRight)
+            {
+                spriteEffect = SpriteEffects.None;
+            }
+            else
+            {
+                spriteEffect = SpriteEffects.FlipHorizontally;
+            }
+
+            if (velocity.X == 0)
+            {
+                isMoving = false;
+            }
+            else
+            {
+                isMoving = true;
+            }
+
 			base.Update(gameTime);
 		}
 
