@@ -7,7 +7,7 @@
  *		Kendall Roth	Nov-27-2015:	Added physics manager, tile collision positioning manager, and character collision manager
  *										Added score display
  *						Nov-29-2015:	Optimizations
- *						Dec-09-2015:	Added health display
+ *						Dec-09-2015:	Added health display, added game over, added game reset
  */
 
 using System.Collections.Generic;
@@ -35,10 +35,13 @@ namespace CaptainCPA
 		protected ScoreDisplay scoreDisplay;
 		protected HealthDisplay healthDisplay;
 
+		public bool GameOver { get; set; }
+
 		public ActionScene(Game game, SpriteBatch spriteBatch, string level)
 			: base(game, spriteBatch)
 		{
-			//Add a level creator, and create the level
+			#region OldConstructor
+			/*//Add a level creator, and create the level
 			levelLoader = new LevelLoader(game, spriteBatch);
 			levelLoader.LoadGame(level);
 			moveableTileList = levelLoader.MoveableTileList;
@@ -80,6 +83,64 @@ namespace CaptainCPA
 			healthDisplay = new HealthDisplay(game, spriteBatch, character);
 			this.components.Add(healthDisplay);
 			#endregion
+
+			//Set game over to false
+			GameOver = false;*/
+			#endregion
+
+			Reset(game, spriteBatch, level);
+		}
+
+		public void Reset(Game game, SpriteBatch spriteBatch, string level)
+		{
+			//Reset component list
+			this.Components = new List<GameComponent>();
+
+			//Add a level creator, and create the level
+			levelLoader = new LevelLoader(game, spriteBatch);
+			levelLoader.LoadGame(level);
+			moveableTileList = levelLoader.MoveableTileList;
+			fixedTileList = levelLoader.FixedTileList;
+			character = levelLoader.Character;
+
+			//Add each tile to the scene components
+			foreach (MoveableTile moveableTile in moveableTileList)
+			{
+				this.Components.Add(moveableTile);
+			}
+
+			foreach (FixedTile fixedTile in fixedTileList)
+			{
+				this.Components.Add(fixedTile);
+			}
+
+			#region Managers
+			//Create physics manager and add it to list of components
+			physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
+			this.Components.Add(physicsManager);
+
+			//Create character collision manager (for pickups, death, etc) and add to list of components
+			characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
+			this.Components.Add(characterCollisionManager);
+
+			//Create tile collision manager (in case a collision actually does occur) and add to list of components
+			tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
+			this.Components.Add(tileCollisionPositioningManager);
+			#endregion
+
+			#region DisplayComponents
+			//Create display components
+			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
+			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
+			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
+			this.components.Add(scoreDisplay);
+
+			healthDisplay = new HealthDisplay(game, spriteBatch, character);
+			this.components.Add(healthDisplay);
+			#endregion
+
+			//Set game over to false
+			GameOver = false;
 		}
 
 		/// <summary>
@@ -88,7 +149,6 @@ namespace CaptainCPA
 		/// </summary>
 		public override void Initialize()
 		{
-
 			base.Initialize();
 		}
 
@@ -98,6 +158,13 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
+			//Track player death
+			if (character.IsAlive == false)
+			{
+				GameOver = true;
+				return;
+			}
+
 			//Update the score
 			scoreDisplay.Message = character.Score.ToString();
 
