@@ -36,7 +36,9 @@ namespace CaptainCPA
         protected CharacterStateManager characterPositionManager;
 
         protected ScoreDisplay scoreDisplay;
-
+        /// <summary>
+        /// A list of all tiles excepting the Character
+        /// </summary>
         protected List<Tile> tiles;
         public ActionScene(Game game, SpriteBatch spriteBatch, string level)
             : base(game, spriteBatch)
@@ -81,7 +83,7 @@ namespace CaptainCPA
             tiles = new List<Tile>();
             foreach (GameComponent c in this.components)
             {
-                if (c is Tile)
+                if (c is Tile && c.GetType() != typeof(Character))
                 {
                     tiles.Add(c as Tile);
                 }
@@ -105,61 +107,42 @@ namespace CaptainCPA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            KeyboardState ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.Enter)) Console.WriteLine(character.Bounds);
             //Update the score
             scoreDisplay.Message = character.Score.ToString();
 
-            //if (CharacterStateManager.IsMoving)
+            CharacterStateManager.TooFarRight = false;
+            if (CharacterStateManager.IsMoving)
             {
-                bool shouldMove;
-                CharacterStateManager.TooFarRight = false;
                 //Character is within range of the right side of the screen
                 if (character.Bounds.Right >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
                 {
                     CharacterStateManager.TooFarRight = true;
-                    shouldMove = true;
-                    if (!CharacterStateManager.IsMoving || !CharacterStateManager.FacingRight)
-                    {
-                        shouldMove = false;
-                    }
-                    if (shouldMove)
+                    if (CharacterStateManager.FacingRight) //Character is moving to the right
                     {
                         foreach (Tile t in tiles)
                         {
-                            if (t.GetType() != typeof(Character))
-                            {
-                                t.Position = new Vector2(t.Position.X - CharacterStateManager.Speed, t.Position.Y);
-                                CharacterStateManager.ScreenMoving = true;
-                                character.Velocity = new Vector2(0f, character.Velocity.Y);
-                            }
+                            t.Position = new Vector2(t.Position.X - character.Speed, t.Position.Y);
                         }
+                        //TODO: handle enemies moving too fast
                         CharacterStateManager.ScreenMoving = true;
                     }
                 }
+
                 //character is within range of the left side of the screen
                 else if (character.Bounds.Left <= 0)
                 {
-                    shouldMove = true;
-                    if (!CharacterStateManager.IsMoving || CharacterStateManager.FacingRight)
-                    {
-                        shouldMove = false;
-                    }
-                    if (shouldMove) //character 
+                    if (!CharacterStateManager.FacingRight) //character is moving to the left
                     {
                         foreach (Tile t in tiles)
                         {
-                            if (t.GetType() != typeof(Character))
-                            {
-                                t.Position = new Vector2(t.Position.X + CharacterStateManager.Speed, t.Position.Y);
-                            }
+                            t.Position = new Vector2(t.Position.X + character.Speed, t.Position.Y);
                         }
+                        //TODO: handle enemies moving too fast
                         CharacterStateManager.ScreenMoving = true;
                     }
                 }
                 else CharacterStateManager.ScreenMoving = false;
             }
-            //else CharacterStateManager.ScreenMoving = false;
 
             base.Update(gameTime);
         }
