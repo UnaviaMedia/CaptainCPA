@@ -73,10 +73,9 @@ namespace CaptainCPA
 			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
 			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
 			this.components.Add(scoreDisplay);
-
-			SpriteFont healthFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 healthPosition = new Vector2(Settings.TILE_SIZE + 15, Settings.TILE_SIZE + 50);
-			healthDisplay = new HealthDisplay(game, spriteBatch, healthFont, healthPosition, Color.Black, "Health:");
+			
+			healthDisplay = new HealthDisplay(game, spriteBatch, character);
+			this.components.Add(healthDisplay);
 		}
 
 		/// <summary>

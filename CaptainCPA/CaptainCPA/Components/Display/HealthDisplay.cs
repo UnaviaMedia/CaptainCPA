@@ -14,33 +14,27 @@ namespace CaptainCPA
 	/// <summary>
 	/// Displays the health for the character
 	/// </summary>
-	public class HealthDisplay : DrawableGameComponent, IBounds
+	public class HealthDisplay : DrawableGameComponent
 	{
 		private SpriteBatch spriteBatch;
-		private Texture2D texture;
+		private Texture2D mainTexture;
+		private Texture2D rightTexture;
+		private Texture2D skullTexture;
 		private Vector2 position;
-		private Rectangle bounds;
+		private Rectangle sourceRectangle;
+		private Character character;
 
-		public Vector2 Position
-		{
-			get { return position; }
-			set { position = value; }
-		}
-
-		public Rectangle Bounds
-		{
-			get { return bounds; }
-			set { bounds = value; }
-		}
-
-		public HealthDisplay(Game game, SpriteBatch spriteBatch, Texture2D texture, Vector2 position)
+		public HealthDisplay(Game game, SpriteBatch spriteBatch, Character character)
 			: base(game)
 		{
-			this.texture = texture;
 			this.spriteBatch = spriteBatch;
-			this.position = position;
+			this.character = character;
 
-			UpdateBounds();
+			//Import necessary mainTextures
+			mainTexture = game.Content.Load<Texture2D>("Sprites/HealthDisplay-Main");
+			rightTexture = game.Content.Load<Texture2D>("Sprites/HealthDisplay-Right");
+			skullTexture = game.Content.Load<Texture2D>("Sprites/HealthDisplay-Skull");
+			sourceRectangle = new Rectangle(0, 0, mainTexture.Width, mainTexture.Height);
 		}
 
 		/// <summary>
@@ -53,32 +47,40 @@ namespace CaptainCPA
 		}
 
 		/// <summary>
-		/// Find the rectangle representing the bounds of the object
-		/// </summary>
-		public void UpdateBounds()
-		{			
-			Bounds = new Rectangle(
-				(int)(Position.X),
-				(int)(Position.Y),
-				(int)(50),
-				(int)(50));
-		}
-
-		/// <summary>
 		/// Allows the game component to update itself.
 		/// </summary>
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			UpdateBounds();
+			//Update the source rectangle of the Health Display
+			sourceRectangle.Width = 10 + (character.Lives * 35);
+
+			//Update the position of the Health Display
+			position = new Vector2((Settings.Stage.X / 2) - ((sourceRectangle.Width + rightTexture.Width) / 2), 75);
 
 			base.Update(gameTime);
 		}
 
+		/// <summary>
+		/// Allows the game component to draw itself.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
-			spriteBatch.Draw(texture, position, Color.White);
+
+			//If the character still has lives, display the life counter
+			//	Otherwise, display a death symbol (skull) :)
+			if (character.Lives > 0)
+			{
+				spriteBatch.Draw(mainTexture, position, sourceRectangle, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+				spriteBatch.Draw(rightTexture, new Vector2(position.X + sourceRectangle.Width, position.Y), Color.White); 
+			}
+			else
+			{
+				spriteBatch.Draw(skullTexture, new Vector2((Settings.Stage.X / 2) - (skullTexture.Width / 2), position.Y), Color.White);
+			}
+
 			spriteBatch.End();
 
 			base.Draw(gameTime);

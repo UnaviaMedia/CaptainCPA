@@ -22,10 +22,16 @@ namespace CaptainCPA
 	{
 		private Character character;
 
+		protected HealthManager healthManager;
+
 		public CharacterCollisionManager(Game game, Character character, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)
 		{
 			this.character = character;
+
+			//Add a health observer for the character
+			healthManager = new HealthManager(game);
+			AddObserver(healthManager);
 		}
 
 		/// <summary>
@@ -65,6 +71,7 @@ namespace CaptainCPA
 				else if (fixedTile is Spike)
 				{
 					Notify(fixedTile, "PlayerLandedOnSpike", character);
+					Notify(character, "PlayerLostLife");
 				}
 			}
 

@@ -1,10 +1,9 @@
 /*
- * Project:	PlatformGame - LevelEventManager.cs
- * Purpose:	Manage level events for a level
+ * Project:	PlatformGame - HealthManager.cs
+ * Purpose:	Manage health display for the character
  *
  * History:
- *		Kendall Roth	Nov-28-2015:	Created
- *						Dec-09-2015:	Moved update to player health to HealthManager, added player reaching level exit event
+ *		Kendall Roth	Nov-27-2015:	Created
  */
 
 using Microsoft.Xna.Framework;
@@ -12,11 +11,11 @@ using Microsoft.Xna.Framework;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Manage level events for the levels by implementing an Observer pattern
+	/// Manage health display for the character
 	/// </summary>
-	public class LevelEventManager : Observer
+	public class HealthManager : Observer
 	{
-		public LevelEventManager(Game game)
+		public HealthManager(Game game)
 			: base(game)
 		{
 
@@ -25,13 +24,10 @@ namespace CaptainCPA
 		public override void OnNotify(object sender, string notification, object secondarySender = null)
 		{
 			switch (notification)
-			{				
-				case "PlayerLandedOnSpike":
-					((Spike)sender).Color = Color.Red;
-					break;
-				case "PlayerReachedExit":
-					//Handle player reaching level exit
-
+			{
+				case "PlayerLostLife":
+					//Update character health
+					((Character)sender).LoseLife();
 					break;
 				default:
 					break;
