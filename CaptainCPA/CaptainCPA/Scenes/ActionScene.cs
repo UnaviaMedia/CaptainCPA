@@ -108,13 +108,19 @@ namespace CaptainCPA
 
             if (CharacterStateManager.IsMoving)
             {
+                //TODO: Fix wall jumping
                 if (CharacterStateManager.FacingRight && CharacterStateManager.CharacterPosition.X >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
                 {
                     foreach (Tile t in tiles)
                     {
                         if (t.GetType() != typeof(Character))
                         {
+                            
                             t.Position = new Vector2(t.Position.X - CharacterStateManager.Speed, t.Position.Y);
+                            if (t.Bounds.Intersects(character.Bounds))
+                            {
+                                character.Position = new Vector2(character.Position.X - 2, character.Position.Y);
+                            }
                         }
                     }
                     CharacterStateManager.ScreenMoving = true;
