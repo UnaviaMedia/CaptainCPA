@@ -26,7 +26,7 @@ namespace CaptainCPA
         protected LevelLoader levelLoader;
         protected List<MoveableTile> moveableTileList;
         protected List<FixedTile> fixedTileList;
-        protected Character character;
+        protected Character character; 
 
         protected PhysicsManager physicsManager;
         protected CollisionManager tileCollisionPositioningManager;
