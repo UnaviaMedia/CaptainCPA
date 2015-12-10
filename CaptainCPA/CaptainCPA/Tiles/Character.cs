@@ -154,7 +154,7 @@ namespace CaptainCPA
 			}
 
 			//If the Left key is pressed, subtract horizontal velocity to move left
-			if (ks.IsKeyDown(Keys.Left))
+            if (ks.IsKeyDown(Keys.Left))
 			{
 				velocity.X -= speed;
                 facingRight = false;
@@ -166,6 +166,11 @@ namespace CaptainCPA
 				velocity.X += speed;
                 facingRight = true;
 			}
+
+            if (CharacterStateManager.ScreenMoving && (ks.IsKeyDown(Keys.Right) || ks.IsKeyDown(Keys.Left)))
+            {
+                velocity.X = 0.1f;
+            }
 
 			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
@@ -210,6 +215,7 @@ namespace CaptainCPA
                         frameIndex = 0;
                     }
                 }
+                Console.WriteLine(velocity.X);
             }
             //texture = bigTexture.GetData<Texture2D>()
             CharacterStateManager.CharacterPosition = position;

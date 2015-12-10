@@ -22,6 +22,13 @@ namespace CaptainCPA
         private static bool facingRight;
         private static bool onGround;
         private static float speed;
+        private static bool screenMoving;
+
+        public static bool ScreenMoving
+        {
+            get { return CharacterStateManager.screenMoving; }
+            set { CharacterStateManager.screenMoving = value; }
+        }
 
         private static Vector2 velocity;
 

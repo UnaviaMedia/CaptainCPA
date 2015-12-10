@@ -117,6 +117,7 @@ namespace CaptainCPA
                             t.Position = new Vector2(t.Position.X - CharacterStateManager.Speed, t.Position.Y);
                         }
                     }
+                    CharacterStateManager.ScreenMoving = true;
                 }
                 else if (!CharacterStateManager.FacingRight && CharacterStateManager.CharacterPosition.X <= RIGHT_CHARACTER_BUFFER)
                 {
@@ -127,8 +128,11 @@ namespace CaptainCPA
                             t.Position = new Vector2(t.Position.X + CharacterStateManager.Speed, t.Position.Y);
                         }
                     }
+                    CharacterStateManager.ScreenMoving = true;
                 }
+                else CharacterStateManager.ScreenMoving = false;
             }
+            else CharacterStateManager.ScreenMoving = false;
 
             base.Update(gameTime);
         }
