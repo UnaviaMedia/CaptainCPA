@@ -265,8 +265,6 @@ namespace CaptainCPA
 				{
 					if (closestVerticalTile != null)
 					{
-						closestVerticalTile.Color = Color.Red;
-
 						//If the closest tile is right below, the moveable tile is on the ground
 						if (closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom == 0)
 						{

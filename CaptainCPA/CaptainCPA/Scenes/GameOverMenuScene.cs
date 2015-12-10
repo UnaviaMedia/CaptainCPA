@@ -17,7 +17,7 @@ namespace CaptainCPA
 	/// </summary>
 	public enum GameOverMenuItems
 	{
-		MainMenu, Quit
+		MainMenu
 	}
 
 	/// <summary>
@@ -27,14 +27,14 @@ namespace CaptainCPA
 	{
 		private MenuComponent menu;
 		private Texture2D menuImage;
+		private HighScoreComponent highScoreComponent;
+		private string[] menuItems = {"Exit to Main Menu"};
 
 		public MenuComponent Menu
 		{
 			get { return menu; }
 			set { menu = value; }
 		}
-		string[] menuItems = {"Exit to Main Menu",
-							 "Quit"};
 
 		/// <summary>
 		/// Constructor for the Pause Menu Scene
@@ -44,7 +44,8 @@ namespace CaptainCPA
 		public GameOverMenuScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
 		{
-			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 - 155, Settings.Stage.Y / 2 - 50);
+			//Add the game over menu
+			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 - 155, Settings.Stage.Y / 2 + 125);
 			menu = new MenuComponent(game, spriteBatch,
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
@@ -52,6 +53,11 @@ namespace CaptainCPA
 			this.Components.Add(menu);
 
 			menuImage = game.Content.Load<Texture2D>("Images/GameOverMenu");
+
+			//Add the high score component
+			Vector2 highScorePosition = new Vector2(Settings.Stage.X / 2 - 175, Settings.Stage.Y / 2 - 175);
+			highScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition);
+			this.components.Add(highScoreComponent);
 		}
 
 		/// <summary>

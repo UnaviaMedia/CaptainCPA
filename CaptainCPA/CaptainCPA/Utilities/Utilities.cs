@@ -4,6 +4,7 @@
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
+ *		*				Dec-10-2015:	High Score managing added
  */
 
 using Microsoft.Xna.Framework;
@@ -11,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace CaptainCPA
 {
@@ -64,6 +66,36 @@ namespace CaptainCPA
 			}
 
 			return false;
+		}
+
+
+		/// <summary>
+		/// Create a list of high scores
+		/// </summary>
+		/// <param name="number">Number of high scores to return</param>
+		/// <returns>List of high score struct objects</returns>
+		public static List<HighScore> LoadHighScores(int number = 5)
+		{
+			List<HighScore> highScores = new List<HighScore>();
+
+			//Create a new XML document and load the selected save file
+			XmlDocument loadFile = new XmlDocument();
+			loadFile.Load(@"Content/HighScores.xml");
+
+			var scores = loadFile.SelectNodes("/XnaContent/PlatformGame/Scores/*");
+
+			foreach (XmlNode highScore in scores)
+			{
+				//Get properties of the high score
+				int rank = int.Parse(highScore.Attributes["rank"].Value);
+				int score = int.Parse(highScore.Attributes["score"].Value);
+				string name = highScore.Attributes["name"].Value;
+
+				//Add the high score to the list of high scores
+				highScores.Add(new HighScore() { Rank = rank, Score = score, Name = name });
+			}
+
+			return highScores.OrderBy(h => h.Rank).Take(number).ToList();
 		}
 	}
 }

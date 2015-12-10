@@ -112,14 +112,14 @@ namespace CaptainCPA
 			aboutScene = new AboutScene(this, spriteBatch);
 			scenes.Add(aboutScene);
 
-			highScoreScene = new HighScoreScene(this, spriteBatch);
-			scenes.Add(highScoreScene);
-
 			howToPlayScene = new HowToPlayScene(this, spriteBatch);
 			scenes.Add(howToPlayScene);
 
 			gameOverMenuScene = new GameOverMenuScene(this, spriteBatch);
 			scenes.Add(gameOverMenuScene);
+
+			highScoreScene = new HighScoreScene(this, spriteBatch);
+			scenes.Add(highScoreScene);
 
 			//Add each GameScene to the game's components
 			foreach (GameScene gameScene in scenes)
@@ -288,6 +288,9 @@ namespace CaptainCPA
 						item.Enabled = false;
 					}
 
+					highScoreScene = new HighScoreScene(this, spriteBatch);
+					scenes.Add(highScoreScene);
+
 					//Show the game over menu
 					gameOverMenuScene.Show();
 				}
@@ -302,12 +305,6 @@ namespace CaptainCPA
 					{
 						hideAllScenes();
 						startScene.Show();
-					}
-
-					//Exit the game
-					if (selectedIndex == (int)GameOverMenuItems.Quit && ks.IsKeyDown(Keys.Enter))
-					{
-						Exit();
 					}
 				}
 			}

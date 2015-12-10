@@ -25,7 +25,7 @@ namespace CaptainCPA
 		protected LevelLoader levelLoader;
 		protected List<MoveableTile> moveableTileList;
 		protected List<FixedTile> fixedTileList;
-		protected Character character;
+		protected static Character character;
 
 		protected PhysicsManager physicsManager;
 		protected CollisionManager tileCollisionPositioningManager;
@@ -36,6 +36,10 @@ namespace CaptainCPA
 		protected HealthDisplay healthDisplay;
 
 		public bool GameOver { get; set; }
+		public static Character Character
+		{
+			get { return character; }
+		}
 
 		public ActionScene(Game game, SpriteBatch spriteBatch, string level)
 			: base(game, spriteBatch)

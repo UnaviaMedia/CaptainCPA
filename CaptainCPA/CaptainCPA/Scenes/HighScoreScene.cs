@@ -53,7 +53,7 @@ namespace CaptainCPA
 		/// <summary>
 		/// Create a list of player high scores
 		/// </summary>
-		public void LoadHighScores()
+		/*public void LoadHighScores()
 		{
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
@@ -71,7 +71,7 @@ namespace CaptainCPA
 				//Add the high score to the list of high scores
 				highScores.Add(new HighScore() { Rank = rank, Score = score, Name = name });
 			}
-		}
+		}*/
 
 		/// <summary>
 		/// Allows the game component to perform any initialization it needs to before starting
