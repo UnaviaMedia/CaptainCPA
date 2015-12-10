@@ -16,83 +16,121 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CaptainCPA
 {
-	/// <summary>
-	/// Displays the game to the user
-	/// </summary>
-	public class ActionScene : GameScene
-	{
-		protected LevelLoader levelLoader;
-		protected List<MoveableTile> moveableTileList;
-		protected List<FixedTile> fixedTileList;
-		protected Character character;
+    /// <summary>
+    /// Displays the game to the user
+    /// </summary>
+    public class ActionScene : GameScene
+    {
+        protected const float RIGHT_CHARACTER_BUFFER = 400;
 
-		protected PhysicsManager physicsManager;
-		protected CollisionManager tileCollisionPositioningManager;
-		protected CharacterCollisionManager characterCollisionManager;
-		protected CharacterStateManager characterPositionManager;
+        protected LevelLoader levelLoader;
+        protected List<MoveableTile> moveableTileList;
+        protected List<FixedTile> fixedTileList;
+        protected Character character;
 
-		protected ScoreDisplay scoreDisplay;
+        protected PhysicsManager physicsManager;
+        protected CollisionManager tileCollisionPositioningManager;
+        protected CharacterCollisionManager characterCollisionManager;
+        protected CharacterStateManager characterPositionManager;
 
-		public ActionScene(Game game, SpriteBatch spriteBatch, string level)
-			: base(game, spriteBatch)
-		{
-			//Add a level creator, and create the level
-			levelLoader = new LevelLoader(game, spriteBatch);
-			levelLoader.LoadGame(level);
-			moveableTileList = levelLoader.MoveableTileList;
-			fixedTileList = levelLoader.FixedTileList;
-			character = levelLoader.Character;
+        protected ScoreDisplay scoreDisplay;
 
-			//Add each tile to the scene components
-			foreach (MoveableTile moveableTile in moveableTileList)
-			{
-				this.Components.Add(moveableTile);
-			}
+        protected List<Tile> tiles;
+        public ActionScene(Game game, SpriteBatch spriteBatch, string level)
+            : base(game, spriteBatch)
+        {
+            //Add a level creator, and create the level
+            levelLoader = new LevelLoader(game, spriteBatch);
+            levelLoader.LoadGame(level);
+            moveableTileList = levelLoader.MoveableTileList;
+            fixedTileList = levelLoader.FixedTileList;
+            character = levelLoader.Character;
 
-			foreach (FixedTile fixedTile in fixedTileList)
-			{
-				this.Components.Add(fixedTile);
-			}
+            //Add each tile to the scene components
+            foreach (MoveableTile moveableTile in moveableTileList)
+            {
+                this.Components.Add(moveableTile);
+            }
 
-			//Create physics manager and add it to list of components
-			physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
-			this.Components.Add(physicsManager);
+            foreach (FixedTile fixedTile in fixedTileList)
+            {
+                this.Components.Add(fixedTile);
+            }
 
-			//Create character collision manager (for pickups, death, etc) and add to list of components
-			characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
-			this.Components.Add(characterCollisionManager);
+            //Create physics manager and add it to list of components
+            physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
+            this.Components.Add(physicsManager);
 
-			//Create tile collision manager (in case a collision actually does occur) and add to list of components
-			tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
-			this.Components.Add(tileCollisionPositioningManager);
+            //Create character collision manager (for pickups, death, etc) and add to list of components
+            characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
+            this.Components.Add(characterCollisionManager);
 
-			//Create display components
-			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
-			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
-			this.components.Add(scoreDisplay);			
-		}
+            //Create tile collision manager (in case a collision actually does occur) and add to list of components
+            tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
+            this.Components.Add(tileCollisionPositioningManager);
 
-		/// <summary>
-		/// Allows the game component to perform any initialization it needs to before starting
-		/// to run.  This is where it can query for any required services and load content.
-		/// </summary>
-		public override void Initialize()
-		{
+            //Create display components
+            SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
+            Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
+            scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
+            this.components.Add(scoreDisplay);
 
-			base.Initialize();
-		}
+            //Keep track of all tiles in the scene
+            tiles = new List<Tile>();
+            foreach (GameComponent c in this.components)
+            {
+                if (c is Tile)
+                {
+                    tiles.Add(c as Tile);
+                }
+            }
 
-		/// <summary>
-		/// Allows the game component to update itself.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		public override void Update(GameTime gameTime)
-		{
-			//Update the score
-			scoreDisplay.Message = character.Score.ToString();
+        }
 
-			base.Update(gameTime);
-		}
-	}
+        /// <summary>
+        /// Allows the game component to perform any initialization it needs to before starting
+        /// to run.  This is where it can query for any required services and load content.
+        /// </summary>
+        public override void Initialize()
+        {
+
+            base.Initialize();
+        }
+
+        /// <summary>
+        /// Allows the game component to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public override void Update(GameTime gameTime)
+        {
+            //Update the score
+            scoreDisplay.Message = character.Score.ToString();
+
+            if (CharacterStateManager.IsMoving)
+            {
+                if (CharacterStateManager.FacingRight && CharacterStateManager.CharacterPosition.X >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
+                {
+                    foreach (Tile t in tiles)
+                    {
+                        if (t.GetType() != typeof(Character))
+                        {
+                            t.Position = new Vector2(t.Position.X - CharacterStateManager.Speed, t.Position.Y);
+                        }
+                    }
+                }
+                else if (!CharacterStateManager.FacingRight && CharacterStateManager.CharacterPosition.X <= RIGHT_CHARACTER_BUFFER)
+                {
+                    foreach (Tile t in tiles)
+                    {
+                        if (t.GetType() != typeof(Character))
+                        {
+                            t.Position = new Vector2(t.Position.X + CharacterStateManager.Speed, t.Position.Y);
+                        }
+                    }
+                }
+            }
+
+            base.Update(gameTime);
+        }
+    }
 }

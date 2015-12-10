@@ -82,6 +82,8 @@ namespace CaptainCPA
 			this.jumpSpeed = jumpSpeed;
 			startingPosition = position;
 
+            CharacterStateManager.Speed = speed;
+
 			//Reset player score
 			ResetScore();
 		}
@@ -172,8 +174,6 @@ namespace CaptainCPA
 				onGround = false;
 			}
 
-            CharacterStateManager.CharacterPosition = position;
-
 			//Debug Mode
 			if (ks.IsKeyDown(Keys.Space))
 			{
@@ -212,6 +212,10 @@ namespace CaptainCPA
                 }
             }
             //texture = bigTexture.GetData<Texture2D>()
+            CharacterStateManager.CharacterPosition = position;
+            CharacterStateManager.FacingRight = facingRight;
+            CharacterStateManager.IsMoving = isMoving;
+            CharacterStateManager.Velocity = velocity;
 			base.Update(gameTime);
 		}
         public override void Draw(GameTime gameTime)
