@@ -14,6 +14,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 
 namespace CaptainCPA
@@ -218,7 +219,7 @@ namespace CaptainCPA
             spriteBatch.Begin();
             if (frameIndex >= 0)
             {
-                spriteBatch.Draw(bigTexture, position, frames.ElementAt<Rectangle>(frameIndex), Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
+                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
             }
             spriteBatch.End();
             //base.Draw(gameTime);
