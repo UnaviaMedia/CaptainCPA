@@ -12,6 +12,8 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using Microsoft.Xna.Framework.Input;
 
 
 namespace CaptainCPA
@@ -26,7 +28,7 @@ namespace CaptainCPA
         protected LevelLoader levelLoader;
         protected List<MoveableTile> moveableTileList;
         protected List<FixedTile> fixedTileList;
-        protected Character character; 
+        protected Character character;
 
         protected PhysicsManager physicsManager;
         protected CollisionManager tileCollisionPositioningManager;
@@ -103,42 +105,61 @@ namespace CaptainCPA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            KeyboardState ks = Keyboard.GetState();
+            if (ks.IsKeyDown(Keys.Enter)) Console.WriteLine(character.Bounds);
             //Update the score
             scoreDisplay.Message = character.Score.ToString();
 
-            if (CharacterStateManager.IsMoving)
+            //if (CharacterStateManager.IsMoving)
             {
-                //TODO: Fix wall jumping
-                if (CharacterStateManager.FacingRight && CharacterStateManager.CharacterPosition.X >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
+                bool shouldMove;
+                CharacterStateManager.TooFarRight = false;
+                //Character is within range of the right side of the screen
+                if (character.Bounds.Right >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
                 {
-                    foreach (Tile t in tiles)
+                    CharacterStateManager.TooFarRight = true;
+                    shouldMove = true;
+                    if (!CharacterStateManager.IsMoving || !CharacterStateManager.FacingRight)
                     {
-                        if (t.GetType() != typeof(Character))
+                        shouldMove = false;
+                    }
+                    if (shouldMove)
+                    {
+                        foreach (Tile t in tiles)
                         {
-                            
-                            t.Position = new Vector2(t.Position.X - CharacterStateManager.Speed, t.Position.Y);
-                            if (t.Bounds.Intersects(character.Bounds))
+                            if (t.GetType() != typeof(Character))
                             {
-                                character.Position = new Vector2(character.Position.X - 2, character.Position.Y);
+                                t.Position = new Vector2(t.Position.X - CharacterStateManager.Speed, t.Position.Y);
+                                CharacterStateManager.ScreenMoving = true;
+                                character.Velocity = new Vector2(0f, character.Velocity.Y);
                             }
                         }
+                        CharacterStateManager.ScreenMoving = true;
                     }
-                    CharacterStateManager.ScreenMoving = true;
                 }
-                else if (!CharacterStateManager.FacingRight && CharacterStateManager.CharacterPosition.X <= RIGHT_CHARACTER_BUFFER)
+                //character is within range of the left side of the screen
+                else if (character.Bounds.Left <= 0)
                 {
-                    foreach (Tile t in tiles)
+                    shouldMove = true;
+                    if (!CharacterStateManager.IsMoving || CharacterStateManager.FacingRight)
                     {
-                        if (t.GetType() != typeof(Character))
-                        {
-                            t.Position = new Vector2(t.Position.X + CharacterStateManager.Speed, t.Position.Y);
-                        }
+                        shouldMove = false;
                     }
-                    CharacterStateManager.ScreenMoving = true;
+                    if (shouldMove) //character 
+                    {
+                        foreach (Tile t in tiles)
+                        {
+                            if (t.GetType() != typeof(Character))
+                            {
+                                t.Position = new Vector2(t.Position.X + CharacterStateManager.Speed, t.Position.Y);
+                            }
+                        }
+                        CharacterStateManager.ScreenMoving = true;
+                    }
                 }
                 else CharacterStateManager.ScreenMoving = false;
             }
-            else CharacterStateManager.ScreenMoving = false;
+            //else CharacterStateManager.ScreenMoving = false;
 
             base.Update(gameTime);
         }

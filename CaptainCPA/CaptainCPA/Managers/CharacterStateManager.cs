@@ -23,6 +23,13 @@ namespace CaptainCPA
         private static bool onGround;
         private static float speed;
         private static bool screenMoving;
+        private static bool tooFarRight;
+
+        public static bool TooFarRight
+        {
+            get { return CharacterStateManager.tooFarRight; }
+            set { CharacterStateManager.tooFarRight = value; }
+        }
 
         public static bool ScreenMoving
         {
