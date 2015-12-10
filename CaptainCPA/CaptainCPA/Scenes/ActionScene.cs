@@ -13,6 +13,8 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using Microsoft.Xna.Framework.Input;
 
 
 namespace CaptainCPA
@@ -22,6 +24,8 @@ namespace CaptainCPA
 	/// </summary>
 	public class ActionScene : GameScene
 	{
+        protected const float RIGHT_CHARACTER_BUFFER = 400;
+
 		protected LevelLoader levelLoader;
 		protected List<MoveableTile> moveableTileList;
 		protected List<FixedTile> fixedTileList;
@@ -37,6 +41,10 @@ namespace CaptainCPA
 
 		public bool GameOver { get; set; }
 
+        /// <summary>
+        /// A list of all tiles excepting the Character
+        /// </summary>
+        protected List<Tile> tiles;
 		public ActionScene(Game game, SpriteBatch spriteBatch, string level)
 			: base(game, spriteBatch)
 		{
@@ -133,7 +141,7 @@ namespace CaptainCPA
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
 			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
 			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
-			this.components.Add(scoreDisplay);
+			this.components.Add(scoreDisplay);			
 
 			healthDisplay = new HealthDisplay(game, spriteBatch, character);
 			this.components.Add(healthDisplay);
@@ -141,7 +149,18 @@ namespace CaptainCPA
 
 			//Set game over to false
 			GameOver = false;
+
+            //Keep track of all tiles in the scene
+            tiles = new List<Tile>();
+            foreach (GameComponent c in this.components)
+            {
+                if (c is Tile && c.GetType() != typeof(Character))
+                {
+                    tiles.Add(c as Tile);
 		}
+            }
+
+        }
 
 		/// <summary>
 		/// Allows the game component to perform any initialization it needs to before starting
@@ -167,6 +186,40 @@ namespace CaptainCPA
 
 			//Update the score
 			scoreDisplay.Message = character.Score.ToString();
+
+            CharacterStateManager.TooFarRight = false;
+            if (CharacterStateManager.IsMoving)
+            {
+                //Character is within range of the right side of the screen
+                if (character.Bounds.Right >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
+                {
+                    CharacterStateManager.TooFarRight = true;
+                    if (CharacterStateManager.FacingRight) //Character is moving to the right
+                    {
+                        foreach (Tile t in tiles)
+                        {
+                            t.Position = new Vector2(t.Position.X - character.Speed, t.Position.Y);
+                        }
+                        //TODO: handle enemies moving too fast
+                        CharacterStateManager.ScreenMoving = true;
+                    }
+                }
+
+                //character is within range of the left side of the screen
+                else if (character.Bounds.Left <= 0)
+                {
+                    if (!CharacterStateManager.FacingRight) //character is moving to the left
+                    {
+                        foreach (Tile t in tiles)
+                        {
+                            t.Position = new Vector2(t.Position.X + character.Speed, t.Position.Y);
+                        }
+                        //TODO: handle enemies moving too fast
+                        CharacterStateManager.ScreenMoving = true;
+                    }
+                }
+                else CharacterStateManager.ScreenMoving = false;
+            }
 
 			base.Update(gameTime);
 		}

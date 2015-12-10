@@ -48,7 +48,7 @@ namespace CaptainCPA
 
 		public int Score
 		{
-			get { return score;}
+            get { return score; }
 			set { score = value; }
 		}
 
@@ -92,6 +92,8 @@ namespace CaptainCPA
 			isAlive = true;
 			startingPosition = position;
 
+            CharacterStateManager.Speed = speed;
+            Console.WriteLine(bounds);
 			//Reset player score
 			ResetScore();
 		}
@@ -144,6 +146,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
+            isMoving = false;
 			KeyboardState ks = Keyboard.GetState();
 
 			//Reset horizontal velocity to zero
@@ -158,6 +161,7 @@ namespace CaptainCPA
 			//If the Left key is pressed, subtract horizontal velocity to move left
 			if (ks.IsKeyDown(Keys.Left))
 			{
+                isMoving = true;
 				velocity.X -= speed;
                 facingRight = false;
 			}
@@ -165,9 +169,24 @@ namespace CaptainCPA
 			//If the Right key is pressed, add horizontal velocity to move right
 			if (ks.IsKeyDown(Keys.Right))
 			{
+                isMoving = true;
 				velocity.X += speed;
                 facingRight = true;
 			}
+
+            //If the screen is moving character stays still on screen
+            if (CharacterStateManager.ScreenMoving && isMoving)
+            {
+                //TODO: if character is to the right and wants to move left
+                if (facingRight && CharacterStateManager.TooFarRight)
+                {
+                    velocity.X = 0f;
+                }
+                else if (!facingRight && !CharacterStateManager.TooFarRight)
+                {
+                    velocity.X = 0f;
+                }
+            }
 
 			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
@@ -175,8 +194,6 @@ namespace CaptainCPA
 				velocity.Y = jumpSpeed;
 				onGround = false;
 			}
-
-            CharacterStateManager.CharacterPosition = position;
 
 			//Debug Mode
 			if (ks.IsKeyDown(Keys.Space))
@@ -216,6 +233,10 @@ namespace CaptainCPA
                 }
             }
             //texture = bigTexture.GetData<Texture2D>()
+            CharacterStateManager.CharacterPosition = position;
+            CharacterStateManager.FacingRight = facingRight;
+            CharacterStateManager.IsMoving = isMoving;
+            CharacterStateManager.Velocity = velocity;
 			base.Update(gameTime);
 		}
         public override void Draw(GameTime gameTime)
