@@ -31,6 +31,7 @@ namespace CaptainCPA
 		private bool playerHasHighScore;
 		private int playerScore;
 		private string playerName;
+		private const string DEFAULT_NAME = "<<Enter Name>>";
 
 		public bool NameEntered
 		{
@@ -51,7 +52,7 @@ namespace CaptainCPA
 			highScores = Utilities.LoadHighScores().Take(3).ToList();
 
 			//Determine whether or not the player has gotten a high score
-			if (highScores.Count >= 3)
+			if (highScores.Count == 3)
 			{
 				foreach (HighScore highScore in highScores)
 				{
@@ -90,7 +91,7 @@ namespace CaptainCPA
 				//Indicate to the player that they need to enter their name
 				if (playerName == "")
 				{
-					playerName = "<<Enter Name>>";
+					playerName = DEFAULT_NAME;
 				}
 
 				//Get the player name from the player
@@ -101,7 +102,7 @@ namespace CaptainCPA
 						if (key == Keys.Back && playerName.Length > 0)
 						{
 							//Backspace a character from the player's name (set to default if name is empty)
-							if (playerName != "<<Enter Name>>")
+							if (playerName != DEFAULT_NAME)
 							{
 								playerName = playerName.Remove(playerName.Length - 1, 1);
 							}
@@ -109,7 +110,7 @@ namespace CaptainCPA
 						else if (key == Keys.Enter)
 						{
 							//If no player name was entered give a default name
-							if (playerName == "<<Enter Name>>" || playerName.Trim() == "")
+							if (playerName == DEFAULT_NAME || playerName.Trim() == "")
 							{
 								playerName = "Guest";
 							}
@@ -126,7 +127,7 @@ namespace CaptainCPA
 							if (Regex.IsMatch(key.ToString(), @"^[A-Z0-9]$", RegexOptions.IgnoreCase))
 							{
 								//If the default player name is currently entered, replace it with the user input
-								if (playerName == "<<Enter Name>>")
+								if (playerName == DEFAULT_NAME)
 								{
 									playerName = "";
 								}
@@ -147,6 +148,8 @@ namespace CaptainCPA
 			}
 			else
 			{
+				playerName = "BLERGBLERG";
+
 				//If the user doesn't get a high score, return to the main menu when they press 'Enter'
 				if (ks.IsKeyDown(Keys.Enter))
 				{
@@ -159,6 +162,21 @@ namespace CaptainCPA
 
 			base.Update(gameTime);
 		}
+
+
+		/// <summary>
+		/// Display a high score name and score 
+		/// </summary>
+		/// <param name="name">High score name</param>
+		/// <param name="score">High score value</param>
+		/// <param name="tempPosition">Reference to temporary variable for Y-positioning</param>
+		/// <param name="color">Color to draw the high score in</param>
+		private void DrawHighScore(string name, int score, ref float tempPosition, Color color)
+		{
+			spriteBatch.DrawString(font, name, new Vector2(position.X, tempPosition += 45), color);
+			spriteBatch.DrawString(font, score.ToString(), new Vector2(position.X + 315 - font.MeasureString(score.ToString()).X, tempPosition), color);
+		}
+
 
 		/// <summary>
 		/// Allows the game component to draw itself.
@@ -179,37 +197,33 @@ namespace CaptainCPA
 					//Allow the player to enter their name if they have managed to get a high score
 					if (playerHasHighScore == true)
 					{
-						if (playerScore >= highScore.Score && playerScoreDrawn == false)
+						if ((playerScore > highScore.Score ) && playerScoreDrawn == false)
 						{
-							//Display the player's name
-							spriteBatch.DrawString(font, playerName, new Vector2(position.X, tempPosition += 45), Color.Gold);
-
-							//Position and draw the player score
-							spriteBatch.DrawString(font, playerScore.ToString(),
-								new Vector2(position.X + 315 - font.MeasureString(playerScore.ToString()).X, tempPosition), Color.Gold);
+							//Draw the player's high score if it is higher than the curent high score
+							DrawHighScore(playerName, playerScore, ref tempPosition, Color.Gold);
 
 							playerScoreDrawn = true;
 						}
 					}
 
-					tempPosition += font.MeasureString(highScore.Name).Y;
+					//Draw the high score
+					DrawHighScore(highScore.Name, highScore.Score, ref tempPosition, Color.White);
+				}
 
-					//Position and draw the player name
-					spriteBatch.DrawString(font, highScore.Name, new Vector2(position.X, tempPosition), Color.White);
+				if (playerScoreDrawn == false && playerHasHighScore == true)
+				{
+					//Draw the player's high score if it has not yet been drawn (ie. lowest high score)
+					DrawHighScore(playerName, playerScore, ref tempPosition, Color.Gold);
 
-					//Position and draw the player score
-					spriteBatch.DrawString(font, highScore.Score.ToString(),
-						new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.White);
-				} 
+					playerScoreDrawn = true;
+				}
 			}
 			else
 			{
-				//Display the player's name
-				spriteBatch.DrawString(font, playerName, new Vector2(position.X, tempPosition += 45), Color.Gold);
+				//Draw the player's high score if there are no other high scores yet
+				DrawHighScore(playerName, playerScore, ref tempPosition, Color.Gold);
 
-				//Position and draw the player score
-				spriteBatch.DrawString(font, playerScore.ToString(),
-					new Vector2(position.X + 315 - font.MeasureString(playerScore.ToString()).X, tempPosition), Color.Gold);
+				playerScoreDrawn = true;
 			}
 
 			spriteBatch.End();

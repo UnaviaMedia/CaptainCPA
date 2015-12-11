@@ -101,12 +101,6 @@ namespace CaptainCPA
 				//Add the high score to the list of high scores
 				highScores.Add(new HighScore() { Score = score, Name = name });
 			}
-
-			/*//If there are no high scores, return a default indicator
-			if (highScores.Count == 0)
-			{
-				highScores.Add(new HighScore() { Name = "-----------------------", Score = 0 });
-			}*/
 			
 			//Return the list of high scores
 			return highScores.OrderByDescending(h => h.Score).ToList();
