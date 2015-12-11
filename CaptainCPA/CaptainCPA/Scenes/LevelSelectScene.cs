@@ -56,7 +56,7 @@ namespace CaptainCPA
 			levelSelectorPositions.Add(new Vector2(1020, 520));
 
 			selectedIndex = 0;
-			levels = 8;
+			levels = 3;
 		}
 
 		/// <summary>
@@ -104,9 +104,7 @@ namespace CaptainCPA
 		{
 			spriteBatch.Begin();
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
-
 			spriteBatch.Draw(levelSelector, levelSelectorPositions[selectedIndex], Color.White);
-
 			spriteBatch.End();
 
 			base.Draw(gameTime);
