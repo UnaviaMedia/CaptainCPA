@@ -202,8 +202,23 @@ namespace CaptainCPA
 				}
 				else if (selectedIndex == (int)menuItemTitles.HighScore && ks.IsKeyDown(Keys.Enter))
 				{
+					//Remove old high score scene
+					if (highScoreScene != null)
+					{
+						scenes.Remove(highScoreScene);
+						this.Components.Remove(highScoreScene);
+					}
+
+					//Create a new high score scene
+					highScoreScene = new HighScoreScene(this, spriteBatch);
+					scenes.Add(highScoreScene);
+					this.Components.Add(highScoreScene);
+
+					//Display the high score screen
 					hideAllScenes();
 					highScoreScene.Show();
+
+					var fredfred = this.Components;
 				}
 				else if (selectedIndex == (int)menuItemTitles.HowTo && ks.IsKeyDown(Keys.Enter))
 				{
@@ -288,9 +303,6 @@ namespace CaptainCPA
 						item.Enabled = false;
 					}
 
-					highScoreScene = new HighScoreScene(this, spriteBatch);
-					scenes.Add(highScoreScene);
-
 					//Show the game over menu
 					gameOverMenuScene.Show();
 				}
@@ -298,11 +310,19 @@ namespace CaptainCPA
 				//Handle game over
 				if (gameOverMenuScene.Enabled)
 				{
-					selectedIndex = gameOverMenuScene.Menu.SelectedIndex;
-
 					//Return to the Main Menu (and reset game)
-					if (selectedIndex == (int)GameOverMenuItems.MainMenu && ks.IsKeyDown(Keys.Enter))
+					if (gameOverMenuScene.HighScoreComponent.NameEntered == true && ks.IsKeyDown(Keys.Enter))
 					{
+						if (gameOverMenuScene != null)
+						{
+							scenes.Remove(gameOverMenuScene);
+							this.Components.Remove(gameOverMenuScene); 
+						}
+						
+						gameOverMenuScene = new GameOverMenuScene(this, spriteBatch);
+						scenes.Add(gameOverMenuScene);
+						this.Components.Add(gameOverMenuScene);
+
 						hideAllScenes();
 						startScene.Show();
 					}

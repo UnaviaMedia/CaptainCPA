@@ -8,10 +8,8 @@
  */
 
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace CaptainCPA
@@ -69,33 +67,114 @@ namespace CaptainCPA
 		}
 
 
+		#region HighScore List Management
 		/// <summary>
 		/// Create a list of high scores
 		/// </summary>
-		/// <param name="number">Number of high scores to return</param>
 		/// <returns>List of high score struct objects</returns>
-		public static List<HighScore> LoadHighScores(int number = 5)
+		public static List<HighScore> LoadHighScores()
 		{
 			List<HighScore> highScores = new List<HighScore>();
 
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
-			loadFile.Load(@"Content/HighScores.xml");
+			try
+			{
+				loadFile.Load(@"Content/HighScores.xml");
+			}
+			catch (System.Exception)
+			{
+				ResetHighScores();
+				loadFile.Load(@"Content/HighScores.xml");
+			}
 
 			var scores = loadFile.SelectNodes("/XnaContent/PlatformGame/Scores/*");
 
 			foreach (XmlNode highScore in scores)
 			{
 				//Get properties of the high score
-				int rank = int.Parse(highScore.Attributes["rank"].Value);
 				int score = int.Parse(highScore.Attributes["score"].Value);
 				string name = highScore.Attributes["name"].Value;
 
 				//Add the high score to the list of high scores
-				highScores.Add(new HighScore() { Rank = rank, Score = score, Name = name });
+				highScores.Add(new HighScore() { Score = score, Name = name });
 			}
 
-			return highScores.OrderBy(h => h.Rank).Take(number).ToList();
+			if (highScores.Count == 0)
+			{
+				highScores.Add(new HighScore() { Name = "-----------------------", Score = 0 });
+			}
+
+			//return highScores.OrderBy(h => h.Rank).ToList();
+			return highScores.OrderByDescending(h => h.Score).ToList();
 		}
+
+
+		/// <summary>
+		/// Reset the XML list of HighScores
+		/// </summary>
+		public static void ResetHighScores()
+		{
+			//Create a new XML document and load the selected save file
+			XmlDocument newFile = new XmlDocument();
+			XmlNode rootNode = newFile.CreateElement("XnaContent");
+			newFile.AppendChild(rootNode);
+
+			XmlNode platformGameNode = newFile.CreateElement("PlatformGame");
+			rootNode.AppendChild(platformGameNode);
+
+			XmlNode scoresNode = newFile.CreateElement("Scores");
+			platformGameNode.AppendChild(scoresNode);
+
+			newFile.Save(@"Content/HighScores.xml");
+		}
+
+
+		/// <summary>
+		/// Create a list of high scores
+		/// </summary>
+		/// <param name="highScoreList">List of high scores</param>
+		/// <returns>List of high score struct objects</returns>
+		public static void SaveHighScores(List<HighScore> highScoreList)
+		{
+			int maxHighScores = 5;
+
+			List<HighScore> highScores = highScoreList.OrderByDescending(h => h.Score).Take(maxHighScores).ToList();
+
+			//Create a new XML document and create the root elements
+			XmlDocument saveFile = new XmlDocument();
+			saveFile.Load(@"Content/HighScores.xml");
+			XmlNode root = saveFile.DocumentElement;
+			XmlNode highScoresNode = root.SelectSingleNode("PlatformGame/Scores");
+			highScoresNode.RemoveAll();
+
+			//Add each high score node to the highScoresNode
+			foreach (HighScore highScore in highScores)
+			{
+				if (highScore.Name == "-----------------------")
+				{
+					continue;
+				}
+
+				//Create a HighScore node
+				XmlNode node = saveFile.CreateElement("HighScore");
+
+				//Create the score attribute of the HighScore node
+				XmlAttribute score = saveFile.CreateAttribute("score");
+				score.Value = highScore.Score.ToString();
+				node.Attributes.Append(score);
+
+				//Create the name attribute of the HighScore node
+				XmlAttribute name = saveFile.CreateAttribute("name");
+				name.Value = highScore.Name;
+				node.Attributes.Append(name);
+
+				//Add the HighScore node to the list of HighScores
+				highScoresNode.AppendChild(node);
+			}
+
+			saveFile.Save(@"Content/HighScores.xml");
+		}
+		#endregion
 	}
 }

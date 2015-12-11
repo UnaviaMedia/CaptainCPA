@@ -7,12 +7,11 @@
  */
 
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CaptainCPA
 {
@@ -24,34 +23,39 @@ namespace CaptainCPA
 		private SpriteBatch spriteBatch;
 		private Vector2 position;
 		private SpriteFont font;
-		//private Texture2D selectorTexture;
-		//private List<string> menuItems;
 		private KeyboardState oldState;
+		private bool highScoreEntered;
 
-		List<HighScore> highScores;
+		private List<HighScore> highScores;
 		private bool playerHasHighScore;
 		private int highScore;
 		private int playerScore;
 		private string playerName;
 
-		private List<Keys> highScoreKeys = new List<Keys>() {
-			Keys.A, Keys.B, Keys.C, Keys.D, Keys.E, Keys.F, Keys.G, Keys.H, Keys.I, Keys.J, Keys.K, Keys.L, Keys.M,
-			Keys.N, Keys.O, Keys.P, Keys.Q, Keys.R, Keys.S, Keys.T, Keys.U, Keys.V, Keys.W, Keys.X, Keys.Y, Keys.Z, Keys.Enter, Keys.Back };
+		private List<Keys> validNameKeys;
 
+		public bool NameEntered
+		{
+			get { return highScoreEntered; }
+		}
 
 		public HighScoreComponent(Game game, SpriteBatch spriteBatch, SpriteFont font, Vector2 position)
 			:base(game)
 		{
 			this.spriteBatch = spriteBatch;
 			this.font = font;
-			//this.menuItems = menuItems.ToList();
 			this.position = position;
 			this.playerScore = 0;
-			//menuSelectorTexture = game.Content.Load<Texture2D>("Images/MenuSelector");
 
+			//List of valid keys a player can type
+			/*validNameKeys = new List<Keys>() {
+				Keys.A, Keys.B, Keys.C, Keys.D, Keys.E, Keys.F, Keys.G, Keys.H, Keys.I, Keys.J, Keys.K, Keys.L, Keys.M, Keys.N,
+				Keys.O, Keys.P, Keys.Q, Keys.R, Keys.S, Keys.T, Keys.U, Keys.V, Keys.W, Keys.X, Keys.Y, Keys.Z, Keys.Enter, Keys.Back };*/
+
+			highScoreEntered = false;
 			playerHasHighScore = false;
 			playerName = "";
-			highScores = Utilities.LoadHighScores(3);
+			highScores = Utilities.LoadHighScores().Take(3).ToList();
 
 			//Determine whether or not the player has gotten a high score
 			foreach (HighScore highScore in highScores)
@@ -62,6 +66,8 @@ namespace CaptainCPA
 					break;
 				}
 			}
+
+			playerHasHighScore = true;
 		}
 
 		/// <summary>
@@ -81,33 +87,81 @@ namespace CaptainCPA
 		{
 			KeyboardState ks = Keyboard.GetState();
 
+			//Enable resetting of the High Score List
+			if (playerName.ToLower() == "reset")
+			{
+				Utilities.ResetHighScores();
+				highScores = new List<HighScore>();
+				playerName = "";
+				highScoreEntered = true;
+			}
+
 			if (playerHasHighScore == true)
 			{
+				//Indicate to the player that they need to enter their name
+				if (playerName == "")
+				{
+					playerName = "<<Enter Name>>";
+				}
+
 				foreach (Keys key in ks.GetPressedKeys())
 				{
-					if (highScoreKeys.Contains(key) == false)
-					{
-						continue;
-					}
-
 					if (oldState.IsKeyUp(key))
 					{
 						if (key == Keys.Back && playerName.Length > 0)
 						{
-							playerName = playerName.Remove(playerName.Length - 1, 1);
+							//Backspace a character from the player's name
+							if (playerName != "<<Enter Name>>")
+							{
+								playerName = playerName.Remove(playerName.Length - 1, 1);
+							}
 						}
 						else if (key == Keys.Enter)
 						{
-							//Do I need this?
+							//If no player name was entered give a default name
+							if (playerName == "<<Enter Name>>" || playerName.Trim() == "")
+							{
+								playerName = "Guest";
+							}
+
+							//Add the player's score to the high scores and save
+							highScores.Add(new HighScore() { Name = playerName, Score = playerScore });
+
+							Utilities.SaveHighScores(highScores);
+
+							highScoreEntered = true;
 						}
-						else if (font.MeasureString(playerName).X < 300)
+						else if (font.MeasureString(playerName).X < 250)
 						{
-							playerName += key.ToString();
+							if (Regex.IsMatch(key.ToString(), @"^[A-Z]$", RegexOptions.IgnoreCase))
+							{
+								if (playerName == "<<Enter Name>>")
+								{
+									playerName = "";
+								}
+
+								//Uppercase or lowercase the letter as requierd
+								if (ks.IsKeyDown(Keys.LeftShift) || ks.IsKeyDown(Keys.RightShift))
+								{
+									playerName += key.ToString();
+								}
+								else
+								{
+									playerName += key.ToString().ToLower();
+								}
+							}
 						}
 					}
 				}
 			}
-
+			else
+			{
+				if (ks.IsKeyDown(Keys.Enter))
+				{
+					highScoreEntered = true;
+				}
+			}
+			
 			//Set the old key state as the current key state
 			oldState = ks;
 
@@ -121,25 +175,34 @@ namespace CaptainCPA
 		public override void Draw(GameTime gameTime)
 		{
 			float tempPosition = position.Y;
+			bool playerScoreDrawn = false;
 
 			spriteBatch.Begin();
 
 			//Display previous high scores
-			tempPosition += 50;
-
 			foreach (HighScore highScore in highScores)
 			{
-				string highScoreMessage = highScore.Name + " - " + highScore.Score;
-				tempPosition += font.MeasureString(highScoreMessage).Y;
-				spriteBatch.DrawString(font, highScoreMessage, new Vector2(position.X, tempPosition), Color.White);
-			}
+				//Allow the player to enter their name if they have managed to get a high score
+				if (playerHasHighScore == true && playerScore >= highScore.Score && playerScoreDrawn == false)
+				{
+					//Display the player's name
+					spriteBatch.DrawString(font, playerName, new Vector2(position.X, tempPosition += 45), Color.Gold);
 
-			//Allow player to enter their name to save with their high score
-			if (playerHasHighScore == true)
-			{
-				//Display the player's name
-				spriteBatch.DrawString(font, "Enter Name:", new Vector2(position.X, tempPosition += 50), Color.White);
-				spriteBatch.DrawString(font, playerName, new Vector2(position.X, tempPosition += 50), Color.White); 
+					//Position and draw the player score
+					spriteBatch.DrawString(font, highScore.Score.ToString(),
+						new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.Gold);
+
+					playerScoreDrawn = true;
+				}
+
+				tempPosition += font.MeasureString(highScore.Name).Y;
+				
+				//Position and draw the player name
+				spriteBatch.DrawString(font, highScore.Name, new Vector2(position.X, tempPosition), Color.White);
+
+				//Position and draw the player score
+				spriteBatch.DrawString(font, highScore.Score.ToString(),
+					new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.White);
 			}
 
 			spriteBatch.End();

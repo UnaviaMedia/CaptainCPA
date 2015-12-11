@@ -108,12 +108,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="HighScores.xml">
-      <Name>HighScores</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Compile Include="Images\HelpScreen.png">
       <Name>HelpScreen</Name>
       <Importer>TextureImporter</Importer>
@@ -126,6 +120,11 @@
     </Compile>
     <Compile Include="Images\GameOverMenu.png">
       <Name>GameOverMenu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Images\LevelSelector.png">
+      <Name>LevelSelector</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -208,6 +207,40 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentCreation\Backgrounds.dpp">
+      <Name>Backgrounds</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentCreation\GameArt.dpp">
+      <Name>GameArt</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentCreation\HealthDisplay-Main.dpp">
+      <Name>HealthDisplay-Main</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentCreation\HealthDisplay-Right.dpp">
+      <Name>HealthDisplay-Right</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentCreation\HealthDisplay-Skull.dpp">
+      <Name>HealthDisplay-Skull</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentCreation\LevelSelector.dpp">
+      <Name>LevelSelector</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentCreation\MenuScreens.dpp">
+      <Name>MenuScreens</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ContentCreation\MenuSelector.dpp">
+      <Name>MenuSelector</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
