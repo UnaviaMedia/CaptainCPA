@@ -96,6 +96,7 @@ namespace CaptainCPA
 			//Initialize first level
 			selectedLevel = "Level1";
 
+			#region SceneCreation
 			//Create all scenes and add to the Components list
 			startScene = new StartScene(this, spriteBatch);
 			scenes.Add(startScene);
@@ -134,6 +135,7 @@ namespace CaptainCPA
 			startScene.Show();
 			baseScene = startScene;
 			enabledScene = startScene;
+			#endregion
 		}
 
 		/// <summary>
@@ -176,11 +178,14 @@ namespace CaptainCPA
 				Window.Title = fps.ToString();
 			}*/
 
-			#region menu navigation
+			#region MenuNavigation
 			int selectedIndex = 0;
 			KeyboardState ks = Keyboard.GetState();
+
+			//Handle menu navigation
 			if (baseScene == startScene)
 			{
+				//Return to Start scene from all sub-scenes
 				if (ks.IsKeyDown(Keys.Escape))
 				{
 					hideAllScenes();
@@ -188,9 +193,13 @@ namespace CaptainCPA
 					enabledScene = startScene;
 				}
 
+				//Get the selected item index from the menu
 				selectedIndex = startScene.Menu.SelectedIndex;
+
+				//Display the corresponding sub-scene based on user selection
 				if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 				{
+					//Display the Game scene
 					hideAllScenes();
 
 					//Reset game (to selected level)
@@ -201,18 +210,21 @@ namespace CaptainCPA
 				}
 				else if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter))
 				{
+					//Display the LevelSelector scene
 					hideAllScenes();
 					levelSelectScene.Show();
 					enabledScene = levelSelectScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
 				{
+					//Display the Help scene
 					hideAllScenes();
 					helpScene.Show();
 					enabledScene = helpScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.About && ks.IsKeyDown(Keys.Enter))
 				{
+					//Display the About scene
 					hideAllScenes();
 					aboutScene.Show();
 					enabledScene = aboutScene;
@@ -238,12 +250,14 @@ namespace CaptainCPA
 				}
 				else if (selectedIndex == (int)menuItemTitles.HowTo && ks.IsKeyDown(Keys.Enter))
 				{
+					//Display the HowToPlay scene
 					hideAllScenes();
 					howToPlayScene.Show();
 					enabledScene = howToPlayScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter))
 				{
+					//Exit
 					Exit();
 				}
 			}
@@ -253,10 +267,7 @@ namespace CaptainCPA
 				if (ks.IsKeyDown(Keys.Escape))
 				{
 					//Pause the game
-					foreach (var item in actionScene.Components)
-					{
-						item.Enabled = false;
-					}
+					actionScene.DisableComponents();
 
 					//Show the pause menu
 					pauseMenuScene.Menu.SelectedIndex = 0;
@@ -268,24 +279,22 @@ namespace CaptainCPA
 				//Display the Game Over menu when the game ends (player dies)
 				if (actionScene.GameOver == true)
 				{
-					//Pause (end) the game
-					/*foreach (var item in actionScene.Components)
-					{
-						item.Enabled = false;
-					}*/
+					//Pause the game
 					actionScene.DisableComponents();
 
+					//Remove the current GameOver menu scene if one exists
 					if (gameOverMenuScene != null)
 					{
 						scenes.Remove(gameOverMenuScene);
 						this.Components.Remove(gameOverMenuScene);
 					}
 
+					//Create a new GameOver menu scene
 					gameOverMenuScene = new GameOverMenuScene(this, spriteBatch);
 					scenes.Add(gameOverMenuScene);
 					this.Components.Add(gameOverMenuScene);
 
-					//Show the game over menu
+					//Show the GameOver menu
 					gameOverMenuScene.Show();
 					baseScene = gameOverMenuScene;
 					enabledScene = gameOverMenuScene;
@@ -295,15 +304,13 @@ namespace CaptainCPA
 			{
 				if (enabledScene == pauseMenuScene)
 				{
+					//Get the selected menu item index from the Pause menu
 					selectedIndex = pauseMenuScene.Menu.SelectedIndex;
 
 					//Unpause the game
 					if (selectedIndex == (int)PauseMenuItems.Resume && ks.IsKeyDown(Keys.Enter))
 					{
-						foreach (var item in actionScene.Components)
-						{
-							item.Enabled = true;
-						}
+						actionScene.EnableComponents();
 
 						pauseMenuScene.Hide();
 						baseScene = actionScene;
@@ -335,6 +342,7 @@ namespace CaptainCPA
 				}
 				else if (enabledScene == howToPlayScene)
 				{
+					//Return to the pause menu
 					if (ks.IsKeyDown(Keys.Escape))
 					{
 						howToPlayScene.Hide();
@@ -345,7 +353,7 @@ namespace CaptainCPA
 			}
 			else if (baseScene == gameOverMenuScene)
 			{
-				//Handle game over
+				//Handle game over event
 				if (gameOverMenuScene.Enabled)
 				{
 					//Return to the Main Menu (and reset game)
@@ -360,6 +368,7 @@ namespace CaptainCPA
 			}
 			else if (!startScene.Enabled)
 			{
+				//Should never get here!!!
 				if (ks.IsKeyDown(Keys.Escape))
 				{
 					hideAllScenes();
@@ -367,6 +376,8 @@ namespace CaptainCPA
 					enabledScene = startScene;
 				}
 			}
+
+			//Set the old keystate to the current keystate
 			oldState = ks;
 			#endregion
 
@@ -379,6 +390,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
+			//Redraw the screen
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
 			base.Draw(gameTime);

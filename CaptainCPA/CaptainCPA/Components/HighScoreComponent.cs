@@ -93,13 +93,14 @@ namespace CaptainCPA
 					playerName = "<<Enter Name>>";
 				}
 
+				//Get the player name from the player
 				foreach (Keys key in ks.GetPressedKeys())
 				{
 					if (oldState.IsKeyUp(key))
 					{
 						if (key == Keys.Back && playerName.Length > 0)
 						{
-							//Backspace a character from the player's name
+							//Backspace a character from the player's name (set to default if name is empty)
 							if (playerName != "<<Enter Name>>")
 							{
 								playerName = playerName.Remove(playerName.Length - 1, 1);
@@ -113,20 +114,24 @@ namespace CaptainCPA
 								playerName = "Guest";
 							}
 							
+							//Add the high score to the list of high scores
 							Utilities.UpdateHighScores(new HighScore() { Name = playerName, Score = playerScore });
 
+							//The high score has been entered, and the game is now finished
 							highScoreEntered = true;
 						}
 						else if (font.MeasureString(playerName).X < 250)
 						{
-							if (Regex.IsMatch(key.ToString(), @"^[A-Z]$", RegexOptions.IgnoreCase))
+							//Ensure the player can only enter valid characters and digits for their name
+							if (Regex.IsMatch(key.ToString(), @"^[A-Z0-9]$", RegexOptions.IgnoreCase))
 							{
+								//If the default player name is currently entered, replace it with the user input
 								if (playerName == "<<Enter Name>>")
 								{
 									playerName = "";
 								}
 
-								//Uppercase or lowercase the letter as requierd
+								//Uppercase or lowercase the letter as indicated by Shift keys
 								if (ks.IsKeyDown(Keys.LeftShift) || ks.IsKeyDown(Keys.RightShift))
 								{
 									playerName += key.ToString();
