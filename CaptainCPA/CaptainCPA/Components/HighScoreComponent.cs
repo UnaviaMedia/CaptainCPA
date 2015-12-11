@@ -5,6 +5,7 @@
  * History:
  *		Kendall Roth	Dec-10-2015:	Created
  *						Dec-11-2015:	Removed empty (default) score from showing
+ *										Added player score to display regardless of high score placement
  */
 
 using System.Collections.Generic;
