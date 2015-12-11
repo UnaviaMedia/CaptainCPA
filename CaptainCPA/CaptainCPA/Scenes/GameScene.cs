@@ -47,6 +47,9 @@ namespace CaptainCPA
 			this.Visible = false;
 		}
 
+		/// <summary>
+		/// Enable all components in GameScene as well as itself
+		/// </summary>
 		public virtual void EnableComponents()
 		{
 			this.Enabled = true;
@@ -57,6 +60,9 @@ namespace CaptainCPA
 			}
 		}
 
+		/// <summary>
+		/// Disable all components in GameScene as well as itself
+		/// </summary>
 		public virtual void DisableComponents()
 		{
 			this.Enabled = false;
@@ -67,6 +73,12 @@ namespace CaptainCPA
 			}
 		}
 
+
+		/// <summary>
+		/// Constructor for GameScene
+		/// </summary>
+		/// <param name="game">Game reference</param>
+		/// <param name="spriteBatch">SpriteBatch reference</param>
 		public GameScene(Game game, SpriteBatch spriteBatch)
 			: base(game)
 		{
