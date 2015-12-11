@@ -30,8 +30,6 @@ namespace CaptainCPA
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
-
             base.Initialize();
         }
 

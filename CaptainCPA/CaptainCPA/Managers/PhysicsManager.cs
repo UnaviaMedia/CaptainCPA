@@ -24,7 +24,7 @@ namespace CaptainCPA
 		public PhysicsManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)
 		{
-			// TODO: Construct any child components here
+
 		}
 
 		/// <summary>
@@ -265,6 +265,7 @@ namespace CaptainCPA
 				{
 					if (closestVerticalTile != null)
 					{
+
 						//If the closest tile is right below, the moveable tile is on the ground
 						if (closestVerticalTile.Bounds.Top - moveableTile.Bounds.Bottom == 0)
 						{
