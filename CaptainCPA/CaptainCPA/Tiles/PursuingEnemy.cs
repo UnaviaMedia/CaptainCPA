@@ -39,15 +39,24 @@ namespace CaptainCPA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-
+            //chase character to the left
             if (position.X > CharacterStateManager.CharacterPosition.X)
             {
-                velocity.X = -(Math.Abs(velocity.X));
+                velocity.X = -(Math.Abs(xSpeed));
             }
+            //chase character to the right
             else if (position.X < CharacterStateManager.CharacterPosition.X)
             {
-                velocity.X = Math.Abs(velocity.X);
+                velocity.X = Math.Abs(xSpeed);
             }
+            //If the enemy is directly above or below the character, pace back and forth
+            if (position.X >= CharacterStateManager.CharacterPosition.X - (Settings.TILE_SIZE) && position.X <= CharacterStateManager.CharacterPosition.X + Settings.TILE_SIZE / 2)
+            {
+                velocity.X = (facingRight) ? Math.Abs(xSpeed) : -Math.Abs(xSpeed);
+                //if (facingRight) velocity.X = Math.Abs(xSpeed);
+                //else velocity.X = -Math.Abs(xSpeed);
+            }
+
             base.Update(gameTime);
         }
     }

@@ -150,6 +150,11 @@ namespace CaptainCPA
                             onGround = true;
 							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
                             break;
+                        case "Monstar":
+                            velocity = new Vector2(2, 0);
+                            onGround = true;
+                            newTile = new Monstar(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+                            break;
 						default:
 							break;
 					}

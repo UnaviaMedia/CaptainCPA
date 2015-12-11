@@ -17,11 +17,12 @@ namespace CaptainCPA
     /// </summary>
     public class Enemy : MoveableTile
     {
+        protected float xSpeed;
         public Enemy(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
                             Vector2 velocity, bool onGround)
             : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
-
+            xSpeed = velocity.X;
         }
 
         /// <summary>
