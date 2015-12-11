@@ -193,6 +193,12 @@ namespace CaptainCPA
 					enabledScene = startScene;
 				}
 
+				//DEBUG - Enable Resetting the HighScores
+				if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R))
+				{
+					Utilities.ResetHighScores();
+				}
+
 				//Get the selected item index from the menu
 				selectedIndex = startScene.Menu.SelectedIndex;
 

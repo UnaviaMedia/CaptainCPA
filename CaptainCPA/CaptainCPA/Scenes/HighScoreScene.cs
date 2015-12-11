@@ -36,6 +36,11 @@ namespace CaptainCPA
 
 			//Get the list of the 5 highest scores
 			highScores = Utilities.LoadHighScores().Take(5).ToList();
+
+			if (highScores.Count == 0)
+			{
+				highScores.Add(new HighScore() { Name = "-----------------------", Score = 0 });
+			}
 		}
 
 		/// <summary>

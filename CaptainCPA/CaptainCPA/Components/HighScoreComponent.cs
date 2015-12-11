@@ -50,13 +50,20 @@ namespace CaptainCPA
 			highScores = Utilities.LoadHighScores().Take(3).ToList();
 
 			//Determine whether or not the player has gotten a high score
-			foreach (HighScore highScore in highScores)
+			if (highScores.Count >= 3)
 			{
-				if (playerScore > highScore.Score)
+				foreach (HighScore highScore in highScores)
 				{
-					playerHasHighScore = true;
-					break;
-				}
+					if (playerScore > highScore.Score)
+					{
+						playerHasHighScore = true;
+						break;
+					}
+				} 
+			}
+			else
+			{
+				playerHasHighScore = true;
 			}
 		}
 
@@ -76,14 +83,6 @@ namespace CaptainCPA
 		public override void Update(GameTime gameTime)
 		{
 			KeyboardState ks = Keyboard.GetState();
-
-			//Enable resetting of the High Score List
-			if (playerName.ToLower() == "reset")
-			{
-				Utilities.ResetHighScores();
-				playerName = "";
-				highScoreEntered = true;
-			}
 
 			if (playerHasHighScore == true)
 			{
@@ -171,30 +170,45 @@ namespace CaptainCPA
 
 			spriteBatch.Begin();
 
-			//Display previous high scores
-			foreach (HighScore highScore in highScores)
+			if (highScores.Count != 0)
 			{
-				//Allow the player to enter their name if they have managed to get a high score
-				if (playerHasHighScore == true && playerScore >= highScore.Score && playerScoreDrawn == false)
+				//Display previous high scores
+				foreach (HighScore highScore in highScores)
 				{
-					//Display the player's name
-					spriteBatch.DrawString(font, playerName, new Vector2(position.X, tempPosition += 45), Color.Gold);
+					//Allow the player to enter their name if they have managed to get a high score
+					if (playerHasHighScore == true)
+					{
+						if (playerScore >= highScore.Score && playerScoreDrawn == false)
+						{
+							//Display the player's name
+							spriteBatch.DrawString(font, playerName, new Vector2(position.X, tempPosition += 45), Color.Gold);
+
+							//Position and draw the player score
+							spriteBatch.DrawString(font, playerScore.ToString(),
+								new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.Gold);
+
+							playerScoreDrawn = true;
+						}
+					}
+
+					tempPosition += font.MeasureString(highScore.Name).Y;
+
+					//Position and draw the player name
+					spriteBatch.DrawString(font, highScore.Name, new Vector2(position.X, tempPosition), Color.White);
 
 					//Position and draw the player score
-					spriteBatch.DrawString(font, playerScore.ToString(),
-						new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.Gold);
-
-					playerScoreDrawn = true;
-				}
-
-				tempPosition += font.MeasureString(highScore.Name).Y;
-				
-				//Position and draw the player name
-				spriteBatch.DrawString(font, highScore.Name, new Vector2(position.X, tempPosition), Color.White);
+					spriteBatch.DrawString(font, highScore.Score.ToString(),
+						new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.White);
+				} 
+			}
+			else
+			{
+				//Display the player's name
+				spriteBatch.DrawString(font, playerName, new Vector2(position.X, tempPosition += 45), Color.Gold);
 
 				//Position and draw the player score
-				spriteBatch.DrawString(font, highScore.Score.ToString(),
-					new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.White);
+				spriteBatch.DrawString(font, playerScore.ToString(),
+					new Vector2(position.X + 315 - font.MeasureString(playerScore.ToString()).X, tempPosition), Color.Gold);
 			}
 
 			spriteBatch.End();
