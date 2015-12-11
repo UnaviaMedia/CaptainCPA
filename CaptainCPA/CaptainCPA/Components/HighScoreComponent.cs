@@ -181,7 +181,7 @@ namespace CaptainCPA
 					spriteBatch.DrawString(font, playerName, new Vector2(position.X, tempPosition += 45), Color.Gold);
 
 					//Position and draw the player score
-					spriteBatch.DrawString(font, highScore.Score.ToString(),
+					spriteBatch.DrawString(font, playerScore.ToString(),
 						new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.Gold);
 
 					playerScoreDrawn = true;

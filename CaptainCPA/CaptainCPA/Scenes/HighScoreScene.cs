@@ -69,7 +69,6 @@ namespace CaptainCPA
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
 
 			//Display the highscores
-			//foreach (HighScore highScore in highScores)
 			for (int i = 0; i < highScores.Count; i++)
 			{
 				tempPosition += font.MeasureString(highScores[i].Name).Y;

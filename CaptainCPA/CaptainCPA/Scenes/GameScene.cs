@@ -4,6 +4,7 @@
  *
  * History:
  *		Doug Epp		Nov-24-2015:	Created
+ *		Kendall Roth	Dec-10-2015:	Added EnableComponents and DisableComponents
  */
 
 using System.Collections.Generic;
@@ -102,6 +103,10 @@ namespace CaptainCPA
 			base.Update(gameTime);
 		}
 
+		/// <summary>
+		/// Allows the game component to draw itself.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Draw(GameTime gameTime)
 		{
 			DrawableGameComponent comp = null;
@@ -120,6 +125,7 @@ namespace CaptainCPA
 
 			base.Draw(gameTime);
 		}
+
 		/// <summary>
 		/// Reads a text file and returns the contents as a string
 		/// </summary>

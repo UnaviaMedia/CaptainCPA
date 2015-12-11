@@ -139,7 +139,7 @@ namespace CaptainCPA
 		{
 			int maxHighScores = 5;
 
-			List<HighScore> highScores = highScoreList.OrderByDescending(h => h.Score).Take(maxHighScores).ToList();
+			List<HighScore> highScores = highScoreList.OrderByDescending(h => h.Score).ToList();
 
 			//Create a new XML document and create the root elements
 			XmlDocument saveFile = new XmlDocument();
