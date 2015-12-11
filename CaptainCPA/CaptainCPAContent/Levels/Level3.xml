@@ -37,9 +37,9 @@
 			<Row y="1">
 				<Tile x="0" tileType="block" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="2" tileType="block" color="White"></Tile>
+				<Tile x="3" tileType="block" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -71,7 +71,7 @@
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -101,9 +101,9 @@
 			<Row y="3">
 				<Tile x="0" tileType="block" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="gem" color="Blue" points="5"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="2" tileType="block" color="White"></Tile>
+				<Tile x="3" tileType="block" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -135,7 +135,7 @@
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="pursuingEnemy" velocityX="2" velocityY="0" color="Red"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -165,9 +165,9 @@
 			<Row y="5">
 				<Tile x="0" tileType="block" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="2" tileType="block" color="White"></Tile>
+				<Tile x="3" tileType="block" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
 				<Tile x="5" tileType="gem" color="LightGreen" points="5"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>

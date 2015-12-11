@@ -24,7 +24,6 @@ namespace CaptainCPA
 		private List<Vector2> levelSelectorPositions;
 		private int selectedIndex;
 		private int levels;
-		private KeyboardState ks;
 		private KeyboardState oldState;
 
 		public int SelectedIndex

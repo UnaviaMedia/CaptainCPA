@@ -139,6 +139,7 @@
       <Name>Level2</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Levels\Level3.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -173,34 +174,34 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="Sounds\Ding.wav">
+    <Compile Include="Sounds\Ding.wav">
       <Name>Ding</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Compile>
     <Compile Include="Sprites\Platform.png">
       <Name>Platform</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="Sounds\gravel1.wav">
+    <Compile Include="Sounds\gravel1.wav">
       <Name>gravel1</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Compile>
     <Compile Include="Sprites\Spike.png">
       <Name>Spike</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="Sounds\hurtflesh3.wav">
+    <Compile Include="Sounds\hurtflesh3.wav">
       <Name>hurtflesh3</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Compile>
     <Compile Include="Sprites\HealthDisplay-Right.png">
       <Name>HealthDisplay-Right</Name>
       <Importer>TextureImporter</Importer>
@@ -216,12 +217,12 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="Sounds\GameOver.wav">
+    <Compile Include="Sounds\GameOver.wav">
       <Name>GameOver</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Compile>
     <Content Include="Levels\Level4.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Level4</Name>
@@ -246,16 +247,18 @@
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Content>
-    <Content Include="Sounds\DropTableBassFinal.mp3">
-      <Name>DropTableBassFinal</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Content>
-    <Content Include="Sounds\CinderellasBallgagM.mp3">
+    <Compile Include="Sounds\CinderellasBallgagM.mp3">
       <Name>CinderellasBallgagM</Name>
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
-    </Content>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sounds\DropTableBassFinal.mp3">
+      <Name>DropTableBassFinal</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\ScoreFont.spritefont">

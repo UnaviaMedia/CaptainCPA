@@ -49,10 +49,10 @@ namespace CaptainCPA
 
 		private KeyboardState oldState;
 
-		/*//FPS Tracking
+		//FPS Tracking
 		int totalFrames = 0;
 		float elapsedTime = 0.0f;
-		int fps = 0;*/
+		int fps = 0;
 
 
 		public GameManager()
@@ -109,11 +109,11 @@ namespace CaptainCPA
 
 			//If you could, please credit me as 'Joe Reynolds - Professorlamp' Refer people to my website at - jrtheories.webs.com Thank you!
 			//http://opengameart.org/content/energetic-platformer-music-drop-table-bass
-			backgroundMusic.Add(Content.Load<Song>("Sounds/DropTableBassFinal"));
+			backgroundMusic.Add(Content.Load<Song>("Sounds/CinderellasBallgagM"));
 
 			//If you could, please credit me as 'Joe Reynolds - Professorlamp' Refer people to my website at - jrtheories.webs.com Thank you!
 			//http://opengameart.org/content/cinderellas-ballgag
-			backgroundMusic.Add(Content.Load<Song>("Sounds/CinderellasBallgagM"));
+			backgroundMusic.Add(Content.Load<Song>("Sounds/DropTableBassFinal"));
 			#endregion
 
 
@@ -193,7 +193,7 @@ namespace CaptainCPA
 		protected override void Update(GameTime gameTime)
 		{
 			#region FPSTracking
-			/*//Update FPS
+			//Update FPS
 			elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 			totalFrames++;
 
@@ -204,7 +204,7 @@ namespace CaptainCPA
 				totalFrames = 0;
 				elapsedTime = 0;
 				Window.Title = fps.ToString();
-			}*/
+			}
 			#endregion
 
 			#region MenuNavigation
@@ -245,28 +245,40 @@ namespace CaptainCPA
 						baseScene = actionScene;
 						enabledScene = actionScene;
 					}
-					else if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter))
+					else if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 					{
+						//Remove old high score scene
+						if (levelSelectScene != null)
+						{
+							scenes.Remove(levelSelectScene);
+							this.Components.Remove(levelSelectScene);
+						}
+
+						//Create a new high score scene
+						levelSelectScene = new LevelSelectScene(this, spriteBatch);
+						scenes.Add(levelSelectScene);
+						this.Components.Add(levelSelectScene);
+
 						//Display the LevelSelector scene
 						hideAllScenes();
 						levelSelectScene.Show();
 						enabledScene = levelSelectScene;
 					}
-					else if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
+					else if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 					{
 						//Display the Help scene
 						hideAllScenes();
 						helpScene.Show();
 						enabledScene = helpScene;
 					}
-					else if (selectedIndex == (int)menuItemTitles.About && ks.IsKeyDown(Keys.Enter))
+					else if (selectedIndex == (int)menuItemTitles.About && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 					{
 						//Display the About scene
 						hideAllScenes();
 						aboutScene.Show();
 						enabledScene = aboutScene;
 					}
-					else if (selectedIndex == (int)menuItemTitles.HighScore && ks.IsKeyDown(Keys.Enter))
+					else if (selectedIndex == (int)menuItemTitles.HighScore && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 					{
 						//Remove old high score scene
 						if (highScoreScene != null)
@@ -285,14 +297,14 @@ namespace CaptainCPA
 						highScoreScene.Show();
 						enabledScene = highScoreScene;
 					}
-					else if (selectedIndex == (int)menuItemTitles.HowTo && ks.IsKeyDown(Keys.Enter))
+					else if (selectedIndex == (int)menuItemTitles.HowTo && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 					{
 						//Display the HowToPlay scene
 						hideAllScenes();
 						howToPlayScene.Show();
 						enabledScene = howToPlayScene;
 					}
-					else if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter))
+					else if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 					{
 						//Exit
 						Exit();
@@ -300,17 +312,20 @@ namespace CaptainCPA
 				}
 				else if (enabledScene == levelSelectScene)
 				{
-					//Get the selected item index from the level selector menu
-					int selectedLevelIndex = levelSelectScene.SelectedIndex;
+					if (ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
+					{
+						//Get the selected item index from the level selector menu
+						int selectedLevelIndex = levelSelectScene.SelectedIndex;
 
-					//Display the Game scene
-					hideAllScenes();
+						//Display the Game scene
+						hideAllScenes();
 
-					//Load selected level
-					actionScene.Reset(this, spriteBatch, levels[selectedLevelIndex]);
-					actionScene.Show();
-					baseScene = actionScene;
-					enabledScene = actionScene;
+						//Load selected level
+						actionScene.Reset(this, spriteBatch, levels[selectedLevelIndex]);
+						actionScene.Show();
+						baseScene = actionScene;
+						enabledScene = actionScene; 
+					}
 				}
 			}
 			else if (baseScene == actionScene)
@@ -413,6 +428,7 @@ namespace CaptainCPA
 					{
 						hideAllScenes();
 						startScene.Show();
+						startScene.Menu.SelectedIndex = 0;
 						baseScene = startScene;
 						enabledScene = startScene;
 					}
