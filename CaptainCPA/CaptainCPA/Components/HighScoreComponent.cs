@@ -4,6 +4,7 @@
  *
  * History:
  *		Kendall Roth	Dec-10-2015:	Created
+ *						Dec-11-2015:	Removed empty (default) score from showing
  */
 
 using System.Collections.Generic;
@@ -185,7 +186,7 @@ namespace CaptainCPA
 
 							//Position and draw the player score
 							spriteBatch.DrawString(font, playerScore.ToString(),
-								new Vector2(position.X + 315 - font.MeasureString(highScore.Score.ToString()).X, tempPosition), Color.Gold);
+								new Vector2(position.X + 315 - font.MeasureString(playerScore.ToString()).X, tempPosition), Color.Gold);
 
 							playerScoreDrawn = true;
 						}
