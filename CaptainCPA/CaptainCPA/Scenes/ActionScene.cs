@@ -189,14 +189,14 @@ namespace CaptainCPA
                 return;
             }
 
-            counter++;
-            if (counter == 6000)
-            {
-                counter = 0;
-            }
 
             if (character.IsGhost)
             {
+                counter++;
+                if (counter == 6000)
+                {
+                    counter = 0;
+                }
                 if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
                 {
                     foreach (MoveableTile m in moveableTileList)
@@ -223,13 +223,6 @@ namespace CaptainCPA
 
             //Update the score
             scoreDisplay.Message = character.Score.ToString();
-
-            KeyboardState ks = Keyboard.GetState();
-
-            //debugging: smoothly move all tiles back to initial position
-            if (ks.IsKeyDown(Keys.Space))
-                slideBack();
-
 
             CharacterStateManager.TooFarRight = false;
             if (CharacterStateManager.IsMoving)
