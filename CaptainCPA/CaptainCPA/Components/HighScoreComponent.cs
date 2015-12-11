@@ -58,8 +58,6 @@ namespace CaptainCPA
 					break;
 				}
 			}
-
-			playerHasHighScore = true;
 		}
 
 		/// <summary>
@@ -83,7 +81,6 @@ namespace CaptainCPA
 			if (playerName.ToLower() == "reset")
 			{
 				Utilities.ResetHighScores();
-				highScores = new List<HighScore>();
 				playerName = "";
 				highScoreEntered = true;
 			}
@@ -115,11 +112,8 @@ namespace CaptainCPA
 							{
 								playerName = "Guest";
 							}
-
-							//Add the player's score to the high scores and save
-							highScores.Add(new HighScore() { Name = playerName, Score = playerScore });
-
-							Utilities.SaveHighScores(highScores);
+							
+							Utilities.UpdateHighScores(new HighScore() { Name = playerName, Score = playerScore });
 
 							highScoreEntered = true;
 						}
@@ -148,6 +142,7 @@ namespace CaptainCPA
 			}
 			else
 			{
+				//If the user doesn't get a high score, return to the main menu when they press 'Enter'
 				if (ks.IsKeyDown(Keys.Enter))
 				{
 					highScoreEntered = true;
