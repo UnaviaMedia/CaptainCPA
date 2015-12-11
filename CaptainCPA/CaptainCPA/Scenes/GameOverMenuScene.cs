@@ -1,25 +1,24 @@
 /*
  * Project: CaptainCPA - GameOverMenuScene.cs
- * Purpose: Display the game over menu
+ * Purpose: Display the Game Over screen
  *
  * History:
  *		Kendall Roth	Dec-09-2015:	Created
+ *						Dec-10-2015:	Removed dependency on menu system
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Displays the game over menu after the game has ended
+	/// Displays the Game Over screen after the game has ended
 	/// </summary>
 	public class GameOverMenuScene : GameScene
 	{
 		private Texture2D menuImage;
 		private HighScoreComponent highScoreComponent;
-		private string[] menuItems = {"Exit to Main Menu"};
 
 		public HighScoreComponent HighScoreComponent
 		{
