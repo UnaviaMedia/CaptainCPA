@@ -4,18 +4,11 @@
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
+ *						Dec-11-2015:	Removed Observer pattern
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
@@ -23,7 +16,7 @@ namespace CaptainCPA
     /// <summary>
     /// Platform tile
     /// </summary>
-    public class Tile : Subject, IBounds
+	public class Tile : DrawableGameComponent, IBounds
     {
         protected SpriteBatch spriteBatch;
         protected Texture2D texture;
@@ -150,8 +143,9 @@ namespace CaptainCPA
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
+
             //Draw if tile is on screen
-            if (position.X >= -Settings.TILE_SIZE &&
+            if (position.X >= -Settings.TILE_SIZE && 
                     position.X + texture.Width <= Settings.Stage.X + (2 * Settings.TILE_SIZE))
                 spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
             spriteBatch.End();

@@ -1,40 +1,29 @@
 /*
  * Project: CaptainCPA - GameOverMenuScene.cs
- * Purpose: Display the game over menu
+ * Purpose: Display the Game Over screen
  *
  * History:
  *		Kendall Roth	Dec-09-2015:	Created
+ *						Dec-10-2015:	Removed dependency on menu system
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Enumerates the menu items in the Game Over menu
-	/// </summary>
-	public enum GameOverMenuItems
-	{
-		MainMenu, Quit
-	}
-
-	/// <summary>
-	/// Displays the game over menu after the game has ended
+	/// Displays the Game Over screen after the game has ended
 	/// </summary>
 	public class GameOverMenuScene : GameScene
 	{
-		private MenuComponent menu;
 		private Texture2D menuImage;
+		private HighScoreComponent highScoreComponent;
 
-		public MenuComponent Menu
+		public HighScoreComponent HighScoreComponent
 		{
-			get { return menu; }
-			set { menu = value; }
+			get { return highScoreComponent; }
 		}
-		string[] menuItems = {"Exit to Main Menu",
-							 "Quit"};
 
 		/// <summary>
 		/// Constructor for the Pause Menu Scene
@@ -44,14 +33,12 @@ namespace CaptainCPA
 		public GameOverMenuScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
 		{
-			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 - 155, Settings.Stage.Y / 2 - 50);
-			menu = new MenuComponent(game, spriteBatch,
-				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
-				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
-				menuItems, menuPosition);
-			this.Components.Add(menu);
-
 			menuImage = game.Content.Load<Texture2D>("Images/GameOverMenu");
+
+			//Add the high score component
+			Vector2 highScorePosition = new Vector2(Settings.Stage.X / 2 - 175, Settings.Stage.Y / 2 - 30);
+			highScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition);
+			this.components.Add(highScoreComponent);
 		}
 
 		/// <summary>

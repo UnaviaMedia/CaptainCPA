@@ -4,6 +4,7 @@
  *
  * History:
  *		Doug Epp		Nov-24-2015:	Created
+ *		Kendall Roth	Dec-10-2015:	Added EnableComponents and DisableComponents
  */
 
 using System.Collections.Generic;
@@ -46,6 +47,38 @@ namespace CaptainCPA
 			this.Visible = false;
 		}
 
+		/// <summary>
+		/// Enable all components in GameScene as well as itself
+		/// </summary>
+		public virtual void EnableComponents()
+		{
+			this.Enabled = true;
+
+			foreach (GameComponent component in components)
+			{
+				component.Enabled = true;
+			}
+		}
+
+		/// <summary>
+		/// Disable all components in GameScene as well as itself
+		/// </summary>
+		public virtual void DisableComponents()
+		{
+			this.Enabled = false;
+
+			foreach (GameComponent component in components)
+			{
+				component.Enabled = false;
+			}
+		}
+
+
+		/// <summary>
+		/// Constructor for GameScene
+		/// </summary>
+		/// <param name="game">Game reference</param>
+		/// <param name="spriteBatch">SpriteBatch reference</param>
 		public GameScene(Game game, SpriteBatch spriteBatch)
 			: base(game)
 		{
@@ -80,6 +113,10 @@ namespace CaptainCPA
 			base.Update(gameTime);
 		}
 
+		/// <summary>
+		/// Allows the game component to draw itself.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Draw(GameTime gameTime)
 		{
 			DrawableGameComponent comp = null;
@@ -98,6 +135,7 @@ namespace CaptainCPA
 
 			base.Draw(gameTime);
 		}
+
 		/// <summary>
 		/// Reads a text file and returns the contents as a string
 		/// </summary>

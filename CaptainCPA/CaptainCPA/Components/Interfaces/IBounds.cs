@@ -5,9 +5,7 @@
  * History:
  *		Kendall Roth	Nov-27-2015:	Created
  */
-
-
-using Microsoft.Xna.Framework;
+ 
 
 namespace CaptainCPA
 {

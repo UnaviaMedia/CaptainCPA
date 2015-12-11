@@ -5,6 +5,7 @@
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
  *						Nov-29-2015:	Optimizations
+ *						Dec-11-2015:	Removed Observer pattern
  */
 
 using System.Collections.Generic;
@@ -16,30 +17,17 @@ namespace CaptainCPA
 	/// <summary>
 	/// Base CollisionManager component
 	/// </summary>
-	public class CollisionManager : Subject
+	public class CollisionManager : GameComponent
 	{
 		protected List<MoveableTile> moveableTiles;
 		protected List<FixedTile> fixedTiles;
 
-		//Observers
-		protected Observer audioManager;
-		protected Observer soundManager;
-		protected Observer levelEventsManager;
 
 		public CollisionManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game)
 		{
 			this.moveableTiles = moveableTiles;
 			this.fixedTiles = fixedTiles;
-
-			audioManager = new AudioManager(game);
-			this.AddObserver(audioManager);
-
-			soundManager = new ScoreManager(game);
-			this.AddObserver(soundManager);
-
-			levelEventsManager = new LevelEventManager(game);
-			this.AddObserver(levelEventsManager);
 		}
 
 		/// <summary>

@@ -1,75 +1,45 @@
 /*
  * Project: CaptainCPA - HighScore.cs
- * Purpose: Display the high scores from a text file
+ * Purpose: Display the high scores from an XML file
  *
  * History:
  *		Doug Epp		Nov-26-2015:	Created
  *		Kendall Roth	Dec-09-2015:	Updated User Interface Design
  *										Added high score system
+ *						Dec-10-2015:	Updated high score system
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Xml;
+using System.Linq;
 
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Struct to track player highscores
-	/// </summary>
-	public struct HighScore
-	{
-		public int Rank { get; set; }
-		public int Score { get; set; }
-		public string Name { get; set; }
-	}
-
-	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Display the high scores from an XML file
 	/// </summary>
 	public class HighScoreScene : GameScene
 	{
+		private Vector2 position;
+		private SpriteFont font;
 		private Texture2D menuImage;
 		private List<HighScore> highScores;
-
-		public List<HighScore> HighScores
-		{
-			get { return highScores; }
-			set { highScores = value; }
-		}
-
-		//private string message;
-		//private SpriteFont font;
 
 		public HighScoreScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
 		{
-			//font = game.Content.Load<SpriteFont>("Fonts/MenuFont");
-			//message = readFile(@"Text/HighScoreMessage.txt");
+			position = new Vector2(Settings.Stage.X / 2 - 160, Settings.Stage.Y / 2 - 107);
+			font = game.Content.Load<SpriteFont>("Fonts/HighScoreFont");
+
 			menuImage = game.Content.Load<Texture2D>("Images/HighScoreScreen");
-		}
 
-		/// <summary>
-		/// Create a list of player high scores
-		/// </summary>
-		public void LoadHighScores()
-		{
-			//Create a new XML document and load the selected save file
-			XmlDocument loadFile = new XmlDocument();
-			loadFile.Load(@"Content/HighScores.xml");
+			//Get the list of the 5 highest scores
+			highScores = Utilities.LoadHighScores().Take(5).ToList();
 
-			var scores = loadFile.SelectNodes("/XnaContent/PlatformGame/Scores/*");
-
-			foreach (XmlNode highScore in scores)
+			if (highScores.Count == 0)
 			{
-				//Get properties of the high score
-				int rank = int.Parse(highScore.Attributes["rank"].Value);
-				int score = int.Parse(highScore.Attributes["score"].Value);
-				string name = highScore.Attributes["name"].Value;
-
-				//Add the high score to the list of high scores
-				highScores.Add(new HighScore() { Rank = rank, Score = score, Name = name });
+				highScores.Add(new HighScore() { Name = "-----------------------", Score = 0 });
 			}
 		}
 
@@ -97,9 +67,31 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Draw(GameTime gameTime)
 		{
+			float tempPosition = position.Y;
+
 			spriteBatch.Begin();
-			//spriteBatch.DrawString(font, message, new Vector2(0, 0), Color.White);
+
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
+
+			//Display the highscores
+			for (int i = 0; i < highScores.Count; i++)
+			{
+				tempPosition += font.MeasureString(highScores[i].Name).Y;
+
+				//Position and draw the player name
+				spriteBatch.DrawString(font, highScores[i].Name, new Vector2(position.X, tempPosition), Color.White);
+
+				//Position and draw the player score
+				spriteBatch.DrawString(font, highScores[i].Score.ToString(), 
+					new Vector2(position.X + 315 - font.MeasureString(highScores[i].Score.ToString()).X, tempPosition), Color.White);
+
+				//Give a bit more space after the first HighScore
+				if (i == 0)
+				{
+					tempPosition += 25;
+				}
+			}
+
 			spriteBatch.End();
 
 			base.Draw(gameTime);

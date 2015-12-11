@@ -2,9 +2,12 @@
 <XnaContent>
 	<PlatformGame>
 		<Scores>
-			<HighScore rank="1" score="75" name="Sabbhir Ahmed"></HighScore>
-			<HighScore rank="2" score="50" name="Doug Epp"></HighScore>
-			<HighScore rank="3" score="25" name="Kendall Roth"></HighScore>
+			<HighScore score="8" name="Doug Epp"></HighScore>
+			<HighScore score="3" name="Loser"></HighScore>
+			<!--<HighScore score="2" name="Another One"></HighScore>
+			<HighScore score="12" name="Sabbhir Ahmed"></HighScore>
+			<HighScore score="4" name="Test User"></HighScore>
+			<HighScore score="6" name="Kendall Roth"></HighScore>-->
 		</Scores>
 	</PlatformGame>
 </XnaContent>

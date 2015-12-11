@@ -36,6 +36,9 @@ namespace CaptainCPA
 		private HighScoreScene highScoreScene;
 		private HowToPlayScene howToPlayScene;
 		private GameOverMenuScene gameOverMenuScene;
+
+		private GameScene baseScene;
+		private GameScene enabledScene;
 		#endregion
 
 		private string selectedLevel;
@@ -93,6 +96,7 @@ namespace CaptainCPA
 			//Initialize first level
 			selectedLevel = "Level1";
 
+			#region SceneCreation
 			//Create all scenes and add to the Components list
 			startScene = new StartScene(this, spriteBatch);
 			scenes.Add(startScene);
@@ -112,14 +116,14 @@ namespace CaptainCPA
 			aboutScene = new AboutScene(this, spriteBatch);
 			scenes.Add(aboutScene);
 
-			highScoreScene = new HighScoreScene(this, spriteBatch);
-			scenes.Add(highScoreScene);
-
 			howToPlayScene = new HowToPlayScene(this, spriteBatch);
 			scenes.Add(howToPlayScene);
 
 			gameOverMenuScene = new GameOverMenuScene(this, spriteBatch);
 			scenes.Add(gameOverMenuScene);
+
+			highScoreScene = new HighScoreScene(this, spriteBatch);
+			scenes.Add(highScoreScene);
 
 			//Add each GameScene to the game's components
 			foreach (GameScene gameScene in scenes)
@@ -129,6 +133,9 @@ namespace CaptainCPA
 
 			//Display the home screen
 			startScene.Show();
+			baseScene = startScene;
+			enabledScene = startScene;
+			#endregion
 		}
 
 		/// <summary>
@@ -171,81 +178,149 @@ namespace CaptainCPA
 				Window.Title = fps.ToString();
 			}*/
 
-			#region menu navigation
+			#region MenuNavigation
 			int selectedIndex = 0;
 			KeyboardState ks = Keyboard.GetState();
-			if (startScene.Enabled)
+
+			//Handle menu navigation
+			if (baseScene == startScene)
 			{
+				//Return to Start scene from all sub-scenes
+				if (ks.IsKeyDown(Keys.Escape))
+				{
+					hideAllScenes();
+					startScene.Show();
+					enabledScene = startScene;
+				}
+
+				//DEBUG - Enable Resetting the HighScores
+				if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R))
+				{
+					Utilities.ResetHighScores();
+				}
+
+				//Get the selected item index from the menu
 				selectedIndex = startScene.Menu.SelectedIndex;
+
+				//Display the corresponding sub-scene based on user selection
 				if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 				{
+					//Display the Game scene
 					hideAllScenes();
 
 					//Reset game (to selected level)
 					actionScene.Reset(this, spriteBatch, selectedLevel);
 					actionScene.Show();
+					baseScene = actionScene;
+					enabledScene = actionScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter))
 				{
+					//Display the LevelSelector scene
 					hideAllScenes();
 					levelSelectScene.Show();
+					enabledScene = levelSelectScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
 				{
+					//Display the Help scene
 					hideAllScenes();
 					helpScene.Show();
+					enabledScene = helpScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.About && ks.IsKeyDown(Keys.Enter))
 				{
+					//Display the About scene
 					hideAllScenes();
 					aboutScene.Show();
+					enabledScene = aboutScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.HighScore && ks.IsKeyDown(Keys.Enter))
 				{
+					//Remove old high score scene
+					if (highScoreScene != null)
+					{
+						scenes.Remove(highScoreScene);
+						this.Components.Remove(highScoreScene);
+					}
+
+					//Create a new high score scene
+					highScoreScene = new HighScoreScene(this, spriteBatch);
+					scenes.Add(highScoreScene);
+					this.Components.Add(highScoreScene);
+
+					//Display the high score screen
 					hideAllScenes();
 					highScoreScene.Show();
+					enabledScene = highScoreScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.HowTo && ks.IsKeyDown(Keys.Enter))
 				{
+					//Display the HowToPlay scene
 					hideAllScenes();
 					howToPlayScene.Show();
+					enabledScene = howToPlayScene;
 				}
 				else if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter))
 				{
+					//Exit
 					Exit();
 				}
 			}
-
-			if (actionScene.Enabled)
+			else if (baseScene == actionScene)
 			{
 				//Display pause menu
 				if (ks.IsKeyDown(Keys.Escape))
 				{
 					//Pause the game
-					foreach (var item in actionScene.Components)
-					{
-						item.Enabled = false;
-					}
+					actionScene.DisableComponents();
 
 					//Show the pause menu
 					pauseMenuScene.Menu.SelectedIndex = 0;
 					pauseMenuScene.Show();
+					baseScene = pauseMenuScene;
+					enabledScene = pauseMenuScene;
 				}
 
-				//Handle Pause Menu
-				if (pauseMenuScene.Enabled)
+				//Display the Game Over menu when the game ends (player dies)
+				if (actionScene.GameOver == true)
 				{
+					//Pause the game
+					actionScene.DisableComponents();
+
+					//Remove the current GameOver menu scene if one exists
+					if (gameOverMenuScene != null)
+					{
+						scenes.Remove(gameOverMenuScene);
+						this.Components.Remove(gameOverMenuScene);
+					}
+
+					//Create a new GameOver menu scene
+					gameOverMenuScene = new GameOverMenuScene(this, spriteBatch);
+					scenes.Add(gameOverMenuScene);
+					this.Components.Add(gameOverMenuScene);
+
+					//Show the GameOver menu
+					gameOverMenuScene.Show();
+					baseScene = gameOverMenuScene;
+					enabledScene = gameOverMenuScene;
+				}
+			}
+			else if (baseScene == pauseMenuScene)
+			{
+				if (enabledScene == pauseMenuScene)
+				{
+					//Get the selected menu item index from the Pause menu
 					selectedIndex = pauseMenuScene.Menu.SelectedIndex;
 
 					//Unpause the game
 					if (selectedIndex == (int)PauseMenuItems.Resume && ks.IsKeyDown(Keys.Enter))
 					{
-						foreach (var item in actionScene.Components)
-						{
-							item.Enabled = true;
-						}
+						actionScene.EnableComponents();
 
 						pauseMenuScene.Hide();
+						baseScene = actionScene;
+						enabledScene = actionScene;
 					}
 
 					//Return to Main Menu (and reset game)
@@ -253,6 +328,8 @@ namespace CaptainCPA
 					{
 						hideAllScenes();
 						startScene.Show();
+						baseScene = startScene;
+						enabledScene = startScene;
 					}
 
 					//Display How To Play menu
@@ -260,6 +337,7 @@ namespace CaptainCPA
 					{
 						pauseMenuScene.Hide();
 						howToPlayScene.Show();
+						enabledScene = howToPlayScene;
 					}
 
 					//Exit the game
@@ -268,57 +346,44 @@ namespace CaptainCPA
 						Exit();
 					}
 				}
-
-				//Allow the player to return to the pause menu from the how-to-play menu
-				if (howToPlayScene.Enabled)
+				else if (enabledScene == howToPlayScene)
 				{
+					//Return to the pause menu
 					if (ks.IsKeyDown(Keys.Escape))
 					{
 						howToPlayScene.Hide();
 						pauseMenuScene.Show();
+						enabledScene = pauseMenuScene;
 					}
 				}
-
-				//Display the Game Over menu when the game ends (player dies)
-				if (actionScene.GameOver == true)
-				{
-					//Pause (end) the game
-					foreach (var item in actionScene.Components)
-					{
-						item.Enabled = false;
-					}
-
-					//Show the game over menu
-					gameOverMenuScene.Show();
-				}
-
-				//Handle game over
+			}
+			else if (baseScene == gameOverMenuScene)
+			{
+				//Handle game over event
 				if (gameOverMenuScene.Enabled)
 				{
-					selectedIndex = gameOverMenuScene.Menu.SelectedIndex;
-
 					//Return to the Main Menu (and reset game)
-					if (selectedIndex == (int)GameOverMenuItems.MainMenu && ks.IsKeyDown(Keys.Enter))
+					if (gameOverMenuScene.HighScoreComponent.NameEntered == true && ks.IsKeyDown(Keys.Enter))
 					{
 						hideAllScenes();
 						startScene.Show();
-					}
-
-					//Exit the game
-					if (selectedIndex == (int)GameOverMenuItems.Quit && ks.IsKeyDown(Keys.Enter))
-					{
-						Exit();
+						baseScene = startScene;
+						enabledScene = startScene;
 					}
 				}
 			}
 			else if (!startScene.Enabled)
 			{
+				//Should never get here!!!
 				if (ks.IsKeyDown(Keys.Escape))
 				{
 					hideAllScenes();
 					startScene.Show();
+					enabledScene = startScene;
 				}
 			}
+
+			//Set the old keystate to the current keystate
 			oldState = ks;
 			#endregion
 
@@ -331,6 +396,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Draw(GameTime gameTime)
 		{
+			//Redraw the screen
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
 			base.Draw(gameTime);
