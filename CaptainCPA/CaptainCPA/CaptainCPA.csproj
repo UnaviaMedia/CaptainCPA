@@ -77,12 +77,9 @@
     <Compile Include="Components\Display\ScoreDisplay.cs" />
     <Compile Include="Components\HighScore.cs" />
     <Compile Include="Components\HighScoreComponent.cs" />
+    <Compile Include="Components\Interfaces\IBounds.cs" />
     <Compile Include="Components\MenuComponent.cs" />
-    <Compile Include="Interfaces\IBounds.cs" />
-    <Compile Include="Managers\HealthManager.cs" />
     <Compile Include="Managers\CharacterStateManager.cs" />
-    <Compile Include="Managers\LevelEventManager.cs" />
-    <Compile Include="Managers\AudioManager.cs" />
     <Compile Include="Managers\CharacterCollisionManager.cs" />
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Scenes\LevelSelectScene.cs" />
@@ -90,10 +87,7 @@
     <Compile Include="Tiles\Enemy.cs" />
     <Compile Include="Tiles\Spike.cs" />
     <Compile Include="Utilities\LevelLoader.cs" />
-    <Compile Include="Components\Observer.cs" />
     <Compile Include="Managers\PhysicsManager.cs" />
-    <Compile Include="Managers\ScoreManager.cs" />
-    <Compile Include="Components\Subject.cs" />
     <Compile Include="Managers\TileCollisionPositioningManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
