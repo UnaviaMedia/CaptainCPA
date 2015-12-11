@@ -29,6 +29,12 @@ namespace CaptainCPA
         protected LevelLoader levelLoader;
         protected List<MoveableTile> moveableTileList;
         protected List<FixedTile> fixedTileList;
+
+        public List<FixedTile> FixedTileList
+        {
+            get { return fixedTileList; }
+            set { fixedTileList = value; }
+        }
         protected Character character;
 
         protected PhysicsManager physicsManager;
@@ -38,7 +44,7 @@ namespace CaptainCPA
 
         protected ScoreDisplay scoreDisplay;
         protected HealthDisplay healthDisplay;
-
+        private int counter;
         public bool GameOver { get; set; }
 
         /// <summary>
@@ -96,6 +102,7 @@ namespace CaptainCPA
 			GameOver = false;*/
             #endregion
             Reset(game, spriteBatch, level);
+            counter = 0;
         }
 
         public void Reset(Game game, SpriteBatch spriteBatch, string level)
@@ -158,7 +165,6 @@ namespace CaptainCPA
                     tiles.Add(c as Tile);
                 }
             }
-
         }
 
         /// <summary>
@@ -183,8 +189,47 @@ namespace CaptainCPA
                 return;
             }
 
+            counter++;
+            if (counter == 6000)
+            {
+                counter = 0;
+            }
+
+            if (character.IsGhost)
+            {
+                if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
+                {
+                    foreach (MoveableTile m in moveableTileList)
+                    {
+                        //m.Enabled = false;
+                        m.Visible = false;
+                        m.Position = m.InitPosition;
+                    }
+                    if (counter % 2 == 0)
+                    {
+                        slideBack();
+                    }
+                }
+                else
+                {
+                    foreach (MoveableTile m in moveableTileList)
+                    {
+                        //m.Enabled = true;
+                        m.Visible = true;
+                    }
+                    character.IsGhost = false;
+                }
+            }
+
             //Update the score
             scoreDisplay.Message = character.Score.ToString();
+
+            KeyboardState ks = Keyboard.GetState();
+
+            //debugging: smoothly move all tiles back to initial position
+            if (ks.IsKeyDown(Keys.Space))
+                slideBack();
+
 
             CharacterStateManager.TooFarRight = false;
             if (CharacterStateManager.IsMoving)
@@ -199,13 +244,12 @@ namespace CaptainCPA
                         {
                             t.Position = new Vector2(t.Position.X - character.Speed, t.Position.Y);
                         }
-                        //TODO: handle enemies moving too fast
                         CharacterStateManager.ScreenMoving = true;
                     }
                 }
 
                 //character is within range of the left side of the screen
-                else if (character.Bounds.Left <= Settings.TILE_SIZE * 2)
+                else if (character.Bounds.Left <= RIGHT_CHARACTER_BUFFER)
                 {
                     if (!CharacterStateManager.FacingRight) //character is moving to the left
                     {
@@ -213,7 +257,6 @@ namespace CaptainCPA
                         {
                             t.Position = new Vector2(t.Position.X + character.Speed, t.Position.Y);
                         }
-                        //TODO: handle enemies moving too fast
                         CharacterStateManager.ScreenMoving = true;
                     }
                 }
@@ -221,6 +264,20 @@ namespace CaptainCPA
             }
 
             base.Update(gameTime);
+        }
+        public void slideBack()
+        {
+            foreach (FixedTile t in fixedTileList)
+            {
+                if (t.Position.X > t.InitPosition.X)
+                {
+                    t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
+                }
+                else if (t.Position.X < t.InitPosition.X)
+                {
+                    t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
+                }
+            }
         }
     }
 }

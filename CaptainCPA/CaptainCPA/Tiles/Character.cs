@@ -36,6 +36,13 @@ namespace CaptainCPA
         protected float speed;
         protected float jumpSpeed;
         protected bool isAlive;
+        protected bool isGhost;
+
+        public bool IsGhost
+        {
+            get { return isGhost; }
+            set { isGhost = value; }
+        }
 
         //Store characters's starting position
         protected Vector2 startingPosition;
@@ -79,6 +86,7 @@ namespace CaptainCPA
                             Vector2 velocity, bool onGround, int lives, float speed, float jumpSpeed)
             : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
+
             dimension = new Vector2(64, 64);
             delay = 2;
             facingRight = true;
@@ -93,7 +101,6 @@ namespace CaptainCPA
             startingPosition = position;
 
             CharacterStateManager.Speed = speed;
-            Console.WriteLine(bounds);
             //Reset player score
             ResetScore();
         }
@@ -128,7 +135,7 @@ namespace CaptainCPA
             }
             else
             {
-                ResetPosition();
+                isGhost = true;
             }
         }
 
@@ -137,7 +144,7 @@ namespace CaptainCPA
         /// </summary>
         private void ResetPosition()
         {
-            position = new Vector2(startingPosition.X + origin.X, startingPosition.Y + origin.Y);
+            position = initPosition;
         }
 
         /// <summary>
