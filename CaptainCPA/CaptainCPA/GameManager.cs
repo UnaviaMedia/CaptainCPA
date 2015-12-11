@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace CaptainCPA
 {
@@ -40,6 +41,9 @@ namespace CaptainCPA
 		private GameScene baseScene;
 		private GameScene enabledScene;
 		#endregion
+
+		private List<Song> backgroundMusic;
+		private int backgroundMusicCounter;
 
 		private string selectedLevel;
 
@@ -92,6 +96,22 @@ namespace CaptainCPA
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
+
+			//Reset the background music index counter
+			backgroundMusicCounter = 0;
+
+			MediaPlayer.Volume = 0.15f;
+
+			//Instantiate list of songs
+			backgroundMusic = new List<Song>();
+
+			//If you could, please credit me as 'Joe Reynolds - Professorlamp' Refer people to my website at - jrtheories.webs.com Thank you!
+			//http://opengameart.org/content/energetic-platformer-music-drop-table-bass
+			backgroundMusic.Add(Content.Load<Song>("Sounds/DropTableBassFinal"));
+
+			//If you could, please credit me as 'Joe Reynolds - Professorlamp' Refer people to my website at - jrtheories.webs.com Thank you!
+			//http://opengameart.org/content/cinderellas-ballgag
+			backgroundMusic.Add(Content.Load<Song>("Sounds/CinderellasBallgagM"));
 
 			//Initialize first level
 			selectedLevel = "Level1";
@@ -386,6 +406,18 @@ namespace CaptainCPA
 			//Set the old keystate to the current keystate
 			oldState = ks;
 			#endregion
+
+
+			//Background music
+			if (MediaPlayer.State != MediaState.Playing)
+			{
+				if (++backgroundMusicCounter > backgroundMusic.Count - 1)
+				{
+					backgroundMusicCounter = 0;
+				}
+
+				MediaPlayer.Play(backgroundMusic[backgroundMusicCounter]);
+			}
 
 			base.Update(gameTime);
 		}

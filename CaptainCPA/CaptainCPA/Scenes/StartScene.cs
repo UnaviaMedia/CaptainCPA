@@ -51,6 +51,8 @@ namespace CaptainCPA
 							 "How to play",
 							 "Quit"};
 
+		private List<string> levelList;
+
 
 		public StartScene(Game game, SpriteBatch spriteBatch)
 			: base(game, spriteBatch)
@@ -72,6 +74,9 @@ namespace CaptainCPA
 			scrollingPosition1 = Vector2.Zero;
 			scrollingPosition2 = new Vector2(scrollingPosition1.X + scrollingTexture1.Width, scrollingPosition1.Y);
 			scrollingSpeed = new Vector2(1.0f, 0.0f);
+
+			//Create a list of levels
+			levelList = new List<string>() { "level1", "level2"};
 
 			//Set up the menu
 			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 + 140, Settings.Stage.Y / 2 - 60);

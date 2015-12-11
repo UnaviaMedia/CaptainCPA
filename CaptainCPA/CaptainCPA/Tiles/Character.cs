@@ -9,6 +9,7 @@
  *						Nov-27-2015:	Updated physics
  *						Nov-29-2015:	Added speed, jumpspeed, lives, and losing life methods
  *						Dec-09-2015:	Added player death
+ *						Dec-10-2015:	Added game over sound
  */
 
 using System;
@@ -16,7 +17,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-
+using Microsoft.Xna.Framework.Audio;
+using System.Threading;
+using System.Diagnostics;
 
 namespace CaptainCPA
 {
@@ -94,6 +97,7 @@ namespace CaptainCPA
 
 			CharacterStateManager.Speed = speed;
 			Console.WriteLine(bounds);
+
 			//Reset player score
 			ResetScore();
 		}
@@ -125,6 +129,10 @@ namespace CaptainCPA
 				isAlive = false;
 				this.Enabled = false;
 				this.Visible = false;
+
+				//Play the game over sound effect
+				SoundEffect gameOver = Game.Content.Load<SoundEffect>("Sounds/GameOver");
+				gameOver.Play();
 			}
 			else
 			{
