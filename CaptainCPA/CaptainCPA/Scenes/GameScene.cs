@@ -46,6 +46,26 @@ namespace CaptainCPA
 			this.Visible = false;
 		}
 
+		public virtual void EnableComponents()
+		{
+			this.Enabled = true;
+
+			foreach (GameComponent component in components)
+			{
+				component.Enabled = true;
+			}
+		}
+
+		public virtual void DisableComponents()
+		{
+			this.Enabled = false;
+
+			foreach (GameComponent component in components)
+			{
+				component.Enabled = false;
+			}
+		}
+
 		public GameScene(Game game, SpriteBatch spriteBatch)
 			: base(game)
 		{

@@ -28,11 +28,8 @@ namespace CaptainCPA
 
 		private List<HighScore> highScores;
 		private bool playerHasHighScore;
-		private int highScore;
 		private int playerScore;
 		private string playerName;
-
-		private List<Keys> validNameKeys;
 
 		public bool NameEntered
 		{
@@ -45,13 +42,8 @@ namespace CaptainCPA
 			this.spriteBatch = spriteBatch;
 			this.font = font;
 			this.position = position;
-			this.playerScore = 0;
 
-			//List of valid keys a player can type
-			/*validNameKeys = new List<Keys>() {
-				Keys.A, Keys.B, Keys.C, Keys.D, Keys.E, Keys.F, Keys.G, Keys.H, Keys.I, Keys.J, Keys.K, Keys.L, Keys.M, Keys.N,
-				Keys.O, Keys.P, Keys.Q, Keys.R, Keys.S, Keys.T, Keys.U, Keys.V, Keys.W, Keys.X, Keys.Y, Keys.Z, Keys.Enter, Keys.Back };*/
-
+			playerScore = Character.Score;
 			highScoreEntered = false;
 			playerHasHighScore = false;
 			playerName = "";

@@ -29,7 +29,7 @@ namespace CaptainCPA
 			{
 				case "GemCollected":
 					((Gem)sender).Destroy();
-					((Character)secondarySender).Score += ((Gem)sender).Points;
+					Character.Score += ((Gem)sender).Points;
 					break;
 				default:
 					break;

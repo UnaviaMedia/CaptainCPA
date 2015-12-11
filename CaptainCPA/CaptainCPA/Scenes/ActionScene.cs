@@ -170,7 +170,7 @@ namespace CaptainCPA
 			}
 
 			//Update the score
-			scoreDisplay.Message = character.Score.ToString();
+			scoreDisplay.Message = Character.Score.ToString();
 
 			base.Update(gameTime);
 		}

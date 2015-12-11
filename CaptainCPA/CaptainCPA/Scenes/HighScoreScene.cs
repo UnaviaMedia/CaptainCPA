@@ -81,6 +81,7 @@ namespace CaptainCPA
 				spriteBatch.DrawString(font, highScores[i].Score.ToString(), 
 					new Vector2(position.X + 315 - font.MeasureString(highScores[i].Score.ToString()).X, tempPosition), Color.White);
 
+				//Give a bit more space after the first HighScore
 				if (i == 0)
 				{
 					tempPosition += 25;

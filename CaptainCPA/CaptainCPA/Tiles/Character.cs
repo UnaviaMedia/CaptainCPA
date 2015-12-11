@@ -25,14 +25,14 @@ namespace CaptainCPA
 	/// </summary>
 	public class Character : MoveableTile
 	{
-        private List<Rectangle> frames;
-        private Vector2 dimension;
-        private int delay;
-        private int delayCounter;
-        private int frameIndex = 0;
-        private Texture2D bigTexture;
+		private List<Rectangle> frames;
+		private Vector2 dimension;
+		private int delay;
+		private int delayCounter;
+		private int frameIndex = 0;
+		private Texture2D bigTexture;
 		protected int lives;
-		protected int score;
+		protected static int score;
 		protected float speed;
 		protected float jumpSpeed;
 		protected bool isAlive;
@@ -46,7 +46,7 @@ namespace CaptainCPA
 			set { lives = value; }
 		}
 
-		public int Score
+		public static int Score
 		{
 			get { return score;}
 			set { score = value; }
@@ -79,12 +79,12 @@ namespace CaptainCPA
 							Vector2 velocity, bool onGround, int lives, float speed, float jumpSpeed)
 			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
-            dimension = new Vector2(64, 64);
-            delay = 2;
-            facingRight = true;
-            //source: http://www.swingswingsubmarine.com/2010/11/25/seasons-after-fall-spritesheet-animation/
-            bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
-            createFrames();
+			dimension = new Vector2(64, 64);
+			delay = 2;
+			facingRight = true;
+			//source: http://www.swingswingsubmarine.com/2010/11/25/seasons-after-fall-spritesheet-animation/
+			bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
+			createFrames();
 			this.lives = lives;
 			this.speed = speed;
 			this.jumpSpeed = jumpSpeed;
@@ -159,14 +159,14 @@ namespace CaptainCPA
 			if (ks.IsKeyDown(Keys.Left))
 			{
 				velocity.X -= speed;
-                facingRight = false;
+				facingRight = false;
 			}
 
 			//If the Right key is pressed, add horizontal velocity to move right
 			if (ks.IsKeyDown(Keys.Right))
 			{
 				velocity.X += speed;
-                facingRight = true;
+				facingRight = true;
 			}
 
 			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
@@ -176,7 +176,7 @@ namespace CaptainCPA
 				onGround = false;
 			}
 
-            CharacterStateManager.CharacterPosition = position;
+			CharacterStateManager.CharacterPosition = position;
 
 			//Debug Mode
 			if (ks.IsKeyDown(Keys.Space))
@@ -184,63 +184,63 @@ namespace CaptainCPA
 				Console.WriteLine("Debug Mode");
 			}
 
-            //animation, hopefully
-            if (isMoving)
-            {
-                if (velocity.Y == 0)
-                {
-                    delayCounter++;
-                    if (delayCounter % delay == 0)
-                    {
-                        frameIndex++;
-                        if (frameIndex == 27)
-                            frameIndex = 0;
-                    }
-                }
-                else
-                {
-                    if (frameIndex != 1)
-                    {
-                        delayCounter++;
-                        if (delayCounter % delay == 0)
-                        {
-                            frameIndex++;
-                            if (frameIndex == 27)
-                                frameIndex = 0;
-                        }
-                    }
-                    else
-                    {
-                        frameIndex = 0;
-                    }
-                }
-            }
-            //texture = bigTexture.GetData<Texture2D>()
+			//animation, hopefully
+			if (isMoving)
+			{
+				if (velocity.Y == 0)
+				{
+					delayCounter++;
+					if (delayCounter % delay == 0)
+					{
+						frameIndex++;
+						if (frameIndex == 27)
+							frameIndex = 0;
+					}
+				}
+				else
+				{
+					if (frameIndex != 1)
+					{
+						delayCounter++;
+						if (delayCounter % delay == 0)
+						{
+							frameIndex++;
+							if (frameIndex == 27)
+								frameIndex = 0;
+						}
+					}
+					else
+					{
+						frameIndex = 0;
+					}
+				}
+			}
+			//texture = bigTexture.GetData<Texture2D>()
 			base.Update(gameTime);
 		}
-        public override void Draw(GameTime gameTime)
-        {
-            spriteBatch.Begin();
-            if (frameIndex >= 0)
-            {
-                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
-            }
-            spriteBatch.End();
-            //base.Draw(gameTime);
-        }
-        private void createFrames()
-        {
-            frames = new List<Rectangle>();
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    int x = j * (int)dimension.X + 5 * j;
-                    int y = i * (int)dimension.Y + 5 * i + 5;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
-                    frames.Add(r);
-                }
-            }
-        }
+		public override void Draw(GameTime gameTime)
+		{
+			spriteBatch.Begin();
+			if (frameIndex >= 0)
+			{
+				spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
+			}
+			spriteBatch.End();
+			//base.Draw(gameTime);
+		}
+		private void createFrames()
+		{
+			frames = new List<Rectangle>();
+			for (int i = 0; i < 4; i++)
+			{
+				for (int j = 0; j < 7; j++)
+				{
+					int x = j * (int)dimension.X + 5 * j;
+					int y = i * (int)dimension.Y + 5 * i + 5;
+					Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
+					frames.Add(r);
+				}
+			}
+		}
 	}
 }
