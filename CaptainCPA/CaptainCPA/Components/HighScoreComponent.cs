@@ -59,6 +59,9 @@ namespace CaptainCPA
 					if (playerScore > highScore.Score)
 					{
 						playerHasHighScore = true;
+
+						//Remove the last high score so that there are always only three high scores being displayed
+						highScores.RemoveAt(highScores.Count - 1);
 						break;
 					}
 				} 
@@ -188,6 +191,10 @@ namespace CaptainCPA
 			bool playerScoreDrawn = false;
 
 			spriteBatch.Begin();
+
+			//Draw the player's score regardless of whether or not they got a high score
+			spriteBatch.DrawString(font, playerScore.ToString(), 
+				new Vector2((Settings.Stage.X / 2) - (font.MeasureString(playerScore.ToString()).X / 2), position.Y - 28), Color.White);
 
 			if (highScores.Count != 0)
 			{
