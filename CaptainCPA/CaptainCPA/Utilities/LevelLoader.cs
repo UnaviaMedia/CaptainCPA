@@ -155,6 +155,11 @@ namespace CaptainCPA
                             onGround = true;
                             newTile = new Monstar(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
                             break;
+                        case "Mimic":
+                            velocity = new Vector2(3, 0);
+                            onGround = true;
+                            newTile = new Mimic(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+                            break;
 						default:
 							break;
 					}

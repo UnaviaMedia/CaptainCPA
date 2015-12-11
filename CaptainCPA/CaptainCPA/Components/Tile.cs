@@ -29,6 +29,13 @@ namespace CaptainCPA
         protected Texture2D texture;
         protected Color color;
         protected Vector2 position;
+        protected Vector2 initPosition;
+
+        public Vector2 InitPosition
+        {
+            get { return initPosition; }
+            set { initPosition = value; }
+        }
 
         protected float rotation = 0.0f;
         protected float scale = 1.0f;
@@ -83,6 +90,7 @@ namespace CaptainCPA
             origin = new Vector2(texture.Width / 2, texture.Height / 2);
             this.color = color;
             this.position = new Vector2(position.X + origin.X, position.Y + origin.Y);
+            this.initPosition = position;
             this.tileType = tileType;
 
             this.rotation = rotation;

@@ -85,6 +85,7 @@
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Scenes\LevelSelectScene.cs" />
     <Compile Include="Scenes\GameOverMenuScene.cs" />
+    <Compile Include="Tiles\Enemies\Mimic.cs" />
     <Compile Include="Tiles\Enemies\Monstar.cs" />
     <Compile Include="Tiles\Enemy.cs" />
     <Compile Include="Tiles\Spike.cs" />
