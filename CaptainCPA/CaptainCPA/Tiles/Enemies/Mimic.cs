@@ -77,7 +77,7 @@ namespace CaptainCPA
             spriteBatch.Begin();
             if (frameIndex >= 0)
             {
-                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, new Vector2(dimension.X / 2 - 20, dimension.Y / 2 -15), 0.5f, spriteEffect, layerDepth);
+                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, new Vector2(dimension.X / 2 - 20, dimension.Y / 2 - 15), 0.5f, spriteEffect, layerDepth);
             }
             spriteBatch.End();
         }
@@ -86,10 +86,10 @@ namespace CaptainCPA
             frames = new List<Rectangle>();
             for (int i = 0; i < 7; i++)
             {
-                    int x = i * (int)dimension.X;
-                    int y = 512;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
-                    frames.Add(r);
+                int x = i * (int)dimension.X;
+                int y = 512;
+                Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
+                frames.Add(r);
             }
         }
     }

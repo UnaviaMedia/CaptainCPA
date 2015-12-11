@@ -95,7 +95,6 @@ namespace CaptainCPA
 			//Set game over to false
 			GameOver = false;*/
             #endregion
-
             Reset(game, spriteBatch, level);
         }
 
@@ -186,26 +185,6 @@ namespace CaptainCPA
 
             //Update the score
             scoreDisplay.Message = character.Score.ToString();
-
-            KeyboardState ks = Keyboard.GetState();
-
-            if (ks.IsKeyDown(Keys.Space))
-            {
-                while (tiles[0].Position.X != tiles[0].InitPosition.X)
-                {
-                    foreach (Tile t in tiles)
-                    {
-                        if (t.Position.X > t.InitPosition.X)
-                        {
-                            t.Position = new Vector2(t.Position.X-1, t.Position.Y);
-                        }
-                        else
-                        {
-                            t.Position = new Vector2(t.Position.X + 1, t.Position.Y);
-                        }
-                    }
-                }
-            }
 
             CharacterStateManager.TooFarRight = false;
             if (CharacterStateManager.IsMoving)
