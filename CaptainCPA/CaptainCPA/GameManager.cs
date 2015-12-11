@@ -45,7 +45,7 @@ namespace CaptainCPA
 		private List<Song> backgroundMusic;
 		private int backgroundMusicCounter;
 
-		private string selectedLevel;
+		private List<string> levels;
 
 		private KeyboardState oldState;
 
@@ -97,6 +97,8 @@ namespace CaptainCPA
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
+			#region BackgroundMusic
 			//Reset the background music index counter
 			backgroundMusicCounter = 0;
 
@@ -112,16 +114,21 @@ namespace CaptainCPA
 			//If you could, please credit me as 'Joe Reynolds - Professorlamp' Refer people to my website at - jrtheories.webs.com Thank you!
 			//http://opengameart.org/content/cinderellas-ballgag
 			backgroundMusic.Add(Content.Load<Song>("Sounds/CinderellasBallgagM"));
+			#endregion
 
-			//Initialize first level
-			selectedLevel = "Level1";
+
+			#region LevelCreation
+			//Create level list
+			levels = new List<string>(){ "Level1", "Level2", "Level3", "Level4", "Level5", "Level6", "Level7", "Level8" };
+			#endregion
+
 
 			#region SceneCreation
 			//Create all scenes and add to the Components list
 			startScene = new StartScene(this, spriteBatch);
 			scenes.Add(startScene);
 
-			actionScene = new ActionScene(this, spriteBatch, selectedLevel);
+			actionScene = new ActionScene(this, spriteBatch, levels[0]);
 			scenes.Add(actionScene);
 
 			pauseMenuScene = new PauseMenuScene(this, spriteBatch);
@@ -185,6 +192,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
+			#region FPSTracking
 			/*//Update FPS
 			elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 			totalFrames++;
@@ -197,6 +205,7 @@ namespace CaptainCPA
 				elapsedTime = 0;
 				Window.Title = fps.ToString();
 			}*/
+			#endregion
 
 			#region MenuNavigation
 			int selectedIndex = 0;
@@ -219,72 +228,89 @@ namespace CaptainCPA
 					Utilities.ResetHighScores();
 				}
 
-				//Get the selected item index from the menu
-				selectedIndex = startScene.Menu.SelectedIndex;
-
-				//Display the corresponding sub-scene based on user selection
-				if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
+				if (enabledScene == startScene)
 				{
+					//Get the selected item index from the menu
+					selectedIndex = startScene.Menu.SelectedIndex;
+
+					//Display the corresponding sub-scene based on user selection
+					if (selectedIndex == (int)menuItemTitles.Start && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
+					{
+						//Display the Game scene
+						hideAllScenes();
+
+						//Reset game (to selected level)
+						actionScene.Reset(this, spriteBatch, levels[0]);
+						actionScene.Show();
+						baseScene = actionScene;
+						enabledScene = actionScene;
+					}
+					else if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter))
+					{
+						//Display the LevelSelector scene
+						hideAllScenes();
+						levelSelectScene.Show();
+						enabledScene = levelSelectScene;
+					}
+					else if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
+					{
+						//Display the Help scene
+						hideAllScenes();
+						helpScene.Show();
+						enabledScene = helpScene;
+					}
+					else if (selectedIndex == (int)menuItemTitles.About && ks.IsKeyDown(Keys.Enter))
+					{
+						//Display the About scene
+						hideAllScenes();
+						aboutScene.Show();
+						enabledScene = aboutScene;
+					}
+					else if (selectedIndex == (int)menuItemTitles.HighScore && ks.IsKeyDown(Keys.Enter))
+					{
+						//Remove old high score scene
+						if (highScoreScene != null)
+						{
+							scenes.Remove(highScoreScene);
+							this.Components.Remove(highScoreScene);
+						}
+
+						//Create a new high score scene
+						highScoreScene = new HighScoreScene(this, spriteBatch);
+						scenes.Add(highScoreScene);
+						this.Components.Add(highScoreScene);
+
+						//Display the high score screen
+						hideAllScenes();
+						highScoreScene.Show();
+						enabledScene = highScoreScene;
+					}
+					else if (selectedIndex == (int)menuItemTitles.HowTo && ks.IsKeyDown(Keys.Enter))
+					{
+						//Display the HowToPlay scene
+						hideAllScenes();
+						howToPlayScene.Show();
+						enabledScene = howToPlayScene;
+					}
+					else if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter))
+					{
+						//Exit
+						Exit();
+					} 
+				}
+				else if (enabledScene == levelSelectScene)
+				{
+					//Get the selected item index from the level selector menu
+					int selectedLevelIndex = levelSelectScene.SelectedIndex;
+
 					//Display the Game scene
 					hideAllScenes();
 
-					//Reset game (to selected level)
-					actionScene.Reset(this, spriteBatch, selectedLevel);
+					//Load selected level
+					actionScene.Reset(this, spriteBatch, levels[selectedLevelIndex]);
 					actionScene.Show();
 					baseScene = actionScene;
 					enabledScene = actionScene;
-				}
-				else if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter))
-				{
-					//Display the LevelSelector scene
-					hideAllScenes();
-					levelSelectScene.Show();
-					enabledScene = levelSelectScene;
-				}
-				else if (selectedIndex == (int)menuItemTitles.Help && ks.IsKeyDown(Keys.Enter))
-				{
-					//Display the Help scene
-					hideAllScenes();
-					helpScene.Show();
-					enabledScene = helpScene;
-				}
-				else if (selectedIndex == (int)menuItemTitles.About && ks.IsKeyDown(Keys.Enter))
-				{
-					//Display the About scene
-					hideAllScenes();
-					aboutScene.Show();
-					enabledScene = aboutScene;
-				}
-				else if (selectedIndex == (int)menuItemTitles.HighScore && ks.IsKeyDown(Keys.Enter))
-				{
-					//Remove old high score scene
-					if (highScoreScene != null)
-					{
-						scenes.Remove(highScoreScene);
-						this.Components.Remove(highScoreScene);
-					}
-
-					//Create a new high score scene
-					highScoreScene = new HighScoreScene(this, spriteBatch);
-					scenes.Add(highScoreScene);
-					this.Components.Add(highScoreScene);
-
-					//Display the high score screen
-					hideAllScenes();
-					highScoreScene.Show();
-					enabledScene = highScoreScene;
-				}
-				else if (selectedIndex == (int)menuItemTitles.HowTo && ks.IsKeyDown(Keys.Enter))
-				{
-					//Display the HowToPlay scene
-					hideAllScenes();
-					howToPlayScene.Show();
-					enabledScene = howToPlayScene;
-				}
-				else if (selectedIndex == (int)menuItemTitles.Quit && ks.IsKeyDown(Keys.Enter))
-				{
-					//Exit
-					Exit();
 				}
 			}
 			else if (baseScene == actionScene)
