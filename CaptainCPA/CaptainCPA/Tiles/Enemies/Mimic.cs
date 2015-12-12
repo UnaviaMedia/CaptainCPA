@@ -69,8 +69,6 @@ namespace CaptainCPA
             }
 
             base.Update(gameTime);
-            //if (onGround)
-            //    position.Y -= 5;
         }
         public override void Draw(GameTime gameTime)
         {
@@ -81,6 +79,7 @@ namespace CaptainCPA
             }
             spriteBatch.End();
         }
+        //TODO: move createFrames into enemy or pursuingEnemy
         private void createFrames()
         {
             frames = new List<Rectangle>();
