@@ -27,6 +27,7 @@ namespace CaptainCPA
 		/// </summary>
 		/// <param name="game">The game which calls the pause menu</param>
 		/// <param name="spriteBatch">The spritebatch used to draw this menu</param>
+		/// <param name="currentScore">Current score of the player</param>
 		public LevelOverScene(Game game, SpriteBatch spriteBatch, int currentScore)
 			: base(game, spriteBatch)
 		{			
