@@ -134,18 +134,27 @@ namespace CaptainCPA
 		{
 			if (--lives <= 0)
 			{
-				isAlive = false;
-				this.Enabled = false;
-				this.Visible = false;
-
-				//Play the game over sound effect
-				SoundEffect gameOver = Game.Content.Load<SoundEffect>("Sounds/GameOver");
-				gameOver.Play();
+				Die();
 			}
 			else
 			{
 				ResetPosition();
 			}
+		}
+
+		/// <summary>
+		/// Make the character die, and the game ends
+		/// </summary>
+		public void Die()
+		{
+			isAlive = false;
+			
+			//Destroy the character
+			Destroy();
+
+			//Play the game over sound effect
+			SoundEffect gameOver = Game.Content.Load<SoundEffect>("Sounds/GameOver");
+			gameOver.Play();
 		}
 		
 		/// <summary>

@@ -6,9 +6,11 @@
  *		Kendall Roth	Nov-24-2015:	Created
  *		*				Dec-10-2015:	High Score managing added
  *						Dec-12-2015:	Added level progression checking
+ *										Moved ColorConverter from ColorConverter class
  */
 
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -20,6 +22,42 @@ namespace CaptainCPA
 	/// </summary>
 	public class Utilities
 	{
+		/// <summary>
+		/// Dictionary of XNA Colors and corresponding string names
+		/// </summary>
+		private static Dictionary<string, Color> TileColors = new Dictionary<string, Color>()
+		{
+			{ "White", Color.White },
+			{ "Black", Color.Black },
+			{ "Red", Color.Red },
+			{ "Green", Color.Green },
+			{ "Blue", Color.Blue },
+			{ "LightRed", Color.PaleVioletRed },
+			{ "LightGreen", Color.LightGreen },
+			{ "LightBlue", Color.LightBlue },
+			{ "Yellow", Color.Yellow },
+			{ "Gold", Color.Gold }
+		};
+
+
+		/// <summary>
+		/// Return an XNA Color from an input string
+		/// </summary>
+		/// <param name="input">String to convert to XNA Color</param>
+		/// <returns>XNA Color</returns>
+		public static Color ConvertColor(string input)
+		{
+			try
+			{
+				return TileColors[input];
+			}
+			catch (Exception)
+			{
+				return Color.White;
+			}
+		}
+
+
 		/// <summary>
 		/// Convert a Point to Vector2
 		/// </summary>

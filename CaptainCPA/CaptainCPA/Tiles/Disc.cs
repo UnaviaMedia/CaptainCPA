@@ -17,20 +17,12 @@ namespace CaptainCPA
 	/// <summary>
 	/// Disc pickup that gives character points
 	/// </summary>
-	public class Disc : FixedTile
+	public class Disc : Pickup
 	{
-		private int points;
-
-		public int Points
-		{
-			get { return points; }
-			set { points = value; }
-		}
-
 		public Disc(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth, int points)
-			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth)
+			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth, points)
 		{
-			this.points = points;
+			
 		}
 
 		/// <summary>

@@ -9,6 +9,7 @@
  *						Nov-28-2015:	Optimizations
  *										Removed observers to place in base class
  *						Dec-11-2015:	Removed Observer pattern
+ *						Dec-12-2015:	Added collision with enemies
  */
 
 using System.Collections.Generic;
@@ -54,11 +55,6 @@ namespace CaptainCPA
 					continue;
 				}
 
-				if (fixedTile.TileType == TileType.LevelEnd)
-				{
-					Console.WriteLine("Reached");
-				}
-
 				//Skip collision detection if the moveable tile is too far away or doesn't intersect
 				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 125 ||
 					character.Bounds.Intersects(fixedTile.Bounds) == false || Utilities.PerPixelCollision(character, fixedTile) == false)
@@ -66,31 +62,34 @@ namespace CaptainCPA
 					continue;
 				}
 
-				if (fixedTile is Disc)
+				if (fixedTile.TileType == TileType.Pickup)
 				{
-					//Destroy the gem
-					((Disc)fixedTile).Destroy();
+					//Destroy the pickup
+					fixedTile.Destroy();
 
 					//Add the points to the character's score
-					character.Score += ((Disc)fixedTile).Points;
+					character.Score += ((Pickup)fixedTile).Points;
 
 					//Play the collection sound effect
 					//Generic ding
 					SoundEffect ding = Game.Content.Load<SoundEffect>("Sounds/Ding");
 					ding.Play();
 				}
-				else if (fixedTile is Spike)
+				else if (fixedTile.TileType == TileType.Obstacle)
 				{
 					//Update character health
 					character.LoseLife();
 
-					//Color the spike tile
-					((Spike)fixedTile).Color = Color.Red;
+					if (fixedTile is Spike)
+					{
+						//Color the spike tile
+						((Spike)fixedTile).Color = Color.Red;
 
-					//Play the spike sound effect
-					//Minecraft sound
-					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
-					spike.Play();
+						//Play the spike sound effect
+						//Minecraft sound
+						SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
+						spike.Play(); 
+					}
 				}
 				else if (fixedTile.TileType == TileType.LevelEnd)
 				{
@@ -104,6 +103,28 @@ namespace CaptainCPA
 					//Generic ding
 					SoundEffect ding = Game.Content.Load<SoundEffect>("Sounds/Ding");
 					ding.Play();
+				}
+			}
+
+			foreach (MoveableTile moveableTile in moveableTiles)
+			{
+				//Skip collision detection if the moveable tile is hidden or disabled
+				if (moveableTile.Visible == false || moveableTile.Enabled == false || character.Equals(moveableTile))
+				{
+					continue;
+				}
+
+				//Skip collision detection if the moveable tile is too far away or doesn't intersect
+				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(moveableTile.Bounds.Center)) > 125 ||
+					character.Bounds.Intersects(moveableTile.Bounds) == false || Utilities.PerPixelCollision(character, moveableTile) == false)
+				{
+					continue;
+				}
+
+				if (moveableTile is Enemy)
+				{
+					//Kill the character
+					character.Die();
 				}
 			}
 

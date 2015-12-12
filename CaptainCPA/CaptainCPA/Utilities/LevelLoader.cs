@@ -73,6 +73,8 @@ namespace CaptainCPA
 			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
 			Texture2D discTexture = game.Content.Load<Texture2D>("Sprites/Disc");
+			Texture2D floppyDiscTexture = game.Content.Load<Texture2D>("Sprites/FloppyDisc");
+			Texture2D floppyDiscOverlayTexture = game.Content.Load<Texture2D>("Sprites/FloppyDiscOverlay");
 			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
 			Texture2D computerTexture = game.Content.Load<Texture2D>("Sprites/Computer");
 			#endregion
@@ -96,13 +98,14 @@ namespace CaptainCPA
 
 					//Declare new Tile properties
 					Tile newTile = null;
-					Color color = ColorConverter.ConvertColor(tile.Attributes["color"].Value);
+					Color color = Utilities.ConvertColor(tile.Attributes["color"].Value);
 					Vector2 position = new Vector2(xValue * Settings.TILE_SIZE, yValue * Settings.TILE_SIZE);
 					float rotation = 0.0f;
 					float scale = 1.0f;
 					float layerDepth = 1.0f;
 					Vector2 velocity = Vector2.Zero;
 					bool onGround = true;
+					int points = 0;
 
 					//Initialize the tile depending on its type
 					switch (tileType)
@@ -127,8 +130,12 @@ namespace CaptainCPA
 							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "disc":
-							int points = int.Parse(tile.Attributes["points"].Value);
+							points = int.Parse(tile.Attributes["points"].Value);
 							newTile = new Disc(game, spriteBatch, discTexture, color, position, rotation, scale, layerDepth, points);
+							break;
+						case "floppyDisc":
+							points = int.Parse(tile.Attributes["points"].Value);
+							newTile = new FloppyDisc(game, spriteBatch, floppyDiscTexture, floppyDiscOverlayTexture, Color.White, color, position, rotation, scale, layerDepth, points);
 							break;
 						case "spike":
 							newTile = new Spike(game, spriteBatch, spikeTexture, color, position, rotation, scale, layerDepth);

@@ -76,7 +76,8 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
-					if (fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.LevelEnd)
+					if (fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup ||
+						fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle)
 					{
 						continue;
 					}
@@ -183,7 +184,8 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
-					if (fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.LevelEnd)
+					if (fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.Decoration ||
+						fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle)
 					{
 						continue;
 					}

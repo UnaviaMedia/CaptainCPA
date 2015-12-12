@@ -75,7 +75,8 @@
     <Compile Include="Components\DisplayString.cs" />
     <Compile Include="Components\Display\HealthDisplay.cs" />
     <Compile Include="Components\Display\ScoreDisplay.cs" />
-    <Compile Include="Components\HighScore.cs" />
+    <Compile Include="Components\Pickup.cs" />
+    <Compile Include="Utilities\HighScore.cs" />
     <Compile Include="Components\HighScoreComponent.cs" />
     <Compile Include="Components\Interfaces\IBounds.cs" />
     <Compile Include="Components\MenuComponent.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Scenes\LevelSelectScene.cs" />
     <Compile Include="Scenes\GameOverMenuScene.cs" />
     <Compile Include="Scenes\LevelOverScene.cs" />
+    <Compile Include="Tiles\FloppyDisc.cs" />
     <Compile Include="Tiles\Enemy.cs" />
     <Compile Include="Tiles\Computer.cs" />
     <Compile Include="Tiles\Spike.cs" />
@@ -112,7 +114,6 @@
     <Compile Include="Scenes\ActionScene.cs" />
     <Compile Include="Scenes\GameScene.cs" />
     <Compile Include="Scenes\StartScene.cs" />
-    <Compile Include="Utilities\ColorConverter.cs" />
     <Compile Include="Utilities\Settings.cs" />
     <Compile Include="Utilities\Utilities.cs" />
   </ItemGroup>
