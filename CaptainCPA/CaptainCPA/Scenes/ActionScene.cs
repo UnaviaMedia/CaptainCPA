@@ -155,7 +155,7 @@ namespace CaptainCPA
 			//Create display components
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
 			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
-			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
+			scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
 			this.components.Add(scoreDisplay);			
 
 			healthDisplay = new HealthDisplay(game, spriteBatch, character);
@@ -209,7 +209,7 @@ namespace CaptainCPA
 			}
 
 			//Update the score display
-			scoreDisplay.Message = Character.Score.ToString();
+			//scoreDisplay.Message = Character.Score.ToString();
 
 			CharacterStateManager.TooFarRight = false;
 			if (CharacterStateManager.IsMoving)
