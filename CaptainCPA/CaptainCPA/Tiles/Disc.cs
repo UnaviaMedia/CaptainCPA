@@ -1,6 +1,6 @@
 /*
- * Project:	PlatformGame - Gem.cs
- * Purpose:	Gem pickup that gives character points
+ * Project:	PlatformGame - Disc.cs
+ * Purpose:	Disc pickup that gives character points
  *
  * History:
  *		Kendall Roth	Nov-27-2015:	Created
@@ -8,24 +8,16 @@
  *										Removed Observers (put into other places)
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Gem pickup that gives character points
+	/// Disc pickup that gives character points
 	/// </summary>
-	public class Gem : FixedTile
+	public class Disc : FixedTile
 	{
 		private int points;
 
@@ -35,7 +27,7 @@ namespace CaptainCPA
 			set { points = value; }
 		}
 
-		public Gem(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth, int points)
+		public Disc(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth, int points)
 			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth)
 		{
 			this.points = points;

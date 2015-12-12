@@ -99,7 +99,7 @@
     <Compile Include="Scenes\HighScoreScene.cs" />
     <Compile Include="Scenes\HowToPlayScene.cs" />
     <Compile Include="Scenes\PauseMenuScene.cs" />
-    <Compile Include="Tiles\Gem.cs" />
+    <Compile Include="Tiles\Disc.cs" />
     <Compile Include="Tiles\Platform.cs" />
     <Compile Include="Tiles\Block.cs" />
     <Compile Include="Tiles\Character.cs" />

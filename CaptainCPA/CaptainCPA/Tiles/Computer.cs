@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Gem pickup that gives character points
+	/// Disc pickup that gives character points
 	/// </summary>
 	public class Computer : FixedTile
 	{

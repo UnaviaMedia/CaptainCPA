@@ -66,13 +66,13 @@ namespace CaptainCPA
 					continue;
 				}
 
-				if (fixedTile is Gem)
+				if (fixedTile is Disc)
 				{
 					//Destroy the gem
-					((Gem)fixedTile).Destroy();
+					((Disc)fixedTile).Destroy();
 
 					//Add the points to the character's score
-					character.Score += ((Gem)fixedTile).Points;
+					character.Score += ((Disc)fixedTile).Points;
 
 					//Play the collection sound effect
 					//Generic ding

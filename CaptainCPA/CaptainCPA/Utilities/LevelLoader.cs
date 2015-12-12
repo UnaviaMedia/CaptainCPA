@@ -72,7 +72,7 @@ namespace CaptainCPA
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
 			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
-			Texture2D gemTexture = game.Content.Load<Texture2D>("Sprites/Gem");
+			Texture2D discTexture = game.Content.Load<Texture2D>("Sprites/Disc");
 			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
 			Texture2D computerTexture = game.Content.Load<Texture2D>("Sprites/Computer");
 			#endregion
@@ -126,9 +126,9 @@ namespace CaptainCPA
 						case "platform":
 							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
 							break;
-						case "gem":
+						case "disc":
 							int points = int.Parse(tile.Attributes["points"].Value);
-							newTile = new Gem(game, spriteBatch, gemTexture, color, position, rotation, scale, layerDepth, points);
+							newTile = new Disc(game, spriteBatch, discTexture, color, position, rotation, scale, layerDepth, points);
 							break;
 						case "spike":
 							newTile = new Spike(game, spriteBatch, spikeTexture, color, position, rotation, scale, layerDepth);
