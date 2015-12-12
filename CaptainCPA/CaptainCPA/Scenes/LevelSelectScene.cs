@@ -24,6 +24,7 @@ namespace CaptainCPA
 		private List<Vector2> levelSelectorPositions;
 		private int selectedIndex;
 		private int numberOfLevels;
+		private int numberOfUnlockedLevels;
 		private KeyboardState oldState;
 
 		public int SelectedIndex
@@ -38,7 +39,9 @@ namespace CaptainCPA
 		/// </summary>
 		/// <param name="game"></param>
 		/// <param name="spriteBatch"></param>
-		public LevelSelectScene(Game game, SpriteBatch spriteBatch, int numberOfLevels)
+		/// <param name="numberOfLevels">Number of levels in game</param>
+		/// <param name="numberOfUnlockedLevels">Number of unlocked levels</param>
+		public LevelSelectScene(Game game, SpriteBatch spriteBatch, int numberOfLevels, int numberOfUnlockedLevels)
 			: base(game, spriteBatch)
 		{
 			menuImage = game.Content.Load<Texture2D>("Images/LevelSelectMenu");
@@ -55,8 +58,10 @@ namespace CaptainCPA
 			levelSelectorPositions.Add(new Vector2(820, 520));
 			levelSelectorPositions.Add(new Vector2(1020, 520));
 
-			selectedIndex = 0;
 			this.numberOfLevels = numberOfLevels;
+			this.numberOfUnlockedLevels = numberOfUnlockedLevels;
+
+			selectedIndex = 0;
 		}
 
 		/// <summary>
@@ -68,6 +73,7 @@ namespace CaptainCPA
 			base.Initialize();
 		}
 
+
 		/// <summary>
 		/// Allows the game component to update itself.
 		/// </summary>
@@ -78,7 +84,7 @@ namespace CaptainCPA
 
 			if ((ks.IsKeyDown(Keys.Right) && oldState.IsKeyUp(Keys.Right)) || (ks.IsKeyDown(Keys.D) && oldState.IsKeyUp(Keys.D)))
 			{
-				if (++selectedIndex == numberOfLevels)
+				if (++selectedIndex == numberOfUnlockedLevels)
 				{
 					selectedIndex = 0;
 				}
@@ -87,7 +93,7 @@ namespace CaptainCPA
 			{
 				if (--selectedIndex == -1)
 				{
-					selectedIndex = numberOfLevels - 1;
+					selectedIndex = numberOfUnlockedLevels - 1;
 				}
 			}
 

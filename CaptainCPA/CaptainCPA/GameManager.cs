@@ -51,6 +51,7 @@ namespace CaptainCPA
 
 		private List<string> levelList;
 		private int currentLevel;
+		//private int unlockedLevels;
 
 		private KeyboardState oldState;
 
@@ -140,7 +141,7 @@ namespace CaptainCPA
 			pauseMenuScene = new PauseMenuScene(this, spriteBatch);
 			scenes.Add(pauseMenuScene);
 
-			levelSelectScene = new LevelSelectScene(this, spriteBatch, NUMBER_OF_LEVELS);
+			levelSelectScene = new LevelSelectScene(this, spriteBatch, NUMBER_OF_LEVELS, Utilities.CheckLevelProgression());
 			scenes.Add(levelSelectScene);
 
 			helpScene = new HelpScene(this, spriteBatch);
@@ -257,15 +258,15 @@ namespace CaptainCPA
 					}
 					else if (selectedIndex == (int)menuItemTitles.Select && ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 					{
-						//Remove old high score scene
+						//Remove level selector scene
 						if (levelSelectScene != null)
 						{
 							scenes.Remove(levelSelectScene);
 							this.Components.Remove(levelSelectScene);
 						}
 
-						//Create a new high score scene
-						levelSelectScene = new LevelSelectScene(this, spriteBatch, NUMBER_OF_LEVELS);
+						//Create a new level selector scene
+						levelSelectScene = new LevelSelectScene(this, spriteBatch, NUMBER_OF_LEVELS, Utilities.CheckLevelProgression());
 						scenes.Add(levelSelectScene);
 						this.Components.Add(levelSelectScene);
 
@@ -365,6 +366,12 @@ namespace CaptainCPA
 							//Pause the game
 							actionScene.DisableComponents();
 
+							//Update the Level Progression if necessary
+							if (currentLevel + 1 > Utilities.CheckLevelProgression())
+							{
+								Utilities.UpdateLevelProgression(currentLevel + 1);
+							}
+
 							//Remove the current LevelOver menu scene if one exists
 							if (levelOverScene != null)
 							{
@@ -391,6 +398,9 @@ namespace CaptainCPA
 							//Set game over to true
 							actionScene.GameOver = true;
 							actionScene.Character.LevelComplete = false;
+
+							//Update the Level Progression file
+							Utilities.UpdateLevelProgression(NUMBER_OF_LEVELS);
 
 							//Play the game over sound effect
 							SoundEffect gameOver = Content.Load<SoundEffect>("Sounds/GameOver");
