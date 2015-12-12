@@ -208,9 +208,6 @@ namespace CaptainCPA
 				return;
 			}
 
-			//Update the score display
-			//scoreDisplay.Message = Character.Score.ToString();
-
 			CharacterStateManager.TooFarRight = false;
 			if (CharacterStateManager.IsMoving)
 			{
