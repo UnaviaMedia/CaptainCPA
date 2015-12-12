@@ -185,7 +185,7 @@ namespace CaptainCPA
 				return;
 			}
 
-
+            //smoothly reset level
             if (character.IsGhost)
             {
                 counter++;
@@ -198,20 +198,21 @@ namespace CaptainCPA
                     foreach (MoveableTile m in moveableTileList)
                     {
                         //m.Enabled = false;
-                        m.Visible = false;
                         m.Position = m.InitPosition;
+                        m.Visible = false;
                     }
                     if (counter % 2 == 0)
                     {
                         slideBack();
                     }
                 }
-                else
+                else //scene is in its initial position; reset all moveable components
                 {
                     foreach (MoveableTile m in moveableTileList)
                     {
                         //m.Enabled = true;
                         m.Visible = true;
+                        m.Position = m.InitPosition;
                     }
                     character.IsGhost = false;
                 }
