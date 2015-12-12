@@ -5,6 +5,7 @@
  * History:
  *		Kendall Roth	Dec-09-2015:	Created, updated User Interface Design
  *						Dec-11-2015:	Added level selector
+ *						Dec-12-2015:	Added locked level indicator and unavailable level indicator
  */
 
 using Microsoft.Xna.Framework;
@@ -21,6 +22,8 @@ namespace CaptainCPA
 	{
 		private Texture2D menuImage;
 		private Texture2D levelSelector;
+		private Texture2D lockedLevelIndicator;
+		private Texture2D unavailableLockedLevelIndicator;
 		private List<Vector2> levelSelectorPositions;
 		private int selectedIndex;
 		private int numberOfLevels;
@@ -46,6 +49,8 @@ namespace CaptainCPA
 		{
 			this.menuImage = menuImage;
 			levelSelector = game.Content.Load<Texture2D>("Images/LevelSelector");
+			lockedLevelIndicator = game.Content.Load<Texture2D>("Images/LockedLevelIndicator");
+			unavailableLockedLevelIndicator = game.Content.Load<Texture2D>("Images/UnavailableLockedLevelIndicator");
 
 			//Create list of level Selector positions
 			levelSelectorPositions = new List<Vector2>();
@@ -110,7 +115,21 @@ namespace CaptainCPA
 		{
 			spriteBatch.Begin();
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
+
+			//Display locked (but available) levels
+			for (int i = numberOfUnlockedLevels; i < numberOfLevels; i++)
+			{
+				spriteBatch.Draw(lockedLevelIndicator, levelSelectorPositions[i] + new Vector2(5.5f), Color.White);
+			}
+
+			//Display locked (and unavailable levels)
+			for (int i = numberOfLevels; i < 8; i++)
+			{
+				spriteBatch.Draw(unavailableLockedLevelIndicator, levelSelectorPositions[i] + new Vector2(5.5f), Color.White);
+			}
+			
 			spriteBatch.Draw(levelSelector, levelSelectorPositions[selectedIndex], Color.White);
+
 			spriteBatch.End();
 
 			base.Draw(gameTime);

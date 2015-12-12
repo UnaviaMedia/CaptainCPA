@@ -23,7 +23,7 @@ namespace CaptainCPA
 		const float X_SCALE_FACTOR = 25f;
 		const float Y_SCALE_FACTOR = 14f;
 
-		const int NUMBER_OF_LEVELS = 3;
+		const int NUMBER_OF_LEVELS = 4;
 		
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
@@ -137,7 +137,7 @@ namespace CaptainCPA
 
 			#region LevelCreation
 			//Create level list
-			levelList = new List<string>(){ "Level1", "Level2", "Level3"};
+			levelList = new List<string>(){ "Level1", "Level2", "Level3", "Level4"};
 			#endregion
 
 
@@ -254,12 +254,6 @@ namespace CaptainCPA
 					enabledScene = startScene;
 				}
 
-				//DEBUG - Enable Resetting the HighScores
-				if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R) && enabledScene == highScoreScene)
-				{
-					Utilities.ResetHighScores();
-				}
-
 				if (enabledScene == startScene)
 				{
 					//Get the selected item index from the menu
@@ -345,6 +339,12 @@ namespace CaptainCPA
 				}
 				else if (enabledScene == levelSelectScene)
 				{
+					//DEBUG - Reset Level Progression
+					if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R))
+					{
+						Utilities.ResetLevelProgression();
+					}
+
 					if (ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
 					{
 						//Get the selected item index from the level selector menu
@@ -359,6 +359,14 @@ namespace CaptainCPA
 						actionScene.Show();
 						baseScene = actionScene;
 						enabledScene = actionScene;
+					}
+				}
+				else if (enabledScene == highScoreScene)
+				{
+					//DEBUG - Reset the HighScores
+					if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R))
+					{
+						Utilities.ResetHighScores();
 					}
 				}
 			}
