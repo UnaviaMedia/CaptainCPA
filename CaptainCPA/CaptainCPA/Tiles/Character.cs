@@ -18,8 +18,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
-using System.Threading;
-using System.Diagnostics;
 
 namespace CaptainCPA
 {
@@ -34,14 +32,15 @@ namespace CaptainCPA
 		private int delayCounter;
 		private int frameIndex = 0;
 		private Texture2D bigTexture;
-		protected int lives;
-		protected static int score;
-		protected float speed;
-		protected float jumpSpeed;
-		protected bool isAlive;
+		private int lives;
+		private int score;
+		private float speed;
+		private float jumpSpeed;
+		private bool isAlive;
+		private bool levelComplete;
 
 		//Store characters's starting position
-		protected Vector2 startingPosition;
+		private Vector2 startingPosition;
 
 		public int Lives
 		{
@@ -49,7 +48,7 @@ namespace CaptainCPA
 			set { lives = value; }
 		}
 
-		public static int Score
+		public int Score
 		{
 			get { return score; }
 			set { score = value; }
@@ -73,6 +72,12 @@ namespace CaptainCPA
 			set { isAlive = value; }
 		}
 
+		public bool LevelComplete
+		{
+			get { return levelComplete; }
+			set { levelComplete = value; }
+		}
+
 		public Vector2 StartingPosition
 		{
 			get { return startingPosition; }
@@ -94,6 +99,7 @@ namespace CaptainCPA
 
 			isAlive = true;
 			startingPosition = position;
+			levelComplete = false;
 
 			CharacterStateManager.Speed = speed;
 			Console.WriteLine(bounds);

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace CaptainCPA
 {
@@ -21,6 +22,8 @@ namespace CaptainCPA
 	{
 		const float X_SCALE_FACTOR = 25f;
 		const float Y_SCALE_FACTOR = 14f;
+
+		const int NUMBER_OF_LEVELS = 3;
 		
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
@@ -36,6 +39,7 @@ namespace CaptainCPA
 		private AboutScene aboutScene;
 		private HighScoreScene highScoreScene;
 		private HowToPlayScene howToPlayScene;
+		private LevelOverScene levelOverScene;
 		private GameOverMenuScene gameOverMenuScene;
 
 		private GameScene baseScene;
@@ -45,7 +49,8 @@ namespace CaptainCPA
 		private List<Song> backgroundMusic;
 		private int backgroundMusicCounter;
 
-		private List<string> levels;
+		private List<string> levelList;
+		private int currentLevel;
 
 		private KeyboardState oldState;
 
@@ -102,7 +107,7 @@ namespace CaptainCPA
 			//Reset the background music index counter
 			backgroundMusicCounter = 0;
 
-			MediaPlayer.Volume = 0.15f;
+			MediaPlayer.Volume = 0.25f;
 
 			//Instantiate list of songs
 			backgroundMusic = new List<Song>();
@@ -119,7 +124,7 @@ namespace CaptainCPA
 
 			#region LevelCreation
 			//Create level list
-			levels = new List<string>(){ "Level1", "Level2", "Level3", "Level4", "Level5", "Level6", "Level7", "Level8" };
+			levelList = new List<string>(){ "Level1", "Level2", "Level3"};
 			#endregion
 
 
@@ -128,13 +133,14 @@ namespace CaptainCPA
 			startScene = new StartScene(this, spriteBatch);
 			scenes.Add(startScene);
 
-			actionScene = new ActionScene(this, spriteBatch, levels[0]);
+			actionScene = new ActionScene(this, spriteBatch, levelList[0]);
+			currentLevel = 1;
 			scenes.Add(actionScene);
 
 			pauseMenuScene = new PauseMenuScene(this, spriteBatch);
 			scenes.Add(pauseMenuScene);
 
-			levelSelectScene = new LevelSelectScene(this, spriteBatch);
+			levelSelectScene = new LevelSelectScene(this, spriteBatch, NUMBER_OF_LEVELS);
 			scenes.Add(levelSelectScene);
 
 			helpScene = new HelpScene(this, spriteBatch);
@@ -146,7 +152,10 @@ namespace CaptainCPA
 			howToPlayScene = new HowToPlayScene(this, spriteBatch);
 			scenes.Add(howToPlayScene);
 
-			gameOverMenuScene = new GameOverMenuScene(this, spriteBatch);
+			levelOverScene = new LevelOverScene(this, spriteBatch, 0);
+			scenes.Add(levelOverScene);
+
+			gameOverMenuScene = new GameOverMenuScene(this, spriteBatch, 0);
 			scenes.Add(gameOverMenuScene);
 
 			highScoreScene = new HighScoreScene(this, spriteBatch);
@@ -223,7 +232,7 @@ namespace CaptainCPA
 				}
 
 				//DEBUG - Enable Resetting the HighScores
-				if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R))
+				if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R) && enabledScene == highScoreScene)
 				{
 					Utilities.ResetHighScores();
 				}
@@ -240,7 +249,8 @@ namespace CaptainCPA
 						hideAllScenes();
 
 						//Reset game (to selected level)
-						actionScene.Reset(this, spriteBatch, levels[0]);
+						actionScene.Reset(this, spriteBatch, levelList[0]);
+						currentLevel = 1;
 						actionScene.Show();
 						baseScene = actionScene;
 						enabledScene = actionScene;
@@ -255,7 +265,7 @@ namespace CaptainCPA
 						}
 
 						//Create a new high score scene
-						levelSelectScene = new LevelSelectScene(this, spriteBatch);
+						levelSelectScene = new LevelSelectScene(this, spriteBatch, NUMBER_OF_LEVELS);
 						scenes.Add(levelSelectScene);
 						this.Components.Add(levelSelectScene);
 
@@ -321,50 +331,111 @@ namespace CaptainCPA
 						hideAllScenes();
 
 						//Load selected level
-						actionScene.Reset(this, spriteBatch, levels[selectedLevelIndex]);
+						actionScene.Reset(this, spriteBatch, levelList[selectedLevelIndex]);
+						currentLevel = selectedLevelIndex + 1;
 						actionScene.Show();
 						baseScene = actionScene;
-						enabledScene = actionScene; 
+						enabledScene = actionScene;
 					}
 				}
 			}
 			else if (baseScene == actionScene)
 			{
-				//Display pause menu
-				if (ks.IsKeyDown(Keys.Escape))
+				if (enabledScene == actionScene)
 				{
-					//Pause the game
-					actionScene.DisableComponents();
-
-					//Show the pause menu
-					pauseMenuScene.Menu.SelectedIndex = 0;
-					pauseMenuScene.Show();
-					baseScene = pauseMenuScene;
-					enabledScene = pauseMenuScene;
-				}
-
-				//Display the Game Over menu when the game ends (player dies)
-				if (actionScene.GameOver == true)
-				{
-					//Pause the game
-					actionScene.DisableComponents();
-
-					//Remove the current GameOver menu scene if one exists
-					if (gameOverMenuScene != null)
+					//Display pause menu
+					if (ks.IsKeyDown(Keys.Escape) && oldState.IsKeyUp(Keys.Escape))
 					{
-						scenes.Remove(gameOverMenuScene);
-						this.Components.Remove(gameOverMenuScene);
+						//Pause the game
+						actionScene.DisableComponents();
+
+						//Show the pause menu
+						pauseMenuScene.Menu.SelectedIndex = 0;
+						pauseMenuScene.Show();
+						baseScene = pauseMenuScene;
+						enabledScene = pauseMenuScene;
 					}
 
-					//Create a new GameOver menu scene
-					gameOverMenuScene = new GameOverMenuScene(this, spriteBatch);
-					scenes.Add(gameOverMenuScene);
-					this.Components.Add(gameOverMenuScene);
+					//Display the LevelOver menu when the level ends
+					if (actionScene.Character.LevelComplete == true)
+					{
+						//Display the LevelOver menu if it is not the last level
+						if (currentLevel < NUMBER_OF_LEVELS)
+						{
+							//Pause the game
+							actionScene.DisableComponents();
 
-					//Show the GameOver menu
-					gameOverMenuScene.Show();
-					baseScene = gameOverMenuScene;
-					enabledScene = gameOverMenuScene;
+							//Remove the current LevelOver menu scene if one exists
+							if (levelOverScene != null)
+							{
+								scenes.Remove(levelOverScene);
+								this.Components.Remove(levelOverScene);
+							}
+
+							//Create a new LevelOver menu scene
+							levelOverScene = new LevelOverScene(this, spriteBatch, actionScene.Character.Score);
+							scenes.Add(levelOverScene);
+							this.Components.Add(levelOverScene);
+
+							//Show the LevelOver menu
+							levelOverScene.Show();
+							baseScene = actionScene;
+							enabledScene = levelOverScene;
+
+							//Reset the level over tracker
+							actionScene.Character.LevelComplete = false; 
+						}
+						//Display the GameOver menu if the last level has been completed
+						else
+						{
+							//Set game over to true
+							actionScene.GameOver = true;
+							actionScene.Character.LevelComplete = false;
+
+							//Play the game over sound effect
+							SoundEffect gameOver = Content.Load<SoundEffect>("Sounds/GameOver");
+							gameOver.Play();
+						}
+					}
+
+					//Display the Game Over menu when the game ends (player dies)
+					if (actionScene.GameOver == true)
+					{
+						//Pause the game
+						actionScene.DisableComponents();
+
+						//Remove the current GameOver menu scene if one exists
+						if (gameOverMenuScene != null)
+						{
+							scenes.Remove(gameOverMenuScene);
+							this.Components.Remove(gameOverMenuScene);
+						}
+
+						//Create a new GameOver menu scene
+						gameOverMenuScene = new GameOverMenuScene(this, spriteBatch, actionScene.Character.Score);
+						scenes.Add(gameOverMenuScene);
+						this.Components.Add(gameOverMenuScene);
+
+						//Show the GameOver menu
+						gameOverMenuScene.Show();
+						baseScene = gameOverMenuScene;
+						enabledScene = gameOverMenuScene;
+					}
+				}
+				else if (enabledScene == levelOverScene)
+				{
+					//Advance to the next level
+					if (ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
+					{
+						//Display the Game scene
+						hideAllScenes();
+
+						//Load selected level
+						actionScene.Reset(this, spriteBatch, levelList[++currentLevel - 1]);
+						actionScene.Show();
+						baseScene = actionScene;
+						enabledScene = actionScene; 
+					}
 				}
 			}
 			else if (baseScene == pauseMenuScene)

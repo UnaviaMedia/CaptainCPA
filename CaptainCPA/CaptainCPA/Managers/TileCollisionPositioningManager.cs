@@ -46,7 +46,7 @@ namespace CaptainCPA
 				//If the tile is hidden or disabled, skip collision detection for it
 				//	Also skip detection if the TileType shouldn't have detection for it
 				if (fixedTile.Visible == false || fixedTile.Enabled == false ||
-					fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup)
+					fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.LevelEnd)
 				{
 					continue;
 				}
@@ -91,6 +91,8 @@ namespace CaptainCPA
 								//Bottom collision
 								collisionPosition = new Vector2(moveableTile.Position.X, fixedTile.Bounds.Bottom + (moveableTile.Bounds.Height / 2));
 							}
+
+							//moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 0.0f);
 						}
 						else if (collisionRectangle.Width < collisionRectangle.Height)
 						{
@@ -105,6 +107,8 @@ namespace CaptainCPA
 								//Right Collision
 								collisionPosition = new Vector2(fixedTile.Bounds.Right + (moveableTile.Bounds.Width / 2), moveableTile.Position.Y);
 							}
+
+							//moveableTile.Velocity = new Vector2(0.0f, moveableTile.Velocity.Y);
 						}
 						else
 						{

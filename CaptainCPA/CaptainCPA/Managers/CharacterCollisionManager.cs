@@ -14,6 +14,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using System;
 
 namespace CaptainCPA
 {
@@ -22,8 +23,7 @@ namespace CaptainCPA
 	/// </summary>
 	public class CharacterCollisionManager : CollisionManager
 	{
-		private Character character;
-		
+		private Character character;		
 
 		public CharacterCollisionManager(Game game, Character character, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)
@@ -54,8 +54,13 @@ namespace CaptainCPA
 					continue;
 				}
 
+				if (fixedTile.TileType == TileType.LevelEnd)
+				{
+					Console.WriteLine("Reached");
+				}
+
 				//Skip collision detection if the moveable tile is too far away or doesn't intersect
-				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 100 ||
+				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 150 ||
 					character.Bounds.Intersects(fixedTile.Bounds) == false || Utilities.PerPixelCollision(character, fixedTile) == false)
 				{
 					continue;
@@ -67,9 +72,10 @@ namespace CaptainCPA
 					((Gem)fixedTile).Destroy();
 
 					//Add the points to the character's score
-					Character.Score += ((Gem)fixedTile).Points;
+					character.Score += ((Gem)fixedTile).Points;
 
 					//Play the collection sound effect
+					//Generic ding
 					SoundEffect ding = Game.Content.Load<SoundEffect>("Sounds/Ding");
 					ding.Play();
 				}
@@ -82,8 +88,19 @@ namespace CaptainCPA
 					((Spike)fixedTile).Color = Color.Red;
 
 					//Play the spike sound effect
-					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/hurtflesh3");
+					//Minecraft sound
+					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
 					spike.Play();
+				}
+				else if (fixedTile.TileType == TileType.LevelEnd)
+				{
+					//End the level
+					character.LevelComplete = true;
+
+					//TODO - Play a level complete sound
+					//Generic ding
+					SoundEffect ding = Game.Content.Load<SoundEffect>("Sounds/Ding");
+					ding.Play();
 				}
 			}
 

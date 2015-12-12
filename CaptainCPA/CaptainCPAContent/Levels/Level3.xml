@@ -394,7 +394,7 @@
 				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
-				<Tile x="7" tileType="" color="White"></Tile>
+				<Tile x="7" tileType="computer" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
@@ -414,7 +414,7 @@
 				<Tile x="24" tileType="block" color="White"></Tile>
 				<Tile x="25" tileType="" color="White"></Tile>
 				<Tile x="26" tileType="" color="White"></Tile>
-				<Tile x="27" tileType="" color="White"></Tile>
+				<Tile x="27" tileType="computer" color="Black"></Tile>
 				<Tile x="28" tileType="" color="White"></Tile>
 				<Tile x="29" tileType="block" color="Blue"></Tile>
 			</Row>

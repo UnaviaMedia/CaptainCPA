@@ -20,7 +20,6 @@ namespace CaptainCPA
 	/// </summary>
 	public class PhysicsManager : CollisionManager
 	{
-		string notified = "";
 		public PhysicsManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)
 		{
@@ -77,7 +76,7 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
-					if (fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup)
+					if (fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.LevelEnd)
 					{
 						continue;
 					}

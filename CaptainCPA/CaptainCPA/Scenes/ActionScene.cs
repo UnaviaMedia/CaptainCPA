@@ -8,6 +8,7 @@
  *										Added score display
  *						Nov-29-2015:	Optimizations
  *						Dec-09-2015:	Added health display, added game over, added game reset
+ *						Dec-12-2015:	Added level over
  */
 
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace CaptainCPA
 		protected LevelLoader levelLoader;
 		protected List<MoveableTile> moveableTileList;
 		protected List<FixedTile> fixedTileList;
-		protected static Character character;
+		protected Character character;
 
 		protected PhysicsManager physicsManager;
 		protected CollisionManager tileCollisionPositioningManager;
@@ -37,10 +38,25 @@ namespace CaptainCPA
 		protected ScoreDisplay scoreDisplay;
 		protected HealthDisplay healthDisplay;
 
-		public bool GameOver { get; set; }
-		public static Character Character
+		private bool gameOver;
+		//private bool levelOver;
+
+		public bool GameOver
+		{
+			get { return gameOver; }
+			set { gameOver = value; }
+		}
+
+		/*public bool LevelOver
+		{
+			get { return levelOver; }
+			set { levelOver = value; }
+		}*/
+
+		public Character Character
 		{
 			get { return character; }
+			set { character = value; }
 		}
 
 		/// <summary>
@@ -150,7 +166,10 @@ namespace CaptainCPA
 			#endregion
 
 			//Set game over to false
-			GameOver = false;
+			gameOver = false;
+
+			//Set level complete to false
+			//levelOver = false;
 
 			//Keep track of all tiles in the scene
 			tiles = new List<Tile>();
@@ -179,14 +198,20 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			//Track player death
-			if (character.IsAlive == false)
+			//Track level completion
+			if (character.LevelComplete == true)
 			{
-				GameOver = true;
 				return;
 			}
 
-			//Update the score
+			//Track player death
+			if (character.IsAlive == false)
+			{
+				gameOver = true;
+				return;
+			}
+
+			//Update the score display
 			scoreDisplay.Message = Character.Score.ToString();
 
 			CharacterStateManager.TooFarRight = false;

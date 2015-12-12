@@ -23,7 +23,7 @@ namespace CaptainCPA
 		private Texture2D levelSelector;
 		private List<Vector2> levelSelectorPositions;
 		private int selectedIndex;
-		private int levels;
+		private int numberOfLevels;
 		private KeyboardState oldState;
 
 		public int SelectedIndex
@@ -38,7 +38,7 @@ namespace CaptainCPA
 		/// </summary>
 		/// <param name="game"></param>
 		/// <param name="spriteBatch"></param>
-		public LevelSelectScene(Game game, SpriteBatch spriteBatch)
+		public LevelSelectScene(Game game, SpriteBatch spriteBatch, int numberOfLevels)
 			: base(game, spriteBatch)
 		{
 			menuImage = game.Content.Load<Texture2D>("Images/LevelSelectMenu");
@@ -56,7 +56,7 @@ namespace CaptainCPA
 			levelSelectorPositions.Add(new Vector2(1020, 520));
 
 			selectedIndex = 0;
-			levels = 3;
+			this.numberOfLevels = numberOfLevels;
 		}
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace CaptainCPA
 
 			if ((ks.IsKeyDown(Keys.Right) && oldState.IsKeyUp(Keys.Right)) || (ks.IsKeyDown(Keys.D) && oldState.IsKeyUp(Keys.D)))
 			{
-				if (++selectedIndex == levels)
+				if (++selectedIndex == numberOfLevels)
 				{
 					selectedIndex = 0;
 				}
@@ -87,7 +87,7 @@ namespace CaptainCPA
 			{
 				if (--selectedIndex == -1)
 				{
-					selectedIndex = levels - 1;
+					selectedIndex = numberOfLevels - 1;
 				}
 			}
 

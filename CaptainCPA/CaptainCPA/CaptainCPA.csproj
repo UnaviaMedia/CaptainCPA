@@ -84,7 +84,9 @@
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Scenes\LevelSelectScene.cs" />
     <Compile Include="Scenes\GameOverMenuScene.cs" />
+    <Compile Include="Scenes\LevelOverScene.cs" />
     <Compile Include="Tiles\Enemy.cs" />
+    <Compile Include="Tiles\Computer.cs" />
     <Compile Include="Tiles\Spike.cs" />
     <Compile Include="Utilities\LevelLoader.cs" />
     <Compile Include="Managers\PhysicsManager.cs" />

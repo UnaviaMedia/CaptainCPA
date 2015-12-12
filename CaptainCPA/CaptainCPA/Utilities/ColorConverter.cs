@@ -20,13 +20,15 @@ namespace CaptainCPA
 		public static Dictionary<string, Color> TileColors = new Dictionary<string, Color>()
 		{
 			{ "White", Color.White },
+			{ "Black", Color.Black },
 			{ "Red", Color.Red },
 			{ "Green", Color.Green },
 			{ "Blue", Color.Blue },
 			{ "LightRed", Color.PaleVioletRed },
 			{ "LightGreen", Color.LightGreen },
 			{ "LightBlue", Color.LightBlue },
-            { "Yellow", Color.Yellow }
+			{ "Yellow", Color.Yellow },
+			{ "Gold", Color.Gold }
 		};
 
 		public static Color ConvertColor(string input)
