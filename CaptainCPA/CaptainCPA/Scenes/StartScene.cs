@@ -34,8 +34,8 @@ namespace CaptainCPA
 		private Vector2 scrollingSpeed;
 		private List<Texture2D> backgroundImages;
 
-		private MenuComponent menu;
 		private Texture2D menuImage;
+		private MenuComponent menu;
 		
 		public MenuComponent Menu
 		{
@@ -54,7 +54,7 @@ namespace CaptainCPA
 		private List<string> levelList;
 
 
-		public StartScene(Game game, SpriteBatch spriteBatch)
+		public StartScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
 			this.spriteBatch = spriteBatch;
@@ -86,7 +86,7 @@ namespace CaptainCPA
 				menuItems, menuPosition);
 			this.Components.Add(menu);
 
-			menuImage = game.Content.Load<Texture2D>("Images/MainMenu");
+			this.menuImage = menuImage;
 		}
 
 		/// <summary>

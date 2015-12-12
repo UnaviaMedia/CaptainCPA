@@ -19,16 +19,10 @@ namespace CaptainCPA
 	{
 		private Texture2D menuImage;
 
-		//string message;        
-		//private SpriteFont font;
-
-		public AboutScene(Game game, SpriteBatch spriteBatch)
+		public AboutScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
-			//font = game.Content.Load<SpriteFont>("Fonts/MenuFont");
-			//message = readFile(@"Text/AboutMessage.txt");
-
-			menuImage = game.Content.Load<Texture2D>("Images/AboutScreen");
+			this.menuImage = menuImage;
 		}
 
 		/// <summary>
@@ -56,7 +50,6 @@ namespace CaptainCPA
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
-			//spriteBatch.DrawString(font, message, new Vector2(0, 0), Color.White);
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
 			spriteBatch.End();
 

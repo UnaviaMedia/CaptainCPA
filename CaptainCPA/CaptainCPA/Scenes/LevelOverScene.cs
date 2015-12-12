@@ -28,10 +28,10 @@ namespace CaptainCPA
 		/// <param name="game">The game which calls the pause menu</param>
 		/// <param name="spriteBatch">The spritebatch used to draw this menu</param>
 		/// <param name="currentScore">Current score of the player</param>
-		public LevelOverScene(Game game, SpriteBatch spriteBatch, int currentScore)
+		public LevelOverScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage, int currentScore)
 			: base(game, spriteBatch)
-		{			
-			menuImage = game.Content.Load<Texture2D>("Images/LevelOverScreen");
+		{
+			this.menuImage = menuImage;
 			font = game.Content.Load<SpriteFont>("Fonts/HighScoreFont");
 			this.currentScore = currentScore;
 		}

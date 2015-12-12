@@ -3,12 +3,11 @@
  * Purpose: Base class for character pickups
  *
  * History:
- *		Kendall Roth	Nov-24-2015:	Created
+ *		Kendall Roth	Dec-12-2015:	Created
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace CaptainCPA
 {

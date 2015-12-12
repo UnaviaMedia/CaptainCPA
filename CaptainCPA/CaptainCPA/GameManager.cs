@@ -44,6 +44,18 @@ namespace CaptainCPA
 
 		private GameScene baseScene;
 		private GameScene enabledScene;
+
+		#region SceneBackgrounds
+		private Texture2D startSceneBackground;
+		private Texture2D pauseMenuBackground;
+		private Texture2D levelSelectBackground;
+		private Texture2D helpSceneBackground;
+		private Texture2D aboutSceneBackground;
+		private Texture2D highScoreSceneBackground;
+		private Texture2D howToPlaySceneBackground;
+		private Texture2D levelOverSceneBackground;
+		private Texture2D gameOverSceneBackground;
+		#endregion
 		#endregion
 
 		private List<Song> backgroundMusic;
@@ -130,36 +142,46 @@ namespace CaptainCPA
 
 
 			#region SceneCreation
+			startSceneBackground = Content.Load<Texture2D>("ScreenBackgrounds/MainMenuScreen");
+			pauseMenuBackground = Content.Load<Texture2D>("ScreenBackgrounds/PauseMenuScreen");
+			levelSelectBackground = Content.Load<Texture2D>("ScreenBackgrounds/LevelSelectScreen");
+			helpSceneBackground = Content.Load<Texture2D>("ScreenBackgrounds/HelpScreen");
+			aboutSceneBackground = Content.Load<Texture2D>("ScreenBackgrounds/AboutScreen");
+			highScoreSceneBackground = Content.Load<Texture2D>("ScreenBackgrounds/HighScoreScreen");
+			howToPlaySceneBackground = Content.Load<Texture2D>("ScreenBackgrounds/ControlsScreen");
+			levelOverSceneBackground = Content.Load<Texture2D>("ScreenBackgrounds/LevelOverScreen");
+			gameOverSceneBackground = Content.Load<Texture2D>("ScreenBackgrounds/GameOverScreen");
+
 			//Create all scenes and add to the Components list
-			startScene = new StartScene(this, spriteBatch);
+			startScene = new StartScene(this, spriteBatch, startSceneBackground);
 			scenes.Add(startScene);
 
 			actionScene = new ActionScene(this, spriteBatch, levelList[0]);
 			currentLevel = 1;
 			scenes.Add(actionScene);
 
-			pauseMenuScene = new PauseMenuScene(this, spriteBatch);
+			pauseMenuScene = new PauseMenuScene(this, spriteBatch, pauseMenuBackground);
 			scenes.Add(pauseMenuScene);
 
-			levelSelectScene = new LevelSelectScene(this, spriteBatch, NUMBER_OF_LEVELS, Utilities.CheckLevelProgression());
+			levelSelectScene = new LevelSelectScene(this, spriteBatch, levelSelectBackground, NUMBER_OF_LEVELS, Utilities.CheckLevelProgression());
 			scenes.Add(levelSelectScene);
 
-			helpScene = new HelpScene(this, spriteBatch);
+			helpScene = new HelpScene(this, spriteBatch, helpSceneBackground);
 			scenes.Add(helpScene);
 
-			aboutScene = new AboutScene(this, spriteBatch);
+			aboutScene = new AboutScene(this, spriteBatch, aboutSceneBackground);
 			scenes.Add(aboutScene);
 
-			howToPlayScene = new HowToPlayScene(this, spriteBatch);
+			howToPlayScene = new HowToPlayScene(this, spriteBatch, howToPlaySceneBackground);
 			scenes.Add(howToPlayScene);
 
-			levelOverScene = new LevelOverScene(this, spriteBatch, 0);
+			levelOverScene = new LevelOverScene(this, spriteBatch, levelOverSceneBackground, 0);
 			scenes.Add(levelOverScene);
 
-			gameOverMenuScene = new GameOverMenuScene(this, spriteBatch, 0);
+			gameOverMenuScene = new GameOverMenuScene(this, spriteBatch, gameOverSceneBackground, 0);
 			scenes.Add(gameOverMenuScene);
 
-			highScoreScene = new HighScoreScene(this, spriteBatch);
+			highScoreScene = new HighScoreScene(this, spriteBatch, highScoreSceneBackground);
 			scenes.Add(highScoreScene);
 
 			//Add each GameScene to the game's components
@@ -266,7 +288,7 @@ namespace CaptainCPA
 						}
 
 						//Create a new level selector scene
-						levelSelectScene = new LevelSelectScene(this, spriteBatch, NUMBER_OF_LEVELS, Utilities.CheckLevelProgression());
+						levelSelectScene = new LevelSelectScene(this, spriteBatch, levelSelectBackground, NUMBER_OF_LEVELS, Utilities.CheckLevelProgression());
 						scenes.Add(levelSelectScene);
 						this.Components.Add(levelSelectScene);
 
@@ -299,7 +321,7 @@ namespace CaptainCPA
 						}
 
 						//Create a new high score scene
-						highScoreScene = new HighScoreScene(this, spriteBatch);
+						highScoreScene = new HighScoreScene(this, spriteBatch, highScoreSceneBackground);
 						scenes.Add(highScoreScene);
 						this.Components.Add(highScoreScene);
 
@@ -380,7 +402,7 @@ namespace CaptainCPA
 							}
 
 							//Create a new LevelOver menu scene
-							levelOverScene = new LevelOverScene(this, spriteBatch, actionScene.Character.Score);
+							levelOverScene = new LevelOverScene(this, spriteBatch, levelOverSceneBackground, actionScene.Character.Score);
 							scenes.Add(levelOverScene);
 							this.Components.Add(levelOverScene);
 
@@ -422,7 +444,7 @@ namespace CaptainCPA
 						}
 
 						//Create a new GameOver menu scene
-						gameOverMenuScene = new GameOverMenuScene(this, spriteBatch, actionScene.Character.Score);
+						gameOverMenuScene = new GameOverMenuScene(this, spriteBatch, gameOverSceneBackground, actionScene.Character.Score);
 						scenes.Add(gameOverMenuScene);
 						this.Components.Add(gameOverMenuScene);
 

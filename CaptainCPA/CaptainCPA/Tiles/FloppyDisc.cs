@@ -43,25 +43,21 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			/*spriteBatch.Begin();
+			
+		}
 
-			//Draw if tile is on screen
-			if (position.X >= -Settings.TILE_SIZE && position.X + texture.Width <= Settings.Stage.X + (2 * Settings.TILE_SIZE))
-			{
-				spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
-				spriteBatch.Draw(overlayTexture, position, overlayColor);
-			}
-				
+		/// <summary>
+		/// Allows the game component to draw itself.
+		/// </summary>
+		/// <param name="gameTime">Provides a snapshot of timing values.</param>
+		public override void Draw(GameTime gameTime)
+		{
+			spriteBatch.Begin();
+			spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
+			spriteBatch.Draw(overlayTexture, position - origin, overlayColor);
 			spriteBatch.End();
-
-			base.Draw(gameTime);*/
-
-
-			/*spriteBatch.Begin();
-			spriteBatch.Draw(overlayTexture, position, overlayColor);
-			spriteBatch.End();*/
-
-			base.Update(gameTime);
+			
+			//base.Draw(gameTime);
 		}
 	}
 }

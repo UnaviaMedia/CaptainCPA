@@ -26,13 +26,13 @@ namespace CaptainCPA
 		private Texture2D menuImage;
 		private List<HighScore> highScores;
 
-		public HighScoreScene(Game game, SpriteBatch spriteBatch)
+		public HighScoreScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
 			position = new Vector2(Settings.Stage.X / 2 - 160, Settings.Stage.Y / 2 - 107);
 			font = game.Content.Load<SpriteFont>("Fonts/HighScoreFont");
 
-			menuImage = game.Content.Load<Texture2D>("Images/HighScoreScreen");
+			this.menuImage = menuImage;
 
 			//Get the list of the 5 highest scores
 			highScores = Utilities.LoadHighScores().Take(5).ToList();

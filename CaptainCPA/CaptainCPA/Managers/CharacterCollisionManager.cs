@@ -124,7 +124,7 @@ namespace CaptainCPA
 				if (moveableTile is Enemy)
 				{
 					//Kill the character
-					character.Die();
+					//character.Die();
 				}
 			}
 

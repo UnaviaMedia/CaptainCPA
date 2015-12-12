@@ -41,10 +41,10 @@ namespace CaptainCPA
 		/// <param name="spriteBatch"></param>
 		/// <param name="numberOfLevels">Number of levels in game</param>
 		/// <param name="numberOfUnlockedLevels">Number of unlocked levels</param>
-		public LevelSelectScene(Game game, SpriteBatch spriteBatch, int numberOfLevels, int numberOfUnlockedLevels)
+		public LevelSelectScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage, int numberOfLevels, int numberOfUnlockedLevels)
 			: base(game, spriteBatch)
 		{
-			menuImage = game.Content.Load<Texture2D>("Images/LevelSelectMenu");
+			this.menuImage = menuImage;
 			levelSelector = game.Content.Load<Texture2D>("Images/LevelSelector");
 
 			//Create list of level Selector positions

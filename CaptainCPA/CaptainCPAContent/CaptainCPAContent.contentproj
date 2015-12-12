@@ -63,8 +63,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\MainMenu.png">
-      <Name>MainMenu</Name>
+    <Compile Include="ScreenBackgrounds\MainMenuScreen.png">
+      <Name>MainMenuScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -73,8 +73,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\PauseMenu.png">
-      <Name>PauseMenu</Name>
+    <Compile Include="ScreenBackgrounds\PauseMenuScreen.png">
+      <Name>PauseMenuScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -93,33 +93,33 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\ControlsScreen.png">
+    <Compile Include="ScreenBackgrounds\ControlsScreen.png">
       <Name>ControlsScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\AboutScreen.png">
+    <Compile Include="ScreenBackgrounds\AboutScreen.png">
       <Name>AboutScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\HighScoreScreen.png">
+    <Compile Include="ScreenBackgrounds\HighScoreScreen.png">
       <Name>HighScoreScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\HelpScreen.png">
+    <Compile Include="ScreenBackgrounds\HelpScreen.png">
       <Name>HelpScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\LevelSelectMenu.png">
-      <Name>LevelSelectMenu</Name>
+    <Compile Include="ScreenBackgrounds\LevelSelectScreen.png">
+      <Name>LevelSelectScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\GameOverMenu.png">
-      <Name>GameOverMenu</Name>
+    <Compile Include="ScreenBackgrounds\GameOverScreen.png">
+      <Name>GameOverScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -128,7 +128,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\LevelOverScreen.png">
+    <Compile Include="ScreenBackgrounds\LevelOverScreen.png">
       <Name>LevelOverScreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -195,17 +195,17 @@
       <Processor>SoundEffectProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Sprites\HealthDisplay-Right.png">
+    <Compile Include="Displays\HealthDisplay-Right.png">
       <Name>HealthDisplay-Right</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\HealthDisplay-Main.png">
+    <Compile Include="Displays\HealthDisplay-Main.png">
       <Name>HealthDisplay-Main</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\HealthDisplay-Skull.png">
+    <Compile Include="Displays\HealthDisplay-Skull.png">
       <Name>HealthDisplay-Skull</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -238,7 +238,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\ScoreDisplay.png">
+    <Compile Include="Displays\ScoreDisplay.png">
       <Name>ScoreDisplay</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -300,6 +300,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
