@@ -107,7 +107,7 @@ namespace CaptainCPA
 			//Reset the background music index counter
 			backgroundMusicCounter = 0;
 
-			MediaPlayer.Volume = 0.25f;
+			MediaPlayer.Volume = 0.2f;
 
 			//Instantiate list of songs
 			backgroundMusic = new List<Song>();
@@ -249,7 +249,7 @@ namespace CaptainCPA
 						hideAllScenes();
 
 						//Reset game (to selected level)
-						actionScene.Reset(this, spriteBatch, levelList[0]);
+						actionScene.Reset(this, spriteBatch, levelList[0], actionScene.Character.Score, actionScene.Character.Lives);
 						currentLevel = 1;
 						actionScene.Show();
 						baseScene = actionScene;
@@ -331,7 +331,7 @@ namespace CaptainCPA
 						hideAllScenes();
 
 						//Load selected level
-						actionScene.Reset(this, spriteBatch, levelList[selectedLevelIndex]);
+						actionScene.Reset(this, spriteBatch, levelList[selectedLevelIndex], actionScene.Character.Score, actionScene.Character.Lives);
 						currentLevel = selectedLevelIndex + 1;
 						actionScene.Show();
 						baseScene = actionScene;
@@ -431,7 +431,7 @@ namespace CaptainCPA
 						hideAllScenes();
 
 						//Load selected level
-						actionScene.Reset(this, spriteBatch, levelList[++currentLevel - 1]);
+						actionScene.Reset(this, spriteBatch, levelList[++currentLevel - 1], actionScene.Character.Score, actionScene.Character.Lives);
 						actionScene.Show();
 						baseScene = actionScene;
 						enabledScene = actionScene; 

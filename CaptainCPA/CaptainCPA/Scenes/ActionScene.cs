@@ -114,10 +114,10 @@ namespace CaptainCPA
 			GameOver = false;*/
 			#endregion
 
-			Reset(game, spriteBatch, level);
+			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
 		}
 
-		public void Reset(Game game, SpriteBatch spriteBatch, string level)
+		public void Reset(Game game, SpriteBatch spriteBatch, string level, int playerScore, int playerLives)
 		{
 			//Reset component list
 			this.Components = new List<GameComponent>();
@@ -128,6 +128,8 @@ namespace CaptainCPA
 			moveableTileList = levelLoader.MoveableTileList;
 			fixedTileList = levelLoader.FixedTileList;
 			character = levelLoader.Character;
+			character.Score = playerScore;
+			character.Lives = playerLives;
 
 			//Add each tile to the scene components
 			foreach (MoveableTile moveableTile in moveableTileList)

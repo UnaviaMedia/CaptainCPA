@@ -26,6 +26,8 @@ namespace CaptainCPA
 	/// </summary>
 	public class Character : MoveableTile
 	{
+		public const int MAX_LIVES = 3;
+
 		private List<Rectangle> frames;
 		private Vector2 dimension;
 		private int delay;
