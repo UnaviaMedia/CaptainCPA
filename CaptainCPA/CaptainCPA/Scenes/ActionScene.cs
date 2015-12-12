@@ -180,6 +180,11 @@ namespace CaptainCPA
 
 		}
 
+		public void Reset(Game game, SpriteBatch spriteBatch, string level)
+		{
+			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
+		}
+
 		/// <summary>
 		/// Allows the game component to perform any initialization it needs to before starting
 		/// to run.  This is where it can query for any required services and load content.

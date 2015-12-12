@@ -266,7 +266,7 @@ namespace CaptainCPA
 						hideAllScenes();
 
 						//Reset game (to selected level)
-						actionScene.Reset(this, spriteBatch, levelList[0], actionScene.Character.Score, actionScene.Character.Lives);
+						actionScene.Reset(this, spriteBatch, levelList[0]);
 						currentLevel = 1;
 						actionScene.Show();
 						baseScene = actionScene;
@@ -354,7 +354,7 @@ namespace CaptainCPA
 						hideAllScenes();
 
 						//Load selected level
-						actionScene.Reset(this, spriteBatch, levelList[selectedLevelIndex], actionScene.Character.Score, actionScene.Character.Lives);
+						actionScene.Reset(this, spriteBatch, levelList[selectedLevelIndex]);
 						currentLevel = selectedLevelIndex + 1;
 						actionScene.Show();
 						baseScene = actionScene;
