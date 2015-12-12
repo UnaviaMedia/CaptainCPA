@@ -39,19 +39,12 @@ namespace CaptainCPA
 		protected HealthDisplay healthDisplay;
 
 		private bool gameOver;
-		//private bool levelOver;
 
 		public bool GameOver
 		{
 			get { return gameOver; }
 			set { gameOver = value; }
 		}
-
-		/*public bool LevelOver
-		{
-			get { return levelOver; }
-			set { levelOver = value; }
-		}*/
 
 		public Character Character
 		{
@@ -63,6 +56,8 @@ namespace CaptainCPA
 		/// A list of all tiles excepting the Character
 		/// </summary>
 		protected List<Tile> tiles;
+
+
 		public ActionScene(Game game, SpriteBatch spriteBatch, string level)
 			: base(game, spriteBatch)
 		{

@@ -151,8 +151,7 @@ namespace CaptainCPA
 
 				//Update player's horizontal position
 				moveableTile.Position = new Vector2(moveableTile.Position.X + horizontalMoveDistance, moveableTile.Position.Y);
-
-
+				
 
 				//------------------------------------------------------------------------------
 				//Y-axis
@@ -184,7 +183,7 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
-					if (fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.Decoration)
+					if (fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.LevelEnd)
 					{
 						continue;
 					}

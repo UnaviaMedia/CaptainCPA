@@ -60,7 +60,7 @@ namespace CaptainCPA
 				}
 
 				//Skip collision detection if the moveable tile is too far away or doesn't intersect
-				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 150 ||
+				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 125 ||
 					character.Bounds.Intersects(fixedTile.Bounds) == false || Utilities.PerPixelCollision(character, fixedTile) == false)
 				{
 					continue;
@@ -96,6 +96,9 @@ namespace CaptainCPA
 				{
 					//End the level
 					character.LevelComplete = true;
+
+					//Hide the character
+					character.Destroy();
 
 					//TODO - Play a level complete sound
 					//Generic ding
