@@ -40,11 +40,7 @@ namespace CaptainCPA
 		private float jumpSpeed;
 		private bool isAlive;
 		private bool levelComplete;
-		public bool IsGhost
-		{
-			get { return isGhost; }
-			set {isGhost = value; }
-		}
+		private bool isGhost;
 
 		//Store characters's starting position
 		private Vector2 startingPosition;
@@ -88,6 +84,12 @@ namespace CaptainCPA
 		public Vector2 StartingPosition
 		{
 			get { return startingPosition; }
+		}
+
+		public bool IsGhost
+		{
+			get { return isGhost; }
+			set { isGhost = value; }
 		}
 
 		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
@@ -167,7 +169,7 @@ namespace CaptainCPA
 		/// </summary>
 		private void ResetPosition()
 		{
-            position = initPosition;
+			position = initPosition;
 		}
 
 		/// <summary>
@@ -204,18 +206,18 @@ namespace CaptainCPA
 				facingRight = true;
 			}
 
-            //If the screen is moving character stays still on screen
-            if (CharacterStateManager.ScreenMoving && isMoving)
-            {
-                if (facingRight && CharacterStateManager.TooFarRight)
-                {
-                    velocity.X = 0f;
-                }
-                else if (!facingRight && !CharacterStateManager.TooFarRight)
-                {
-                    velocity.X = 0f;
-                }
-            }
+			//If the screen is moving character stays still on screen
+			if (CharacterStateManager.ScreenMoving && isMoving)
+			{
+				if (facingRight && CharacterStateManager.TooFarRight)
+				{
+					velocity.X = 0f;
+				}
+				else if (!facingRight && !CharacterStateManager.TooFarRight)
+				{
+					velocity.X = 0f;
+				}
+			}
 
 			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
@@ -230,67 +232,67 @@ namespace CaptainCPA
 				Console.WriteLine("Debug Mode");
 			}
 
-            //animation, hopefully
-            if (isMoving)
-            {
-                if (velocity.Y == 0)
-                {
-                    delayCounter++;
-                    if (delayCounter % delay == 0)
-                    {
-                        frameIndex++;
-                        if (frameIndex == 27)
-                            frameIndex = 0;
-                    }
-                }
-                else
-                {
-                    if (frameIndex != 1)
-                    {
-                        delayCounter++;
-                        if (delayCounter % delay == 0)
-                        {
-                            frameIndex++;
-                            if (frameIndex == 27)
-                                frameIndex = 0;
-                        }
-                    }
-                    else
-                    {
-                        frameIndex = 0;
-                    }
-                }
-            }
-            //texture = bigTexture.GetData<Texture2D>()
-            CharacterStateManager.CharacterPosition = position;
-            CharacterStateManager.FacingRight = facingRight;
-            CharacterStateManager.IsMoving = isMoving;
-            CharacterStateManager.Velocity = velocity;
+			//animation, hopefully
+			if (isMoving)
+			{
+				if (velocity.Y == 0)
+				{
+					delayCounter++;
+					if (delayCounter % delay == 0)
+					{
+						frameIndex++;
+						if (frameIndex == 27)
+							frameIndex = 0;
+					}
+				}
+				else
+				{
+					if (frameIndex != 1)
+					{
+						delayCounter++;
+						if (delayCounter % delay == 0)
+						{
+							frameIndex++;
+							if (frameIndex == 27)
+								frameIndex = 0;
+						}
+					}
+					else
+					{
+						frameIndex = 0;
+					}
+				}
+			}
+			//texture = bigTexture.GetData<Texture2D>()
+			CharacterStateManager.CharacterPosition = position;
+			CharacterStateManager.FacingRight = facingRight;
+			CharacterStateManager.IsMoving = isMoving;
+			CharacterStateManager.Velocity = velocity;
 			base.Update(gameTime);
 		}
-        public override void Draw(GameTime gameTime)
-        {
-            spriteBatch.Begin();
-            if (frameIndex >= 0)
-            {
-                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
-            }
-            spriteBatch.End();
-            //base.Draw(gameTime);
-        }
-        private void createFrames()
-        {
-            frames = new List<Rectangle>();
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 7; j++)
-                {
-                    int x = j * (int)dimension.X + 5 * j;
-                    int y = i * (int)dimension.Y + 5 * i + 5;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
-                    frames.Add(r);
-                }
-            }
-        }
+		public override void Draw(GameTime gameTime)
+		{
+			spriteBatch.Begin();
+			if (frameIndex >= 0)
+			{
+				spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
+			}
+			spriteBatch.End();
+			//base.Draw(gameTime);
+		}
+		private void createFrames()
+		{
+			frames = new List<Rectangle>();
+			for (int i = 0; i < 4; i++)
+			{
+				for (int j = 0; j < 7; j++)
+				{
+					int x = j * (int)dimension.X + 5 * j;
+					int y = i * (int)dimension.Y + 5 * i + 5;
+					Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
+					frames.Add(r);
+				}
+			}
+		}
 	}
 }
