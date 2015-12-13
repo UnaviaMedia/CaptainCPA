@@ -45,7 +45,7 @@ namespace CaptainCPA
 			{
 				//If the tile is hidden or disabled, skip collision detection for it
 				//	Also skip detection if the TileType shouldn't have detection for it
-				if (fixedTile.Visible == false || fixedTile.Enabled == false ||
+				if (fixedTile.Visible == false || fixedTile.Enabled == false || fixedTile.IsCollideable == false ||
 					fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup ||
 					fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle)
 				{

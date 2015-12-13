@@ -72,7 +72,7 @@ namespace CaptainCPA
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
 					if (fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup ||
-						fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle)
+						fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle || fixedTile.IsCollideable == false)
 					{
 						continue;
 					}

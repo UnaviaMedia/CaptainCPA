@@ -50,7 +50,8 @@ namespace CaptainCPA
 			foreach (FixedTile fixedTile in fixedTiles)
 			{
 				//Skip collision detection if the moveable tile is hidden or disabled
-				if (fixedTile.Visible == false || fixedTile.Enabled == false || character.Equals(fixedTile))
+				if (fixedTile.Visible == false || fixedTile.Enabled == false || fixedTile.IsCollideable == false || 
+					fixedTile.IsCollideable == false || character.Equals(fixedTile))
 				{
 					continue;
 				}
@@ -123,13 +124,13 @@ namespace CaptainCPA
 
 				if (moveableTile is Enemy)
 				{
-					//Decrease character lives
+					/*//Decrease character lives
 					character.LoseLife();
 
 					//Play the spike sound effect
 					//Minecraft sound
 					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
-					spike.Play();
+					spike.Play();*/
 				}
 			}
 

@@ -1,22 +1,22 @@
 /*
  * Project: CaptainCPA - Tile.cs
- * Purpose: Platform tile
+ * Purpose: Base class for all tiles in a platform level
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
  *						Dec-11-2015:	Removed Observer pattern
  *		Doug Epp						Added initial position property (for level reset after death)
- *						Dec-12-2015:	Removed IBounds implementation
+ *		Kendall Roth	Dec-12-2015:	Removed IBounds implementation
+ *						Dec-13-2015:	Added IsCollideable property
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Platform tile
+	/// Base class for all tiles in a platform level
 	/// </summary>
 	public class Tile : DrawableGameComponent
 	{
@@ -25,21 +25,15 @@ namespace CaptainCPA
 		protected Color color;
 		protected Vector2 position;
 		protected Vector2 initPosition;
-
-		public Vector2 InitPosition
-		{
-			get { return initPosition; }
-			set { initPosition = value; }
-		}
+		protected TileType tileType;
+		protected Rectangle bounds;
+		protected bool isCollideable;
 
 		protected float rotation = 0.0f;
 		protected float scale = 1.0f;
 		protected Vector2 origin;
 		protected SpriteEffects spriteEffect;
 		protected float layerDepth = 1.0f;
-
-		protected TileType tileType;
-		protected Rectangle bounds;
 
 		public Texture2D Texture
 		{
@@ -59,10 +53,22 @@ namespace CaptainCPA
 			set { position = value; }
 		}
 
+		public Vector2 InitPosition
+		{
+			get { return initPosition; }
+			set { initPosition = value; }
+		}
+
 		public TileType TileType
 		{
 			get { return tileType; }
 			set { tileType = value; }
+		}
+
+		public bool IsCollideable
+		{
+			get { return isCollideable; }
+			set { isCollideable = value; }
 		}
 
 		public SpriteEffects SpriteEffects
@@ -85,7 +91,8 @@ namespace CaptainCPA
 		}
 
 
-		public Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth)
+		public Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position,
+			float rotation, float scale, float layerDepth, bool isCollideable = true)
 			: base(game)
 		{
 			this.spriteBatch = spriteBatch;
@@ -93,6 +100,7 @@ namespace CaptainCPA
 			origin = new Vector2(texture.Width / 2, texture.Height / 2);
 			this.color = color;
 			this.position = new Vector2(position.X + origin.X, position.Y + origin.Y);
+			this.isCollideable = isCollideable;
 			this.initPosition = position;
 			this.tileType = tileType;
 

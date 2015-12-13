@@ -11,6 +11,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -66,7 +67,20 @@ namespace CaptainCPA
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
 			//Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
 
+			List<Texture2D> grassTextures = new List<Texture2D>();
+			Texture2D grassTexture1 = game.Content.Load<Texture2D>("Sprites/Grass1");
+			Texture2D grassTexture2 = game.Content.Load<Texture2D>("Sprites/Grass2");
+			Texture2D grassTexture3 = game.Content.Load<Texture2D>("Sprites/Grass3");
+			Texture2D grassTexture4 = game.Content.Load<Texture2D>("Sprites/Grass4");
+			Texture2D grassTexture5 = game.Content.Load<Texture2D>("Sprites/Grass5");
+			grassTextures.Add(grassTexture1);
+			grassTextures.Add(grassTexture2);
+			grassTextures.Add(grassTexture3);
+			grassTextures.Add(grassTexture4);
+			grassTextures.Add(grassTexture5);
+
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
+			Texture2D levelEndTexture = game.Content.Load<Texture2D>("Sprites/LevelEnd");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
 			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
@@ -78,6 +92,9 @@ namespace CaptainCPA
 			Texture2D computerTexture = game.Content.Load<Texture2D>("Sprites/Computer");
 			#endregion
 
+			//Randomizer for generating random textures
+			Random r = new Random();
+
 			//Create a new XML document and load the selected save file
 			XmlDocument loadFile = new XmlDocument();
 			loadFile.Load(@"Content/Levels/" + levelName + ".xml");
@@ -87,12 +104,18 @@ namespace CaptainCPA
 			foreach (XmlNode row in rows)
 			{
 				//Store Y-value of current row
-				int yValue = int.Parse(row.Attributes["y"].Value);
+				float yValue = float.Parse(row.Attributes["y"].Value);
 
 				foreach (XmlNode tile in row)
 				{
+					//Skip XML comments (will crash otherwise)
+					if (tile is XmlComment)
+					{
+						continue;
+					}
+
 					//Store X-value of current column and the tiles type
-					int xValue = int.Parse(tile.Attributes["x"].Value);
+					float xValue = float.Parse(tile.Attributes["x"].Value);
 					string tileType = tile.Attributes["tileType"].Value;
 
 					//Declare new Tile properties
@@ -114,6 +137,13 @@ namespace CaptainCPA
 							break;
 						case "block":
 							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
+							break;
+						case "grass":
+							
+							newTile = new Block(game, spriteBatch, grassTextures[r.Next(0, grassTextures.Count)], color, position, rotation, scale, layerDepth);
+							break;
+						case "level-end":
+							newTile = new Block(game, spriteBatch, levelEndTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "platform-middle":
 							newTile = new Platform(game, spriteBatch, platformMiddleTexture, color, position, rotation, scale, layerDepth);
@@ -172,6 +202,12 @@ namespace CaptainCPA
 							break;
 						default:
 							break;
+					}
+
+					//Determine if tile is collideable
+					if (tile.Attributes["collideable"] != null)
+					{
+						newTile.IsCollideable = bool.Parse(tile.Attributes["collideable"].Value);
 					}
 
 					//If the tile is not null, add it to the correct tile list

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Manages the state of the character
 	/// </summary>
 	public class CharacterStateManager : GameComponent
 	{

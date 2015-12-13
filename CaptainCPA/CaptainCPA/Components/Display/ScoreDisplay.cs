@@ -31,7 +31,7 @@ namespace CaptainCPA
 			texture = game.Content.Load<Texture2D>("Displays/ScoreDisplay");
 			font = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
 			
-			position = new Vector2(75, 75);
+			position = new Vector2(60, 30);
 		}
 
 		/// <summary>

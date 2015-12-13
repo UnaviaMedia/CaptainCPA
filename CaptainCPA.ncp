@@ -1,0 +1,1084 @@
+<Project>
+  <Name>CaptainCPA</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Class Diagram</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Tile</Name>
+        <Access>Public</Access>
+        <Location left="1986" top="1120" />
+        <Size width="199" height="451" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected SpriteBatch spriteBatch</Member>
+        <Member type="Field">protected Texture2D texture</Member>
+        <Member type="Field">protected Vector2 position</Member>
+        <Member type="Field">protected Vector2 initPosition</Member>
+        <Member type="Field">protected Vector2 origin</Member>
+        <Member type="Field">protected TileType tileType</Member>
+        <Member type="Field">protected float rotation = 0.0f</Member>
+        <Member type="Field">protected Color color</Member>
+        <Member type="Field">protected float scale = 1.0f</Member>
+        <Member type="Field">protected SpriteEffects spriteEffect</Member>
+        <Member type="Field">protected float layerDepth = 1.0f</Member>
+        <Member type="Property">public Texture2D Texture { get; set; }</Member>
+        <Member type="Property">public Vector2 Position { get; set; }</Member>
+        <Member type="Property">public Rectangle Bounds { get; }</Member>
+        <Member type="Property">public int TileType { get; set; }</Member>
+        <Member type="Property">public int Color { get; set; }</Member>
+        <Member type="Property">public int SpriteEffects { get; set; }</Member>
+        <Member type="Constructor">public Tile()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Member type="Method">public virtual void Destroy()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FixedTile</Name>
+        <Access>Public</Access>
+        <Location left="2368" top="1585" />
+        <Size width="163" height="196" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected int xPosition</Member>
+        <Member type="Field">protected int yPosition</Member>
+        <Member type="Constructor">public FixedTile()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Property">public int XPosition { get; }</Member>
+        <Member type="Property">public int YPosition { get; }</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MoveableTile</Name>
+        <Access>Public</Access>
+        <Location left="1574" top="1506" />
+        <Size width="188" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected Vector2 velocity</Member>
+        <Member type="Field">protected bool facingRight</Member>
+        <Member type="Field">protected bool isMoving</Member>
+        <Member type="Field">protected Vector2 gravity = new Vector2(0.0f, 0.2f)</Member>
+        <Member type="Field">protected bool onGround</Member>
+        <Member type="Property">public Vector2 Velocity { get; set; }</Member>
+        <Member type="Property">public int Gravity { get; set; }</Member>
+        <Member type="Property">public bool OnGround { get; set; }</Member>
+        <Member type="Constructor">public MoveableTile()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>TileType</Name>
+        <Access>Public</Access>
+        <Location left="2193" top="31" />
+        <Size width="163" height="180" />
+        <Collapsed>False</Collapsed>
+        <Value>Block</Value>
+        <Value>Platform</Value>
+        <Value>Pickup</Value>
+        <Value>Obstacle</Value>
+        <Value>Enemy</Value>
+        <Value>LevelEnd</Value>
+        <Value>Character</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Block</Name>
+        <Access>Public</Access>
+        <Location left="2225" top="1925" />
+        <Size width="163" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Block()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FloppyDisc</Name>
+        <Access>Public</Access>
+        <Location left="2766" top="2219" />
+        <Size width="162" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D overlayTexture</Member>
+        <Member type="Field">private Color overlayColor</Member>
+        <Member type="Constructor">public FloppyDisc()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Pickup</Name>
+        <Access>Public</Access>
+        <Location left="2849" top="1925" />
+        <Size width="188" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected int points</Member>
+        <Member type="Property">public int Points { get; set; }</Member>
+        <Member type="Constructor">public Pickup()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Disc</Name>
+        <Access>Public</Access>
+        <Location left="2971" top="2219" />
+        <Size width="163" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Disc()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Platform</Name>
+        <Access>Public</Access>
+        <Location left="2015" top="1925" />
+        <Size width="163" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Platform()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Obstacle</Name>
+        <Access>Public</Access>
+        <Location left="2418" top="1925" />
+        <Size width="162" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Obstacle()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Spike</Name>
+        <Access>Public</Access>
+        <Location left="2418" top="2121" />
+        <Size width="163" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Spike()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Character</Name>
+        <Access>Public</Access>
+        <Location left="1342" top="1910" />
+        <Size width="230" height="587" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private int lives</Member>
+        <Member type="Field">private int score</Member>
+        <Member type="Field">private bool isAlive</Member>
+        <Member type="Field">private bool isGhost</Member>
+        <Member type="Field">private List&lt;Rectangle&gt; frames</Member>
+        <Member type="Field">private Vector2 dimension</Member>
+        <Member type="Field">private int delay</Member>
+        <Member type="Field">private int frameIndex = 0</Member>
+        <Member type="Field">private Texture2D bigTexture</Member>
+        <Member type="Field">private float speed</Member>
+        <Member type="Field">private float jumpSpeed</Member>
+        <Member type="Field">private bool levelComplete</Member>
+        <Member type="Field">private Vector2 startingPosition</Member>
+        <Member type="Property">public int Lives { get; set; }</Member>
+        <Member type="Property">public int Score { get; set; }</Member>
+        <Member type="Property">public float Speed { get; set; }</Member>
+        <Member type="Property">public float JumpSpeed { get; set; }</Member>
+        <Member type="Property">public int IsAlive { get; set; }</Member>
+        <Member type="Property">public bool LevelComplete { get; set; }</Member>
+        <Member type="Property">public Vector2 StartingPosition { get; set; }</Member>
+        <Member type="Property">public int IsGhost { get; set; }</Member>
+        <Member type="Constructor">public Character()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Member type="Method">public void ResetScore()</Member>
+        <Member type="Method">public void ResetPosition()</Member>
+        <Member type="Method">public void LoseLife()</Member>
+        <Member type="Method">public void Die()</Member>
+        <Member type="Method">private void createFrames()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Enemy</Name>
+        <Access>Public</Access>
+        <Location left="1757" top="1910" />
+        <Size width="163" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected float xSpeed</Member>
+        <Member type="Constructor">public Enemy()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PursuingEnemy</Name>
+        <Access>Public</Access>
+        <Location left="1757" top="2110" />
+        <Size width="163" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public PursuingEnemy()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Monstar</Name>
+        <Access>Public</Access>
+        <Location left="1859" top="2358" />
+        <Size width="163" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Monstar()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Mimic</Name>
+        <Access>Public</Access>
+        <Location left="1634" top="2358" />
+        <Size width="163" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Mimic()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>Direction</Name>
+        <Access>Public</Access>
+        <Location left="2396" top="31" />
+        <Size width="163" height="146" />
+        <Collapsed>False</Collapsed>
+        <Value>None</Value>
+        <Value>Up</Value>
+        <Value>Right</Value>
+        <Value>Down</Value>
+        <Value>Left</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>GameComponent</Name>
+        <Access>Public</Access>
+        <Location left="624" top="858" />
+        <Size width="163" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public GameComponent()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DrawableGameComponent</Name>
+        <Access>Public</Access>
+        <Location left="609" top="1039" />
+        <Size width="188" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public DrawableGameComponent()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>GameScene</Name>
+        <Access>Public</Access>
+        <Location left="537" top="1663" />
+        <Size width="301" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected SpriteBatch spriteBatch</Member>
+        <Member type="Field">protected List&lt;GameComponent&gt; components</Member>
+        <Member type="Property">public List&lt;GameComponent&gt; Components { get; set; }</Member>
+        <Member type="Constructor">public GameScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Member type="Method">public void Show()</Member>
+        <Member type="Method">public void Hide()</Member>
+        <Member type="Method">public virtual void EnableComponents()</Member>
+        <Member type="Method">public virtual void DisableComponents()</Member>
+        <Member type="Method">public string ReadFile()</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>GameManager</Name>
+        <Access>Public</Access>
+        <Location left="624" top="174" />
+        <Size width="175" height="621" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private SpriteBatch spriteBatch</Member>
+        <Member type="Field">private GraphicsDeviceManager graphics</Member>
+        <Member type="Field">public const int X_SCALE_FACTOR = 25f</Member>
+        <Member type="Field">public const int Y_SCALE_FACTOR = 14f</Member>
+        <Member type="Field">private List&lt;GameScene&gt; scenes</Member>
+        <Member type="Field">private StartScene startScene</Member>
+        <Member type="Field">private PauseMenuScene pauseMenuScene</Member>
+        <Member type="Field">private ActionScene actionScene</Member>
+        <Member type="Field">private LevelSelectScene levelSelectScene</Member>
+        <Member type="Field">private HelpScene helpScene</Member>
+        <Member type="Field">private AboutScene aboutScene</Member>
+        <Member type="Field">private HighScoreScene highScoreScene</Member>
+        <Member type="Field">private HowToPlayScene howToPlayScene</Member>
+        <Member type="Field">private LevelOverScene levelOverScene</Member>
+        <Member type="Field">private GameOverMenuScene gameOverMenuScene</Member>
+        <Member type="Field">private GameScene baseScene</Member>
+        <Member type="Field">private GameScene enabledScene</Member>
+        <Member type="Field">private List&lt;Song&gt; backgroundMusic</Member>
+        <Member type="Field">private int backgroundMusicCounter</Member>
+        <Member type="Field">private List&lt;string&gt; levelList</Member>
+        <Member type="Field">private string currentLevel</Member>
+        <Member type="Field">private KeyboardState oldState</Member>
+        <Member type="Field">private int totalFrames</Member>
+        <Member type="Field">private float elapsedTime = 0.0f</Member>
+        <Member type="Field">private int fps = 0</Member>
+        <Member type="Constructor">public GameManager()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void LoadContent()</Member>
+        <Member type="Method">public void UnloadContent()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Member type="Method">private void hideAllScenes()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Game</Name>
+        <Access>Public</Access>
+        <Location left="624" top="34" />
+        <Size width="162" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Structure">
+        <Name>HighScore</Name>
+        <Access>Public</Access>
+        <Location left="1955" top="31" />
+        <Size width="162" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public int Score { get; set; }</Member>
+        <Member type="Property">public string Name { get; set; }</Member>
+      </Entity>
+      <Entity type="Class">
+        <Name>Utilities</Name>
+        <Access>Public</Access>
+        <Location left="1681" top="31" />
+        <Size width="228" height="281" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static Vector2 gameWindow</Member>
+        <Member type="Field">private static Dictionary&lt;string, Color&gt; tileColors</Member>
+        <Member type="Field">public const float TILE_SIZE = 64.0f</Member>
+        <Member type="Method">public static void PerPixelCollision()</Member>
+        <Member type="Method">public static Color ConvertColor()</Member>
+        <Member type="Method">public static Vector2 PointToVector2()</Member>
+        <Member type="Method">public static List&lt;HighScore&gt; LoadHighScores()</Member>
+        <Member type="Method">public static void ResetHighScores()</Member>
+        <Member type="Method">public static void UpdateHighScores()</Member>
+        <Member type="Method">public static int CheckLevelProgression()</Member>
+        <Member type="Method">public static void ResetLevelProgression()</Member>
+        <Member type="Method">public static void UpdateLevelProgression()</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>DisplayString</Name>
+        <Access>Public</Access>
+        <Location left="66" top="777" />
+        <Size width="214" height="298" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected SpriteBatch spriteBatch</Member>
+        <Member type="Field">protected SpriteFont spriteFont</Member>
+        <Member type="Field">protected Vector2 position</Member>
+        <Member type="Field">protected Color color</Member>
+        <Member type="Field">protected string message</Member>
+        <Member type="Property">public SpriteFont SpriteFont { get; set; }</Member>
+        <Member type="Property">public int Position { get; set; }</Member>
+        <Member type="Property">public Rectangle Bounds { get; }</Member>
+        <Member type="Property">public string Message { get; set; }</Member>
+        <Member type="Constructor">public DisplayString()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LevelLoader</Name>
+        <Access>Public</Access>
+        <Location left="1335" top="31" />
+        <Size width="298" height="247" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private game Game</Member>
+        <Member type="Field">private SpriteBatch spriteBatch</Member>
+        <Member type="Field">private List&lt;MoveableTile&gt; moveableTileList</Member>
+        <Member type="Field">private List&lt;FixedTile&gt; fixedTileList</Member>
+        <Member type="Field">private Character character</Member>
+        <Member type="Property">public List&lt;MoveableTile&gt; MoveableTileList { get; set; }</Member>
+        <Member type="Property">public List&lt;FixedTile&gt; FixedTileList { get; set; }</Member>
+        <Member type="Property">public int Character { get; set; }</Member>
+        <Member type="Constructor">public LevelLoader()</Member>
+        <Member type="Method">public void LoadGame()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Computer</Name>
+        <Access>Public</Access>
+        <Location left="2632" top="1925" />
+        <Size width="162" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public Computer()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AboutScene</Name>
+        <Access>Public</Access>
+        <Location left="1041" top="2002" />
+        <Size width="162" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Constructor">public AboutScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ActionScene</Name>
+        <Access>Public</Access>
+        <Location left="60" top="1394" />
+        <Size width="327" height="434" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private LevelLoader levelLoader</Member>
+        <Member type="Field">private List&lt;MoveableTile&gt; moveableTileList</Member>
+        <Member type="Field">private List&lt;FixedTile&gt; fixedTileList</Member>
+        <Member type="Field">private Character character</Member>
+        <Member type="Field">private PhysicsManager physicsManager</Member>
+        <Member type="Field">private TileCollisionManager tileCollisionPositioningManager</Member>
+        <Member type="Field">private CharacterCollisionManager characterCollisionManager</Member>
+        <Member type="Field">private CharacterPositionManager characterPositionManager</Member>
+        <Member type="Field">private ScoreDisplay scoreDisplay</Member>
+        <Member type="Field">private HealthDisplay healthDisplay</Member>
+        <Member type="Field">private int counter</Member>
+        <Member type="Field">private bool gameOver</Member>
+        <Member type="Field">private List&lt;Tiles&gt; tiles</Member>
+        <Member type="Property">public Character Character { get; set; }</Member>
+        <Member type="Property">public bool GameOver { get; set; }</Member>
+        <Member type="Constructor">public ActionScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public void Reset()</Member>
+        <Member type="Method">public void Reset()</Member>
+        <Member type="Method">public void SlideBack()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>GameOverScene</Name>
+        <Access>Public</Access>
+        <Location left="745" top="2287" />
+        <Size width="162" height="196" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Field">private HighScoreComponent highScoreComponent</Member>
+        <Member type="Constructor">public GameOverScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Member type="Property">public HighScoreComponent HighScoreComponent { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HelpScene</Name>
+        <Access>Public</Access>
+        <Location left="148" top="2287" />
+        <Size width="162" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Constructor">public HelpScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HighScoreScene</Name>
+        <Access>Public</Access>
+        <Location left="1041" top="1724" />
+        <Size width="162" height="213" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Field">private Vector2 position</Member>
+        <Member type="Field">private SpriteFont font</Member>
+        <Member type="Field">private List&lt;HighScore&gt; highScores</Member>
+        <Member type="Constructor">public HighScoreScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HowToPlayScene</Name>
+        <Access>Public</Access>
+        <Location left="342" top="2287" />
+        <Size width="162" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Constructor">public HowToPlayScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LevelOverScene</Name>
+        <Access>Public</Access>
+        <Location left="537" top="2287" />
+        <Size width="162" height="196" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Field">private SpriteFont font</Member>
+        <Member type="Field">private int currentScore</Member>
+        <Member type="Constructor">public LevelOverScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LevelSelectScene</Name>
+        <Access>Public</Access>
+        <Location left="118" top="1861" />
+        <Size width="269" height="315" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Field">private Texture2D levelSelector</Member>
+        <Member type="Field">private Texture2D lockedLevelIndicator</Member>
+        <Member type="Field">private Texture2D unavailableLockedLevelIndicator</Member>
+        <Member type="Field">private List&lt;Vector2&gt; levelSelectorPositions</Member>
+        <Member type="Field">private int selectedIndex</Member>
+        <Member type="Field">private int numberOfLevels</Member>
+        <Member type="Field">private int numberOfUnlockedLevels</Member>
+        <Member type="Field">private KeyboardState oldState</Member>
+        <Member type="Property">public int SelectedIndex { get; set; }</Member>
+        <Member type="Constructor">public LevelSelectScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PauseMenuScene</Name>
+        <Access>Public</Access>
+        <Location left="949" top="2287" />
+        <Size width="162" height="213" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Field">private MenuComponent menu</Member>
+        <Member type="Field">private string[] menuItems</Member>
+        <Member type="Property">public MenuComponent Menu { get; set; }</Member>
+        <Member type="Constructor">public PauseMenuScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>PauseMenItems</Name>
+        <Access>Public</Access>
+        <Location left="949" top="2541" />
+        <Size width="163" height="129" />
+        <Collapsed>False</Collapsed>
+        <Value>Resume</Value>
+        <Value>HowTo</Value>
+        <Value>MainMenu</Value>
+        <Value>Quit</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>StartScene</Name>
+        <Access>Public</Access>
+        <Location left="1041" top="1368" />
+        <Size width="233" height="315" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Texture2D scrollingTexture1</Member>
+        <Member type="Field">private Texture2D scrollingTexture2</Member>
+        <Member type="Field">private Vector2 scrollingPosition1</Member>
+        <Member type="Field">private Vector2 scrollingPosition2</Member>
+        <Member type="Field">private List&lt;Texture2D&gt; backgroundImages</Member>
+        <Member type="Field">private Texture2D menuImage</Member>
+        <Member type="Field">private MenuComponent menu</Member>
+        <Member type="Field">private string[] menuItems</Member>
+        <Member type="Field">private List&lt;string&gt; levelList</Member>
+        <Member type="Constructor">public StartScene()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Member type="Property">public MenuComponent Menu { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>MenuItemTitles</Name>
+        <Access>Public</Access>
+        <Location left="846" top="1394" />
+        <Size width="163" height="180" />
+        <Collapsed>False</Collapsed>
+        <Value>Start</Value>
+        <Value>Select</Value>
+        <Value>Help</Value>
+        <Value>Highscore</Value>
+        <Value>About</Value>
+        <Value>HowTo</Value>
+        <Value>Quit</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>CollisionManager</Name>
+        <Access>Public</Access>
+        <Location left="1353" top="717" />
+        <Size width="223" height="162" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected List&lt;MoveableTile&gt; moveableTiles</Member>
+        <Member type="Field">protected List&lt;FixedTile&gt; fixedTiles</Member>
+        <Member type="Constructor">public CollisionManager()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CharacterCollisionManager</Name>
+        <Access>Public</Access>
+        <Location left="971" top="1052" />
+        <Size width="188" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private Character character</Member>
+        <Member type="Constructor">public CharacterCollisionManager()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CharacterStateManager</Name>
+        <Access>Public</Access>
+        <Location left="1410" top="1067" />
+        <Size width="239" height="349" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private static Vector2 characterPosition</Member>
+        <Member type="Field">private static Vector2 velocity</Member>
+        <Member type="Field">private float speed</Member>
+        <Member type="Field">private static bool isMoving</Member>
+        <Member type="Field">private static bool onGround</Member>
+        <Member type="Field">private static bool facingRight</Member>
+        <Member type="Field">private static bool screenMoving</Member>
+        <Member type="Field">private static bool tooFarRight</Member>
+        <Member type="Property">public static Vector2 CharacterPosition { get; set; }</Member>
+        <Member type="Property">public static Vector2 Velocity { get; set; }</Member>
+        <Member type="Property">public static float Speed { get; set; }</Member>
+        <Member type="Property">public static bool IsMoving { get; set; }</Member>
+        <Member type="Property">public static bool OnGround { get; set; }</Member>
+        <Member type="Property">public static bool FacingRight { get; set; }</Member>
+        <Member type="Property">public static bool ScreenMoving { get; set; }</Member>
+        <Member type="Property">public static bool TooFarRight { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PhysicsManager</Name>
+        <Access>Public</Access>
+        <Location left="1686" top="1067" />
+        <Size width="162" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public PhysicsManager()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>TileCollisionPositioningManager</Name>
+        <Access>Public</Access>
+        <Location left="1203" top="1067" />
+        <Size width="162" height="128" />
+        <Collapsed>False</Collapsed>
+        <Member type="Constructor">public TileCollisionPositioningManager()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>MenuComponent</Name>
+        <Access>Public</Access>
+        <Location left="66" top="400" />
+        <Size width="203" height="332" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">protected SpriteBatch spriteBatch</Member>
+        <Member type="Field">protected Vector2 position</Member>
+        <Member type="Field">protected Texture2D menSelectorTexture</Member>
+        <Member type="Field">protected SpriteFont regularFont</Member>
+        <Member type="Field">protected SpriteFont highlightFont</Member>
+        <Member type="Field">protected List&lt;string&gt; menuItems</Member>
+        <Member type="Field">protected int selectedIndex = 0</Member>
+        <Member type="Field">protected Color regularColor</Member>
+        <Member type="Field">protected Color highlightColor</Member>
+        <Member type="Field">protected KeyboardState oldState</Member>
+        <Member type="Property">public int NewProperty { get; set; }</Member>
+        <Member type="Constructor">public MenuComponent()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HighScoreComponents</Name>
+        <Access>Public</Access>
+        <Location left="59" top="55" />
+        <Size width="270" height="315" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">private SpriteBatch spriteBatch</Member>
+        <Member type="Field">private Vector2 position</Member>
+        <Member type="Field">private SpriteFont font</Member>
+        <Member type="Field">private KeyboardState oldState</Member>
+        <Member type="Field">private bool highScoreEntered</Member>
+        <Member type="Field">private bool playerHasHighScore</Member>
+        <Member type="Field">private int playerScore</Member>
+        <Member type="Field">private string playerName</Member>
+        <Member type="Field">private const string DEFAULT_NAME = &lt;&lt;Enter Name&gt;&gt;</Member>
+        <Member type="Property">public bool NameEntered { get; set; }</Member>
+        <Member type="Constructor">public HighScoreComponents()</Member>
+        <Member type="Method">public override void Initialize()</Member>
+        <Member type="Method">public override void Update()</Member>
+        <Member type="Method">public override void Draw()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="2" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1787</X>
+          <Y>1687</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2076</X>
+          <Y>1600</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="1" second="0">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2334</X>
+          <Y>1687</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2077</X>
+          <Y>1642</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2299</X>
+          <Y>1900</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2449</X>
+          <Y>1806</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>2947</X>
+          <Y>2112</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>2947</X>
+          <Y>2112</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="8" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="9" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2497</X>
+          <Y>1899</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2449</X>
+          <Y>1807</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="10" second="9">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="11" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1669</X>
+          <Y>1813</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="12" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1838</X>
+          <Y>1885</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1669</X>
+          <Y>1814</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="13" second="12">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="19" second="18">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="20" second="21">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="24" second="18">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>311</X>
+          <Y>959</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>569</X>
+          <Y>1117</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="26" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2718</X>
+          <Y>1900</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2449</X>
+          <Y>1806</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2956</X>
+          <Y>1890</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2449</X>
+          <Y>1816</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="15" second="13">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1724</X>
+          <Y>2303</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1838</X>
+          <Y>2303</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="14" second="13">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1962</X>
+          <Y>2307</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1838</X>
+          <Y>2299</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="28" second="19">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>412</X>
+          <Y>1606</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>512</X>
+          <Y>1803</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="37" second="19">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1003</X>
+          <Y>1623</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>864</X>
+          <Y>1821</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="34" second="19">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="35" second="19">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>687</X>
+          <Y>2190</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="31" second="19">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1002</X>
+          <Y>1821</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>864</X>
+          <Y>1821</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="33" second="19">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>620</X>
+          <Y>2232</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>687</X>
+          <Y>2220</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="32" second="19">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>423</X>
+          <Y>2262</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>687</X>
+          <Y>2190</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="30" second="19">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>263</X>
+          <Y>2262</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>687</X>
+          <Y>2190</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="27" second="19">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1003</X>
+          <Y>2103</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>864</X>
+          <Y>1821</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="29" second="19">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>687</X>
+          <Y>2190</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="40" second="39">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1464</X>
+          <Y>920</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="43" second="39">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="41" second="39">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1526</X>
+          <Y>1042</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1464</X>
+          <Y>904</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="42" second="39">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="39" second="17">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1100</X>
+          <Y>800</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="44" second="18">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>330</X>
+          <Y>541</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>550</X>
+          <Y>1118</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="45" second="18">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>392</X>
+          <Y>222</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>488</X>
+          <Y>1118</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="18" second="17">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
