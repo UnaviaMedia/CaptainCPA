@@ -145,7 +145,7 @@ namespace CaptainCPA
 			}
 			else
 			{
-				ResetPosition();
+				isGhost = true;
 			}
 		}
 

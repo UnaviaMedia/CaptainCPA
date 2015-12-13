@@ -9,6 +9,7 @@
  *						Nov-29-2015:	Optimizations
  *						Dec-09-2015:	Added health display, added game over, added game reset
  *						Dec-12-2015:	Added level over
+ *		Doug Epp						Added level reset after character loses life
  */
 
 using System.Collections.Generic;
@@ -247,10 +248,12 @@ namespace CaptainCPA
 			if (character.IsGhost)
 			{
 				counter++;
+
 				if (counter == 6000)
 				{
 					counter = 0;
 				}
+
 				if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
 				{
 					foreach (MoveableTile m in moveableTileList)

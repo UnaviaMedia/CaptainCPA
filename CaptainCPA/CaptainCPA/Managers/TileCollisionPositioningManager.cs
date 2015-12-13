@@ -68,14 +68,6 @@ namespace CaptainCPA
 						//Get the intersection rectangle
 						Rectangle collisionRectangle = Rectangle.Intersect(moveableTile.Bounds, fixedTile.Bounds);
 
-						#region PixelCollisionChecking
-						//Check for pixel collision
-						/*if (Utilities.PerPixelCollision(moveableTile, fixedTile, collisionRectangle) == false)
-						{
-							continue;
-						}*/
-						#endregion
-
 						//Temporarily store post-collision position
 						Vector2 collisionPosition = moveableTile.Position;
 

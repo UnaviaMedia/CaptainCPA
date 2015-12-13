@@ -9,7 +9,7 @@
  *						Nov-28-2015:	Optimizations
  *										Removed observers to place in base class
  *						Dec-11-2015:	Removed Observer pattern
- *						Dec-12-2015:	Added collision with enemies
+ *						Dec-12-2015:	Added collision with enemies (decreases character lives)
  */
 
 using System.Collections.Generic;
@@ -123,8 +123,13 @@ namespace CaptainCPA
 
 				if (moveableTile is Enemy)
 				{
-					//Kill the character
-					//character.Die();
+					//Decrease character lives
+					character.LoseLife();
+
+					//Play the spike sound effect
+					//Minecraft sound
+					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
+					spike.Play();
 				}
 			}
 
