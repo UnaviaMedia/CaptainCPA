@@ -6,10 +6,6 @@
  *		Kendall Roth	Nov-24-2015:	Created
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CaptainCPA
 {
@@ -18,6 +14,6 @@ namespace CaptainCPA
 	/// </summary>
 	public enum TileType
 	{
-		Platform, Block, Character, Enemy, Decoration, Pickup
+		Platform, Block, Character, Enemy, Decoration, Pickup, Obstacle, LevelEnd
 	}
 }

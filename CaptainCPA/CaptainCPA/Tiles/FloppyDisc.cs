@@ -1,28 +1,31 @@
-﻿/*
- * Project: CaptainCPA - About.cs
- * Purpose: Display the game's about information
+/*
+ * Project:	PlatformGame - FloppyDisc.cs
+ * Purpose:	Disc pickup that gives character points
  *
  * History:
- *		Doug Epp		Nov-26-2015:	Created
- *		Kendall Roth	Dec-09-2015:	Updated User Interface Design
+ *		Kendall Roth	Dec-12-2015:	Created
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Displays the game's about information from a text file
+	/// Disc pickup that gives character points
 	/// </summary>
-	class AboutScene : GameScene
+	public class FloppyDisc : Pickup
 	{
-		private Texture2D menuImage;
+		private Texture2D overlayTexture;
+		private Color overlayColor;
 
-		public AboutScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
-			: base(game, spriteBatch)
+		public FloppyDisc(Game game, SpriteBatch spriteBatch, Texture2D texture, Texture2D overlayTexture, Color color, Color overlayColor,
+			Vector2 position, float rotation , float scale, float layerDepth, int points)
+			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth, points)
 		{
-			this.menuImage = menuImage;
+			this.overlayTexture = overlayTexture;
+			this.overlayColor = overlayColor;
 		}
 
 		/// <summary>
@@ -40,7 +43,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			base.Update(gameTime);
+			
 		}
 
 		/// <summary>
@@ -50,10 +53,11 @@ namespace CaptainCPA
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
-			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
+			spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
+			spriteBatch.Draw(overlayTexture, position - origin, overlayColor);
 			spriteBatch.End();
-
-			base.Draw(gameTime);
+			
+			//base.Draw(gameTime);
 		}
 	}
 }

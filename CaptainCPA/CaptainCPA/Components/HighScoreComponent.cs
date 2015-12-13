@@ -39,14 +39,14 @@ namespace CaptainCPA
 			get { return highScoreEntered; }
 		}
 
-		public HighScoreComponent(Game game, SpriteBatch spriteBatch, SpriteFont font, Vector2 position)
+		public HighScoreComponent(Game game, SpriteBatch spriteBatch, SpriteFont font, Vector2 position, int playerScore)
 			:base(game)
 		{
 			this.spriteBatch = spriteBatch;
 			this.font = font;
 			this.position = position;
-
-			playerScore = Character.Score;
+			this.playerScore = playerScore;
+			
 			highScoreEntered = false;
 			playerHasHighScore = false;
 			playerName = "";

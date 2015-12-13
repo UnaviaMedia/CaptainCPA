@@ -29,6 +29,30 @@ namespace CaptainCPA
 			set { components = value; }
 		}
 
+		
+		/// <summary>
+		/// Constructor for GameScene
+		/// </summary>
+		/// <param name="game">Game reference</param>
+		/// <param name="spriteBatch">SpriteBatch reference</param>
+		public GameScene(Game game, SpriteBatch spriteBatch)
+			: base(game)
+		{
+			this.spriteBatch = spriteBatch;
+
+			components = new List<GameComponent>();
+			Hide();
+		}
+
+		/// <summary>
+		/// Allows the game component to perform any initialization it needs to before starting
+		/// to run.  This is where it can query for any required services and load content.
+		/// </summary>
+		public override void Initialize()
+		{
+			base.Initialize();
+		}
+
 		/// <summary>
 		/// Show the game scene
 		/// </summary>
@@ -73,28 +97,6 @@ namespace CaptainCPA
 			}
 		}
 
-
-		/// <summary>
-		/// Constructor for GameScene
-		/// </summary>
-		/// <param name="game">Game reference</param>
-		/// <param name="spriteBatch">SpriteBatch reference</param>
-		public GameScene(Game game, SpriteBatch spriteBatch)
-			: base(game)
-		{
-			this.spriteBatch = spriteBatch;
-			components = new List<GameComponent>();
-			Hide();
-		}
-
-		/// <summary>
-		/// Allows the game component to perform any initialization it needs to before starting
-		/// to run.  This is where it can query for any required services and load content.
-		/// </summary>
-		public override void Initialize()
-		{
-			base.Initialize();
-		}
 
 		/// <summary>
 		/// Allows the game component to update itself.

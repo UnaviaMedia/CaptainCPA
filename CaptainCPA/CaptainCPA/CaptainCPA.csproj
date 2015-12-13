@@ -72,10 +72,11 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\DisplayString.cs" />
+    <Compile Include="Utilities\DisplayString.cs" />
     <Compile Include="Components\Display\HealthDisplay.cs" />
     <Compile Include="Components\Display\ScoreDisplay.cs" />
-    <Compile Include="Components\HighScore.cs" />
+    <Compile Include="Components\Pickup.cs" />
+    <Compile Include="Utilities\HighScore.cs" />
     <Compile Include="Components\HighScoreComponent.cs" />
     <Compile Include="Components\Interfaces\IBounds.cs" />
     <Compile Include="Components\MenuComponent.cs" />
@@ -84,9 +85,12 @@
     <Compile Include="Managers\CollisionManager.cs" />
     <Compile Include="Scenes\LevelSelectScene.cs" />
     <Compile Include="Scenes\GameOverMenuScene.cs" />
+    <Compile Include="Scenes\LevelOverScene.cs" />
+    <Compile Include="Tiles\FloppyDisc.cs" />
     <Compile Include="Tiles\Enemies\Mimic.cs" />
     <Compile Include="Tiles\Enemies\Monstar.cs" />
     <Compile Include="Tiles\Enemy.cs" />
+    <Compile Include="Tiles\Computer.cs" />
     <Compile Include="Tiles\Spike.cs" />
     <Compile Include="Utilities\LevelLoader.cs" />
     <Compile Include="Managers\PhysicsManager.cs" />
@@ -99,7 +103,7 @@
     <Compile Include="Scenes\HighScoreScene.cs" />
     <Compile Include="Scenes\HowToPlayScene.cs" />
     <Compile Include="Scenes\PauseMenuScene.cs" />
-    <Compile Include="Tiles\Gem.cs" />
+    <Compile Include="Tiles\Disc.cs" />
     <Compile Include="Tiles\Platform.cs" />
     <Compile Include="Tiles\Block.cs" />
     <Compile Include="Tiles\Character.cs" />

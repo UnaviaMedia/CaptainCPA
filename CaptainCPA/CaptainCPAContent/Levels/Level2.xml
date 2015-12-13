@@ -37,9 +37,9 @@
 			<Row y="1">
 				<Tile x="0" tileType="block" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="2" tileType="block" color="White"></Tile>
+				<Tile x="3" tileType="block" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -71,7 +71,7 @@
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -101,9 +101,9 @@
 			<Row y="3">
 				<Tile x="0" tileType="block" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="disc" color="White" points="5"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="2" tileType="block" color="White"></Tile>
+				<Tile x="3" tileType="block" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -112,7 +112,7 @@
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
 				<Tile x="12" tileType="" color="White"></Tile>
-				<Tile x="13" tileType="disc" color="White" points="3"></Tile>
+				<Tile x="13" tileType="disc" color="Red" points="3"></Tile>
 				<Tile x="14" tileType="" color="White"></Tile>
 				<Tile x="15" tileType="" color="White"></Tile>
 				<Tile x="16" tileType="" color="White"></Tile>
@@ -133,10 +133,10 @@
 			<Row y="4">
 				<Tile x="0" tileType="block" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="" color="White"></Tile>
+				<Tile x="2" tileType="block" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="" color="White"></Tile>
+				<Tile x="5" tileType="pursuingEnemy" velocityX="2" velocityY="0" color="Red"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
@@ -144,7 +144,7 @@
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
 				<Tile x="12" tileType="" color="White"></Tile>
-				<Tile x="13" tileType="Mimic" color="White"></Tile>
+				<Tile x="13" tileType="" color="White"></Tile>
 				<Tile x="14" tileType="" color="White"></Tile>
 				<Tile x="15" tileType="" color="White"></Tile>
 				<Tile x="16" tileType="" color="White"></Tile>
@@ -165,10 +165,10 @@
 			<Row y="5">
 				<Tile x="0" tileType="block" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="disc" color="White" points="5"></Tile>
+				<Tile x="2" tileType="block" color="White"></Tile>
+				<Tile x="3" tileType="block" color="White"></Tile>
+				<Tile x="4" tileType="block" color="White"></Tile>
+				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
@@ -199,9 +199,9 @@
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="disc" color="White" points="1"></Tile>
+				<Tile x="4" tileType="disc" color="LightBlue" points="1"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
-				<Tile x="6" tileType="disc" color="White" points="1"></Tile>
+				<Tile x="6" tileType="disc" color="LightBlue" points="1"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
@@ -361,13 +361,13 @@
 				<Tile x="3" tileType="" color="White"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
-				<Tile x="6" tileType="disc" color="White" points="4"></Tile>
+				<Tile x="6" tileType="disc" color="Blue" points="4"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="12" tileType="floppyDisc" color="Red" points="5"></Tile>
+				<Tile x="12" tileType="" color="White"></Tile>
 				<Tile x="13" tileType="" color="White"></Tile>
 				<Tile x="14" tileType="" color="White"></Tile>
 				<Tile x="15" tileType="" color="White"></Tile>
@@ -379,7 +379,7 @@
 				<Tile x="21" tileType="" color="White"></Tile>
 				<Tile x="22" tileType="" color="White"></Tile>
 				<Tile x="23" tileType="" color="White"></Tile>
-				<Tile x="24" tileType="Monstar" color="White"></Tile>
+				<Tile x="24" tileType="" color="White"></Tile>
 				<Tile x="25" tileType="" color="White"></Tile>
 				<Tile x="26" tileType="" color="White"></Tile>
 				<Tile x="27" tileType="" color="White"></Tile>
@@ -390,22 +390,22 @@
 				<Tile x="0" tileType="block" color="White"></Tile>
 				<Tile x="1" tileType="spike" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
+				<Tile x="3" tileType="character" color="White" speed="4" jumpSpeed="-9.5" lives="3"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
-				<Tile x="7" tileType="" color="White"></Tile>
-				<Tile x="8" tileType="computer" color="White"></Tile>
+				<Tile x="7" tileType="computer" color="White"></Tile>
+				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="12" tileType="character" color="White" speed="4" jumpSpeed="-9.5" lives="3"></Tile>
+				<Tile x="12" tileType="" color="White"></Tile>
 				<Tile x="13" tileType="" color="White"></Tile>
 				<Tile x="14" tileType="" color="White"></Tile>
 				<Tile x="15" tileType="" color="White"></Tile>
 				<Tile x="16" tileType="" color="White"></Tile>
 				<Tile x="17" tileType="spike" color="White"></Tile>
-				<Tile x="18" tileType="disc" color="White" points="2"></Tile>
+				<Tile x="18" tileType="disc" color="LightGreen" points="2"></Tile>
 				<Tile x="19" tileType="" color="White"></Tile>
 				<Tile x="20" tileType="" color="White"></Tile>
 				<Tile x="21" tileType="" color="White"></Tile>

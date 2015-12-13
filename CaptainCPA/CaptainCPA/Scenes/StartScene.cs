@@ -34,8 +34,8 @@ namespace CaptainCPA
 		private Vector2 scrollingSpeed;
 		private List<Texture2D> backgroundImages;
 
-		private MenuComponent menu;
 		private Texture2D menuImage;
+		private MenuComponent menu;
 		
 		public MenuComponent Menu
 		{
@@ -51,8 +51,10 @@ namespace CaptainCPA
 							 "How to play",
 							 "Quit"};
 
+		private List<string> levelList;
 
-		public StartScene(Game game, SpriteBatch spriteBatch)
+
+		public StartScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
 			this.spriteBatch = spriteBatch;
@@ -73,6 +75,9 @@ namespace CaptainCPA
 			scrollingPosition2 = new Vector2(scrollingPosition1.X + scrollingTexture1.Width, scrollingPosition1.Y);
 			scrollingSpeed = new Vector2(1.0f, 0.0f);
 
+			//Create a list of levels
+			levelList = new List<string>() { "level1", "level2"};
+
 			//Set up the menu
 			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 + 140, Settings.Stage.Y / 2 - 60);
 			menu = new MenuComponent(game, spriteBatch,
@@ -81,7 +86,7 @@ namespace CaptainCPA
 				menuItems, menuPosition);
 			this.Components.Add(menu);
 
-			menuImage = game.Content.Load<Texture2D>("Images/MainMenu");
+			this.menuImage = menuImage;
 		}
 
 		/// <summary>

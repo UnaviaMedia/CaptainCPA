@@ -30,14 +30,14 @@ namespace CaptainCPA
 		/// </summary>
 		/// <param name="game">The game which calls the pause menu</param>
 		/// <param name="spriteBatch">The spritebatch used to draw this menu</param>
-		public GameOverMenuScene(Game game, SpriteBatch spriteBatch)
+		public GameOverMenuScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage, int playerScore)
 			: base(game, spriteBatch)
 		{
-			menuImage = game.Content.Load<Texture2D>("Images/GameOverMenu");
+			this.menuImage = menuImage;
 
 			//Add the high score component
 			Vector2 highScorePosition = new Vector2(Settings.Stage.X / 2 - 175, Settings.Stage.Y / 2 - 30);
-			highScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition);
+			highScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition, playerScore);
 			this.components.Add(highScoreComponent);
 		}
 
@@ -66,10 +66,7 @@ namespace CaptainCPA
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
-
-			//Draw the game over menu
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
-
 			spriteBatch.End();
 
 			base.Draw(gameTime);

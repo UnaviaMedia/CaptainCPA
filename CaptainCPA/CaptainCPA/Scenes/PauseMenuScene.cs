@@ -26,8 +26,8 @@ namespace CaptainCPA
 	/// </summary>
 	public class PauseMenuScene : GameScene
 	{
-		private MenuComponent menu;
 		private Texture2D menuImage;
+		private MenuComponent menu;
 
 		public MenuComponent Menu
 		{
@@ -44,7 +44,7 @@ namespace CaptainCPA
 		/// </summary>
 		/// <param name="game">The game which calls the pause menu</param>
 		/// <param name="spriteBatch">The spritebatch used to draw this menu</param>
-		public PauseMenuScene(Game game, SpriteBatch spriteBatch)
+		public PauseMenuScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
 			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 - 155, Settings.Stage.Y / 2 - 110);
@@ -54,7 +54,7 @@ namespace CaptainCPA
 				menuItems, menuPosition);
 			this.Components.Add(menu);
 
-			menuImage = game.Content.Load<Texture2D>("Images/PauseMenu");
+			this.menuImage = menuImage;
 		}
 
 		/// <summary>
@@ -82,10 +82,7 @@ namespace CaptainCPA
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
-
-			//Draw the pause menu
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
-
 			spriteBatch.End();
 
 			base.Draw(gameTime);

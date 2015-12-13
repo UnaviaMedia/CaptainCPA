@@ -5,9 +5,12 @@
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
  *		*				Dec-10-2015:	High Score managing added
+ *						Dec-12-2015:	Added level progression checking
+ *										Moved ColorConverter from ColorConverter class
  */
 
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
@@ -19,6 +22,42 @@ namespace CaptainCPA
 	/// </summary>
 	public class Utilities
 	{
+		/// <summary>
+		/// Dictionary of XNA Colors and corresponding string names
+		/// </summary>
+		private static Dictionary<string, Color> TileColors = new Dictionary<string, Color>()
+		{
+			{ "White", Color.White },
+			{ "Black", Color.Black },
+			{ "Red", Color.Red },
+			{ "Green", Color.Green },
+			{ "Blue", Color.Blue },
+			{ "LightRed", Color.PaleVioletRed },
+			{ "LightGreen", Color.LightGreen },
+			{ "LightBlue", Color.LightBlue },
+			{ "Yellow", Color.Yellow },
+			{ "Gold", Color.Gold }
+		};
+
+
+		/// <summary>
+		/// Return an XNA Color from an input string
+		/// </summary>
+		/// <param name="input">String to convert to XNA Color</param>
+		/// <returns>XNA Color</returns>
+		public static Color ConvertColor(string input)
+		{
+			try
+			{
+				return TileColors[input];
+			}
+			catch (Exception)
+			{
+				return Color.White;
+			}
+		}
+
+
 		/// <summary>
 		/// Convert a Point to Vector2
 		/// </summary>
@@ -38,6 +77,7 @@ namespace CaptainCPA
 		/// <returns></returns>
 		public static bool PerPixelCollision(Tile a, Tile b)
 		{
+			//Source - (pek) http://gamedev.stackexchange.com/questions/15191/is-there-a-good-way-to-get-pixel-perfect-collision-detection-in-xna
 			// Get Color data of each Texture
 			Color[] bitsA = new Color[a.Texture.Width * a.Texture.Height];
 			a.Texture.GetData(bitsA);
@@ -159,52 +199,85 @@ namespace CaptainCPA
 
 			updateFile.Save(@"Content/HighScores.xml");
 		}
+		#endregion
 
 
+		#region LevelProgression
 		/// <summary>
-		/// Create a list of high scores
+		/// Returns the highest unlocked level
 		/// </summary>
-		/// <param name="highScoreList">List of high scores</param>
-		/*public static void SaveHighScores(List<HighScore> highScoreList)
+		/// <returns>Highest unlocked level</returns>
+		public static int CheckLevelProgression()
 		{
-			int maxHighScores = 5;
-
-			List<HighScore> highScores = highScoreList.OrderByDescending(h => h.Score).ToList();
-
-			//Create a new XML document and create the root elements
-			XmlDocument saveFile = new XmlDocument();
-			saveFile.Load(@"Content/HighScores.xml");
-			XmlNode root = saveFile.DocumentElement;
-			XmlNode highScoresNode = root.SelectSingleNode("PlatformGame/Scores");
-			highScoresNode.RemoveAll();
-
-			//Add each high score node to the highScoresNode
-			foreach (HighScore highScore in highScores)
+			//Create a new XML document and load the level progression file
+			//	If the file does not exist create a base file
+			XmlDocument levelsFile = new XmlDocument();
+			try
 			{
-				if (highScore.Name == "-----------------------")
-				{
-					continue;
-				}
-
-				//Create a HighScore node
-				XmlNode node = saveFile.CreateElement("HighScore");
-
-				//Create the score attribute of the HighScore node
-				XmlAttribute score = saveFile.CreateAttribute("score");
-				score.Value = highScore.Score.ToString();
-				node.Attributes.Append(score);
-
-				//Create the name attribute of the HighScore node
-				XmlAttribute name = saveFile.CreateAttribute("name");
-				name.Value = highScore.Name;
-				node.Attributes.Append(name);
-
-				//Add the HighScore node to the list of HighScores
-				highScoresNode.AppendChild(node);
+				levelsFile.Load(@"Content/LevelProgression.xml");
+			}
+			catch (System.Exception)
+			{
+				ResetLevelProgression();
+				levelsFile.Load(@"Content/LevelProgression.xml");
 			}
 
-			saveFile.Save(@"Content/HighScores.xml");
-		}*/
+			//Select the unlocked level node
+			var unlockedLevel = levelsFile.SelectSingleNode("/XnaContent/PlatformGame/LevelProgression/UnlockedLevel");
+
+			try
+			{
+				return int.Parse(unlockedLevel.Attributes["level"].Value);
+			}
+			catch (System.Exception)
+			{
+				return 1;
+			};
+		}
+
+		/// <summary>
+		/// Updates the LevelProgression file with a higher level number
+		/// </summary>
+		/// <param name="unlockedLevel"></param>
+		public static void UpdateLevelProgression(int unlockedLevel)
+		{
+			//Create a new XML document and create the root elements
+			XmlDocument updateFile = new XmlDocument();
+			updateFile.Load(@"Content/LevelProgression.xml");
+			XmlNode unlockedLevelNode = updateFile.SelectSingleNode("/XnaContent/PlatformGame/LevelProgression/UnlockedLevel");
+			unlockedLevelNode.Attributes["level"].Value = unlockedLevel.ToString();
+
+			updateFile.Save(@"Content/LevelProgression.xml");
+		}
+
+		/// <summary>
+		/// Resets the LevelProgression file
+		/// </summary>
+		public static void ResetLevelProgression()
+		{
+			//Create a new XML document
+			XmlDocument newFile = new XmlDocument();
+			XmlNode rootNode = newFile.CreateElement("XnaContent");
+			newFile.AppendChild(rootNode);
+
+			//Create a new base content node
+			XmlNode platformGameNode = newFile.CreateElement("PlatformGame");
+			rootNode.AppendChild(platformGameNode);
+
+			//Create a new levels node to track the highest unlocked level
+			XmlNode levelsNode = newFile.CreateElement("LevelProgression");
+			platformGameNode.AppendChild(levelsNode);
+
+			//Create a new node with the highest unlocked level
+			XmlNode unlockedLevel = newFile.CreateElement("UnlockedLevel");
+			XmlAttribute unlockedLevelValue = newFile.CreateAttribute("level");
+			unlockedLevelValue.Value = "1";
+			unlockedLevel.Attributes.Append(unlockedLevelValue);
+			levelsNode.AppendChild(unlockedLevel);
+
+			//Save the modified file
+			newFile.Save(@"Content/LevelProgression.xml");
+		}
 		#endregion
 	}
 }

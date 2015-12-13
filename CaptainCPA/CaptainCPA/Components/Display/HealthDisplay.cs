@@ -31,9 +31,9 @@ namespace CaptainCPA
 			this.character = character;
 
 			//Import necessary mainTextures
-			mainTexture = game.Content.Load<Texture2D>("Sprites/HealthDisplay-Main");
-			rightTexture = game.Content.Load<Texture2D>("Sprites/HealthDisplay-Right");
-			skullTexture = game.Content.Load<Texture2D>("Sprites/HealthDisplay-Skull");
+			mainTexture = game.Content.Load<Texture2D>("Displays/HealthDisplay-Main");
+			rightTexture = game.Content.Load<Texture2D>("Displays/HealthDisplay-Right");
+			skullTexture = game.Content.Load<Texture2D>("Displays/HealthDisplay-Skull");
 			sourceRectangle = new Rectangle(0, 0, mainTexture.Width, mainTexture.Height);
 		}
 

@@ -9,6 +9,7 @@
  *						Nov-27-2015:	Updated physics
  *						Nov-29-2015:	Added speed, jumpspeed, lives, and losing life methods
  *						Dec-09-2015:	Added player death
+ *						Dec-10-2015:	Added game over sound
  */
 
 using System;
@@ -16,7 +17,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-
+using Microsoft.Xna.Framework.Audio;
 
 namespace CaptainCPA
 {
@@ -25,27 +26,28 @@ namespace CaptainCPA
 	/// </summary>
 	public class Character : MoveableTile
 	{
-        private List<Rectangle> frames;
-        private Vector2 dimension;
-        private int delay;
-        private int delayCounter;
-        private int frameIndex = 0;
-        private Texture2D bigTexture;
-		protected int lives;
-		protected static int score;
-		protected float speed;
-		protected float jumpSpeed;
-		protected bool isAlive;
-        protected bool isGhost;
+		public const int MAX_LIVES = 3;
 
-        public bool IsGhost
-        {
-            get { return isGhost; }
-            set { isGhost = value; }
-        }
+		private List<Rectangle> frames;
+		private Vector2 dimension;
+		private int delay;
+		private int delayCounter;
+		private int frameIndex = 0;
+		private Texture2D bigTexture;
+		private int lives;
+		private int score;
+		private float speed;
+		private float jumpSpeed;
+		private bool isAlive;
+		private bool levelComplete;
+		public bool IsGhost
+		{
+			get { return isGhost; }
+			set {isGhost = value; }
+		}
 
 		//Store characters's starting position
-		protected Vector2 startingPosition;
+		private Vector2 startingPosition;
 
 		public int Lives
 		{
@@ -53,9 +55,9 @@ namespace CaptainCPA
 			set { lives = value; }
 		}
 
-		public static int Score
+		public int Score
 		{
-            get { return score; }
+			get { return score; }
 			set { score = value; }
 		}
 
@@ -77,6 +79,12 @@ namespace CaptainCPA
 			set { isAlive = value; }
 		}
 
+		public bool LevelComplete
+		{
+			get { return levelComplete; }
+			set { levelComplete = value; }
+		}
+
 		public Vector2 StartingPosition
 		{
 			get { return startingPosition; }
@@ -86,21 +94,23 @@ namespace CaptainCPA
 							Vector2 velocity, bool onGround, int lives, float speed, float jumpSpeed)
 			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
-
-            dimension = new Vector2(64, 64);
-            delay = 2;
-            facingRight = true;
-            //source: http://www.swingswingsubmarine.com/2010/11/25/seasons-after-fall-spritesheet-animation/
-            bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
-            createFrames();
+			dimension = new Vector2(64, 64);
+			delay = 2;
+			facingRight = true;
+			//source: http://www.swingswingsubmarine.com/2010/11/25/seasons-after-fall-spritesheet-animation/
+			bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
+			createFrames();
 			this.lives = lives;
 			this.speed = speed;
 			this.jumpSpeed = jumpSpeed;
 
 			isAlive = true;
 			startingPosition = position;
+			levelComplete = false;
 
-            CharacterStateManager.Speed = speed;
+			CharacterStateManager.Speed = speed;
+			Console.WriteLine(bounds);
+
 			//Reset player score
 			ResetScore();
 		}
@@ -129,14 +139,27 @@ namespace CaptainCPA
 		{
 			if (--lives <= 0)
 			{
-				isAlive = false;
-				this.Enabled = false;
-				this.Visible = false;
+				Die();
 			}
 			else
 			{
-                isGhost = true;
+				ResetPosition();
 			}
+		}
+
+		/// <summary>
+		/// Make the character die, and the game ends
+		/// </summary>
+		public void Die()
+		{
+			isAlive = false;
+			
+			//Destroy the character
+			Destroy();
+
+			//Play the game over sound effect
+			SoundEffect gameOver = Game.Content.Load<SoundEffect>("Sounds/GameOver");
+			gameOver.Play();
 		}
 		
 		/// <summary>
@@ -153,7 +176,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-            isMoving = false;
+			isMoving = false;
 			KeyboardState ks = Keyboard.GetState();
 
 			//Reset horizontal velocity to zero
@@ -168,17 +191,17 @@ namespace CaptainCPA
 			//If the Left key is pressed, subtract horizontal velocity to move left
 			if (ks.IsKeyDown(Keys.Left))
 			{
-                isMoving = true;
+				isMoving = true;
 				velocity.X -= speed;
-                facingRight = false;
+				facingRight = false;
 			}
 
 			//If the Right key is pressed, add horizontal velocity to move right
 			if (ks.IsKeyDown(Keys.Right))
 			{
-                isMoving = true;
+				isMoving = true;
 				velocity.X += speed;
-                facingRight = true;
+				facingRight = true;
 			}
 
             //If the screen is moving character stays still on screen

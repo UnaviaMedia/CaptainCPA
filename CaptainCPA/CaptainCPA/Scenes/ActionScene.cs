@@ -8,6 +8,7 @@
  *										Added score display
  *						Nov-29-2015:	Optimizations
  *						Dec-09-2015:	Added health display, added game over, added game reset
+ *						Dec-12-2015:	Added level over
  */
 
 using System.Collections.Generic;
@@ -22,12 +23,12 @@ namespace CaptainCPA
 	/// </summary>
 	public class ActionScene : GameScene
 	{
-        protected const float RIGHT_CHARACTER_BUFFER = 400;
+		protected const float RIGHT_CHARACTER_BUFFER = 400;
 
 		protected LevelLoader levelLoader;
 		protected List<MoveableTile> moveableTileList;
 		protected List<FixedTile> fixedTileList;
-		protected static Character character;
+		protected Character character;
 
 		protected PhysicsManager physicsManager;
 		protected CollisionManager tileCollisionPositioningManager;
@@ -36,17 +37,27 @@ namespace CaptainCPA
 
 		protected ScoreDisplay scoreDisplay;
 		protected HealthDisplay healthDisplay;
-        private int counter;
-		public bool GameOver { get; set; }
-		public static Character Character
+	        private int counter
+		private bool gameOver;
+
+		public bool GameOver
 		{
-			get { return character; }
+			get { return gameOver; }
+			set { gameOver = value; }
 		}
 
-        /// <summary>
-        /// A list of all tiles excepting the Character
-        /// </summary>
-        protected List<Tile> tiles;
+		public Character Character
+		{
+			get { return character; }
+			set { character = value; }
+		}
+
+		/// <summary>
+		/// A list of all tiles excepting the Character
+		/// </summary>
+		protected List<Tile> tiles;
+
+
 		public ActionScene(Game game, SpriteBatch spriteBatch, string level)
 			: base(game, spriteBatch)
 		{
@@ -97,11 +108,12 @@ namespace CaptainCPA
 			//Set game over to false
 			GameOver = false;*/
 			#endregion
-			Reset(game, spriteBatch, level);
-            counter = 0;
+
+			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
+			counter = 0;
 		}
 
-		public void Reset(Game game, SpriteBatch spriteBatch, string level)
+		public void Reset(Game game, SpriteBatch spriteBatch, string level, int playerScore, int playerLives)
 		{
 			//Reset component list
 			this.Components = new List<GameComponent>();
@@ -112,6 +124,8 @@ namespace CaptainCPA
 			moveableTileList = levelLoader.MoveableTileList;
 			fixedTileList = levelLoader.FixedTileList;
 			character = levelLoader.Character;
+			character.Score = playerScore;
+			character.Lives = playerLives;
 
 			//Add each tile to the scene components
 			foreach (MoveableTile moveableTile in moveableTileList)
@@ -142,7 +156,7 @@ namespace CaptainCPA
 			//Create display components
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
 			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
-			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
+			scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
 			this.components.Add(scoreDisplay);			
 
 			healthDisplay = new HealthDisplay(game, spriteBatch, character);
@@ -150,18 +164,24 @@ namespace CaptainCPA
 			#endregion
 
 			//Set game over to false
-			GameOver = false;
+			gameOver = false;
 
-            //Keep track of all tiles in the scene
-            tiles = new List<Tile>();
+			//Keep track of all tiles in the scene
+			tiles = new List<Tile>();
 			foreach (GameComponent component in components)
-            {
+			{
 				if (component is Tile && component.GetType() != typeof(Character))
-                {
+				{
 					tiles.Add(component as Tile);
+				}
+			}
+
 		}
-            }
-        }
+
+		public void Reset(Game game, SpriteBatch spriteBatch, string level)
+		{
+			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
+		}
 
 		/// <summary>
 		/// Allows the game component to perform any initialization it needs to before starting
@@ -178,10 +198,16 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
+			//Track level completion
+			if (character.LevelComplete == true)
+			{
+				return;
+			}
+
 			//Track player death
 			if (character.IsAlive == false)
 			{
-				GameOver = true;
+				gameOver = true;
 				return;
 			}
 

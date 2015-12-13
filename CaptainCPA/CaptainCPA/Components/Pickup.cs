@@ -1,26 +1,32 @@
 /*
- * Project:	PlatformGame - Spike.cs
- * Purpose:	Spike obstacle for the character to avoid
+ * Project: CaptainCPA - Pickup.cs
+ * Purpose: Base class for character pickups
  *
  * History:
- *		Kendall Roth	Nov-28-2015:	Created
+ *		Kendall Roth	Dec-12-2015:	Created
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Spike obstacle for the character to avoid
+	/// Base class for character pickups
 	/// </summary>
-	public class Spike : FixedTile
+	public class Pickup : FixedTile
 	{
-		public Spike(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth)
-			: base(game, spriteBatch, texture, TileType.Obstacle, color, position, rotation, scale, layerDepth)
+		protected int points;
+
+		public int Points
 		{
-			
+			get { return points; }
+		}
+
+		public Pickup(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth, int points)
+			: base(game, spriteBatch, texture, tileType, color, position, rotation, scale, layerDepth)
+		{
+			this.points = points;
 		}
 
 		/// <summary>

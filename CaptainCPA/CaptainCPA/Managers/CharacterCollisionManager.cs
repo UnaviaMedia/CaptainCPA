@@ -9,11 +9,13 @@
  *						Nov-28-2015:	Optimizations
  *										Removed observers to place in base class
  *						Dec-11-2015:	Removed Observer pattern
+ *						Dec-12-2015:	Added collision with enemies
  */
 
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using System;
 
 namespace CaptainCPA
 {
@@ -22,8 +24,7 @@ namespace CaptainCPA
 	/// </summary>
 	public class CharacterCollisionManager : CollisionManager
 	{
-		private Character character;
-		
+		private Character character;		
 
 		public CharacterCollisionManager(Game game, Character character, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)
@@ -55,35 +56,75 @@ namespace CaptainCPA
 				}
 
 				//Skip collision detection if the moveable tile is too far away or doesn't intersect
-				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 100 ||
+				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 125 ||
 					character.Bounds.Intersects(fixedTile.Bounds) == false || Utilities.PerPixelCollision(character, fixedTile) == false)
 				{
 					continue;
 				}
 
-				if (fixedTile is Gem)
+				if (fixedTile.TileType == TileType.Pickup)
 				{
-					//Destroy the gem
-					((Gem)fixedTile).Destroy();
+					//Destroy the pickup
+					fixedTile.Destroy();
 
 					//Add the points to the character's score
-					Character.Score += ((Gem)fixedTile).Points;
+					character.Score += ((Pickup)fixedTile).Points;
 
 					//Play the collection sound effect
+					//Generic ding
 					SoundEffect ding = Game.Content.Load<SoundEffect>("Sounds/Ding");
 					ding.Play();
 				}
-				else if (fixedTile is Spike)
+				else if (fixedTile.TileType == TileType.Obstacle)
 				{
 					//Update character health
 					character.LoseLife();
 
-					//Color the spike tile
-					((Spike)fixedTile).Color = Color.Red;
+					if (fixedTile is Spike)
+					{
+						//Color the spike tile
+						((Spike)fixedTile).Color = Color.Red;
 
-					//Play the spike sound effect
-					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/hurtflesh3");
-					spike.Play();
+						//Play the spike sound effect
+						//Minecraft sound
+						SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
+						spike.Play(); 
+					}
+				}
+				else if (fixedTile.TileType == TileType.LevelEnd)
+				{
+					//End the level
+					character.LevelComplete = true;
+
+					//Hide the character
+					character.Destroy();
+
+					//TODO - Play a level complete sound
+					//Generic ding
+					SoundEffect ding = Game.Content.Load<SoundEffect>("Sounds/Ding");
+					ding.Play();
+				}
+			}
+
+			foreach (MoveableTile moveableTile in moveableTiles)
+			{
+				//Skip collision detection if the moveable tile is hidden or disabled
+				if (moveableTile.Visible == false || moveableTile.Enabled == false || character.Equals(moveableTile))
+				{
+					continue;
+				}
+
+				//Skip collision detection if the moveable tile is too far away or doesn't intersect
+				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(moveableTile.Bounds.Center)) > 125 ||
+					character.Bounds.Intersects(moveableTile.Bounds) == false || Utilities.PerPixelCollision(character, moveableTile) == false)
+				{
+					continue;
+				}
+
+				if (moveableTile is Enemy)
+				{
+					//Kill the character
+					//character.Die();
 				}
 			}
 

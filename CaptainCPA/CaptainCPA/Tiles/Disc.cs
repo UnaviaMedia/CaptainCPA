@@ -1,9 +1,11 @@
 /*
- * Project:	PlatformGame - Spike.cs
- * Purpose:	Spike obstacle for the character to avoid
+ * Project:	PlatformGame - Disc.cs
+ * Purpose:	Disc pickup that gives character points
  *
  * History:
- *		Kendall Roth	Nov-28-2015:	Created
+ *		Kendall Roth	Nov-27-2015:	Created
+ *										Points added
+ *										Removed Observers (put into other places)
  */
 
 using Microsoft.Xna.Framework;
@@ -13,12 +15,12 @@ using Microsoft.Xna.Framework.Graphics;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Spike obstacle for the character to avoid
+	/// Disc pickup that gives character points
 	/// </summary>
-	public class Spike : FixedTile
+	public class Disc : Pickup
 	{
-		public Spike(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth)
-			: base(game, spriteBatch, texture, TileType.Obstacle, color, position, rotation, scale, layerDepth)
+		public Disc(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth, int points)
+			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth, points)
 		{
 			
 		}

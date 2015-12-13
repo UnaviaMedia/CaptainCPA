@@ -1,28 +1,39 @@
-﻿/*
- * Project: CaptainCPA - About.cs
- * Purpose: Display the game's about information
+/*
+ * Project: CaptainCPA - LevelOverScene.cs
+ * Purpose: Display the level over scene and allow the user to advance to the next level
  *
  * History:
- *		Doug Epp		Nov-26-2015:	Created
- *		Kendall Roth	Dec-09-2015:	Updated User Interface Design
+ *		Kendall Roth	Dec-12-2015:	Created
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Displays the game's about information from a text file
+	/// Displays the pause menu while game is being played
 	/// </summary>
-	class AboutScene : GameScene
+	public class LevelOverScene : GameScene
 	{
 		private Texture2D menuImage;
+		private SpriteFont font;
+		private int currentScore;
 
-		public AboutScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
+
+		/// <summary>
+		/// Constructor for the Pause Menu Scene
+		/// </summary>
+		/// <param name="game">The game which calls the pause menu</param>
+		/// <param name="spriteBatch">The spritebatch used to draw this menu</param>
+		/// <param name="currentScore">Current score of the player</param>
+		public LevelOverScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage, int currentScore)
 			: base(game, spriteBatch)
 		{
 			this.menuImage = menuImage;
+			font = game.Content.Load<SpriteFont>("Fonts/HighScoreFont");
+			this.currentScore = currentScore;
 		}
 
 		/// <summary>
@@ -50,7 +61,14 @@ namespace CaptainCPA
 		public override void Draw(GameTime gameTime)
 		{
 			spriteBatch.Begin();
+
+			//Draw the pause menu
 			spriteBatch.Draw(menuImage, Vector2.Zero, Color.White);
+
+			//Draw the current score
+			spriteBatch.DrawString(font, currentScore.ToString(),
+				new Vector2((Settings.Stage.X / 2) - (font.MeasureString(currentScore.ToString()).X / 2), (Settings.Stage.Y / 2) - 22), Color.White);
+
 			spriteBatch.End();
 
 			base.Draw(gameTime);
