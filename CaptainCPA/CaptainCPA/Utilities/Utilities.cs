@@ -77,9 +77,45 @@ namespace CaptainCPA
 		/// <returns></returns>
 		public static bool PerPixelCollision(Tile a, Tile b)
 		{
+			//Source : http://stackoverflow.com/questions/7292870/per-pixel-collision-code-explanation
+			Rectangle rectangleA = a.Bounds;
+			Rectangle rectangleB = b.Bounds;
+			Color[] dataA = new Color[a.Texture.Width * a.Texture.Height];
+			Color[] dataB = new Color[b.Texture.Width * b.Texture.Height];
+			a.Texture.GetData(dataA);
+			b.Texture.GetData(dataB);
+
+			// Find the bounds of the rectangle intersection
+			int top = Math.Max(rectangleA.Top, rectangleB.Top);
+			int bottom = Math.Min(rectangleA.Bottom, rectangleB.Bottom);
+			int left = Math.Max(rectangleA.Left, rectangleB.Left);
+			int right = Math.Min(rectangleA.Right, rectangleB.Right);
+
+			// Check every point within the intersection bounds
+			for (int y = top; y < bottom; y++)
+			{
+				for (int x = left; x < right; x++)
+				{
+					// Get the color of both pixels at this point
+					Color colorA = dataA[(x - rectangleA.Left) +
+										 (y - rectangleA.Top) * rectangleA.Width];
+					Color colorB = dataB[(x - rectangleB.Left) +
+										 (y - rectangleB.Top) * rectangleB.Width];
+
+					// If both pixels are not completely transparent, then an intersection has been found
+					if (colorA.A != 0 && colorB.A != 0)
+					{						
+						return true;
+					}
+				}
+			}
+
+			// No intersection found
+			return false;
+
 			//Source - (pek) http://gamedev.stackexchange.com/questions/15191/is-there-a-good-way-to-get-pixel-perfect-collision-detection-in-xna
 			// Get Color data of each Texture
-			Color[] bitsA = new Color[a.Texture.Width * a.Texture.Height];
+			/*Color[] bitsA = new Color[a.Texture.Width * a.Texture.Height];
 			a.Texture.GetData(bitsA);
 			Color[] bitsB = new Color[b.Texture.Width * b.Texture.Height];
 			b.Texture.GetData(bitsB);
@@ -103,7 +139,7 @@ namespace CaptainCPA
 				}
 			}
 
-			return false;
+			return false;*/
 		}
 
 

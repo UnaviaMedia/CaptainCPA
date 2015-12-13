@@ -266,6 +266,7 @@ namespace CaptainCPA
 
 						//Reset game (to selected level)
 						actionScene.Reset(this, spriteBatch, levelList[0]);
+						//actionScene.Reset(this, spriteBatch, "Debug");
 						currentLevel = 1;
 						actionScene.Show();
 						baseScene = actionScene;

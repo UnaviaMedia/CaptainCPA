@@ -4,6 +4,7 @@
  *
  * History:
  *		Kendall Roth	Nov-27-2015:	Created
+ *						Dec-12-2015:	Removed IBounds implementation
  */
 
 using Microsoft.Xna.Framework;
@@ -14,7 +15,7 @@ namespace CaptainCPA
 	/// <summary>
 	/// Base class for displaying strings
 	/// </summary>
-	public class DisplayString : DrawableGameComponent, IBounds
+	public class DisplayString : DrawableGameComponent
 	{
 		protected SpriteBatch spriteBatch;
 		protected SpriteFont spriteFont;
@@ -37,8 +38,12 @@ namespace CaptainCPA
 
 		public Rectangle Bounds
 		{
-			get { return bounds; }
-			set { bounds = value; }
+			get { return new Rectangle(
+				(int)(Position.X),
+				(int)(Position.Y),
+				(int)(SpriteFont.MeasureString(Message).X),
+				(int)(SpriteFont.MeasureString(Message).Y));
+			}
 		}
 
 		public string Message
@@ -55,8 +60,6 @@ namespace CaptainCPA
 			this.position = position;
 			this.color = color;
 			this.message = message;
-
-			UpdateBounds();
 		}
 
 		/// <summary>
@@ -74,22 +77,7 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			//Update the bounds of the string
-			UpdateBounds();
-
 			base.Update(gameTime);
-		}
-
-		/// <summary>
-		/// Find the rectangle representing the bounds of the string
-		/// </summary>
-		public void UpdateBounds()
-		{
-			Bounds = new Rectangle(
-				(int)(Position.X),
-				(int)(Position.Y),
-				(int)(SpriteFont.MeasureString(Message).X),
-				(int)(SpriteFont.MeasureString(Message).Y));
 		}
 
 		/// <summary>

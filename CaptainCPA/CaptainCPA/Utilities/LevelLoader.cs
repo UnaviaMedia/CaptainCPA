@@ -74,6 +74,7 @@ namespace CaptainCPA
 			Texture2D floppyDiscTexture = game.Content.Load<Texture2D>("Sprites/FloppyDisc");
 			Texture2D floppyDiscOverlayTexture = game.Content.Load<Texture2D>("Sprites/FloppyDiscOverlay");
 			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
+			Texture2D spikeTopTexture = game.Content.Load<Texture2D>("Sprites/Spike-Top");
 			Texture2D computerTexture = game.Content.Load<Texture2D>("Sprites/Computer");
 			#endregion
 
@@ -138,12 +139,12 @@ namespace CaptainCPA
 						case "spike":
 							newTile = new Spike(game, spriteBatch, spikeTexture, color, position, rotation, scale, layerDepth);
 							break;
+						case "spike-top":
+							newTile = new Spike(game, spriteBatch, spikeTopTexture, color, position, rotation, scale, layerDepth);
+							break;
 						case "character":
 							int lives = int.Parse(tile.Attributes["lives"].Value);
-							//float speed = float.Parse(tile.Attributes["speed"].Value);
-							//float jumpSpeed = float.Parse(tile.Attributes["jumpSpeed"].Value);
-							newTile = new Character(game, spriteBatch, characterTexture, color, position, rotation, scale, layerDepth, 
-								Vector2.Zero, true, lives, 4f, -9.5f);
+							newTile = new Character(game, spriteBatch, characterTexture, color, position, rotation, scale, layerDepth, Vector2.Zero, true, lives, 4f, -9.5f);
 							character = (Character)newTile;
 							break;
 						case "enemy":
@@ -156,12 +157,12 @@ namespace CaptainCPA
 							onGround = true;
 							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
-						case "Monstar":
+						case "monstar":
 							velocity = new Vector2(2, 0);
 							onGround = true;
 							newTile = new Monstar(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
-						case "Mimic":
+						case "mimic":
 							velocity = new Vector2(3, 0);
 							onGround = true;
 							newTile = new Mimic(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);

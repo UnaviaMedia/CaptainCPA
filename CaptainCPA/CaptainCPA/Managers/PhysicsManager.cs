@@ -7,6 +7,7 @@
  *										TileCollision checking and avoidance positioning added
  *						Nov-27-2015:	Added top collision checking (player immediately starts falling again)
  *						Nov-29-2015:	Optimizations
+ *						Dec-12-2015:	Updated with better logic for determining if tile is withing the necessary columns (bounds) for collision checking
  */
 
 using System;
@@ -65,12 +66,6 @@ namespace CaptainCPA
 					frontX = moveableTile.Bounds.Right;
 				}
 
-				//Find horizontal rows character intersects with (maximum of two)
-				//	Horizontal row that contains upper bounds (y)
-				//	Horizontal row that contains lower bounds (y)
-				int topRow = (int)Math.Floor(moveableTile.Bounds.Top / Settings.TILE_SIZE);
-				int bottomRow = (int)Math.Floor((moveableTile.Bounds.Bottom - 1) / Settings.TILE_SIZE);
-
 				FixedTile closestHorizontalTile = null;
 
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
@@ -82,15 +77,16 @@ namespace CaptainCPA
 						continue;
 					}
 
-					//Get the row that the current fixed tile is in
-					int fixedTileRow = (int)Math.Floor(fixedTile.Position.Y / Settings.TILE_SIZE);
-
-					//If the current fixed tile is not on the moveable tile's levels skip to the next iteration
-					if (fixedTileRow != topRow && fixedTileRow != bottomRow)
+					//Check whether or not the moveable tile is actually within the vertical bounds of the fixed tile (same columns)
+					//if (f.t <= m.t && f.b > m.t)
+					//else if (f.b >= m.b && f.t < m.b)
+					//else -> block should fall
+					if ((fixedTile.Bounds.Top <= moveableTile.Bounds.Top && fixedTile.Bounds.Bottom > moveableTile.Bounds.Top) != true &&
+						(fixedTile.Bounds.Bottom >= moveableTile.Bounds.Bottom && fixedTile.Bounds.Top < moveableTile.Bounds.Bottom) != true)
 					{
 						continue;
 					}
-					
+
 					if (horizontalDirection == Direction.Left)
 					{
 						//If the current fixed tile is behind the player (to the right) skip to the next iteration
@@ -107,7 +103,8 @@ namespace CaptainCPA
 							continue;
 						}
 					}
-					
+
+					//Determine if the current fixed tile is closer than the current closest horizontal tile
 					if (closestHorizontalTile == null)
 					{
 						closestHorizontalTile = fixedTile;
@@ -152,12 +149,12 @@ namespace CaptainCPA
 
 				//Update player's horizontal position
 				moveableTile.Position = new Vector2(moveableTile.Position.X + horizontalMoveDistance, moveableTile.Position.Y);
-				
+
 
 				//------------------------------------------------------------------------------
 				//Y-axis
 				//------------------------------------------------------------------------------
-
+				
 				Direction verticalDirection = Direction.None;
 				int frontY = (int)moveableTile.Position.Y;
 
@@ -167,17 +164,11 @@ namespace CaptainCPA
 					verticalDirection = Direction.Up;
 					frontY = moveableTile.Bounds.Top;
 				}
-				else // Down movement (default - gravity :) )
+				else //Down movement (default - gravity :) )
 				{
 					verticalDirection = Direction.Down;
 					frontY = moveableTile.Bounds.Bottom;
 				}
-
-				//Find vertical rows character intersects with (maximum of two)
-				//	Vertical row that contains left bounds (x)
-				//	Vertical row that contains right bounds (x)
-				int leftColumn = (int)Math.Floor(moveableTile.Bounds.Left / Settings.TILE_SIZE);
-				int rightColumn = (int)Math.Floor((moveableTile.Bounds.Right - 1) / Settings.TILE_SIZE);
 
 				FixedTile closestVerticalTile = null;
 
@@ -189,12 +180,13 @@ namespace CaptainCPA
 					{
 						continue;
 					}
-
-					//Get the column that the current fixed tile is in
-					int fixedTileColumn = (int)Math.Floor(fixedTile.Position.X / Settings.TILE_SIZE);
-
-					//If the current fixed tile is not on the moveable tile's columns skip to the next iteration
-					if (fixedTileColumn != leftColumn && fixedTileColumn != rightColumn)
+					
+					//Check whether or not the moveable tile is actually within the horizontal bounds of the fixed tile (same columns)
+					//if (f.r <= m.r && f.r >= m.l)
+					//else if (f.l >= m.l && f.l <= m.r)
+					//else -> block should fall
+					if ((fixedTile.Bounds.Right <= moveableTile.Bounds.Right && fixedTile.Bounds.Right > moveableTile.Bounds.Left) != true &&
+						(fixedTile.Bounds.Left >= moveableTile.Bounds.Left && fixedTile.Bounds.Left < moveableTile.Bounds.Right) != true)
 					{
 						continue;
 					}
@@ -218,6 +210,7 @@ namespace CaptainCPA
 						}
 					}
 
+					//Determine if the current fixed tile is closer than the current closest vertical tile
 					if (closestVerticalTile == null)
 					{
 						closestVerticalTile = fixedTile;

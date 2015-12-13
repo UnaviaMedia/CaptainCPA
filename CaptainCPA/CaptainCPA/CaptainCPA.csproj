@@ -78,7 +78,6 @@
     <Compile Include="Components\Pickup.cs" />
     <Compile Include="Utilities\HighScore.cs" />
     <Compile Include="Components\HighScoreComponent.cs" />
-    <Compile Include="Components\Interfaces\IBounds.cs" />
     <Compile Include="Components\MenuComponent.cs" />
     <Compile Include="Managers\CharacterStateManager.cs" />
     <Compile Include="Managers\CharacterCollisionManager.cs" />
