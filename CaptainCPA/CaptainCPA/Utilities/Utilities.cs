@@ -77,6 +77,7 @@ namespace CaptainCPA
 		/// <returns></returns>
 		public static bool PerPixelCollision(Tile a, Tile b)
 		{
+			//Source - (pek) http://gamedev.stackexchange.com/questions/15191/is-there-a-good-way-to-get-pixel-perfect-collision-detection-in-xna
 			// Get Color data of each Texture
 			Color[] bitsA = new Color[a.Texture.Width * a.Texture.Height];
 			a.Texture.GetData(bitsA);

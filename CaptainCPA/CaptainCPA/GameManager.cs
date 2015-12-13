@@ -63,7 +63,6 @@ namespace CaptainCPA
 
 		private List<string> levelList;
 		private int currentLevel;
-		//private int unlockedLevels;
 
 		private KeyboardState oldState;
 

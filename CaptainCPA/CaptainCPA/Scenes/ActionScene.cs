@@ -165,9 +165,6 @@ namespace CaptainCPA
 			//Set game over to false
 			gameOver = false;
 
-			//Set level complete to false
-			//levelOver = false;
-
 			//Keep track of all tiles in the scene
 			tiles = new List<Tile>();
 			foreach (GameComponent component in components)
