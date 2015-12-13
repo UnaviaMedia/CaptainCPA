@@ -204,7 +204,7 @@
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="12" tileType="character" color="White" velocityX="3.5" velocityY="3.5"></Tile>
+				<Tile x="12" tileType="character" color="White" speed="4" jumpSpeed="-9.5" lives="3"></Tile>
 				<Tile x="13" tileType="" color="White"></Tile>
 				<Tile x="14" tileType="" color="White"></Tile>
 				<Tile x="15" tileType="" color="White"></Tile>

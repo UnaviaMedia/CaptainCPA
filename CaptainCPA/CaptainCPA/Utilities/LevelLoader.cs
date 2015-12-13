@@ -66,7 +66,7 @@ namespace CaptainCPA
 			#region LoadTextures
 			//Load the different block textures
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
-			//Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
+            //Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
 
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
@@ -158,6 +158,16 @@ namespace CaptainCPA
 							onGround = true;
 							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
+						case "Monstar":
+							velocity = new Vector2(2, 0);
+							onGround = true;
+							newTile = new Monstar(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+							break;
+						case "Mimic":
+						    velocity = new Vector2(3, 0);
+						    onGround = true;
+						    newTile = new Mimic(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+						    break;
 						case "computer":
 							newTile = new Computer(game, spriteBatch, computerTexture, color, position, rotation, scale, layerDepth);
 							break;

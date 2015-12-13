@@ -13,136 +13,144 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CaptainCPA
 {
-	/// <summary>
-	/// Platform tile
-	/// </summary>
+    /// <summary>
+    /// Platform tile
+    /// </summary>
 	public class Tile : DrawableGameComponent, IBounds
-	{
-		protected SpriteBatch spriteBatch;
-		protected Texture2D texture;
-		protected Color color;
-		protected Vector2 position;
+    {
+        protected SpriteBatch spriteBatch;
+        protected Texture2D texture;
+        protected Color color;
+        protected Vector2 position;
+        protected Vector2 initPosition;
 
-		protected float rotation = 0.0f;
-		protected float scale = 1.0f;
-		protected Vector2 origin;
-		protected SpriteEffects spriteEffect;
-		protected float layerDepth = 1.0f;
+        public Vector2 InitPosition
+        {
+            get { return initPosition; }
+            set { initPosition = value; }
+        }
 
-		protected TileType tileType;
-		protected Rectangle bounds;
+        protected float rotation = 0.0f;
+        protected float scale = 1.0f;
+        protected Vector2 origin;
+        protected SpriteEffects spriteEffect;
+        protected float layerDepth = 1.0f;
 
-		public Texture2D Texture
-		{
-			get { return texture; }
-			set { texture = value; }
-		}
+        protected TileType tileType;
+        protected Rectangle bounds;
 
-		public Color Color
-		{
-			get { return color; }
-			set { color = value; }
-		}
+        public Texture2D Texture
+        {
+            get { return texture; }
+            set { texture = value; }
+        }
 
-		public Vector2 Position
-		{
-			get { return position; }
-			set { position = value; }
-		}
+        public Color Color
+        {
+            get { return color; }
+            set { color = value; }
+        }
 
-		public TileType TileType
-		{
-			get { return tileType; }
-			set { tileType = value; }
-		}
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
 
-		public SpriteEffects SpriteEffects
-		{
-			get { return spriteEffect; }
-			set { spriteEffect = value; }
-		}
+        public TileType TileType
+        {
+            get { return tileType; }
+            set { tileType = value; }
+        }
 
-		public Rectangle Bounds
-		{
-			get { return bounds; }
-		}
+        public SpriteEffects SpriteEffects
+        {
+            get { return spriteEffect; }
+            set { spriteEffect = value; }
+        }
+
+        public Rectangle Bounds
+        {
+            get { return bounds; }
+        }
 
 
-		public Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth)
-			: base(game)
-		{
-			this.spriteBatch = spriteBatch;
-			this.texture = texture;
-			origin = new Vector2(texture.Width / 2, texture.Height / 2);
-			this.color = color;
-			this.position = new Vector2(position.X + origin.X, position.Y + origin.Y);
-			this.tileType = tileType;
+        public Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth)
+            : base(game)
+        {
+            this.spriteBatch = spriteBatch;
+            this.texture = texture;
+            origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            this.color = color;
+            this.position = new Vector2(position.X + origin.X, position.Y + origin.Y);
+            this.initPosition = position;
+            this.tileType = tileType;
 
-			this.rotation = rotation;
-			this.scale = scale;
-			spriteEffect = SpriteEffects.None;
-			this.layerDepth = layerDepth;
+            this.rotation = rotation;
+            this.scale = scale;
+            spriteEffect = SpriteEffects.None;
+            this.layerDepth = layerDepth;
 
-			UpdateBounds();
-		}
+            UpdateBounds();
+        }
 
-		/// <summary>
-		/// Allows the game component to perform any initialization it needs to before starting
-		/// to run.  This is where it can query for any required services and load content.
-		/// </summary>
-		public override void Initialize()
-		{
-			base.Initialize();
-		}
+        /// <summary>
+        /// Allows the game component to perform any initialization it needs to before starting
+        /// to run.  This is where it can query for any required services and load content.
+        /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
 
-		/// <summary>
-		/// Updates the collision bounds of the Tile
-		/// </summary>
-		public virtual void UpdateBounds()
-		{
-			//Find the rectangle representing the collision bounds of the object
-			bounds = new Rectangle(
-				(int)(position.X - (texture.Width / 2 * scale)),
-				(int)(position.Y - (texture.Height / 2 * scale)),
-				(int)(texture.Width * scale),
-				(int)(texture.Height * scale));
-		}
+        /// <summary>
+        /// Updates the collision bounds of the Tile
+        /// </summary>
+        public virtual void UpdateBounds()
+        {
+            //Find the rectangle representing the collision bounds of the object
+            bounds = new Rectangle(
+                (int)(position.X - (texture.Width / 2 * scale)),
+                (int)(position.Y - (texture.Height / 2 * scale)),
+                (int)(texture.Width * scale),
+                (int)(texture.Height * scale));
+        }
 
-		/// <summary>
-		/// Destroy the tile by hiding and disabling it
-		/// </summary>
-		public virtual void Destroy()
-		{
-			this.Visible = false;
-			this.Enabled = false;
-		}
+        /// <summary>
+        /// Destroy the tile by hiding and disabling it
+        /// </summary>
+        public virtual void Destroy()
+        {
+            this.Visible = false;
+            this.Enabled = false;
+        }
 
-		/// <summary>
-		/// Allows the game component to update itself.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		public override void Update(GameTime gameTime)
-		{
-			UpdateBounds();
+        /// <summary>
+        /// Allows the game component to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public override void Update(GameTime gameTime)
+        {
+            UpdateBounds();
 
-			base.Update(gameTime);
-		}
+            base.Update(gameTime);
+        }
 
-		/// <summary>
-		/// Allows the game component to draw itself
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values</param>
-		public override void Draw(GameTime gameTime)
-		{
-			spriteBatch.Begin();
+        /// <summary>
+        /// Allows the game component to draw itself
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values</param>
+        public override void Draw(GameTime gameTime)
+        {
+            spriteBatch.Begin();
 
-			//Draw if tile is on screen
-			if (position.X >= -Settings.TILE_SIZE && 
-					position.X + texture.Width <= Settings.Stage.X + (2 * Settings.TILE_SIZE))
-				spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
-			spriteBatch.End();
+            //Draw if tile is on screen
+            if (position.X >= -Settings.TILE_SIZE && 
+                    position.X + texture.Width <= Settings.Stage.X + (2 * Settings.TILE_SIZE))
+                spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
+            spriteBatch.End();
 
-			base.Draw(gameTime);
-		}
-	}
+            base.Draw(gameTime);
+        }
+    }
 }

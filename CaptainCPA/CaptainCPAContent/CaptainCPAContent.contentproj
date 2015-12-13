@@ -200,6 +200,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Sounds\gravel1.wav">
+      <Name>gravel1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
     <Compile Include="Sprites\Spike.png">
       <Name>Spike</Name>
       <Importer>TextureImporter</Importer>
@@ -243,6 +248,16 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+<Compile Include="Sprites\MonstarSpriteSheet.png">
+      <Name>MonstarSpriteSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\MimicSpriteSheet.png">
+      <Name>MimicSpriteSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
     <Compile Include="Sprites\Computer.png">
       <Name>Computer</Name>

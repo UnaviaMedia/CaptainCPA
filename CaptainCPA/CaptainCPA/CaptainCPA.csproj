@@ -87,6 +87,8 @@
     <Compile Include="Scenes\GameOverMenuScene.cs" />
     <Compile Include="Scenes\LevelOverScene.cs" />
     <Compile Include="Tiles\FloppyDisc.cs" />
+    <Compile Include="Tiles\Enemies\Mimic.cs" />
+    <Compile Include="Tiles\Enemies\Monstar.cs" />
     <Compile Include="Tiles\Enemy.cs" />
     <Compile Include="Tiles\Computer.cs" />
     <Compile Include="Tiles\Spike.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="Scenes\ActionScene.cs" />
     <Compile Include="Scenes\GameScene.cs" />
     <Compile Include="Scenes\StartScene.cs" />
+    <Compile Include="Utilities\ColorConverter.cs" />
     <Compile Include="Utilities\Settings.cs" />
     <Compile Include="Utilities\Utilities.cs" />
   </ItemGroup>

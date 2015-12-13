@@ -37,7 +37,7 @@ namespace CaptainCPA
 
 		protected ScoreDisplay scoreDisplay;
 		protected HealthDisplay healthDisplay;
-
+	        private int counter
 		private bool gameOver;
 
 		public bool GameOver
@@ -110,6 +110,7 @@ namespace CaptainCPA
 			#endregion
 
 			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
+			counter = 0;
 		}
 
 		public void Reset(Game game, SpriteBatch spriteBatch, string level, int playerScore, int playerLives)
@@ -210,41 +211,89 @@ namespace CaptainCPA
 				return;
 			}
 
-			CharacterStateManager.TooFarRight = false;
-			if (CharacterStateManager.IsMoving)
-			{
-				//Character is within range of the right side of the screen
-				if (character.Bounds.Right >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
-				{
-					CharacterStateManager.TooFarRight = true;
-					if (CharacterStateManager.FacingRight) //Character is moving to the right
-					{
-						foreach (Tile t in tiles)
-						{
-							t.Position = new Vector2(t.Position.X - character.Speed, t.Position.Y);
-						}
-						//TODO: handle enemies moving too fast
-						CharacterStateManager.ScreenMoving = true;
-					}
-				}
+            //smoothly reset level
+            if (character.IsGhost)
+            {
+                counter++;
+                if (counter == 6000)
+                {
+                    counter = 0;
+                }
+                if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
+                {
+                    foreach (MoveableTile m in moveableTileList)
+                    {
+                        //m.Enabled = false;
+                        m.Position = m.InitPosition;
+                        m.Visible = false;
+                    }
+                    if (counter % 2 == 0)
+                    {
+                        slideBack();
+                    }
+                }
+                else //scene is in its initial position; reset all moveable components
+                {
+                    foreach (MoveableTile m in moveableTileList)
+                    {
+                        //m.Enabled = true;
+                        m.Visible = true;
+                        m.Position = m.InitPosition;
+                    }
+                    character.IsGhost = false;
+                }
+            }
 
-				//character is within range of the left side of the screen
-				else if (character.Bounds.Left <= 0)
-				{
-					if (!CharacterStateManager.FacingRight) //character is moving to the left
-					{
-						foreach (Tile t in tiles)
-						{
-							t.Position = new Vector2(t.Position.X + character.Speed, t.Position.Y);
-						}
-						//TODO: handle enemies moving too fast
-						CharacterStateManager.ScreenMoving = true;
-					}
-				}
-				else CharacterStateManager.ScreenMoving = false;
-			}
+			//Update the score
+			scoreDisplay.Message = Character.Score.ToString();
+
+            CharacterStateManager.TooFarRight = false;
+            if (CharacterStateManager.IsMoving)
+            {
+                //Character is within range of the right side of the screen
+                if (character.Bounds.Right >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
+                {
+                    CharacterStateManager.TooFarRight = true;
+                    if (CharacterStateManager.FacingRight) //Character is moving to the right
+                    {
+                        foreach (Tile t in tiles)
+                        {
+                            t.Position = new Vector2(t.Position.X - character.Speed, t.Position.Y);
+                        }
+                        CharacterStateManager.ScreenMoving = true;
+                    }
+                }
+
+                //character is within range of the left side of the screen
+                else if (character.Bounds.Left <= RIGHT_CHARACTER_BUFFER)
+                {
+                    if (!CharacterStateManager.FacingRight) //character is moving to the left
+                    {
+                        foreach (Tile t in tiles)
+                        {
+                            t.Position = new Vector2(t.Position.X + character.Speed, t.Position.Y);
+                        }
+                        CharacterStateManager.ScreenMoving = true;
+                    }
+                }
+                else CharacterStateManager.ScreenMoving = false;
+            }
 
 			base.Update(gameTime);
 		}
+        public void slideBack()
+        {
+            foreach (FixedTile t in fixedTileList)
+            {
+                if (t.Position.X > t.InitPosition.X)
+                {
+                    t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
+                }
+                else if (t.Position.X < t.InitPosition.X)
+                {
+                    t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
+                }
+            }
+        }
 	}
 }
