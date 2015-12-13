@@ -23,9 +23,9 @@ namespace CaptainCPA
         private int delayCounter;
         private int frameIndex;
         private Texture2D bigTexture;
-        public Monstar(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
+        public Monstar(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
                             Vector2 velocity, bool onGround)
-            : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
+            : base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
             delay = 2;
             dimension = new Vector2(128, 128);

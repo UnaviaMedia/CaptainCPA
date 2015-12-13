@@ -92,7 +92,7 @@ namespace CaptainCPA
 			set { isGhost = value; }
 		}
 
-		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth,
+		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
 							Vector2 velocity, bool onGround, int lives, float speed, float jumpSpeed)
 			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{

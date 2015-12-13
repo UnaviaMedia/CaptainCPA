@@ -113,6 +113,14 @@ namespace CaptainCPA
 			counter = 0;
 		}
 
+		/// <summary>
+		/// Resets the specified level
+		/// </summary>
+		/// <param name="game">Game reference</param>
+		/// <param name="spriteBatch">Spritebatch reference</param>
+		/// <param name="level">Level to reload</param>
+		/// <param name="playerScore">Player score</param>
+		/// <param name="playerLives">Player lives</param>
 		public void Reset(Game game, SpriteBatch spriteBatch, string level, int playerScore, int playerLives)
 		{
 			//Reset component list
@@ -178,6 +186,13 @@ namespace CaptainCPA
 
 		}
 
+
+		/// <summary>
+		/// Resets the level to its beinning
+		/// </summary>
+		/// <param name="game">Game reference</param>
+		/// <param name="spriteBatch">Spritebatch reference</param>
+		/// <param name="level">Level to reset</param>
 		public void Reset(Game game, SpriteBatch spriteBatch, string level)
 		{
 			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
@@ -190,6 +205,24 @@ namespace CaptainCPA
 		public override void Initialize()
 		{
 			base.Initialize();
+		}
+
+		/// <summary>
+		/// Slides the level back to its initial position
+		/// </summary>
+		public void slideBack()
+		{
+			foreach (FixedTile t in fixedTileList)
+			{
+				if (t.Position.X > t.InitPosition.X)
+				{
+					t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
+				}
+				else if (t.Position.X < t.InitPosition.X)
+				{
+					t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
+				}
+			}
 		}
 
 		/// <summary>
@@ -244,9 +277,6 @@ namespace CaptainCPA
 				}
 			}
 
-			//Update the score
-			//scoreDisplay.Message = Character.Score.ToString();
-
 			CharacterStateManager.TooFarRight = false;
 			if (CharacterStateManager.IsMoving)
 			{
@@ -280,20 +310,6 @@ namespace CaptainCPA
 			}
 
 			base.Update(gameTime);
-		}
-		public void slideBack()
-		{
-			foreach (FixedTile t in fixedTileList)
-			{
-				if (t.Position.X > t.InitPosition.X)
-				{
-					t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
-				}
-				else if (t.Position.X < t.InitPosition.X)
-				{
-					t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
-				}
-			}
 		}
 	}
 }

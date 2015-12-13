@@ -6,14 +6,12 @@
  *		Kendall Roth	Nov-24-2015:	Created
  *						Nov-27-2015:	Added Character property
  *						Nov-29-2015:	Optimizations
+ *						Dec-12-2015:	Removed Character speed and jump
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace CaptainCPA
@@ -66,7 +64,7 @@ namespace CaptainCPA
 			#region LoadTextures
 			//Load the different block textures
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
-            //Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
+			//Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
 
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
@@ -142,32 +140,32 @@ namespace CaptainCPA
 							break;
 						case "character":
 							int lives = int.Parse(tile.Attributes["lives"].Value);
-							float speed = float.Parse(tile.Attributes["speed"].Value);
-							float jumpSpeed = float.Parse(tile.Attributes["jumpSpeed"].Value);
-							newTile = new Character(game, spriteBatch, characterTexture, TileType.Character, color, position, rotation, scale, layerDepth, 
-								Vector2.Zero, true, lives, speed, jumpSpeed);
+							//float speed = float.Parse(tile.Attributes["speed"].Value);
+							//float jumpSpeed = float.Parse(tile.Attributes["jumpSpeed"].Value);
+							newTile = new Character(game, spriteBatch, characterTexture, color, position, rotation, scale, layerDepth, 
+								Vector2.Zero, true, lives, 4f, -9.5f);
 							character = (Character)newTile;
 							break;
 						case "enemy":
 							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
 							onGround = true;
-							newTile = new Enemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+							newTile = new Enemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
 						case "pursuingEnemy":
 							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
 							onGround = true;
-							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
 						case "Monstar":
 							velocity = new Vector2(2, 0);
 							onGround = true;
-							newTile = new Monstar(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
+							newTile = new Monstar(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
 						case "Mimic":
-						    velocity = new Vector2(3, 0);
-						    onGround = true;
-						    newTile = new Mimic(game, spriteBatch, blockTexture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround);
-						    break;
+							velocity = new Vector2(3, 0);
+							onGround = true;
+							newTile = new Mimic(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
+							break;
 						case "computer":
 							newTile = new Computer(game, spriteBatch, computerTexture, color, position, rotation, scale, layerDepth);
 							break;
