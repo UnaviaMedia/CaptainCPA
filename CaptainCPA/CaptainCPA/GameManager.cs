@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
+using System;
 
 namespace CaptainCPA
 {
@@ -559,7 +560,12 @@ namespace CaptainCPA
 			//Set the old keystate to the current keystate
 			oldState = ks;
 			#endregion
-
+			
+			//Debug Mode
+			if (ks.IsKeyDown(Keys.Space))
+			{
+				Console.WriteLine("Debug Mode");
+			}
 
 			//Background music
 			if (MediaPlayer.State != MediaState.Playing)
