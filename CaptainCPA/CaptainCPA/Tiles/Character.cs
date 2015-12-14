@@ -184,12 +184,6 @@ namespace CaptainCPA
 			//Reset horizontal velocity to zero
 			velocity.X = 0;
 
-			//If the character is on the ground, reset vertical velocity to 0
-			if (onGround == true)
-			{
-				velocity.Y = 0;
-			}
-
 			//If the Left key is pressed, subtract horizontal velocity to move left
 			if (ks.IsKeyDown(Keys.Left))
 			{
