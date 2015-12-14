@@ -181,7 +181,7 @@ namespace CaptainCPA
 							newTile = new Block(game, spriteBatch, ventRightTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "level-barrier":
-							newTile = new Block(game, spriteBatch, levelBarrierTexture, color, position, rotation, scale, layerDepth);
+							newTile = new LevelBarrier(game, spriteBatch, levelBarrierTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "level-end":
 							newTile = new LevelEnd(game, spriteBatch, levelEndTexture, color, position, rotation, scale, layerDepth);

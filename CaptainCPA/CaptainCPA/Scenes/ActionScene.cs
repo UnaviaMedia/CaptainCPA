@@ -15,305 +15,276 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace CaptainCPA
 {
-	/// <summary>
-	/// Displays the game to the user
-	/// </summary>
-	public class ActionScene : GameScene
-	{
-		protected const float RIGHT_CHARACTER_BUFFER = 400;
+    /// <summary>
+    /// Displays the game to the user
+    /// </summary>
+    public class ActionScene : GameScene
+    {
+        protected const float RIGHT_CHARACTER_BUFFER = 400;
 
-		protected LevelLoader levelLoader;
-		protected List<MoveableTile> moveableTileList;
-		protected List<FixedTile> fixedTileList;
-		protected Character character;
+        protected LevelLoader levelLoader;
+        protected List<MoveableTile> moveableTileList;
+        protected List<FixedTile> fixedTileList;
+        protected Character character;
 
-		protected PhysicsManager physicsManager;
-		protected CollisionManager tileCollisionPositioningManager;
-		protected CharacterCollisionManager characterCollisionManager;
-		protected CharacterStateManager characterPositionManager;
+        protected PhysicsManager physicsManager;
+        protected CollisionManager tileCollisionPositioningManager;
+        protected CharacterCollisionManager characterCollisionManager;
+        protected CharacterStateManager characterPositionManager;
 
-		protected ScoreDisplay scoreDisplay;
-		protected HealthDisplay healthDisplay;
-		private int counter;
-		private bool gameOver;
+        protected ScoreDisplay scoreDisplay;
+        protected HealthDisplay healthDisplay;
+        private int counter;
+        private int counterLimit;
+        private bool gameOver;
 
-		public bool GameOver
-		{
-			get { return gameOver; }
-			set { gameOver = value; }
-		}
+        public bool GameOver
+        {
+            get { return gameOver; }
+            set { gameOver = value; }
+        }
 
-		public Character Character
-		{
-			get { return character; }
-			set { character = value; }
-		}
+        public Character Character
+        {
+            get { return character; }
+            set { character = value; }
+        }
 
-		/// <summary>
-		/// A list of all tiles excepting the Character
-		/// </summary>
-		protected List<Tile> tiles;
+        /// <summary>
+        /// A list of all tiles excepting the Character
+        /// </summary>
+        protected List<Tile> tiles;
 
 
-		public ActionScene(Game game, SpriteBatch spriteBatch, string level)
-			: base(game, spriteBatch)
-		{
-			#region OldConstructor
-			/*//Add a level creator, and create the level
-			levelLoader = new LevelLoader(game, spriteBatch);
-			levelLoader.LoadGame(level);
-			moveableTileList = levelLoader.MoveableTileList;
-			fixedTileList = levelLoader.FixedTileList;
-			character = levelLoader.Character;
+        public ActionScene(Game game, SpriteBatch spriteBatch, string level)
+            : base(game, spriteBatch)
+        {
+            Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
+            counter = 0;
+        }
 
-			//Add each tile to the scene components
-			foreach (MoveableTile moveableTile in moveableTileList)
-			{
-				this.Components.Add(moveableTile);
-			}
+        /// <summary>
+        /// Resets the specified level
+        /// </summary>
+        /// <param name="game">Game reference</param>
+        /// <param name="spriteBatch">Spritebatch reference</param>
+        /// <param name="level">Level to reload</param>
+        /// <param name="playerScore">Player score</param>
+        /// <param name="playerLives">Player lives</param>
+        public void Reset(Game game, SpriteBatch spriteBatch, string level, int playerScore, int playerLives)
+        {
+            //Reset component list
+            this.Components = new List<GameComponent>();
 
-			foreach (FixedTile fixedTile in fixedTileList)
-			{
-				this.Components.Add(fixedTile);
-			}
+            //Add a level creator, and create the level
+            levelLoader = new LevelLoader(game, spriteBatch);
+            levelLoader.LoadGame(level);
+            moveableTileList = levelLoader.MoveableTileList;
+            fixedTileList = levelLoader.FixedTileList;
+            character = levelLoader.Character;
+            character.Score = playerScore;
+            character.Lives = playerLives;
 
-			#region Managers
-			//Create physics manager and add it to list of components
-			physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
-			this.Components.Add(physicsManager);
+            //Add each tile to the scene components
+            foreach (MoveableTile moveableTile in moveableTileList)
+            {
+                this.Components.Add(moveableTile);
+            }
 
-			//Create character collision manager (for pickups, death, etc) and add to list of components
-			characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
-			this.Components.Add(characterCollisionManager);
+            foreach (FixedTile fixedTile in fixedTileList)
+            {
+                this.Components.Add(fixedTile);
+            }
 
-			//Create tile collision manager (in case a collision actually does occur) and add to list of components
-			tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
-			this.Components.Add(tileCollisionPositioningManager);
-			#endregion
+            #region Managers
+            //Create physics manager and add it to list of components
+            physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
+            this.Components.Add(physicsManager);
 
-			#region DisplayComponents
-			//Create display components
-			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
-			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
-			this.components.Add(scoreDisplay);
-			
-			healthDisplay = new HealthDisplay(game, spriteBatch, character);
-			this.components.Add(healthDisplay);
-			#endregion
+            //Create character collision manager (for pickups, death, etc) and add to list of components
+            characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
+            this.Components.Add(characterCollisionManager);
 
-			//Set game over to false
-			GameOver = false;*/
-			#endregion
+            //Create tile collision manager (in case a collision actually does occur) and add to list of components
+            tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
+            this.Components.Add(tileCollisionPositioningManager);
+            #endregion
 
-			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
-			counter = 0;
-		}
+            #region DisplayComponents
+            //Create display components
+            SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
+            Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
+            scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
+            this.components.Add(scoreDisplay);
 
-		/// <summary>
-		/// Resets the specified level
-		/// </summary>
-		/// <param name="game">Game reference</param>
-		/// <param name="spriteBatch">Spritebatch reference</param>
-		/// <param name="level">Level to reload</param>
-		/// <param name="playerScore">Player score</param>
-		/// <param name="playerLives">Player lives</param>
-		public void Reset(Game game, SpriteBatch spriteBatch, string level, int playerScore, int playerLives)
-		{
-			//Reset component list
-			this.Components = new List<GameComponent>();
+            healthDisplay = new HealthDisplay(game, spriteBatch, character);
+            this.components.Add(healthDisplay);
+            #endregion
 
-			//Add a level creator, and create the level
-			levelLoader = new LevelLoader(game, spriteBatch);
-			levelLoader.LoadGame(level);
-			moveableTileList = levelLoader.MoveableTileList;
-			fixedTileList = levelLoader.FixedTileList;
-			character = levelLoader.Character;
-			character.Score = playerScore;
-			character.Lives = playerLives;
+            //Set game over to false
+            gameOver = false;
 
-			//Add each tile to the scene components
-			foreach (MoveableTile moveableTile in moveableTileList)
-			{
-				this.Components.Add(moveableTile);
-			}
+            //Keep track of all tiles in the scene
+            tiles = new List<Tile>();
+            foreach (GameComponent component in components)
+            {
+                if (component is Tile && component.GetType() != typeof(Character))
+                {
+                    tiles.Add(component as Tile);
+                }
+            }
+        }
 
-			foreach (FixedTile fixedTile in fixedTileList)
-			{
-				this.Components.Add(fixedTile);
-			}
+        /// <summary>
+        /// Resets the level to its beinning
+        /// </summary>
+        /// <param name="game">Game reference</param>
+        /// <param name="spriteBatch">Spritebatch reference</param>
+        /// <param name="level">Level to reset</param>
+        public void Reset(Game game, SpriteBatch spriteBatch, string level)
+        {
+            Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
+        }
 
-			#region Managers
-			//Create physics manager and add it to list of components
-			physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
-			this.Components.Add(physicsManager);
+        /// <summary>
+        /// Allows the game component to perform any initialization it needs to before starting
+        /// to run.  This is where it can query for any required services and load content.
+        /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
 
-			//Create character collision manager (for pickups, death, etc) and add to list of components
-			characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
-			this.Components.Add(characterCollisionManager);
+        /// <summary>
+        /// Slides the level back to its initial position
+        /// </summary>
+        public void SlideBack()
+        {
+            foreach (FixedTile t in fixedTileList)
+            {
+                if (t.Position.X > t.InitPosition.X)
+                {
+                    t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
+                }
+                else if (t.Position.X < t.InitPosition.X)
+                {
+                    t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
+                }
+            }
+        }
 
-			//Create tile collision manager (in case a collision actually does occur) and add to list of components
-			tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
-			this.Components.Add(tileCollisionPositioningManager);
-			#endregion
+        /// <summary>
+        /// Allows the game component to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public override void Update(GameTime gameTime)
+        {
+            //Track level completion
+            if (character.LevelComplete == true)
+            {
+                return;
+            }
 
-			#region DisplayComponents
-			//Create display components
-			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
-			scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
-			this.components.Add(scoreDisplay);			
+            //Track player death
+            if (character.IsAlive == false)
+            {
+                gameOver = true;
+                return;
+            }
 
-			healthDisplay = new HealthDisplay(game, spriteBatch, character);
-			this.components.Add(healthDisplay);
-			#endregion
-
-			//Set game over to false
-			gameOver = false;
-
-			//Keep track of all tiles in the scene
-			tiles = new List<Tile>();
-			foreach (GameComponent component in components)
-			{
-				if (component is Tile && component.GetType() != typeof(Character))
-				{
-					tiles.Add(component as Tile);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Resets the level to its beinning
-		/// </summary>
-		/// <param name="game">Game reference</param>
-		/// <param name="spriteBatch">Spritebatch reference</param>
-		/// <param name="level">Level to reset</param>
-		public void Reset(Game game, SpriteBatch spriteBatch, string level)
-		{
-			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
-		}
-
-		/// <summary>
-		/// Allows the game component to perform any initialization it needs to before starting
-		/// to run.  This is where it can query for any required services and load content.
-		/// </summary>
-		public override void Initialize()
-		{
-			base.Initialize();
-		}
-
-		/// <summary>
-		/// Slides the level back to its initial position
-		/// </summary>
-		public void SlideBack()
-		{
-			foreach (FixedTile t in fixedTileList)
-			{
-				if (t.Position.X > t.InitPosition.X)
-				{
-					t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
-				}
-				else if (t.Position.X < t.InitPosition.X)
-				{
-					t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Allows the game component to update itself.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		public override void Update(GameTime gameTime)
-		{
-			//Track level completion
-			if (character.LevelComplete == true)
-			{
-				return;
-			}
-
-			//Track player death
-			if (character.IsAlive == false)
-			{
-				gameOver = true;
-				return;
-			}
-
-			//smoothly reset level
-			if (character.IsGhost)
-			{
+            //smoothly reset level
+            if (character.IsGhost)
+            {
                 CharacterStateManager.IsMoving = false;
-				counter++;
+                counter++;
 
-				if (counter == 6000)
-				{
-					counter = 0;
-				}
+                if (counter == 6000)
+                {
+                    counter = 1;
+                }
+                //Tiles are not in their initial position
+                if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
+                {
+                    float diff = fixedTileList[0].XPosition - fixedTileList[0].InitPosition.X;
 
-				if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
-				{
-					foreach (MoveableTile m in moveableTileList)
-					{
-                        if (m.Enabled)
+                    if (Math.Abs(diff) > 7)
+                    {
+                        counterLimit = 1;
+                        character.Color = Color.Red;
+                    }
+                    else
+                    {
+                        counterLimit = 2;
+                        character.Color = Color.Red;
+                    }
+
+                    foreach (MoveableTile m in moveableTileList)
+                    {
+                        if (m.Enabled && !(m is Boulder))
                         {
                             m.Position = new Vector2(-1000, -1000);
-						m.Visible = false;
+                            m.Visible = false;
                             m.Enabled = false;
                         }
-					}
-					if (counter % 2 == 0)
-					{
-						SlideBack();
-					}
-				}
-				else //scene is in its initial position; reset all moveable components
-				{
-					foreach (MoveableTile m in moveableTileList)
-					{
-                        m.Position = m.InitPosition;
-                        m.Enabled = true;
-						m.Visible = true;
-					}
-					character.IsGhost = false;
-				}
-			}
+                    }
+                    if (counter % counterLimit == 0)
+                    {
+                        SlideBack();
+                    }
+                }
+                else //scene is in its initial position; reset all moveable components
+                {
+                    foreach (MoveableTile m in moveableTileList)
+                    {
+                        if (!(m is Boulder))
+                        {
 
-			CharacterStateManager.TooFarRight = false;
-			if (CharacterStateManager.IsMoving)
-			{
-				//Character is within range of the right side of the screen
-				if (character.Bounds.Right >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
-				{
-					CharacterStateManager.TooFarRight = true;
-					if (CharacterStateManager.FacingRight) //Character is moving to the right
-					{
-						foreach (Tile t in tiles)
-						{
-							t.Position = new Vector2(t.Position.X - character.Speed, t.Position.Y);
-						}
-						CharacterStateManager.ScreenMoving = true;
-					}
-				}
+                            m.Position = m.InitPosition;
+                            m.Enabled = true;
+                            m.Visible = true;
+                        }
+                    }
+                    character.IsGhost = false;
+                }
+            }
 
-				//character is within range of the left side of the screen
-				else if (character.Bounds.Left <= RIGHT_CHARACTER_BUFFER)
-				{
-					if (!CharacterStateManager.FacingRight) //character is moving to the left
-					{
-						foreach (Tile t in tiles)
-						{
-							t.Position = new Vector2(t.Position.X + character.Speed, t.Position.Y);
-						}
-						CharacterStateManager.ScreenMoving = true;
-					}
-				}
-				else CharacterStateManager.ScreenMoving = false;
-			}
+            CharacterStateManager.TooFarRight = false;
+            if (CharacterStateManager.IsMoving)
+            {
+                //Character is within range of the right side of the screen
+                if (character.Bounds.Right >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
+                {
+                    CharacterStateManager.TooFarRight = true;
+                    if (CharacterStateManager.FacingRight) //Character is moving to the right
+                    {
+                        foreach (Tile t in tiles)
+                        {
+                            t.Position = new Vector2(t.Position.X - character.Speed, t.Position.Y);
+                        }
+                        CharacterStateManager.ScreenMoving = true;
+                    }
+                }
 
-			base.Update(gameTime);
-		}
-	}
+                //character is within range of the left side of the screen
+                else if (character.Bounds.Left <= RIGHT_CHARACTER_BUFFER)
+                {
+                    if (!CharacterStateManager.FacingRight) //character is moving to the left
+                    {
+                        foreach (Tile t in tiles)
+                        {
+                            t.Position = new Vector2(t.Position.X + character.Speed, t.Position.Y);
+                        }
+                        CharacterStateManager.ScreenMoving = true;
+                    }
+                }
+                else CharacterStateManager.ScreenMoving = false;
+            }
+
+            base.Update(gameTime);
+        }
+    }
 }
