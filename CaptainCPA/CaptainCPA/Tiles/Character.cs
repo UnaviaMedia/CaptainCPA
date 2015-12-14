@@ -10,6 +10,7 @@
  *						Nov-29-2015:	Added speed, jumpspeed, lives, and losing life methods
  *						Dec-09-2015:	Added player death
  *						Dec-10-2015:	Added game over sound
+ *						Dec-14-2015:	Changed speed and jump speed to constant
  */
 
 using System;
@@ -27,6 +28,8 @@ namespace CaptainCPA
 	public class Character : MoveableTile
 	{
 		public const int MAX_LIVES = 3;
+		public const float MOVE_SPEED = 4f;
+		public const float JUMP_SPEED = -9.5f;
 
 		private List<Rectangle> frames;
 		private Vector2 dimension;
@@ -36,8 +39,6 @@ namespace CaptainCPA
 		private Texture2D bigTexture;
 		private int lives;
 		private int score;
-		private float speed;
-		private float jumpSpeed;
 		private bool isAlive;
 		private bool levelComplete;
 		private bool isGhost;
@@ -55,18 +56,6 @@ namespace CaptainCPA
 		{
 			get { return score; }
 			set { score = value; }
-		}
-
-		public float Speed
-		{
-			get { return speed; }
-			set { speed = value; }
-		}
-		
-		public float JumpSpeed
-		{
-			get { return jumpSpeed; }
-			set { jumpSpeed = value; }
 		}
 
 		public bool IsAlive
@@ -93,7 +82,7 @@ namespace CaptainCPA
 		}
 
 		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
-							Vector2 velocity, bool onGround, int lives, float speed, float jumpSpeed)
+							Vector2 velocity, bool onGround, int lives)
 			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
 			dimension = new Vector2(64, 64);
@@ -103,14 +92,11 @@ namespace CaptainCPA
 			bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
 			createFrames();
 			this.lives = lives;
-			this.speed = speed;
-			this.jumpSpeed = jumpSpeed;
 
 			isAlive = true;
 			startingPosition = position;
 			levelComplete = false;
 
-			CharacterStateManager.Speed = speed;
 			Console.WriteLine(bounds);
 
 			//Reset player score
@@ -188,7 +174,7 @@ namespace CaptainCPA
 			if (ks.IsKeyDown(Keys.Left))
 			{
 				isMoving = true;
-				velocity.X -= speed;
+				velocity.X -= MOVE_SPEED;
 				facingRight = false;
 			}
 
@@ -196,7 +182,7 @@ namespace CaptainCPA
 			if (ks.IsKeyDown(Keys.Right))
 			{
 				isMoving = true;
-				velocity.X += speed;
+				velocity.X += MOVE_SPEED;
 				facingRight = true;
 			}
 
@@ -216,7 +202,7 @@ namespace CaptainCPA
 			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
 			if (ks.IsKeyDown(Keys.Up) && onGround == true)
 			{
-				velocity.Y = jumpSpeed;
+				velocity.Y = JUMP_SPEED;
 				onGround = false;
 			}
 
@@ -264,10 +250,10 @@ namespace CaptainCPA
 			spriteBatch.Begin();
 			if (frameIndex >= 0)
 			{
-				spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
+				//spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
 
 				//DEBUG MODE
-				//spriteBatch.Draw(Game.Content.Load<Texture2D>("Sprites/Platform"), position, null, Color.Red, rotation, origin, 1f, spriteEffect, layerDepth);
+				spriteBatch.Draw(Game.Content.Load<Texture2D>("Sprites/Platform"), position, null, Color.Red, rotation, origin, 1f, spriteEffect, layerDepth);
 			}
 			spriteBatch.End();
 			//base.Draw(gameTime);

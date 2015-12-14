@@ -215,7 +215,7 @@ namespace CaptainCPA
 							break;
 						case "character":
 							int lives = int.Parse(tile.Attributes["lives"].Value);
-							newTile = new Character(game, spriteBatch, characterTexture, color, position, rotation, scale, layerDepth, Vector2.Zero, true, lives, 4f, -9.5f);
+							newTile = new Character(game, spriteBatch, characterTexture, color, position, rotation, scale, layerDepth, Vector2.Zero, true, lives);
 							character = (Character)newTile;
 							break;
 						case "enemy":

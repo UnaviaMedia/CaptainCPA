@@ -292,7 +292,7 @@ namespace CaptainCPA
 					{
 						foreach (Tile t in tiles)
 						{
-							t.Position = new Vector2(t.Position.X - character.Speed, t.Position.Y);
+							t.Position = new Vector2(t.Position.X - Character.MOVE_SPEED, t.Position.Y);
 						}
 						CharacterStateManager.ScreenMoving = true;
 					}
@@ -305,7 +305,7 @@ namespace CaptainCPA
 					{
 						foreach (Tile t in tiles)
 						{
-							t.Position = new Vector2(t.Position.X + character.Speed, t.Position.Y);
+							t.Position = new Vector2(t.Position.X + Character.MOVE_SPEED, t.Position.Y);
 						}
 						CharacterStateManager.ScreenMoving = true;
 					}
