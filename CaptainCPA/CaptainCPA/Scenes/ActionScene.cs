@@ -168,11 +168,19 @@ namespace CaptainCPA
 			{
 				if (t.Position.X > t.InitPosition.X)
 				{
-					t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
+                    t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
+                    if (t is MovingPlatform)
+                    {
+                        (t as MovingPlatform).FixedPosition -= 4;
+                    }
 				}
 				else if (t.Position.X < t.InitPosition.X)
 				{
-					t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
+                    t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
+                    if (t is MovingPlatform)
+                    {
+                        (t as MovingPlatform).FixedPosition += 4;
+                    }
 				}
 			}
 		}
@@ -264,6 +272,10 @@ namespace CaptainCPA
 						foreach (Tile t in tiles)
 						{
 							t.Position = new Vector2(t.Position.X - Character.MOVE_SPEED, t.Position.Y);
+                            if (t is MovingPlatform)
+                            {
+                                (t as MovingPlatform).FixedPosition -= Character.MOVE_SPEED;
+                            }
 						}
 						CharacterStateManager.ScreenMoving = true;
 					}
@@ -276,7 +288,11 @@ namespace CaptainCPA
 					{
 						foreach (Tile t in tiles)
 						{
-							t.Position = new Vector2(t.Position.X + Character.MOVE_SPEED, t.Position.Y);
+                            t.Position = new Vector2(t.Position.X + Character.MOVE_SPEED, t.Position.Y);
+                            if (t is MovingPlatform)
+                            {
+                                (t as MovingPlatform).FixedPosition += Character.MOVE_SPEED;
+                            }
 						}
 						CharacterStateManager.ScreenMoving = true;
 					}

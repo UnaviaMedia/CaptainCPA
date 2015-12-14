@@ -196,6 +196,22 @@ namespace CaptainCPA
 							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
 							newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
 							break;
+                        case "moving-platform-middle":
+                            bool goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
+                            int range = int.Parse(tile.Attributes["range"].Value);
+                            newTile = new MovingPlatform(game, spriteBatch, platformMiddleTexture, color, position, rotation, scale, layerDepth, range, goRight);
+                            break;
+                        case "moving-platform-left":
+                            goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
+                            range = int.Parse(tile.Attributes["range"].Value);
+                            newTile = new MovingPlatform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth, range, goRight);
+                            break;
+                        case "moving-platform-right":
+                            goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
+                            range = int.Parse(tile.Attributes["range"].Value);
+                            newTile = new MovingPlatform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth, range, goRight);
+                            newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
+                            break;
 						case "platform":
 							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
 							break;
