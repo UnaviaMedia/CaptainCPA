@@ -223,7 +223,7 @@
 				<Tile x="17" tileType="" color="White"></Tile>
 				<Tile x="18" tileType="" color="White"></Tile>
 				<Tile x="19" tileType="" color="White"></Tile>
-				<Tile x="20" tileType="" color="White"></Tile>
+				<Tile x="20" tileType="boulder" color="White"></Tile>
 				<Tile x="21" tileType="" color="White"></Tile>
 				<Tile x="22" tileType="" color="White"></Tile>
 				<Tile x="23" tileType="" color="White"></Tile>

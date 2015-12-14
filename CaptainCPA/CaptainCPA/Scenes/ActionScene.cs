@@ -183,9 +183,7 @@ namespace CaptainCPA
 					tiles.Add(component as Tile);
 				}
 			}
-
 		}
-
 
 		/// <summary>
 		/// Resets the level to its beinning
@@ -247,6 +245,7 @@ namespace CaptainCPA
 			//smoothly reset level
 			if (character.IsGhost)
 			{
+                CharacterStateManager.IsMoving = false;
 				counter++;
 
 				if (counter == 6000)
@@ -258,9 +257,12 @@ namespace CaptainCPA
 				{
 					foreach (MoveableTile m in moveableTileList)
 					{
-						//m.Enabled = false;
-						m.Position = m.InitPosition;
+                        if (m.Enabled)
+                        {
+                            m.Position = new Vector2(-1000, -1000);
 						m.Visible = false;
+                            m.Enabled = false;
+                        }
 					}
 					if (counter % 2 == 0)
 					{
@@ -271,9 +273,9 @@ namespace CaptainCPA
 				{
 					foreach (MoveableTile m in moveableTileList)
 					{
-						//m.Enabled = true;
+                        m.Position = m.InitPosition;
+                        m.Enabled = true;
 						m.Visible = true;
-						m.Position = m.InitPosition;
 					}
 					character.IsGhost = false;
 				}
