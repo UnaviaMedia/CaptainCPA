@@ -175,9 +175,9 @@
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="12" tileType="platform-left" color="LightGreen"></Tile>
-				<Tile x="13" tileType="platform-middle" color="LightGreen"></Tile>
-				<Tile x="14" tileType="platform-right" color="LightGreen"></Tile>
+				<Tile x="12" tileType="moving-platform-left" init-dir="R" range="1" color="LightGreen"></Tile>
+				<Tile x="13" tileType="moving-platform-middle" init-dir="R" range="1" color="LightGreen"></Tile>
+				<Tile x="14" tileType="moving-platform-right" init-dir="R" range="1" color="LightGreen"></Tile>
 				<Tile x="15" tileType="" color="White"></Tile>
 				<Tile x="16" tileType="" color="White"></Tile>
 				<Tile x="17" tileType="" color="White"></Tile>
@@ -263,10 +263,10 @@
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="platform-left" color="LightRed"></Tile>
-				<Tile x="5" tileType="platform-middle" color="LightRed"></Tile>
-				<Tile x="6" tileType="platform-middle" color="LightRed"></Tile>
-				<Tile x="7" tileType="platform-right" color="LightRed"></Tile>
+				<Tile x="4" tileType="moving-platform-left" range="3" init-dir="L" color="LightRed"></Tile>
+				<Tile x="5" tileType="moving-platform-middle" range="3" init-dir="L" color="LightRed"></Tile>
+				<Tile x="6" tileType="moving-platform-middle" range="3" init-dir="L" color="LightRed"></Tile>
+				<Tile x="7" tileType="moving-platform-right" range="3" init-dir="L" color="LightRed"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
@@ -310,8 +310,8 @@
 				<Tile x="16" tileType="" color="White"></Tile>
 				<Tile x="17" tileType="" color="White"></Tile>
 				<Tile x="18" tileType="" color="White"></Tile>
-				<Tile x="19" tileType="platform-left" color="LightBlue"></Tile>
-				<Tile x="20" tileType="platform-right" color="LightBlue"></Tile>
+				<Tile x="19" tileType="moving-platform-left" range="1" init-dir="L" color="LightBlue"></Tile>
+				<Tile x="20" tileType="moving-platform-right" range="1" init-dir="L" color="LightBlue"></Tile>
 				<Tile x="21" tileType="" color="White"></Tile>
 				<Tile x="22" tileType="" color="White"></Tile>
 				<Tile x="23" tileType="" color="White"></Tile>
@@ -335,9 +335,9 @@
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="11" tileType="platform-left" color="White"></Tile>
-				<Tile x="12" tileType="platform-middle" color="White"></Tile>
-				<Tile x="13" tileType="platform-right" color="White"></Tile>
+				<Tile x="11" tileType="moving-platform-left" init-dir="R" range="2" color="White"></Tile>
+				<Tile x="12" tileType="moving-platform-middle" init-dir="R" range="2" color="White"></Tile>
+				<Tile x="13" tileType="moving-platform-right" init-dir="R" range="2" color="White"></Tile>
 				<Tile x="15" tileType="" color="White"></Tile>
 				<Tile x="16" tileType="" color="White"></Tile>
 				<Tile x="17" tileType="" color="White"></Tile>
