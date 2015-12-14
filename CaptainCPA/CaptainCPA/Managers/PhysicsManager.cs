@@ -289,8 +289,6 @@ namespace CaptainCPA
 					}
 				}
 
-				//Game.Window.Title = notified;
-
 				//Update player's vertical position
 				moveableTile.Position = new Vector2(moveableTile.Position.X, moveableTile.Position.Y + verticalMoveDistance);
 			}

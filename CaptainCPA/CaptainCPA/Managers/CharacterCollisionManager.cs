@@ -130,13 +130,13 @@ namespace CaptainCPA
 
 				if (moveableTile is Enemy)
 				{
-					/*//Decrease character lives
+					//Decrease character lives
 					character.LoseLife();
 
 					//Play the spike sound effect
 					//Minecraft sound
 					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
-					spike.Play();*/
+					spike.Play();
 				}
 			}
 

@@ -96,6 +96,9 @@ namespace CaptainCPA
 			dirtTextures.Add(dirtTexture3);
 
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
+			Texture2D ventLeftTexture = game.Content.Load<Texture2D>("Sprites/Vent-Left");
+			Texture2D ventMiddleTexture = game.Content.Load<Texture2D>("Sprites/Vent-Middle");
+			Texture2D ventRightTexture = game.Content.Load<Texture2D>("Sprites/Vent-Right");
 			Texture2D levelBarrierTexture = game.Content.Load<Texture2D>("Sprites/LevelBarrier");
 			Texture2D levelEndTexture = game.Content.Load<Texture2D>("Sprites/LevelEnd");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
@@ -167,6 +170,15 @@ namespace CaptainCPA
 							break;
 						case "dirt":
 							newTile = new Block(game, spriteBatch, dirtTextures[r.Next(0, dirtTextures.Count)], color, position, rotation, scale, layerDepth);
+							break;
+						case "vent-left":
+							newTile = new Block(game, spriteBatch, ventLeftTexture, color, position, rotation, scale, layerDepth);
+							break;
+						case "vent-middle":
+							newTile = new Block(game, spriteBatch, ventMiddleTexture, color, position, rotation, scale, layerDepth);
+							break;
+						case "vent-right":
+							newTile = new Block(game, spriteBatch, ventRightTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "level-barrier":
 							newTile = new Block(game, spriteBatch, levelBarrierTexture, color, position, rotation, scale, layerDepth);
