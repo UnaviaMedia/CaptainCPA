@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tiles\Enemies\Boulder.cs" />
+    <Compile Include="Tiles\LevelBarrier.cs" />
     <Compile Include="Tiles\LevelEnd.cs" />
     <Compile Include="Utilities\DisplayString.cs" />
     <Compile Include="Components\Display\HealthDisplay.cs" />

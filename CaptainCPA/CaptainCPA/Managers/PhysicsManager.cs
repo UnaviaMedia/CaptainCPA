@@ -82,6 +82,10 @@ namespace CaptainCPA
 						continue;
 					}
 
+                    if (fixedTile.TileType == TileType.LevelBarrier && moveableTile.TileType == TileType.Enemy)
+                    {
+                        continue;
+                    }
 					//Check whether or not the moveable tile is actually within the vertical bounds of the fixed tile (same columns)
 					//if (f.t <= m.t && f.b > m.t)
 					//else if (f.b >= m.b && f.t < m.b)
@@ -181,10 +185,15 @@ namespace CaptainCPA
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
 					if (fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.Decoration ||
-						fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle)
+                        fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle)
 					{
 						continue;
 					}
+
+                    if (fixedTile.TileType == TileType.LevelBarrier && moveableTile.TileType == TileType.Enemy)
+                    {
+                        continue;
+                    }
 					
 					//Check whether or not the moveable tile is actually within the horizontal bounds of the fixed tile (same columns)
 					//if (f.r <= m.r && f.r >= m.l)

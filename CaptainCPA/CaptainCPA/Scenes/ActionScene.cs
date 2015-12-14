@@ -15,6 +15,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace CaptainCPA
 {
@@ -38,6 +39,7 @@ namespace CaptainCPA
 		protected ScoreDisplay scoreDisplay;
 		protected HealthDisplay healthDisplay;
 		private int counter;
+        private int counterLimit;
 		private bool gameOver;
 
 		public bool GameOver
@@ -61,54 +63,6 @@ namespace CaptainCPA
 		public ActionScene(Game game, SpriteBatch spriteBatch, string level)
 			: base(game, spriteBatch)
 		{
-			#region OldConstructor
-			/*//Add a level creator, and create the level
-			levelLoader = new LevelLoader(game, spriteBatch);
-			levelLoader.LoadGame(level);
-			moveableTileList = levelLoader.MoveableTileList;
-			fixedTileList = levelLoader.FixedTileList;
-			character = levelLoader.Character;
-
-			//Add each tile to the scene components
-			foreach (MoveableTile moveableTile in moveableTileList)
-			{
-				this.Components.Add(moveableTile);
-			}
-
-			foreach (FixedTile fixedTile in fixedTileList)
-			{
-				this.Components.Add(fixedTile);
-			}
-
-			#region Managers
-			//Create physics manager and add it to list of components
-			physicsManager = new PhysicsManager(game, moveableTileList, fixedTileList);
-			this.Components.Add(physicsManager);
-
-			//Create character collision manager (for pickups, death, etc) and add to list of components
-			characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
-			this.Components.Add(characterCollisionManager);
-
-			//Create tile collision manager (in case a collision actually does occur) and add to list of components
-			tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
-			this.Components.Add(tileCollisionPositioningManager);
-			#endregion
-
-			#region DisplayComponents
-			//Create display components
-			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
-			scoreDisplay = new ScoreDisplay(game, spriteBatch, scoreFont, scorePosition, Color.Black);
-			this.components.Add(scoreDisplay);
-			
-			healthDisplay = new HealthDisplay(game, spriteBatch, character);
-			this.components.Add(healthDisplay);
-			#endregion
-
-			//Set game over to false
-			GameOver = false;*/
-			#endregion
-
 			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
 			counter = 0;
 		}
@@ -250,21 +204,34 @@ namespace CaptainCPA
 
 				if (counter == 6000)
 				{
-					counter = 0;
+                    counter = 1;
 				}
+                //Tiles are not in their initial position
+                if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
+                {
+                    float diff = fixedTileList[0].XPosition - fixedTileList[0].InitPosition.X;
 
-				if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
+                    if (Math.Abs(diff) > 7)
+                    {
+                        counterLimit = 1;
+                        character.Color = Color.Red;
+                    }
+                    else
 				{
+                        counterLimit = 2;
+                        character.Color = Color.Red;
+                    }
+
 					foreach (MoveableTile m in moveableTileList)
 					{
-                        if (m.Enabled)
+                        if (m.Enabled && !(m is Boulder))
                         {
                             m.Position = new Vector2(-1000, -1000);
 						m.Visible = false;
                             m.Enabled = false;
                         }
 					}
-					if (counter % 2 == 0)
+                    if (counter % counterLimit == 0)
 					{
 						SlideBack();
 					}
@@ -273,10 +240,14 @@ namespace CaptainCPA
 				{
 					foreach (MoveableTile m in moveableTileList)
 					{
+                        if (!(m is Boulder))
+                        {
+
                         m.Position = m.InitPosition;
                         m.Enabled = true;
 						m.Visible = true;
 					}
+                    }
 					character.IsGhost = false;
 				}
 			}
