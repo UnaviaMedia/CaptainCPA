@@ -233,6 +233,7 @@ namespace CaptainCPA
 			}
 
 			//animation, hopefully
+			//DEBUG MODE - Comment out the below lines
 			if (isMoving)
 			{
 				if (velocity.Y == 0)
@@ -275,7 +276,10 @@ namespace CaptainCPA
 			spriteBatch.Begin();
 			if (frameIndex >= 0)
 			{
-				spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
+				//spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
+
+				//DEBUG MODE
+				spriteBatch.Draw(Game.Content.Load<Texture2D>("Sprites/Platform"), position, null, Color.Red, rotation, origin, 1f, spriteEffect, layerDepth);
 			}
 			spriteBatch.End();
 			//base.Draw(gameTime);

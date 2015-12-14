@@ -149,6 +149,12 @@
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Content>
+    <Content Include="Levels\Level1.xml">
+      <Name>Level1</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Levels\Level4.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Level4</Name>
@@ -168,9 +174,9 @@
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Content>
-    <Content Include="Levels\Level1.xml">
+    <Content Include="Levels\Level1-old.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Level1</Name>
+      <Name>Level1-old</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <SubType>Designer</SubType>
@@ -290,8 +296,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\LevelEnd.png">
-      <Name>LevelEnd</Name>
+    <Compile Include="Sprites\LevelBarrier.png">
+      <Name>LevelBarrier</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -317,6 +323,41 @@
     </Compile>
     <Compile Include="Sprites\Grass5.png">
       <Name>Grass5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Dirt1.png">
+      <Name>Dirt1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Dirt2.png">
+      <Name>Dirt2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Dirt3.png">
+      <Name>Dirt3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\GrassEnd1.png">
+      <Name>GrassEnd1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\GrassEnd2.png">
+      <Name>GrassEnd2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\GrassEnd3.png">
+      <Name>GrassEnd3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\LevelEnd.png">
+      <Name>LevelEnd</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

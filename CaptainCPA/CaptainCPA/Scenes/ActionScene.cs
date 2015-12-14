@@ -210,7 +210,7 @@ namespace CaptainCPA
 		/// <summary>
 		/// Slides the level back to its initial position
 		/// </summary>
-		public void slideBack()
+		public void SlideBack()
 		{
 			foreach (FixedTile t in fixedTileList)
 			{
@@ -264,7 +264,7 @@ namespace CaptainCPA
 					}
 					if (counter % 2 == 0)
 					{
-						slideBack();
+						SlideBack();
 					}
 				}
 				else //scene is in its initial position; reset all moveable components

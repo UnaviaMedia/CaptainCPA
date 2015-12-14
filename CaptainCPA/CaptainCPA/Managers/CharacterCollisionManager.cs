@@ -47,6 +47,12 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
+			//Don't check for collisions if the player is dead/ghost
+			if (character.IsGhost == true || character.IsAlive == false)
+			{
+				return;
+			}
+
 			foreach (FixedTile fixedTile in fixedTiles)
 			{
 				//Skip collision detection if the moveable tile is hidden or disabled

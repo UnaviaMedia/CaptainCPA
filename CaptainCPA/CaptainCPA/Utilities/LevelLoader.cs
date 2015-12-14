@@ -79,7 +79,24 @@ namespace CaptainCPA
 			grassTextures.Add(grassTexture4);
 			grassTextures.Add(grassTexture5);
 
+			List<Texture2D> grassEndTexures = new List<Texture2D>();
+			Texture2D grassEndTexture1 = game.Content.Load<Texture2D>("Sprites/GrassEnd1");
+			Texture2D grassEndTexture2 = game.Content.Load<Texture2D>("Sprites/GrassEnd2");
+			Texture2D grassEndTexture3 = game.Content.Load<Texture2D>("Sprites/GrassEnd3");
+			grassEndTexures.Add(grassEndTexture1);
+			grassEndTexures.Add(grassEndTexture2);
+			grassEndTexures.Add(grassEndTexture3);
+
+			List<Texture2D> dirtTextures = new List<Texture2D>();
+			Texture2D dirtTexture1 = game.Content.Load<Texture2D>("Sprites/Dirt1");
+			Texture2D dirtTexture2 = game.Content.Load<Texture2D>("Sprites/Dirt2");
+			Texture2D dirtTexture3 = game.Content.Load<Texture2D>("Sprites/Dirt3");
+			dirtTextures.Add(dirtTexture1);
+			dirtTextures.Add(dirtTexture2);
+			dirtTextures.Add(dirtTexture3);
+
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
+			Texture2D levelBarrierTexture = game.Content.Load<Texture2D>("Sprites/LevelBarrier");
 			Texture2D levelEndTexture = game.Content.Load<Texture2D>("Sprites/LevelEnd");
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
 			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
@@ -138,12 +155,24 @@ namespace CaptainCPA
 						case "block":
 							newTile = new Block(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth);
 							break;
-						case "grass":
-							
+						case "grass":							
 							newTile = new Block(game, spriteBatch, grassTextures[r.Next(0, grassTextures.Count)], color, position, rotation, scale, layerDepth);
 							break;
+						case "grass-left":
+							newTile = new Block(game, spriteBatch, grassEndTexures[r.Next(0, grassEndTexures.Count)], color, position, rotation, scale, layerDepth);
+							break;
+						case "grass-right":
+							newTile = new Block(game, spriteBatch, grassEndTexures[r.Next(0, grassEndTexures.Count)], color, position, rotation, scale, layerDepth);
+							newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
+							break;
+						case "dirt":
+							newTile = new Block(game, spriteBatch, dirtTextures[r.Next(0, dirtTextures.Count)], color, position, rotation, scale, layerDepth);
+							break;
+						case "level-barrier":
+							newTile = new Block(game, spriteBatch, levelBarrierTexture, color, position, rotation, scale, layerDepth);
+							break;
 						case "level-end":
-							newTile = new Block(game, spriteBatch, levelEndTexture, color, position, rotation, scale, layerDepth);
+							newTile = new LevelEnd(game, spriteBatch, levelEndTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "platform-middle":
 							newTile = new Platform(game, spriteBatch, platformMiddleTexture, color, position, rotation, scale, layerDepth);
@@ -162,7 +191,7 @@ namespace CaptainCPA
 							points = int.Parse(tile.Attributes["points"].Value);
 							newTile = new Disc(game, spriteBatch, discTexture, color, position, rotation, scale, layerDepth, points);
 							break;
-						case "floppyDisc":
+						case "floppy-disc":
 							points = int.Parse(tile.Attributes["points"].Value);
 							newTile = new FloppyDisc(game, spriteBatch, floppyDiscTexture, floppyDiscOverlayTexture, Color.White, color, position, rotation, scale, layerDepth, points);
 							break;
