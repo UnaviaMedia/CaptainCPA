@@ -226,12 +226,6 @@ namespace CaptainCPA
 				onGround = false;
 			}
 
-			//Debug Mode
-			if (ks.IsKeyDown(Keys.Space))
-			{
-				Console.WriteLine("Debug Mode");
-			}
-
 			//animation, hopefully
 			//DEBUG MODE - Comment out the below lines
 			if (isMoving)
