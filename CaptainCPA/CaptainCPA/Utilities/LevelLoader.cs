@@ -228,6 +228,12 @@ namespace CaptainCPA
 							onGround = true;
 							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
+                        case "boulder":
+                            velocity = new Vector2(-2, 0);
+                            onGround = true;
+                            Texture2D texture = game.Content.Load<Texture2D>("Sprites/Meteor1");
+                            newTile = new Boulder(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround);
+                            break;
 						case "monstar":
 							velocity = new Vector2(2, 0);
 							onGround = true;

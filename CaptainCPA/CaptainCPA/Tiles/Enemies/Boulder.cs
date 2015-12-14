@@ -15,22 +15,19 @@ namespace CaptainCPA
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class Monstar : PursuingEnemy
+    public class Boulder : Enemy
     {
-        private List<Rectangle> frames;
         private Vector2 dimension;
-        private int delay;
-        private int delayCounter;
-        private int frameIndex;
-        private Texture2D bigTexture;
-        public Monstar(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
+        private float rotationFactor = 0f;
+        private float rotationChange = 0.1f;
+        private int counter;
+        public Boulder(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
                             Vector2 velocity, bool onGround)
             : base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
-            delay = 2;
             dimension = new Vector2(128, 128);
-            bigTexture = game.Content.Load<Texture2D>("Sprites/MonstarSpriteSheet");
-            createFrames();
+            texture = game.Content.Load<Texture2D>("Sprites/Meteor1");
+            origin = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 
         /// <summary>
@@ -49,42 +46,24 @@ namespace CaptainCPA
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            counter++;
             if (isMoving)
             {
-                delayCounter++;
-                if (delayCounter % delay == 0)
-                {
-                    frameIndex++;
-                    if (frameIndex == 16)
-                        frameIndex = 0;
-                }
+                rotationFactor -= rotationChange;
             }
-
+            if (counter == 300)
+            {
+                counter = 0;
+                position = initPosition;
+            }
             base.Update(gameTime);
         }
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            if (frameIndex >= 0)
-            {
-                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, new Vector2(dimension.X / 2, dimension.Y / 2 - 15), 0.5f, spriteEffect, layerDepth);
-            }
+            spriteBatch.Draw(texture, position, new Rectangle(0, 0, texture.Width, texture.Height), Color.White, rotationFactor, origin, 1f, spriteEffect, layerDepth);
+            //spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, new Vector2(dimension.X / 2 - 20, dimension.Y / 2 - 15), 0.5f, spriteEffect, layerDepth);
             spriteBatch.End();
-        }
-        //TODO: move createFrames into enemy or pursuingEnemy
-        private void createFrames()
-        {
-            frames = new List<Rectangle>();
-            for (int i = 0; i < 2; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    int x = j * (int)dimension.X;
-                    int y = i * (int)dimension.Y;
-                    Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
-                    frames.Add(r);
-                }
-            }
         }
     }
 }

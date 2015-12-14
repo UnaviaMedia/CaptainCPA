@@ -233,6 +233,10 @@ namespace CaptainCPA
 				{
 					moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, moveableTile.Velocity.Y + moveableTile.Gravity.Y);
 				}
+                else
+                {
+                    moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 0);
+                }
 
 				if (verticalDirection == Direction.Up)
 				{
