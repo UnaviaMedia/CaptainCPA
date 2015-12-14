@@ -29,8 +29,7 @@ namespace CaptainCPA
 			this.character = character;
 			
 			texture = game.Content.Load<Texture2D>("Displays/ScoreDisplay");
-			font = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			
+			font = game.Content.Load<SpriteFont>("Fonts/ScoreFont");			
 			position = new Vector2(60, 30);
 		}
 

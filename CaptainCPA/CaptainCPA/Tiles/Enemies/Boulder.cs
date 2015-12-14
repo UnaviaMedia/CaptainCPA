@@ -1,13 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
@@ -19,11 +11,13 @@ namespace CaptainCPA
     {
         private float rotationFactor = 0f;
         private float rotationChange = 0.06f;
+
+
         public Boulder(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
                             Vector2 velocity, bool onGround)
             : base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
-            initPosition = new Vector2(Settings.Stage.X, 3 * Settings.TILE_SIZE);
+            initPosition = new Vector2(Utilities.Stage.X, 3 * Utilities.TILE_SIZE);
             texture = game.Content.Load<Texture2D>("Sprites/Meteor1");
             origin = new Vector2(texture.Width / 2, texture.Height / 2);
         }
@@ -48,7 +42,7 @@ namespace CaptainCPA
             {
                 rotationFactor -= rotationChange;
             }
-            if (position.X <= 0 - Settings.TILE_SIZE * 3)
+            if (position.X <= 0 - Utilities.TILE_SIZE * 3)
             {
                 position = initPosition;
             }

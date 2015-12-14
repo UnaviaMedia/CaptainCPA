@@ -11,6 +11,8 @@ namespace CaptainCPA
 	public class Enemy : MoveableTile
 	{
 		protected float xSpeed;
+
+
 		public Enemy(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
 							Vector2 velocity, bool onGround)
 			: base(game, spriteBatch, texture, TileType.Enemy, color, position, rotation, scale, layerDepth, velocity, onGround)

@@ -28,16 +28,13 @@ namespace CaptainCPA
 	{
 		private Texture2D menuImage;
 		private MenuComponent menu;
+		string[] menuItems = {"Resume Game", "How to play", "Exit to Main Menu", "Quit"};
 
 		public MenuComponent Menu
 		{
 			get { return menu; }
 			set { menu = value; }
 		}
-		string[] menuItems = {"Resume Game",
-							 "How to play",
-							 "Exit to Main Menu",
-							 "Quit"};
 
 		/// <summary>
 		/// Constructor for the Pause Menu Scene
@@ -47,9 +44,8 @@ namespace CaptainCPA
 		public PauseMenuScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
-			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 - 155, Settings.Stage.Y / 2 - 110);
+			Vector2 menuPosition = new Vector2(Utilities.Stage.X / 2 - 155, Utilities.Stage.Y / 2 - 110);
 			menu = new MenuComponent(game, spriteBatch,
-				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				menuItems, menuPosition);
 			this.Components.Add(menu);

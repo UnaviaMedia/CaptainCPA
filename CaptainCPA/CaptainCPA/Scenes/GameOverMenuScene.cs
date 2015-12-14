@@ -36,7 +36,7 @@ namespace CaptainCPA
 			this.menuImage = menuImage;
 
 			//Add the high score component
-			Vector2 highScorePosition = new Vector2(Settings.Stage.X / 2 - 175, Settings.Stage.Y / 2 - 30);
+			Vector2 highScorePosition = new Vector2(Utilities.Stage.X / 2 - 175, Utilities.Stage.Y / 2 - 30);
 			highScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition, playerScore);
 			this.components.Add(highScoreComponent);
 		}

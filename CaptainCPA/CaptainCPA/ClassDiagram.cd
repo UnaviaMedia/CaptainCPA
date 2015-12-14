@@ -287,11 +287,11 @@
       <FileName>Utilities\LevelLoader.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CaptainCPA.Settings" Collapsed="true">
+  <Class Name="CaptainCPA.Utilities" Collapsed="true">
     <Position X="28.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAA=</HashCode>
-      <FileName>Utilities\Settings.cs</FileName>
+      <FileName>Utilities\Utilities.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Utilities" Collapsed="true">

@@ -17,11 +17,11 @@ namespace CaptainCPA
 	/// </summary>
 	public class MoveableTile : Tile
 	{
-		protected bool facingRight;
-		protected bool isMoving;
 		protected Vector2 velocity;
 		protected Vector2 gravity = new Vector2(0.0f, 0.2f);
 		protected bool onGround;
+		protected bool isMoving;
+		protected bool facingRight;
 
 		public Vector2 Velocity
 		{

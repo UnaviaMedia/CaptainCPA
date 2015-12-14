@@ -25,7 +25,7 @@ namespace CaptainCPA
 		{
 			get
 			{
-				return (int)Math.Floor(position.X / Settings.TILE_SIZE);
+				return (int)Math.Floor(position.X / Utilities.TILE_SIZE);
 			}
 		}
 
@@ -33,7 +33,7 @@ namespace CaptainCPA
 		{
 			get
 			{
-				return (int)Math.Floor(position.Y / Settings.TILE_SIZE);
+				return (int)Math.Floor(position.Y / Utilities.TILE_SIZE);
 			}
 		}
 

@@ -27,31 +27,22 @@ namespace CaptainCPA
 	/// </summary>
 	public class StartScene : GameScene
 	{
+		private List<Texture2D> backgroundImages;
 		private Texture2D scrollingTexture1;
 		private Texture2D scrollingTexture2;
 		private Vector2 scrollingPosition1;
 		private Vector2 scrollingPosition2;
 		private Vector2 scrollingSpeed;
-		private List<Texture2D> backgroundImages;
-
+		private List<string> levelList;
 		private Texture2D menuImage;
 		private MenuComponent menu;
+		private string[] menuItems = {"Start Game", "Select Level", "Help", "High Score", "About/Credit", "How to play", "Quit"};
 		
 		public MenuComponent Menu
 		{
 			get { return menu; }
 			set { menu = value; }
 		}
-
-		private string[] menuItems = {"Start Game",
-							 "Select Level",
-							 "Help",
-							 "High Score",
-							 "About/Credit",
-							 "How to play",
-							 "Quit"};
-
-		private List<string> levelList;
 
 
 		public StartScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
@@ -79,9 +70,8 @@ namespace CaptainCPA
 			levelList = new List<string>() { "level1", "level2"};
 
 			//Set up the menu
-			Vector2 menuPosition = new Vector2(Settings.Stage.X / 2 + 140, Settings.Stage.Y / 2 - 60);
+			Vector2 menuPosition = new Vector2(Utilities.Stage.X / 2 + 140, Utilities.Stage.Y / 2 - 60);
 			menu = new MenuComponent(game, spriteBatch,
-				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				menuItems, menuPosition);
 			this.Components.Add(menu);

@@ -7,6 +7,7 @@
  *		*				Dec-10-2015:	High Score managing added
  *						Dec-12-2015:	Added level progression checking
  *										Moved ColorConverter from ColorConverter class
+ *						Dec-14-2015:	Moved Stage and TILE_SIZE in from Utilities
  */
 
 using Microsoft.Xna.Framework;
@@ -22,6 +23,16 @@ namespace CaptainCPA
 	/// </summary>
 	public class Utilities
 	{
+		/// <summary>
+		/// Stores GameWindow size
+		/// </summary>
+		public static Vector2 Stage;
+
+		/// <summary>
+		/// Stores tile size
+		/// </summary>
+		public const float TILE_SIZE = 64.0f;
+
 		/// <summary>
 		/// Dictionary of XNA Colors and corresponding string names
 		/// </summary>

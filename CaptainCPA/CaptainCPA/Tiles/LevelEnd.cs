@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Disc pickup that gives character points
+	/// Transparent block that indicates the end of a level once reached
 	/// </summary>
 	public class LevelEnd : FixedTile
 	{

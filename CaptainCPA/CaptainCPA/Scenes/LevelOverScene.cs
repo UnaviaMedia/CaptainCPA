@@ -67,7 +67,7 @@ namespace CaptainCPA
 
 			//Draw the current score
 			spriteBatch.DrawString(font, currentScore.ToString(),
-				new Vector2((Settings.Stage.X / 2) - (font.MeasureString(currentScore.ToString()).X / 2), (Settings.Stage.Y / 2) - 22), Color.White);
+				new Vector2((Utilities.Stage.X / 2) - (font.MeasureString(currentScore.ToString()).X / 2), (Utilities.Stage.Y / 2) - 22), Color.White);
 
 			spriteBatch.End();
 

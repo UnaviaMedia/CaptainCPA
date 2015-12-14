@@ -25,12 +25,11 @@ namespace CaptainCPA
 		private SpriteBatch spriteBatch;
 		private Vector2 position;
 		private Texture2D menuSelectorTexture;
-		private SpriteFont regularFont, highlightFont;
+		private SpriteFont font;
 		private List<string> menuItems;
 		private int selectedIndex = 0;
-		private Color regularColor = Color.White;
-		private Color highlightColor = Color.White;
-		private KeyboardState oldState; //Why??
+		private Color color = Color.White;
+		private KeyboardState oldState;
 
 		public int SelectedIndex
 		{
@@ -38,24 +37,11 @@ namespace CaptainCPA
 			set { selectedIndex = value; }
 		}
 
-
-		public MenuComponent(Game game, SpriteBatch spriteBatch, SpriteFont regularFont, SpriteFont highlightFont, string[] menuItems)
-			: base(game)
-		{
-			this.spriteBatch = spriteBatch;
-			this.regularFont = regularFont;
-			this.highlightFont = highlightFont;
-			this.menuItems = menuItems.ToList();
-			menuSelectorTexture = game.Content.Load<Texture2D>("Images/MenuSelector");
-			position = new Vector2(Settings.Stage.X / 2, Settings.Stage.Y / 2);
-		}
-
-		public MenuComponent(Game game, SpriteBatch spriteBatch, SpriteFont regularFont, SpriteFont highlightFont, string[] menuItems, Vector2 position)
+		public MenuComponent(Game game, SpriteBatch spriteBatch, SpriteFont font, string[] menuItems, Vector2 position)
 			:base(game)
 		{
 			this.spriteBatch = spriteBatch;
-			this.regularFont = regularFont;
-			this.highlightFont = highlightFont;
+			this.font = font;
 			this.menuItems = menuItems.ToList();
 			this.position = position;
 			menuSelectorTexture = game.Content.Load<Texture2D>("Images/MenuSelector");
@@ -113,9 +99,9 @@ namespace CaptainCPA
 			for (int i = 0; i < menuItems.Count; i++)
 			{
 				//Record the longest menu item (for menu selector)
-				if (highlightFont.MeasureString(menuItems[i]).X > maxItemLength)
+				if (font.MeasureString(menuItems[i]).X > maxItemLength)
 				{
-					maxItemLength = (int)highlightFont.MeasureString(menuItems[i]).X;
+					maxItemLength = (int)font.MeasureString(menuItems[i]).X;
 				}
 			}
 
@@ -124,7 +110,7 @@ namespace CaptainCPA
 				if (selectedIndex == i)
 				{
 					//Draw the menu selector
-					Vector2 selectorPosition = new Vector2(tempPos.X - 65, tempPos.Y - (menuSelectorTexture.Height / 2) + (highlightFont.LineSpacing / 2) + 2);
+					Vector2 selectorPosition = new Vector2(tempPos.X - 65, tempPos.Y - (menuSelectorTexture.Height / 2) + (font.LineSpacing / 2) + 2);
 
 					//Draw the left section of the selector
 					spriteBatch.Draw(menuSelectorTexture, selectorPosition, new Rectangle(0, 0, 67, 60), Color.White);
@@ -136,13 +122,13 @@ namespace CaptainCPA
 					spriteBatch.Draw(menuSelectorTexture, new Vector2(selectorPosition.X + 67 + maxItemLength, selectorPosition.Y), new Rectangle(471, 0, 29, 60), Color.White);
 
 					//Draw the menu item
-					spriteBatch.DrawString(highlightFont, menuItems[i], tempPos, highlightColor);
-					tempPos.Y += highlightFont.LineSpacing;
+					spriteBatch.DrawString(font, menuItems[i], tempPos, color);
+					tempPos.Y += font.LineSpacing;
 				}
 				else
 				{
-					spriteBatch.DrawString(regularFont, menuItems[i], tempPos, regularColor);
-					tempPos.Y += regularFont.LineSpacing;
+					spriteBatch.DrawString(font, menuItems[i], tempPos, color);
+					tempPos.Y += font.LineSpacing;
 				}				
 
 				tempPos.Y += 10;

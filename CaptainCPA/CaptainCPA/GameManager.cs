@@ -21,9 +21,8 @@ namespace CaptainCPA
 	/// </summary>
 	public class GameManager : Game
 	{
-		const float X_SCALE_FACTOR = 25f;
-		const float Y_SCALE_FACTOR = 14f;
-
+		const float HORIZONTAL_BLOCKS_ON_SCREEN = 25f;
+		const float VERTICAL_BLOCKS_ON_SCREEN = 14f;
 		const int NUMBER_OF_LEVELS = 4;
 		
 		GraphicsDeviceManager graphics;
@@ -58,32 +57,34 @@ namespace CaptainCPA
 		private Texture2D gameOverSceneBackground;
 		#endregion
 		#endregion
+		
+		private List<string> levelList;
+		private int currentLevel;
 
 		private List<Song> backgroundMusic;
 		private int backgroundMusicCounter;
 
-		private List<string> levelList;
-		private int currentLevel;
-
 		private KeyboardState oldState;
 
-		//FPS Tracking
+		/*//FPS Tracking
 		int totalFrames = 0;
 		float elapsedTime = 0.0f;
-		int fps = 0;
-
+		int fps = 0;*/
+		
 
 		public GameManager()
 		{
 			//Initialize graphics manager properties
 			graphics = new GraphicsDeviceManager(this);
-			graphics.PreferredBackBufferWidth = (int)(Settings.TILE_SIZE * X_SCALE_FACTOR);
-			graphics.PreferredBackBufferHeight = (int)(Settings.TILE_SIZE * Y_SCALE_FACTOR);
+			graphics.PreferredBackBufferWidth = (int)(Utilities.TILE_SIZE * HORIZONTAL_BLOCKS_ON_SCREEN);
+			graphics.PreferredBackBufferHeight = (int)(Utilities.TILE_SIZE * VERTICAL_BLOCKS_ON_SCREEN);
 
 			//Initialize GameScene list
 			scenes = new List<GameScene>();
 
 			Content.RootDirectory = "Content";
+
+			Window.Title = "CaptainCPA";
 
 			//Enable to uncap FPS (unplayable)
 			//graphics.SynchronizeWithVerticalRetrace = false;
@@ -101,7 +102,7 @@ namespace CaptainCPA
 			IsMouseVisible = true;
 
 			//Initialize game stage variable
-			Settings.Stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+			Utilities.Stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
 			base.Initialize();
 		}
@@ -225,7 +226,7 @@ namespace CaptainCPA
 		protected override void Update(GameTime gameTime)
 		{
 			#region FPSTracking
-			//Update FPS
+			/*//Update FPS
 			elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 			totalFrames++;
 
@@ -236,7 +237,7 @@ namespace CaptainCPA
 				totalFrames = 0;
 				elapsedTime = 0;
 				Window.Title = fps.ToString();
-			}
+			}*/
 			#endregion
 
 			#region MenuNavigation

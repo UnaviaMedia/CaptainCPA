@@ -141,7 +141,7 @@ namespace CaptainCPA
 					//Declare new Tile properties
 					Tile newTile = null;
 					Color color = Utilities.ConvertColor(tile.Attributes["color"].Value);
-					Vector2 position = new Vector2(xValue * Settings.TILE_SIZE, yValue * Settings.TILE_SIZE);
+					Vector2 position = new Vector2(xValue * Utilities.TILE_SIZE, yValue * Utilities.TILE_SIZE);
 					float rotation = 0.0f;
 					float scale = 1.0f;
 					float layerDepth = 1.0f;

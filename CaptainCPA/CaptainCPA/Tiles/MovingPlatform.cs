@@ -27,6 +27,8 @@ namespace CaptainCPA
             get { return fixedPosition; }
             set { fixedPosition = value; }
         }
+
+
         public MovingPlatform(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth, int range, bool goRight)
             : base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
         {
@@ -55,7 +57,7 @@ namespace CaptainCPA
                 if (movingRight)
                 {
                     position.X += 1;
-                    if (position.X >= fixedPosition + Settings.TILE_SIZE * range)
+                    if (position.X >= fixedPosition + Utilities.TILE_SIZE * range)
                     {
                         movingRight = false;
                     }
@@ -74,7 +76,7 @@ namespace CaptainCPA
                 if (!movingRight)
                 {
                     position.X -= 1;
-                    if (position.X <= fixedPosition - Settings.TILE_SIZE * range)
+                    if (position.X <= fixedPosition - Utilities.TILE_SIZE * range)
                     {
                         movingRight = true;
                     }

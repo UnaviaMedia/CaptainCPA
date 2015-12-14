@@ -763,7 +763,7 @@
 				<Tile x="43" tileType="grass" color="White"></Tile>
 				<Tile x="44" tileType="grass" color="White"></Tile>
 				<Tile x="45" tileType="grass" color="White"></Tile>
-				<Tile x="46" tileType="grass" color="White"></Tile>
+				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
 				<!-- Regular tiles end -->
 				<Tile x="48" tileType="dirt" color="White"></Tile>

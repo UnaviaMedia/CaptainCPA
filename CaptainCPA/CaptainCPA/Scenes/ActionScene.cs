@@ -24,7 +24,7 @@ namespace CaptainCPA
 	/// </summary>
 	public class ActionScene : GameScene
 	{
-		protected const float RIGHT_CHARACTER_BUFFER = 400;
+		protected const float CHARACTER_SCREEN_BUFFER = 400;
 
 		protected LevelLoader levelLoader;
 		protected List<MoveableTile> moveableTileList;
@@ -38,20 +38,20 @@ namespace CaptainCPA
 
 		protected ScoreDisplay scoreDisplay;
 		protected HealthDisplay healthDisplay;
-		private int counter;
-        private int counterLimit;
+		private int slideBackCounter;
+        private int slideBackCounterLimit;
 		private bool gameOver;
-
-		public bool GameOver
-		{
-			get { return gameOver; }
-			set { gameOver = value; }
-		}
 
 		public Character Character
 		{
 			get { return character; }
 			set { character = value; }
+		}
+
+		public bool GameOver
+		{
+			get { return gameOver; }
+			set { gameOver = value; }
 		}
 
 		/// <summary>
@@ -64,7 +64,16 @@ namespace CaptainCPA
 			: base(game, spriteBatch)
 		{
 			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
-			counter = 0;
+			//slideBackCounter = 0;
+		}
+
+		/// <summary>
+		/// Allows the game component to perform any initialization it needs to before starting
+		/// to run.  This is where it can query for any required services and load content.
+		/// </summary>
+		public override void Initialize()
+		{
+			base.Initialize();
 		}
 
 		/// <summary>
@@ -92,7 +101,7 @@ namespace CaptainCPA
 			#region DisplayComponents
 			//Create display components
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
+			Vector2 scorePosition = new Vector2(Utilities.TILE_SIZE + 15);
 			scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
 			this.components.Add(scoreDisplay);			
 
@@ -137,6 +146,9 @@ namespace CaptainCPA
 					tiles.Add(component as Tile);
 				}
 			}
+
+			//Reset the slide back counter
+			slideBackCounter = 0;
 		}
 
 		/// <summary>
@@ -148,15 +160,6 @@ namespace CaptainCPA
 		public void Reset(Game game, SpriteBatch spriteBatch, string level)
 		{
 			Reset(game, spriteBatch, level, 0, Character.MAX_LIVES);
-		}
-
-		/// <summary>
-		/// Allows the game component to perform any initialization it needs to before starting
-		/// to run.  This is where it can query for any required services and load content.
-		/// </summary>
-		public override void Initialize()
-		{
-			base.Initialize();
 		}
 
 		/// <summary>
@@ -208,11 +211,11 @@ namespace CaptainCPA
 			if (character.IsGhost)
 			{
                 CharacterStateManager.IsMoving = false;
-				counter++;
+				slideBackCounter++;
 
-				if (counter == 6000)
+				if (slideBackCounter == 6000)
 				{
-                    counter = 1;
+                    slideBackCounter = 1;
 				}
                 //Tiles are not in their initial position
                 if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
@@ -221,12 +224,12 @@ namespace CaptainCPA
 
                     if (Math.Abs(diff) > 7)
                     {
-                        counterLimit = 1;
+                        slideBackCounterLimit = 1;
                         character.Color = Color.Red;
                     }
                     else
 				{
-                        counterLimit = 2;
+                        slideBackCounterLimit = 2;
                         character.Color = Color.Red;
                     }
 
@@ -239,7 +242,7 @@ namespace CaptainCPA
                             m.Enabled = false;
                         }
 					}
-                    if (counter % counterLimit == 0)
+                    if (slideBackCounter % slideBackCounterLimit == 0)
 					{
 						SlideBack();
 					}
@@ -264,7 +267,7 @@ namespace CaptainCPA
 			if (CharacterStateManager.IsMoving)
 			{
 				//Character is within range of the right side of the screen
-				if (character.Bounds.Right >= Settings.Stage.X - RIGHT_CHARACTER_BUFFER)
+				if (character.Bounds.Right >= Utilities.Stage.X - CHARACTER_SCREEN_BUFFER)
 				{
 					CharacterStateManager.TooFarRight = true;
 					if (CharacterStateManager.FacingRight) //Character is moving to the right
@@ -282,7 +285,7 @@ namespace CaptainCPA
 				}
 
 				//character is within range of the left side of the screen
-				else if (character.Bounds.Left <= RIGHT_CHARACTER_BUFFER)
+				else if (character.Bounds.Left <= CHARACTER_SCREEN_BUFFER)
 				{
 					if (!CharacterStateManager.FacingRight) //character is moving to the left
 					{

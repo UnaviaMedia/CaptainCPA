@@ -25,14 +25,13 @@ namespace CaptainCPA
 		private SpriteBatch spriteBatch;
 		private Vector2 position;
 		private SpriteFont font;
-		private KeyboardState oldState;
-		private bool highScoreEntered;
-
 		private List<HighScore> highScores;
-		private bool playerHasHighScore;
 		private int playerScore;
 		private string playerName;
+		private bool playerHasHighScore;
+		private bool highScoreEntered;
 		private const string DEFAULT_NAME = "<<Enter Name>>";
+		private KeyboardState oldState;
 
 		public bool NameEntered
 		{
@@ -152,8 +151,6 @@ namespace CaptainCPA
 			}
 			else
 			{
-				playerName = "BLERGBLERG";
-
 				//If the user doesn't get a high score, return to the main menu when they press 'Enter'
 				if (ks.IsKeyDown(Keys.Enter))
 				{
@@ -195,7 +192,7 @@ namespace CaptainCPA
 
 			//Draw the player's score regardless of whether or not they got a high score
 			spriteBatch.DrawString(font, playerScore.ToString(), 
-				new Vector2((Settings.Stage.X / 2) - (font.MeasureString(playerScore.ToString()).X / 2), position.Y - 28), Color.White);
+				new Vector2((Utilities.Stage.X / 2) - (font.MeasureString(playerScore.ToString()).X / 2), position.Y - 28), Color.White);
 
 			if (highScores.Count != 0)
 			{

@@ -56,7 +56,7 @@ namespace CaptainCPA
 			sourceRectangle.Width = 10 + (character.Lives * 35);
 
 			//Update the position of the Health Display
-			position = new Vector2((Settings.Stage.X / 2) - ((sourceRectangle.Width + rightTexture.Width) / 2), 30);
+			position = new Vector2((Utilities.Stage.X / 2) - ((sourceRectangle.Width + rightTexture.Width) / 2), 30);
 
 			base.Update(gameTime);
 		}
@@ -78,7 +78,7 @@ namespace CaptainCPA
 			}
 			else
 			{
-				spriteBatch.Draw(skullTexture, new Vector2((Settings.Stage.X / 2) - (skullTexture.Width / 2), position.Y), Color.White);
+				spriteBatch.Draw(skullTexture, new Vector2((Utilities.Stage.X / 2) - (skullTexture.Width / 2), position.Y), Color.White);
 			}
 
 			spriteBatch.End();

@@ -29,7 +29,7 @@ namespace CaptainCPA
 		public HighScoreScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
-			position = new Vector2(Settings.Stage.X / 2 - 160, Settings.Stage.Y / 2 - 107);
+			position = new Vector2(Utilities.Stage.X / 2 - 160, Utilities.Stage.Y / 2 - 107);
 			font = game.Content.Load<SpriteFont>("Fonts/HighScoreFont");
 
 			this.menuImage = menuImage;

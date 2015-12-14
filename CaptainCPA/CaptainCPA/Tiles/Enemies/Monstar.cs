@@ -1,13 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace CaptainCPA
@@ -17,12 +10,14 @@ namespace CaptainCPA
     /// </summary>
     public class Monstar : PursuingEnemy
     {
+        private Texture2D bigTexture;
         private List<Rectangle> frames;
         private Vector2 dimension;
         private int delay;
         private int delayCounter;
         private int frameIndex;
-        private Texture2D bigTexture;
+
+
         public Monstar(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
                             Vector2 velocity, bool onGround)
             : base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround)

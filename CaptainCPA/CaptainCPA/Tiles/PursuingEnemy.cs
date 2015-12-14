@@ -43,7 +43,7 @@ namespace CaptainCPA
 				velocity.X = Math.Abs(xSpeed);
 			}
 			//If the enemy is directly above or below the character, pace back and forth
-			if (position.X >= CharacterStateManager.CharacterPosition.X - (Settings.TILE_SIZE) && position.X <= CharacterStateManager.CharacterPosition.X + Settings.TILE_SIZE / 2)
+			if (position.X >= CharacterStateManager.CharacterPosition.X - (Utilities.TILE_SIZE) && position.X <= CharacterStateManager.CharacterPosition.X + Utilities.TILE_SIZE / 2)
 			{
 				velocity.X = (facingRight) ? Math.Abs(xSpeed) : -Math.Abs(xSpeed);
 				//if (facingRight) velocity.X = Math.Abs(xSpeed);

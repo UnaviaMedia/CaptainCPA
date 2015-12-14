@@ -105,9 +105,9 @@
 			<Row y="1">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="block" color="White"></Tile>
-				<Tile x="3" tileType="block" color="White"></Tile>
-				<Tile x="4" tileType="block" color="White"></Tile>
+				<Tile x="2" tileType="" color="White"></Tile>
+				<Tile x="3" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -156,8 +156,8 @@
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White" ></Tile>
-				<Tile x="4" tileType="block" color="White"></Tile>
+				<Tile x="3" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -205,9 +205,9 @@
 			<Row y="3">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="block" color="White"></Tile>
-				<Tile x="3" tileType="block" color="White"></Tile>
-				<Tile x="4" tileType="block" color="White"></Tile>
+				<Tile x="2" tileType="" color="White"></Tile>
+				<Tile x="3" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -232,7 +232,7 @@
 				<Tile x="26" tileType="" color="White"></Tile>
 				<Tile x="27" tileType="" color="White"></Tile>
 				<Tile x="28" tileType="" color="White"></Tile>
-				<Tile x="29" tileType="" color="White"></Tile>
+				<Tile x="29" tileType="floppy-disc" color="Orange" points="8"></Tile>
 				<Tile x="30" tileType="" color="White"></Tile>
 				<Tile x="31" tileType="" color="White"></Tile>
 				<Tile x="32" tileType="" color="White"></Tile>
@@ -250,14 +250,14 @@
 				<Tile x="44" tileType="" color="White"></Tile>
 				<Tile x="45" tileType="" color="White"></Tile>
 				<Tile x="46" tileType="" color="White"></Tile>
-				<Tile x="47" tileType="level-end" color="White"></Tile>
+				<Tile x="47" tileType="flag" color="White"></Tile>
 			</Row>
 			<Row y="4">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="block" color="White"></Tile>
+				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -281,9 +281,9 @@
 				<Tile x="25" tileType="" color="White"></Tile>
 				<Tile x="26" tileType="" color="White"></Tile>
 				<Tile x="27" tileType="" color="White"></Tile>
-				<Tile x="28" tileType="" color="White"></Tile>
+				<Tile x="28" tileType="floppy-disc" color="Red" points="5"></Tile>
 				<Tile x="29" tileType="" color="White"></Tile>
-				<Tile x="30" tileType="" color="White"></Tile>
+				<Tile x="30" tileType="floppy-disc" color="Red" points ="5"></Tile>
 				<Tile x="31" tileType="" color="White"></Tile>
 				<Tile x="32" tileType="" color="White"></Tile>
 				<Tile x="33" tileType="" color="White"></Tile>
@@ -300,14 +300,21 @@
 				<Tile x="44" tileType="grass" color="White"></Tile>
 				<Tile x="45" tileType="grass" color="White"></Tile>
 				<Tile x="46" tileType="grass" color="White"></Tile>
-				<Tile x="47" tileType="grass-right" color="White"></Tile>
+				<Tile x="47" tileType="grass" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="grass" color="White"></Tile>
+				<Tile x="49" tileType="grass" color="White"></Tile>
+				<Tile x="50" tileType="grass" color="White"></Tile>
+				<Tile x="51" tileType="grass" color="White"></Tile>
+				<Tile x="52" tileType="grass" color="White"></Tile>
+				<Tile x="53" tileType="grass" color="White"></Tile>
 			</Row>
 			<Row y="5">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
-				<Tile x="2" tileType="block" color="White"></Tile>
-				<Tile x="3" tileType="block" color="White"></Tile>
-				<Tile x="4" tileType="block" color="White"></Tile>
+				<Tile x="2" tileType="" color="White"></Tile>
+				<Tile x="3" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -351,6 +358,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="dirt" color="White"></Tile>
+				<Tile x="49" tileType="dirt" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 			<Row y="6">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
@@ -401,6 +415,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="dirt" color="White"></Tile>
+				<Tile x="49" tileType="dirt" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 			<Row y="7">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
@@ -451,6 +472,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="dirt" color="White"></Tile>
+				<Tile x="49" tileType="dirt" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 			<Row y="8">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
@@ -501,6 +529,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="dirt" color="White"></Tile>
+				<Tile x="49" tileType="dirt" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 			<Row y="9">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
@@ -524,8 +559,8 @@
 				<Tile x="18" tileType="" color="White"></Tile>
 				<Tile x="19" tileType="" color="White"></Tile>
 				<Tile x="20" tileType="grass-left" color="White"></Tile>
-				<Tile x="21" tileType="grass" color="Gold"></Tile>
-				<Tile x="22" tileType="grass" color="Gold"></Tile>
+				<Tile x="21" tileType="grass" color="White"></Tile>
+				<Tile x="22" tileType="grass" color="White"></Tile>
 				<Tile x="23" tileType="grass" color="White"></Tile>
 				<Tile x="24" tileType="grass" color="White"></Tile>
 				<Tile x="25" tileType="grass" color="White"></Tile>
@@ -551,6 +586,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="dirt" color="White"></Tile>
+				<Tile x="49" tileType="dirt" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 			<Row y="10">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
@@ -601,6 +643,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="dirt" color="White"></Tile>
+				<Tile x="49" tileType="dirt" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 			<Row y="11">
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
@@ -610,14 +659,14 @@
 				<Tile x="4" tileType="" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
-				<Tile x="7" tileType="" color="White"></Tile>
+				<Tile x="7" tileType="floppy-disc" color="Blue" points="5"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White" ></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
-				<Tile x="12" tileType="" color="White"></Tile>
+				<Tile x="12" tileType="character" color="White" lives="3"></Tile>
 				<Tile x="13" tileType="" color="White"></Tile>
-				<Tile x="14" tileType="character" color="White" lives="3"></Tile>
+				<Tile x="14" tileType="" color="White"></Tile>
 				<Tile x="15" tileType="grass-left" color="White"></Tile>
 				<Tile x="16" tileType="grass" color="White"></Tile>
 				<Tile x="17" tileType="grass" color="White"></Tile>
@@ -651,6 +700,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="dirt" color="White"></Tile>
+				<Tile x="49" tileType="dirt" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 			<Row y="12">
 				<Tile x="-1" tileType="" color="White"></Tile>
@@ -659,7 +715,7 @@
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="floppy-disc" color="Red" points="2"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
+				<Tile x="4" tileType="spike" color="White"></Tile>
 				<Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
@@ -703,9 +759,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
-				<!-- Regular tiles ends -->
-				<Tile x="48" tileType="grass" color="White"></Tile>
-				<Tile x="49" tileType="grass-right" color="White"></Tile>
+				<!-- Regular level ends -->
+				<Tile x="48" tileType="dirt" color="White"></Tile>
+				<Tile x="49" tileType="dirt" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 			<Row y="13">
 				<Tile x="-8" tileType="grass" color="White"></Tile>
@@ -765,14 +825,13 @@
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="dirt" color="White"></Tile>
 				<Tile x="47" tileType="dirt" color="White"></Tile>
-				<!-- Regular tiles end -->
+				<!-- Regular level ends -->
 				<Tile x="48" tileType="dirt" color="White"></Tile>
 				<Tile x="49" tileType="dirt" color="White"></Tile>
-				<Tile x="50" tileType="grass" color="White"></Tile>
-				<Tile x="51" tileType="grass" color="White"></Tile>
-				<Tile x="52" tileType="grass" color="White"></Tile>
-				<Tile x="53" tileType="grass" color="White"></Tile>
-				<Tile x="54" tileType="grass" color="White"></Tile>
+				<Tile x="50" tileType="dirt" color="White"></Tile>
+				<Tile x="51" tileType="dirt" color="White"></Tile>
+				<Tile x="52" tileType="dirt" color="White"></Tile>
+				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
 		</Rows>
 	</PlatformGame>

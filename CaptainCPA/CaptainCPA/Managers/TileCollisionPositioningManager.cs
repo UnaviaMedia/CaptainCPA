@@ -57,7 +57,7 @@ namespace CaptainCPA
                     //If the moveable tile is hidden or disabled, skip collsion detection for it.
                     //	Also skip tiles that are too far away
                     if (moveableTile.Visible == false || moveableTile.Enabled == false ||
-                        Vector2.Distance(Utilities.PointToVector2(fixedTile.Bounds.Center), Utilities.PointToVector2(moveableTile.Bounds.Center)) > Settings.TILE_SIZE * 4)
+                        Vector2.Distance(Utilities.PointToVector2(fixedTile.Bounds.Center), Utilities.PointToVector2(moveableTile.Bounds.Center)) > Utilities.TILE_SIZE * 4)
                     {
                         continue;
                     }
