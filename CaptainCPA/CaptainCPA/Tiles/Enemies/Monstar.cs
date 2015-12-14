@@ -67,7 +67,7 @@ namespace CaptainCPA
             spriteBatch.Begin();
             if (frameIndex >= 0)
             {
-                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, new Vector2(dimension.X / 2 - 20, dimension.Y / 2 - 15), 0.5f, spriteEffect, layerDepth);
+                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, new Vector2(dimension.X / 2, dimension.Y / 2 - 15), 0.5f, spriteEffect, layerDepth);
             }
             spriteBatch.End();
         }
