@@ -109,7 +109,7 @@ namespace CaptainCPA
 			Texture2D floppyDiscOverlayTexture = game.Content.Load<Texture2D>("Sprites/FloppyDiscOverlay");
 			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
 			Texture2D spikeTopTexture = game.Content.Load<Texture2D>("Sprites/Spike-Top");
-			Texture2D computerTexture = game.Content.Load<Texture2D>("Sprites/Computer");
+			Texture2D flagTexture = game.Content.Load<Texture2D>("Sprites/Flag");
 			#endregion
 
 			//Randomizer for generating random textures
@@ -244,8 +244,8 @@ namespace CaptainCPA
 							onGround = true;
 							newTile = new Mimic(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
-						case "computer":
-							newTile = new Computer(game, spriteBatch, computerTexture, color, position, rotation, scale, layerDepth);
+						case "flag":
+							newTile = new LevelEnd(game, spriteBatch, flagTexture, color, position, rotation, scale, layerDepth);
 							break;
 						default:
 							break;

@@ -125,13 +125,17 @@ namespace CaptainCPA
 		/// </summary>
 		public void LoseLife()
 		{
-			if (--lives <= 0)
+			//Enable God-mode
+			if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) == false)
 			{
-				Die();
-			}
-			else
-			{
-				isGhost = true;
+				if (--lives <= 0)
+				{
+					Die();
+				}
+				else
+				{
+					isGhost = true;
+				} 
 			}
 		}
 

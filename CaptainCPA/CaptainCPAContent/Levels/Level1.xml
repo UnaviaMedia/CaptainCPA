@@ -223,7 +223,7 @@
 				<Tile x="17" tileType="" color="White"></Tile>
 				<Tile x="18" tileType="" color="White"></Tile>
 				<Tile x="19" tileType="" color="White"></Tile>
-				<Tile x="20" tileType="boulder" color="White"></Tile>
+				<Tile x="20" tileType="" color="White"></Tile>
 				<Tile x="21" tileType="" color="White"></Tile>
 				<Tile x="22" tileType="" color="White"></Tile>
 				<Tile x="23" tileType="" color="White"></Tile>
@@ -650,13 +650,13 @@
 				<Tile x="44" tileType="" color="White"></Tile>
 				<Tile x="45" tileType="" color="White"></Tile>
 				<Tile x="46" tileType="" color="White"></Tile>
-				<Tile x="47" tileType="level-end" color="White"></Tile>
+				<Tile x="47" tileType="flag" color="White"></Tile>
 			</Row>
 			<Row y="12">
 				<Tile x="-1" tileType="grass-left" color="White"></Tile>
 				<!-- Regular tiles begins -->
-				<Tile x="0" tileType="grass-right" color="White"></Tile>
-				<Tile x="1" tileType="" color="White"></Tile>
+				<Tile x="0" tileType="grass" color="White"></Tile>
+				<Tile x="1" tileType="grass-right" color="White"></Tile>
 				<Tile x="2" tileType="spike" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
 				<Tile x="4" tileType="" color="White"></Tile>
@@ -701,8 +701,8 @@
 				<Tile x="43" tileType="" color="White"></Tile>
 				<Tile x="44" tileType="spike" color="White"></Tile>
 				<Tile x="45" tileType="spike" color="White"></Tile>
-				<Tile x="46" tileType="" color="White"></Tile>
-				<Tile x="47" tileType="grass-left" color="White"></Tile>
+				<Tile x="46" tileType="grass-left" color="White"></Tile>
+				<Tile x="47" tileType="grass" color="White"></Tile>
 				<!-- Regular tiles ends -->
 				<Tile x="48" tileType="grass" color="White"></Tile>
 				<Tile x="49" tileType="grass-right" color="White"></Tile>
@@ -718,7 +718,7 @@
 				<Tile x="-1" tileType="dirt" color="White"></Tile>
 				<!-- Regular tiles begins -->
 				<Tile x="0" tileType="dirt" color="White"></Tile>
-				<Tile x="1" tileType="grass" color="White"></Tile>
+				<Tile x="1" tileType="dirt" color="White"></Tile>
 				<Tile x="2" tileType="grass" color="White"></Tile>
 				<Tile x="3" tileType="grass" color="White"></Tile>
 				<Tile x="4" tileType="grass" color="White"></Tile>
