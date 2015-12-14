@@ -12,7 +12,6 @@ namespace CaptainCPA
 		private static bool isMoving;
 		private static bool facingRight;
 		private static bool onGround;
-		private static float speed;
 		private static bool screenMoving;
 		private static bool tooFarRight;
 
@@ -51,11 +50,6 @@ namespace CaptainCPA
 		{
 			get { return CharacterStateManager.onGround; }
 			set { CharacterStateManager.onGround = value; }
-		}
-		public static float Speed
-		{
-			get { return CharacterStateManager.speed; }
-			set { CharacterStateManager.speed = value; }
 		}
 		public static Vector2 Velocity
 		{

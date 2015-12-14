@@ -48,7 +48,7 @@ namespace CaptainCPA
 		public override void Update(GameTime gameTime)
 		{
 			//Don't check for collisions if the player is dead/ghost
-			if (character.IsGhost == true || character.IsAlive == false)
+			if (character.Enabled == false || character.Visible == false || character.IsGhost == true || character.IsAlive == false)
 			{
 				return;
 			}
@@ -56,8 +56,7 @@ namespace CaptainCPA
 			foreach (FixedTile fixedTile in fixedTiles)
 			{
 				//Skip collision detection if the moveable tile is hidden or disabled
-				if (fixedTile.Visible == false || fixedTile.Enabled == false || fixedTile.IsCollideable == false || 
-					fixedTile.IsCollideable == false || character.Equals(fixedTile))
+				if (fixedTile.Visible == false || fixedTile.Enabled == false || fixedTile.IsCollideable == false)
 				{
 					continue;
 				}

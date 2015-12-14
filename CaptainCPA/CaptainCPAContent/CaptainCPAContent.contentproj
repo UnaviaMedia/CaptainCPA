@@ -174,13 +174,6 @@
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Content>
-    <Content Include="Levels\Level1-old.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>Level1-old</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-      <SubType>Designer</SubType>
-    </Content>
     <Compile Include="Sprites\Platform-End.png">
       <Name>Platform-End</Name>
       <Importer>TextureImporter</Importer>
