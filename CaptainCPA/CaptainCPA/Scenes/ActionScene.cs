@@ -89,15 +89,26 @@ namespace CaptainCPA
 			character.Score = playerScore;
 			character.Lives = playerLives;
 
-			//Add each tile to the scene components
-			foreach (MoveableTile moveableTile in moveableTileList)
-			{
-				this.Components.Add(moveableTile);
-			}
+			#region DisplayComponents
+			//Create display components
+			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
+			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
+			scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
+			this.components.Add(scoreDisplay);			
+
+			healthDisplay = new HealthDisplay(game, spriteBatch, character);
+			this.components.Add(healthDisplay);
+			#endregion
 
 			foreach (FixedTile fixedTile in fixedTileList)
 			{
 				this.Components.Add(fixedTile);
+			}
+
+			//Add each tile to the scene components
+			foreach (MoveableTile moveableTile in moveableTileList)
+			{
+				this.Components.Add(moveableTile);
 			}
 
 			#region Managers
@@ -112,17 +123,6 @@ namespace CaptainCPA
 			//Create tile collision manager (in case a collision actually does occur) and add to list of components
 			tileCollisionPositioningManager = new TileCollisionPositioningManager(game, moveableTileList, fixedTileList);
 			this.Components.Add(tileCollisionPositioningManager);
-			#endregion
-
-			#region DisplayComponents
-			//Create display components
-			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 scorePosition = new Vector2(Settings.TILE_SIZE + 15);
-			scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
-			this.components.Add(scoreDisplay);			
-
-			healthDisplay = new HealthDisplay(game, spriteBatch, character);
-			this.components.Add(healthDisplay);
 			#endregion
 
 			//Set game over to false

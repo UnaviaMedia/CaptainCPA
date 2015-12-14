@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CaptainCPA.HealthDisplay" Collapsed="true">
+    <Position X="32.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAEBCAAAAAwAAAIAAIAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Components\Display\HealthDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.ScoreDisplay" Collapsed="true">
+    <Position X="34" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYIAEAAAAAAAwAAAAAAIAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Display\ScoreDisplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.FixedTile" Collapsed="true">
+    <Position X="9.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAEAAAABAAQAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Components\FixedTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.HighScoreComponent" Collapsed="true">
+    <Position X="34" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIYABEIAAAgAAwCAGAEAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\HighScoreComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.MenuComponent" Collapsed="true">
+    <Position X="30.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAgAgAAwAAAAAQIAAAAAAAgBgQAIAAAAAgAAA=</HashCode>
+      <FileName>Components\MenuComponent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.MoveableTile" Collapsed="true">
+    <Position X="22.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAQCAIA0AAAAAAAAAAAAAAAAAAAAQBAAAEAAA=</HashCode>
+      <FileName>Components\MoveableTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Pickup" Collapsed="true">
+    <Position X="13.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Pickup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Tile" Collapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAAEEIAAAACwAgACCAIAACCABAAgiEAAIChAAAAgA=</HashCode>
+      <FileName>Components\Tile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.GameManager" Collapsed="true">
+    <Position X="30.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQgGWEAgVoASxgACEgAAIMRAQAAgAgAFBACAAQAAAw=</HashCode>
+      <FileName>GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.CharacterCollisionManager" Collapsed="true">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\CharacterCollisionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.CharacterStateManager" Collapsed="true">
+    <Position X="28.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQGgCAUAAAAAAAAAAACgEAAEAAAQBAAIEAAA=</HashCode>
+      <FileName>Managers\CharacterStateManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.CollisionManager" Collapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBACAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\CollisionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.PhysicsManager" Collapsed="true">
+    <Position X="2.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\PhysicsManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.TileCollisionPositioningManager" Collapsed="true">
+    <Position X="5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\TileCollisionPositioningManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Program" Collapsed="true">
+    <Position X="32.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.AboutScene" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scenes\AboutScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.ActionScene" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhQIgAAAACAABQCAAwAAAIAAAgAAAUEABAAAAAQASIA=</HashCode>
+      <FileName>Scenes\ActionScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.GameOverMenuScene" Collapsed="true">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwgAAAAAAAAAwAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scenes\GameOverMenuScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.GameScene" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEBQAAAAA4AAEACAAAAAAAAEAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Scenes\GameScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.HelpScene" Collapsed="true">
+    <Position X="17" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scenes\HelpScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.HighScoreScene" Collapsed="true">
+    <Position X="19.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYABAAAAAAAAwAAAAAAIAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scenes\HighScoreScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.HowToPlayScene" Collapsed="true">
+    <Position X="1.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scenes\HowToPlayScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.LevelOverScene" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAwAAAAAIAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scenes\LevelOverScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.LevelSelectScene" Collapsed="true">
+    <Position X="10.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAAAAgAA4AICAAAAAQAAAAAgAAAAIAAGAAAAAA=</HashCode>
+      <FileName>Scenes\LevelSelectScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.PauseMenuScene" Collapsed="true">
+    <Position X="14.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAQAAwAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Scenes\PauseMenuScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.StartScene" Collapsed="true">
+    <Position X="21.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAEAAAAAAwgAAAAQAAwEAAAoQAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Scenes\StartScene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Block" Collapsed="true">
+    <Position X="1.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\Block.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Character">
+    <Position X="26.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CWQAAAAgCEAgAwkgBACIAQxAAAJAAAACAAAAAQECgAA=</HashCode>
+      <FileName>Tiles\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Computer" Collapsed="true">
+    <Position X="3.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\Computer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Disc" Collapsed="true">
+    <Position X="15" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\Disc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Boulder" Collapsed="true">
+    <Position X="19.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwAAAAAABAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Tiles\Enemies\Boulder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Mimic" Collapsed="true">
+    <Position X="21.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAAAAwEAAAAAAQhAAABAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Tiles\Enemies\Mimic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Monstar" Collapsed="true">
+    <Position X="24" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAAAAwEAAAAAAQhAAABAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Tiles\Enemies\Monstar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Enemy" Collapsed="true">
+    <Position X="21.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.FloppyDisc" Collapsed="true">
+    <Position X="12.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAwgAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\FloppyDisc.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.LevelBarrier" Collapsed="true">
+    <Position X="6" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\LevelBarrier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.LevelEnd" Collapsed="true">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\LevelEnd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Platform" Collapsed="true">
+    <Position X="10.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\Platform.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.PursuingEnemy" Collapsed="true">
+    <Position X="22.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\PursuingEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Spike" Collapsed="true">
+    <Position X="17.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tiles\Spike.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.LevelLoader" Collapsed="true">
+    <Position X="28.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAEAAAAAAAAAAAAAAAIAAAACAAQAIAAEAAAAACAE=</HashCode>
+      <FileName>Utilities\LevelLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Settings" Collapsed="true">
+    <Position X="28.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAA=</HashCode>
+      <FileName>Utilities\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CaptainCPA.Utilities" Collapsed="true">
+    <Position X="30.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABIAAAAAAAAABAAKABAAAAIAASAAAAAAAA=</HashCode>
+      <FileName>Utilities\Utilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="CaptainCPA.HighScore" Collapsed="true">
+    <Position X="28.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\HighScore.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="CaptainCPA.PauseMenuItems" Collapsed="true">
+    <Position X="32.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAgAAQA=</HashCode>
+      <FileName>Scenes\PauseMenuScene.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CaptainCPA.menuItemTitles" Collapsed="true">
+    <Position X="30.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAIQAEAAAAgAAAAAAAAAAAAAAAAQAAAAQA=</HashCode>
+      <FileName>Scenes\StartScene.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CaptainCPA.Direction" Collapsed="true">
+    <Position X="28.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAEAAAI=</HashCode>
+      <FileName>Utilities\Directions.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CaptainCPA.TileType" Collapsed="true">
+    <Position X="34" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAEAgAAIAAAAAAAAAAAACAAAAAAAAAACAAAACAECAA=</HashCode>
+      <FileName>Utilities\TileType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -306,8 +306,8 @@
       <Entity type="Class">
         <Name>GameManager</Name>
         <Access>Public</Access>
-        <Location left="624" top="174" />
-        <Size width="175" height="621" />
+        <Location left="578" top="176" />
+        <Size width="278" height="621" />
         <Collapsed>False</Collapsed>
         <Member type="Field">private SpriteBatch spriteBatch</Member>
         <Member type="Field">private GraphicsDeviceManager graphics</Member>
@@ -379,27 +379,6 @@
         <Member type="Method">public static void ResetLevelProgression()</Member>
         <Member type="Method">public static void UpdateLevelProgression()</Member>
         <Modifier>Static</Modifier>
-      </Entity>
-      <Entity type="Class">
-        <Name>DisplayString</Name>
-        <Access>Public</Access>
-        <Location left="66" top="777" />
-        <Size width="214" height="298" />
-        <Collapsed>False</Collapsed>
-        <Member type="Field">protected SpriteBatch spriteBatch</Member>
-        <Member type="Field">protected SpriteFont spriteFont</Member>
-        <Member type="Field">protected Vector2 position</Member>
-        <Member type="Field">protected Color color</Member>
-        <Member type="Field">protected string message</Member>
-        <Member type="Property">public SpriteFont SpriteFont { get; set; }</Member>
-        <Member type="Property">public int Position { get; set; }</Member>
-        <Member type="Property">public Rectangle Bounds { get; }</Member>
-        <Member type="Property">public string Message { get; set; }</Member>
-        <Member type="Constructor">public DisplayString()</Member>
-        <Member type="Method">public override void Initialize()</Member>
-        <Member type="Method">public override void Update()</Member>
-        <Member type="Method">public override void Draw()</Member>
-        <Modifier>None</Modifier>
       </Entity>
       <Entity type="Class">
         <Name>LevelLoader</Name>
@@ -716,7 +695,7 @@
         <Member type="Field">protected Color regularColor</Member>
         <Member type="Field">protected Color highlightColor</Member>
         <Member type="Field">protected KeyboardState oldState</Member>
-        <Member type="Property">public int NewProperty { get; set; }</Member>
+        <Member type="Property">public int SelectedIndex { get; set; }</Member>
         <Member type="Constructor">public MenuComponent()</Member>
         <Member type="Method">public override void Initialize()</Member>
         <Member type="Method">public override void Update()</Member>
@@ -851,19 +830,7 @@
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
-      <Relationship type="Generalization" first="24" second="18">
-        <StartOrientation>Horizontal</StartOrientation>
-        <EndOrientation>Horizontal</EndOrientation>
-        <BendPoint relativeToStartShape="True">
-          <X>311</X>
-          <Y>959</Y>
-        </BendPoint>
-        <BendPoint relativeToStartShape="False">
-          <X>569</X>
-          <Y>1117</Y>
-        </BendPoint>
-      </Relationship>
-      <Relationship type="Generalization" first="26" second="1">
+      <Relationship type="Generalization" first="25" second="1">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -911,7 +878,7 @@
           <Y>2299</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="28" second="19">
+      <Relationship type="Generalization" first="27" second="19">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -923,7 +890,7 @@
           <Y>1803</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="37" second="19">
+      <Relationship type="Generalization" first="36" second="19">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -935,11 +902,11 @@
           <Y>1821</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="34" second="19">
+      <Relationship type="Generalization" first="33" second="19">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
       </Relationship>
-      <Relationship type="Generalization" first="35" second="19">
+      <Relationship type="Generalization" first="34" second="19">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
@@ -947,7 +914,7 @@
           <Y>2190</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="31" second="19">
+      <Relationship type="Generalization" first="30" second="19">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -959,7 +926,7 @@
           <Y>1821</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="33" second="19">
+      <Relationship type="Generalization" first="32" second="19">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -971,7 +938,7 @@
           <Y>2220</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="32" second="19">
+      <Relationship type="Generalization" first="31" second="19">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -983,7 +950,7 @@
           <Y>2190</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="30" second="19">
+      <Relationship type="Generalization" first="29" second="19">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -995,7 +962,7 @@
           <Y>2190</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="27" second="19">
+      <Relationship type="Generalization" first="26" second="19">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1007,7 +974,7 @@
           <Y>1821</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="29" second="19">
+      <Relationship type="Generalization" first="28" second="19">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
@@ -1015,7 +982,7 @@
           <Y>2190</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="40" second="39">
+      <Relationship type="Generalization" first="39" second="38">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="False">
@@ -1023,11 +990,11 @@
           <Y>920</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="43" second="39">
+      <Relationship type="Generalization" first="42" second="38">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
-      <Relationship type="Generalization" first="41" second="39">
+      <Relationship type="Generalization" first="40" second="38">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1039,11 +1006,11 @@
           <Y>904</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="42" second="39">
+      <Relationship type="Generalization" first="41" second="38">
         <StartOrientation>Vertical</StartOrientation>
         <EndOrientation>Vertical</EndOrientation>
       </Relationship>
-      <Relationship type="Generalization" first="39" second="17">
+      <Relationship type="Generalization" first="38" second="17">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1051,7 +1018,7 @@
           <Y>800</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="44" second="18">
+      <Relationship type="Generalization" first="43" second="18">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">
@@ -1063,7 +1030,7 @@
           <Y>1118</Y>
         </BendPoint>
       </Relationship>
-      <Relationship type="Generalization" first="45" second="18">
+      <Relationship type="Generalization" first="44" second="18">
         <StartOrientation>Horizontal</StartOrientation>
         <EndOrientation>Horizontal</EndOrientation>
         <BendPoint relativeToStartShape="True">

@@ -75,7 +75,6 @@
     <Compile Include="Tiles\Enemies\Boulder.cs" />
     <Compile Include="Tiles\LevelBarrier.cs" />
     <Compile Include="Tiles\LevelEnd.cs" />
-    <Compile Include="Utilities\DisplayString.cs" />
     <Compile Include="Components\Display\HealthDisplay.cs" />
     <Compile Include="Components\Display\ScoreDisplay.cs" />
     <Compile Include="Components\Pickup.cs" />
@@ -167,7 +166,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
