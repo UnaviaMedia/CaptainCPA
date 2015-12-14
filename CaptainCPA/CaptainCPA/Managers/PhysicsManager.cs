@@ -45,6 +45,11 @@ namespace CaptainCPA
 		{
 			foreach (MoveableTile moveableTile in moveableTiles)
 			{
+				if (moveableTile.Enabled == false || moveableTile.Visible == false)
+				{
+					continue;
+				}
+
 				//------------------------------------------------------------------------------
 				//X-axis
 				//------------------------------------------------------------------------------
