@@ -39,7 +39,7 @@ namespace CaptainCPA
 		protected ScoreDisplay scoreDisplay;
 		protected HealthDisplay healthDisplay;
 		private int slideBackCounter;
-        private int slideBackCounterLimit;
+		private int slideBackCounterLimit;
 		private bool gameOver;
 
 		public Character Character
@@ -171,19 +171,19 @@ namespace CaptainCPA
 			{
 				if (t.Position.X > t.InitPosition.X)
 				{
-                    t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
-                    if (t is MovingPlatform)
-                    {
-                        (t as MovingPlatform).FixedPosition -= 4;
-                    }
+					t.Position = new Vector2(t.Position.X - 4, t.Position.Y);
+					if (t is MovingPlatform)
+					{
+						(t as MovingPlatform).FixedPosition -= 4;
+					}
 				}
 				else if (t.Position.X < t.InitPosition.X)
 				{
-                    t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
-                    if (t is MovingPlatform)
-                    {
-                        (t as MovingPlatform).FixedPosition += 4;
-                    }
+					t.Position = new Vector2(t.Position.X + 4, t.Position.Y);
+					if (t is MovingPlatform)
+					{
+						(t as MovingPlatform).FixedPosition += 4;
+					}
 				}
 			}
 		}
@@ -210,39 +210,39 @@ namespace CaptainCPA
 			//smoothly reset level
 			if (character.IsGhost)
 			{
-                CharacterStateManager.IsMoving = false;
+				CharacterStateManager.IsMoving = false;
 				slideBackCounter++;
 
 				if (slideBackCounter == 6000)
 				{
-                    slideBackCounter = 1;
+					slideBackCounter = 1;
 				}
-                //Tiles are not in their initial position
-                if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
-                {
-                    float diff = fixedTileList[0].XPosition - fixedTileList[0].InitPosition.X;
-
-                    if (Math.Abs(diff) > 7)
-                    {
-                        slideBackCounterLimit = 1;
-                        character.Color = Color.Red;
-                    }
-                    else
+				//Tiles are not in their initial position
+				if (fixedTileList[0].XPosition != fixedTileList[0].Position.X)
 				{
-                        slideBackCounterLimit = 2;
-                        character.Color = Color.Red;
-                    }
+					float diff = fixedTileList[0].XPosition - fixedTileList[0].InitPosition.X;
+
+					if (Math.Abs(diff) > 7)
+					{
+						slideBackCounterLimit = 1;
+						character.Color = Color.Red;
+					}
+					else
+				{
+						slideBackCounterLimit = 2;
+						character.Color = Color.Red;
+					}
 
 					foreach (MoveableTile m in moveableTileList)
 					{
-                        if (m.Enabled && !(m is Boulder))
-                        {
-                            m.Position = new Vector2(-1000, -1000);
+						if (m.Enabled && !(m is Boulder))
+						{
+							m.Position = new Vector2(-1000, -1000);
 						m.Visible = false;
-                            m.Enabled = false;
-                        }
+							m.Enabled = false;
+						}
 					}
-                    if (slideBackCounter % slideBackCounterLimit == 0)
+					if (slideBackCounter % slideBackCounterLimit == 0)
 					{
 						SlideBack();
 					}
@@ -251,14 +251,14 @@ namespace CaptainCPA
 				{
 					foreach (MoveableTile m in moveableTileList)
 					{
-                        if (!(m is Boulder))
-                        {
+						if (!(m is Boulder))
+						{
 
-                        m.Position = m.InitPosition;
-                        m.Enabled = true;
+						m.Position = m.InitPosition;
+						m.Enabled = true;
 						m.Visible = true;
 					}
-                    }
+					}
 					character.IsGhost = false;
 				}
 			}
@@ -275,10 +275,10 @@ namespace CaptainCPA
 						foreach (Tile t in tiles)
 						{
 							t.Position = new Vector2(t.Position.X - Character.MOVE_SPEED, t.Position.Y);
-                            if (t is MovingPlatform)
-                            {
-                                (t as MovingPlatform).FixedPosition -= Character.MOVE_SPEED;
-                            }
+							if (t is MovingPlatform)
+							{
+								(t as MovingPlatform).FixedPosition -= Character.MOVE_SPEED;
+							}
 						}
 						CharacterStateManager.ScreenMoving = true;
 					}
@@ -291,11 +291,11 @@ namespace CaptainCPA
 					{
 						foreach (Tile t in tiles)
 						{
-                            t.Position = new Vector2(t.Position.X + Character.MOVE_SPEED, t.Position.Y);
-                            if (t is MovingPlatform)
-                            {
-                                (t as MovingPlatform).FixedPosition += Character.MOVE_SPEED;
-                            }
+							t.Position = new Vector2(t.Position.X + Character.MOVE_SPEED, t.Position.Y);
+							if (t is MovingPlatform)
+							{
+								(t as MovingPlatform).FixedPosition += Character.MOVE_SPEED;
+							}
 						}
 						CharacterStateManager.ScreenMoving = true;
 					}

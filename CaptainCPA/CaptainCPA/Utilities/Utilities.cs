@@ -48,7 +48,8 @@ namespace CaptainCPA
 			{ "LightBlue", Color.LightBlue },
 			{ "Yellow", Color.Yellow },
 			{ "Orange", Color.DarkOrange },
-			{ "Gold", Color.Gold }
+			{ "Gold", Color.Gold },
+			{ "Pink", Color.Pink }
 		};
 
 
