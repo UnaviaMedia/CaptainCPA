@@ -22,264 +22,265 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace CaptainCPA
 {
-	/// <summary>
-	/// Character tile and logic
-	/// </summary>
-	public class Character : MoveableTile
-	{
-		public const int MAX_LIVES = 3;
-		public const float MOVE_SPEED = 4f;
-		public const float JUMP_SPEED = -9.5f;
+    /// <summary>
+    /// Character tile and logic
+    /// </summary>
+    public class Character : MoveableTile
+    {
+        public const int MAX_LIVES = 3;
+        public const float MOVE_SPEED = 4f;
+        public const float JUMP_SPEED = -9.5f;
 
-		private List<Rectangle> frames;
-		private Vector2 dimension;
-		private int delay;
-		private int delayCounter;
-		private int frameIndex = 0;
-		private Texture2D bigTexture;
-		private int lives;
-		private int score;
-		private bool isAlive;
-		private bool levelComplete;
-		private bool isGhost;
+        private List<Rectangle> frames;
+        private Vector2 dimension;
+        private int delay;
+        private int delayCounter;
+        private int frameIndex = 0;
+        private Texture2D bigTexture;
+        private int lives;
+        private int score;
+        private bool isAlive;
+        private bool levelComplete;
+        private bool isGhost;
 
-		//Store characters's starting position
-		private Vector2 startingPosition;
+        //Store characters's starting position
+        private Vector2 startingPosition;
 
-		public int Lives
-		{
-			get { return lives; }
-			set { lives = value; }
-		}
+        public int Lives
+        {
+            get { return lives; }
+            set { lives = value; }
+        }
 
-		public int Score
-		{
-			get { return score; }
-			set { score = value; }
-		}
+        public int Score
+        {
+            get { return score; }
+            set { score = value; }
+        }
 
-		public bool IsAlive
-		{
-			get { return isAlive; }
-			set { isAlive = value; }
-		}
+        public bool IsAlive
+        {
+            get { return isAlive; }
+            set { isAlive = value; }
+        }
 
-		public bool LevelComplete
-		{
-			get { return levelComplete; }
-			set { levelComplete = value; }
-		}
+        public bool LevelComplete
+        {
+            get { return levelComplete; }
+            set { levelComplete = value; }
+        }
 
-		public Vector2 StartingPosition
-		{
-			get { return startingPosition; }
-		}
+        public Vector2 StartingPosition
+        {
+            get { return startingPosition; }
+        }
 
-		public bool IsGhost
-		{
-			get { return isGhost; }
-			set { isGhost = value; }
-		}
+        public bool IsGhost
+        {
+            get { return isGhost; }
+            set { isGhost = value; }
+        }
 
-		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
-							Vector2 velocity, bool onGround, int lives)
-			: base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
-		{
-			dimension = new Vector2(64, 64);
-			delay = 2;
-			facingRight = true;
-			//source: http://www.swingswingsubmarine.com/2010/11/25/seasons-after-fall-spritesheet-animation/
-			bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
-			createFrames();
-			this.lives = lives;
+        public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
+                            Vector2 velocity, bool onGround, int lives)
+            : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
+        {
+            dimension = new Vector2(64, 64);
+            delay = 2;
+            facingRight = true;
+            //source: http://www.swingswingsubmarine.com/2010/11/25/seasons-after-fall-spritesheet-animation/
+            bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
+            createFrames();
+            this.lives = lives;
 
-			isAlive = true;
-			startingPosition = position;
-			levelComplete = false;
+            isAlive = true;
+            startingPosition = position;
+            levelComplete = false;
 
-			Console.WriteLine(bounds);
+            Console.WriteLine(bounds);
 
-			//Reset player score
-			ResetScore();
-		}
+            //Reset player score
+            ResetScore();
+        }
 
-		/// <summary>
-		/// Allows the game component to perform any initialization it needs to before starting
-		/// to run.  This is where it can query for any required services and load content.
-		/// </summary>
-		public override void Initialize()
-		{
-			base.Initialize();
-		}
+        /// <summary>
+        /// Allows the game component to perform any initialization it needs to before starting
+        /// to run.  This is where it can query for any required services and load content.
+        /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
 
-		/// <summary>
-		/// Reset player score
-		/// </summary>
-		private void ResetScore()
-		{
-			score = 0;
-		}
+        /// <summary>
+        /// Reset player score
+        /// </summary>
+        private void ResetScore()
+        {
+            score = 0;
+        }
 
-		/// <summary>
-		/// Make the character lose one life. If the number of lives is under zero, the game ends
-		/// </summary>
-		public void LoseLife()
-		{
-			//Enable God-mode
-			if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) == false)
-			{
-				if (--lives <= 0)
-				{
-					Die();
-				}
-				else
-				{
-					isGhost = true;
+        /// <summary>
+        /// Make the character lose one life. If the number of lives is under zero, the game ends
+        /// </summary>
+        public void LoseLife()
+        {
+            //Enable God-mode
+            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) == false)
+            {
+                if (--lives <= 0)
+                {
+                    Die();
+                }
+                else
+                {
+                    isGhost = true;
+                    velocity.Y = 0;
 
-					//Play the hurt sound effect
-					//Minecraft sound
-					SoundEffect hurt = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
-					hurt.Play();
-				}
-			}
-		}
+                    //Play the hurt sound effect
+                    //Minecraft sound
+                    SoundEffect hurt = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
+                    hurt.Play();
+                }
+            }
+        }
 
-		/// <summary>
-		/// Make the character die, and the game ends
-		/// </summary>
-		public void Die()
-		{
-			isAlive = false;
-			
-			//Destroy the character
-			Destroy();
+        /// <summary>
+        /// Make the character die, and the game ends
+        /// </summary>
+        public void Die()
+        {
+            isAlive = false;
 
-			//Play the game over sound effect
-			SoundEffect gameOver = Game.Content.Load<SoundEffect>("Sounds/GameOver");
-			gameOver.Play();
-		}
-		
-		/// <summary>
-		/// Reset the character's position
-		/// </summary>
-		private void ResetPosition()
-		{
-			position = initPosition;
-		}
+            //Destroy the character
+            Destroy();
 
-		/// <summary>
-		/// Allows the game component to update itself.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		public override void Update(GameTime gameTime)
-		{
-			isMoving = false;
-			KeyboardState ks = Keyboard.GetState();
+            //Play the game over sound effect
+            SoundEffect gameOver = Game.Content.Load<SoundEffect>("Sounds/GameOver");
+            gameOver.Play();
+        }
 
-			//Reset horizontal velocity to zero
-			velocity.X = 0;
+        /// <summary>
+        /// Reset the character's position
+        /// </summary>
+        private void ResetPosition()
+        {
+            position = initPosition;
+        }
 
-			//If the Left key is pressed, subtract horizontal velocity to move left
-			if (ks.IsKeyDown(Keys.Left))
-			{
-				isMoving = true;
-				velocity.X -= MOVE_SPEED;
-				facingRight = false;
-			}
+        /// <summary>
+        /// Allows the game component to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public override void Update(GameTime gameTime)
+        {
+            isMoving = false;
+            KeyboardState ks = Keyboard.GetState();
 
-			//If the Right key is pressed, add horizontal velocity to move right
-			if (ks.IsKeyDown(Keys.Right))
-			{
-				isMoving = true;
-				velocity.X += MOVE_SPEED;
-				facingRight = true;
-			}
+            //Reset horizontal velocity to zero
+            velocity.X = 0;
 
-			//If the screen is moving character stays still on screen
-			if (CharacterStateManager.ScreenMoving && isMoving)
-			{
-				if (facingRight && CharacterStateManager.TooFarRight)
-				{
-					velocity.X = 0f;
-				}
-				else if (!facingRight && !CharacterStateManager.TooFarRight)
-				{
-					velocity.X = 0f;
-				}
-			}
+            //If the Left key is pressed, subtract horizontal velocity to move left
+            if (ks.IsKeyDown(Keys.Left))
+            {
+                isMoving = true;
+                velocity.X -= MOVE_SPEED;
+                facingRight = false;
+            }
 
-			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
-			if (ks.IsKeyDown(Keys.Up) && onGround == true)
-			{
-				velocity.Y = JUMP_SPEED;
-				onGround = false;
-			}
+            //If the Right key is pressed, add horizontal velocity to move right
+            if (ks.IsKeyDown(Keys.Right))
+            {
+                isMoving = true;
+                velocity.X += MOVE_SPEED;
+                facingRight = true;
+            }
 
-			//animation, hopefully
-			//DEBUG MODE - Comment out the below lines
-			if (isMoving)
-			{
-				if (velocity.Y == 0)
-				{
-					delayCounter++;
-					if (delayCounter % delay == 0)
-					{
-						frameIndex++;
-						if (frameIndex == 27)
-							frameIndex = 0;
-					}
-				}
-				else
-				{
-					if (frameIndex != 1)
-					{
-						delayCounter++;
-						if (delayCounter % delay == 0)
-						{
-							frameIndex++;
-							if (frameIndex == 27)
-								frameIndex = 0;
-						}
-					}
-					else
-					{
-						frameIndex = 0;
-					}
-				}
-			}
-			//texture = bigTexture.GetData<Texture2D>()
-			CharacterStateManager.CharacterPosition = position;
-			CharacterStateManager.FacingRight = facingRight;
-			CharacterStateManager.IsMoving = isMoving;
-			CharacterStateManager.Velocity = velocity;
-			base.Update(gameTime);
-		}
-		public override void Draw(GameTime gameTime)
-		{
-			spriteBatch.Begin();
-			if (frameIndex >= 0)
-			{
-				spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
+            //If the screen is moving character stays still on screen
+            if (CharacterStateManager.ScreenMoving && isMoving)
+            {
+                if (facingRight && CharacterStateManager.TooFarRight)
+                {
+                    velocity.X = 0f;
+                }
+                else if (!facingRight && !CharacterStateManager.TooFarRight)
+                {
+                    velocity.X = 0f;
+                }
+            }
 
-				//DEBUG MODE
-				//spriteBatch.Draw(Game.Content.Load<Texture2D>("Sprites/Platform"), position, null, Color.Red, rotation, origin, 1f, spriteEffect, layerDepth);
-			}
-			spriteBatch.End();
-			//base.Draw(gameTime);
-		}
-		private void createFrames()
-		{
-			frames = new List<Rectangle>();
-			for (int i = 0; i < 4; i++)
-			{
-				for (int j = 0; j < 7; j++)
-				{
-					int x = j * (int)dimension.X + 5 * j;
-					int y = i * (int)dimension.Y + 5 * i + 5;
-					Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
-					frames.Add(r);
-				}
-			}
-		}
-	}
+            //If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
+            if (ks.IsKeyDown(Keys.Up) && onGround == true)
+            {
+                velocity.Y = JUMP_SPEED;
+                onGround = false;
+            }
+
+            //animation, hopefully
+            //DEBUG MODE - Comment out the below lines
+            if (isMoving)
+            {
+                if (velocity.Y == 0)
+                {
+                    delayCounter++;
+                    if (delayCounter % delay == 0)
+                    {
+                        frameIndex++;
+                        if (frameIndex == 27)
+                            frameIndex = 0;
+                    }
+                }
+                else
+                {
+                    if (frameIndex != 1)
+                    {
+                        delayCounter++;
+                        if (delayCounter % delay == 0)
+                        {
+                            frameIndex++;
+                            if (frameIndex == 27)
+                                frameIndex = 0;
+                        }
+                    }
+                    else
+                    {
+                        frameIndex = 0;
+                    }
+                }
+            }
+            //texture = bigTexture.GetData<Texture2D>()
+            CharacterStateManager.CharacterPosition = position;
+            CharacterStateManager.FacingRight = facingRight;
+            CharacterStateManager.IsMoving = isMoving;
+            CharacterStateManager.Velocity = velocity;
+            base.Update(gameTime);
+        }
+        public override void Draw(GameTime gameTime)
+        {
+            spriteBatch.Begin();
+            if (frameIndex >= 0)
+            {
+                spriteBatch.Draw(bigTexture, position, frames[frameIndex], Color.White, rotation, origin, 1f, spriteEffect, layerDepth);
+
+                //DEBUG MODE
+                //spriteBatch.Draw(Game.Content.Load<Texture2D>("Sprites/Platform"), position, null, Color.Red, rotation, origin, 1f, spriteEffect, layerDepth);
+            }
+            spriteBatch.End();
+            //base.Draw(gameTime);
+        }
+        private void createFrames()
+        {
+            frames = new List<Rectangle>();
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    int x = j * (int)dimension.X + 5 * j;
+                    int y = i * (int)dimension.Y + 5 * i + 5;
+                    Rectangle r = new Rectangle(x, y, (int)dimension.X, (int)dimension.Y);
+                    frames.Add(r);
+                }
+            }
+        }
+    }
 }
