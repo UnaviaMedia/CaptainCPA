@@ -464,7 +464,7 @@
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
-				<Tile x="11" tileType="" color="White"></Tile>
+				<Tile x="11" tileType="character" color="White" lives="3"></Tile>
 				<Tile x="12" tileType="" color="White"></Tile>
 				<Tile x="13" tileType="" color="White"></Tile>
 				<Tile x="14" tileType="" color="White"></Tile>
@@ -722,7 +722,7 @@
 				<Tile x="6" tileType="grass-right" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
-				<Tile x="9" tileType="character" color="White" lives="3"></Tile>
+				<Tile x="9" tileType="spike" color="Red"></Tile>
 				<Tile x="10" tileType="" color="White"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
 				<Tile x="12" tileType="monstar" color="White"></Tile>
@@ -747,9 +747,9 @@
 				<Tile x="31" tileType="" color="White"></Tile>
 				<Tile x="32" tileType="" color="White"></Tile>
 				<Tile x="33" tileType="" color="White"></Tile>
-				<Tile x="34" tileType="spike" color="White"></Tile>
+				<Tile x="34" tileType="monstar" color="White"></Tile>
 				<Tile x="35" tileType="" color="White"></Tile>
-				<Tile x="36" tileType="monstar" color="White"></Tile>
+				<Tile x="36" tileType="spike" color="Red"></Tile>
 				<Tile x="37" tileType="" color="White"></Tile>
 				<Tile x="38" tileType="" color="White"></Tile>
 				<Tile x="39" tileType="" color="White"></Tile>

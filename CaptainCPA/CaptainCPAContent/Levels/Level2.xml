@@ -669,36 +669,36 @@
 				<Tile x="11" tileType="character" color="White" lives="3"></Tile>
 				<Tile x="12" tileType="" color="White"></Tile>
 				<Tile x="13" tileType="dirt" color="White"></Tile>
-				<Tile x="14" tileType="spike" color="White"></Tile>
-				<Tile x="15" tileType="spike" color="White"></Tile>
-				<Tile x="16" tileType="spike" color="White"></Tile>
-				<Tile x="17" tileType="spike" color="White"></Tile>
-				<Tile x="18" tileType="spike" color="White"></Tile>
-				<Tile x="19" tileType="spike" color="White"></Tile>
-				<Tile x="20" tileType="spike" color="White"></Tile>
-				<Tile x="21" tileType="spike" color="White"></Tile>
-				<Tile x="22" tileType="spike" color="White"></Tile>
-				<Tile x="23" tileType="spike" color="White"></Tile>
-				<Tile x="24" tileType="spike" color="White"></Tile>
-				<Tile x="25" tileType="spike" color="White"></Tile>
-				<Tile x="26" tileType="spike" color="White"></Tile>
-				<Tile x="27" tileType="spike" color="White"></Tile>
-				<Tile x="28" tileType="spike" color="White"></Tile>
-				<Tile x="29" tileType="spike" color="White"></Tile>
-				<Tile x="30" tileType="spike" color="White"></Tile>
-				<Tile x="31" tileType="spike" color="White"></Tile>
-				<Tile x="32" tileType="spike" color="White"></Tile>
-				<Tile x="33" tileType="spike" color="White"></Tile>
-				<Tile x="34" tileType="spike" color="White"></Tile>
-				<Tile x="35" tileType="spike" color="White"></Tile>
-				<Tile x="36" tileType="spike" color="White"></Tile>
-				<Tile x="37" tileType="spike" color="White"></Tile>
-				<Tile x="38" tileType="spike" color="White"></Tile>
-				<Tile x="39" tileType="spike" color="White"></Tile>
-				<Tile x="40" tileType="spike" color="White"></Tile>
-				<Tile x="41" tileType="spike" color="White"></Tile>
-				<Tile x="42" tileType="spike" color="White"></Tile>
-				<Tile x="43" tileType="spike" color="White"></Tile>
+				<Tile x="14" tileType="" color="White"></Tile>
+				<Tile x="15" tileType="spike" color="Red"></Tile>
+				<Tile x="16" tileType="spike" color="Red"></Tile>
+				<Tile x="17" tileType="spike" color="Red"></Tile>
+				<Tile x="18" tileType="spike" color="Red"></Tile>
+				<Tile x="19" tileType="spike" color="Red"></Tile>
+				<Tile x="20" tileType="spike" color="Red"></Tile>
+				<Tile x="21" tileType="spike" color="Red"></Tile>
+				<Tile x="22" tileType="spike" color="Red"></Tile>
+				<Tile x="23" tileType="spike" color="Red"></Tile>
+				<Tile x="24" tileType="spike" color="Red"></Tile>
+				<Tile x="25" tileType="spike" color="Red"></Tile>
+				<Tile x="26" tileType="spike" color="Red"></Tile>
+				<Tile x="27" tileType="spike" color="Red"></Tile>
+				<Tile x="28" tileType="spike" color="Red"></Tile>
+				<Tile x="29" tileType="spike" color="Red"></Tile>
+				<Tile x="30" tileType="spike" color="Red"></Tile>
+				<Tile x="31" tileType="spike" color="Red"></Tile>
+				<Tile x="32" tileType="spike" color="Red"></Tile>
+				<Tile x="33" tileType="spike" color="Red"></Tile>
+				<Tile x="34" tileType="spike" color="Red"></Tile>
+				<Tile x="35" tileType="spike" color="Red"></Tile>
+				<Tile x="36" tileType="spike" color="Red"></Tile>
+				<Tile x="37" tileType="spike" color="Red"></Tile>
+				<Tile x="38" tileType="spike" color="Red"></Tile>
+				<Tile x="39" tileType="spike" color="Red"></Tile>
+				<Tile x="40" tileType="spike" color="Red"></Tile>
+				<Tile x="41" tileType="spike" color="Red"></Tile>
+				<Tile x="42" tileType="spike" color="Red"></Tile>
+				<Tile x="43" tileType="" color="White"></Tile>
 				<Tile x="44" tileType="dirt" color="White"></Tile>
 				<Tile x="45" tileType="dirt" color="White"></Tile>
 				<Tile x="46" tileType="" color="White"></Tile>
