@@ -254,16 +254,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sprites\Computer.png">
-      <Name>Computer</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\Disc.png">
-      <Name>Disc</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Displays\ScoreDisplay.png">
       <Name>ScoreDisplay</Name>
       <Importer>TextureImporter</Importer>
