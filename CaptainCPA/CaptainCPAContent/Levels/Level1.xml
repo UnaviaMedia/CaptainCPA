@@ -327,7 +327,7 @@
 				<Tile x="21" tileType="" color="White"></Tile>
 				<Tile x="22" tileType="" color="White"></Tile>
 				<Tile x="23" tileType="" color="White"></Tile>
-				<Tile x="24" tileType="spike" color="White"></Tile>
+				<Tile x="24" tileType="spike" color="Orange"></Tile>
 				<Tile x="25" tileType="mimic" color="White"></Tile>
 				<Tile x="26" tileType="" color="White"></Tile>
 				<Tile x="27" tileType="" color="White"></Tile>
@@ -413,7 +413,7 @@
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
-				<Tile x="10" tileType="spike-top" color="White"></Tile>
+				<Tile x="10" tileType="spike-top" color="LightGreen"></Tile>
 				<Tile x="11" tileType="" color="White"></Tile>
 				<Tile x="12" tileType="" color="White"></Tile>
 				<Tile x="13" tileType="" color="White"></Tile>
@@ -699,8 +699,8 @@
 				<Tile x="41" tileType="monstar" color="White"></Tile>
 				<Tile x="42" tileType="" color="White"></Tile>
 				<Tile x="43" tileType="" color="White"></Tile>
-				<Tile x="44" tileType="spike" color="White"></Tile>
-				<Tile x="45" tileType="spike" color="White"></Tile>
+				<Tile x="44" tileType="spike" color="Green"></Tile>
+				<Tile x="45" tileType="spike" color="Green"></Tile>
 				<Tile x="46" tileType="grass-left" color="White"></Tile>
 				<Tile x="47" tileType="grass" color="White"></Tile>
 				<!-- Regular tiles ends -->
