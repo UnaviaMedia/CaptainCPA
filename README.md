@@ -31,5 +31,3 @@ Simple platformer game created as a Final Assignment for Year 2 Object Orientate
 ##Collaborators
 - Kendall Roth
 - Doug Epp
-
-##History
