@@ -90,11 +90,6 @@ namespace CaptainCPA
 					{
 						//Color the spike tile
 						((Spike)fixedTile).Color = Color.Red;
-
-						//Play the spike sound effect
-						//Minecraft sound
-						SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
-						spike.Play(); 
 					}
 				}
 				else if (fixedTile.TileType == TileType.LevelEnd)
@@ -131,11 +126,6 @@ namespace CaptainCPA
 				{
 					//Decrease character lives
 					character.LoseLife();
-
-					//Play the spike sound effect
-					//Minecraft sound
-					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
-					spike.Play();
 				}
 			}
 
