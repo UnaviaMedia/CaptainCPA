@@ -124,7 +124,7 @@ namespace CaptainCPA
 							//The high score has been entered, and the game is now finished
 							highScoreEntered = true;
 						}
-						else if (font.MeasureString(playerName).X < 250)
+						else if (font.MeasureString(playerName).X < 225 || playerName == DEFAULT_NAME)
 						{
 							//Ensure the player can only enter valid characters and digits for their name
 							if (Regex.IsMatch(key.ToString(), @"^[A-Z0-9]$", RegexOptions.IgnoreCase))
