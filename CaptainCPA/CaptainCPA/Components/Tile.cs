@@ -146,7 +146,7 @@ namespace CaptainCPA
 			spriteBatch.Begin();
 
 			//Draw if tile is on screen
-			if (position.X >= -Utilities.TILE_SIZE && position.X + texture.Width <= Utilities.Stage.X + (2 * Utilities.TILE_SIZE))
+			if (position.X >= -texture.Width && position.X + texture.Width <= Utilities.Stage.X + (2 * texture.Width))
 			{
 				spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
 			}

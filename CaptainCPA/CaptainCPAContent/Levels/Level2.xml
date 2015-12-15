@@ -603,7 +603,8 @@
 				<Tile x="47" tileType="level-end" color="White"></Tile>
 			</Row>
 			<Row y="11">
-				<Tile x="0" tileType="level-barrier" color="White"></Tile>
+        <Tile x="-1" tileType="grass-left" color="White"></Tile>
+				<Tile x="0" tileType="grass-right" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
 				<Tile x="3" tileType="" color="White"></Tile>
@@ -653,9 +654,10 @@
 				<Tile x="47" tileType="flag" color="White"></Tile>
 			</Row>
 			<Row y="12">
-				<Tile x="-1" tileType="grass-right" color="White"></Tile>
+        <Tile x="-2" tileType="grass-left" color="White"></Tile>
+				<Tile x="-1" tileType="dirt" color="White"></Tile>
 				<!-- Regular tiles begins -->
-				<Tile x="0" tileType="disc" color="Blue" points="4"></Tile>
+				<Tile x="0" tileType="floppy-disc" color="Pink" points="10"></Tile>
 				<Tile x="1" tileType="monstar" color="White"></Tile>
 				<Tile x="2" tileType="floppy-disc" color="Green" points="2"></Tile>
 				<Tile x="3" tileType="floppy-disc" color="Green" points="2"></Tile>
@@ -714,7 +716,7 @@
 				<Tile x="-5" tileType="grass" color="White"></Tile>
 				<Tile x="-4" tileType="grass" color="White"></Tile>
 				<Tile x="-3" tileType="grass" color="White"></Tile>
-				<Tile x="-2" tileType="grass" color="White"></Tile>
+				<Tile x="-2" tileType="dirt" color="White"></Tile>
 				<Tile x="-1" tileType="dirt" color="White"></Tile>
 				<!-- Regular tiles begins -->
 				<Tile x="0" tileType="grass" color="White"></Tile>
