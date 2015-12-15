@@ -196,28 +196,24 @@ namespace CaptainCPA
 							newTile = new Platform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth);
 							newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
 							break;
-                        case "moving-platform-middle":
-                            bool goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
-                            int range = int.Parse(tile.Attributes["range"].Value);
-                            newTile = new MovingPlatform(game, spriteBatch, platformMiddleTexture, color, position, rotation, scale, layerDepth, range, goRight);
-                            break;
-                        case "moving-platform-left":
-                            goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
-                            range = int.Parse(tile.Attributes["range"].Value);
-                            newTile = new MovingPlatform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth, range, goRight);
-                            break;
-                        case "moving-platform-right":
-                            goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
-                            range = int.Parse(tile.Attributes["range"].Value);
-                            newTile = new MovingPlatform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth, range, goRight);
-                            newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
-                            break;
+						case "moving-platform-middle":
+							bool goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
+							int range = int.Parse(tile.Attributes["range"].Value);
+							newTile = new MovingPlatform(game, spriteBatch, platformMiddleTexture, color, position, rotation, scale, layerDepth, range, goRight);
+							break;
+						case "moving-platform-left":
+							goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
+							range = int.Parse(tile.Attributes["range"].Value);
+							newTile = new MovingPlatform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth, range, goRight);
+							break;
+						case "moving-platform-right":
+							goRight = (tile.Attributes["init-dir"].Value == "L") ? false : true;
+							range = int.Parse(tile.Attributes["range"].Value);
+							newTile = new MovingPlatform(game, spriteBatch, platformEndTexture, color, position, rotation, scale, layerDepth, range, goRight);
+							newTile.SpriteEffects = SpriteEffects.FlipHorizontally;
+							break;
 						case "platform":
 							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
-							break;
-						case "disc":
-							points = int.Parse(tile.Attributes["points"].Value);
-							newTile = new Disc(game, spriteBatch, discTexture, color, position, rotation, scale, layerDepth, points);
 							break;
 						case "floppy-disc":
 							points = int.Parse(tile.Attributes["points"].Value);
@@ -244,12 +240,12 @@ namespace CaptainCPA
 							onGround = true;
 							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
 							break;
-                        case "boulder":
-                            velocity = new Vector2(-2, 0);
-                            onGround = true;
-                            Texture2D texture = game.Content.Load<Texture2D>("Sprites/Meteor1");
-                            newTile = new Boulder(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround);
-                            break;
+						case "boulder":
+							velocity = new Vector2(-2, 0);
+							onGround = true;
+							Texture2D texture = game.Content.Load<Texture2D>("Sprites/Meteor1");
+							newTile = new Boulder(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround);
+							break;
 						case "monstar":
 							velocity = new Vector2(2, 0);
 							onGround = true;

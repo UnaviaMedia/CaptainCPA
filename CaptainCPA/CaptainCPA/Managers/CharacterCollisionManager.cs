@@ -47,14 +47,14 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			//Don't check for collisions if the player is dead/ghost
-			if (character.Enabled == false || character.Visible == false || character.IsGhost == true || character.IsAlive == false)
-			{
-				return;
-			}
-
 			foreach (FixedTile fixedTile in fixedTiles)
 			{
+				//Don't check for collisions if the player is dead/ghost
+				if (character.Enabled == false || character.Visible == false || character.IsGhost == true || character.IsAlive == false)
+				{
+					return;
+				}
+
 				//Skip collision detection if the moveable tile is hidden or disabled
 				if (fixedTile.Visible == false || fixedTile.Enabled == false || fixedTile.IsCollideable == false)
 				{
@@ -90,11 +90,6 @@ namespace CaptainCPA
 					{
 						//Color the spike tile
 						((Spike)fixedTile).Color = Color.Red;
-
-						//Play the spike sound effect
-						//Minecraft sound
-						SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
-						spike.Play(); 
 					}
 				}
 				else if (fixedTile.TileType == TileType.LevelEnd)
@@ -114,6 +109,12 @@ namespace CaptainCPA
 
 			foreach (MoveableTile moveableTile in moveableTiles)
 			{
+				//Don't check for collisions if the player is dead/ghost
+				if (character.Enabled == false || character.Visible == false || character.IsGhost == true || character.IsAlive == false)
+				{
+					return;
+				}
+
 				//Skip collision detection if the moveable tile is hidden or disabled
 				if (moveableTile.Visible == false || moveableTile.Enabled == false || character.Equals(moveableTile))
 				{
@@ -131,11 +132,6 @@ namespace CaptainCPA
 				{
 					//Decrease character lives
 					character.LoseLife();
-
-					//Play the spike sound effect
-					//Minecraft sound
-					SoundEffect spike = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
-					spike.Play();
 				}
 			}
 

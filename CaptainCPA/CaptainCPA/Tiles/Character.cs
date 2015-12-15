@@ -135,7 +135,12 @@ namespace CaptainCPA
 				else
 				{
 					isGhost = true;
-				} 
+
+					//Play the hurt sound effect
+					//Minecraft sound
+					SoundEffect hurt = Game.Content.Load<SoundEffect>("Sounds/CharacterHurt");
+					hurt.Play();
+				}
 			}
 		}
 
