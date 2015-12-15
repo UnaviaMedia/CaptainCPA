@@ -106,9 +106,9 @@
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="" color="White"></Tile>
+        <Tile x="3" tileType="" color="White"></Tile>
+        <Tile x="4" tileType="" color="White"></Tile>
+        <Tile x="5" tileType="" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color=""></Tile>
@@ -156,10 +156,10 @@
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="" color="White"></Tile>
-				<Tile x="6" tileType="" color="White"></Tile>
+        <Tile x="3" tileType="moving-platform-left" init-dir="R" range="2" color="White"></Tile>
+        <Tile x="4" tileType="moving-platform-middle" init-dir="R" range="2" color="White"></Tile>
+        <Tile x="5" tileType="moving-platform-right" init-dir="R" range="2" color="White"></Tile>
+        <Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
@@ -206,10 +206,10 @@
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="" color="White"></Tile>
-				<Tile x="6" tileType="" color="White"></Tile>
+        <Tile x="3" tileType="" color="White"></Tile>
+        <Tile x="4" tileType="" color="White"></Tile>
+        <Tile x="5" tileType="" color="White"></Tile>
+        <Tile x="6" tileType="moving-platform" init-dir="R" range="2" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
@@ -256,10 +256,10 @@
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="" color="White"></Tile>
-				<Tile x="6" tileType="" color="White"></Tile>
+        <Tile x="3" tileType="moving-platform-left" init-dir="R" range="2" color="White"></Tile>
+        <Tile x="4" tileType="moving-platform-middle" init-dir="R" range="2" color="White"></Tile>
+        <Tile x="5" tileType="moving-platform-right" init-dir="R" range="2" color="White"></Tile>
+        <Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
@@ -313,10 +313,10 @@
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="" color="White"></Tile>
-				<Tile x="6" tileType="" color="White"></Tile>
+        <Tile x="3" tileType="" color="White"></Tile>
+        <Tile x="4" tileType="" color="White"></Tile>
+        <Tile x="5" tileType="" color="White"></Tile>
+        <Tile x="6" tileType="moving-platform" init-dir="R" range="2" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
 				<Tile x="9" tileType="" color="White"></Tile>
@@ -370,9 +370,9 @@
 				<Tile x="0" tileType="level-barrier" color="White"></Tile>
 				<Tile x="1" tileType="" color="White"></Tile>
 				<Tile x="2" tileType="" color="White"></Tile>
-				<Tile x="3" tileType="" color="White"></Tile>
-				<Tile x="4" tileType="" color="White"></Tile>
-				<Tile x="5" tileType="" color="White"></Tile>
+        <Tile x="3" tileType="moving-platform-left" init-dir="R" range="2" color="White"></Tile>
+        <Tile x="4" tileType="moving-platform-middle" init-dir="R" range="2" color="White"></Tile>
+        <Tile x="5" tileType="moving-platform-right" init-dir="R" range="2" color="White"></Tile>
 				<Tile x="6" tileType="" color="White"></Tile>
 				<Tile x="7" tileType="" color="White"></Tile>
 				<Tile x="8" tileType="" color="White"></Tile>
@@ -833,6 +833,9 @@
 				<Tile x="52" tileType="dirt" color="White"></Tile>
 				<Tile x="53" tileType="dirt" color="White"></Tile>
 			</Row>
+      <Row y="6">
+        <Tile x="36" tileType="dino-skeleton" color="White"></Tile>
+      </Row>
 		</Rows>
 	</PlatformGame>
 </XnaContent>

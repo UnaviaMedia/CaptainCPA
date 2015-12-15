@@ -109,6 +109,8 @@ namespace CaptainCPA
 			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
 			Texture2D spikeTopTexture = game.Content.Load<Texture2D>("Sprites/Spike-Top");
 			Texture2D flagTexture = game.Content.Load<Texture2D>("Sprites/Flag");
+            Texture2D dinoSkeletonTexture = game.Content.Load<Texture2D>("Images/Dino-skeleton");
+
 			#endregion
 
 			//Randomizer for generating random textures
@@ -263,6 +265,9 @@ namespace CaptainCPA
 						case "flag":
 							newTile = new LevelEnd(game, spriteBatch, flagTexture, color, position, rotation, scale, layerDepth);
 							break;
+                        case "dino-skeleton":
+                            newTile = new Block(game, spriteBatch, dinoSkeletonTexture, color, position, rotation, scale, layerDepth);
+                            break;
 						default:
 							break;
 					}
