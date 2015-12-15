@@ -1,514 +1,315 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="CaptainCPA.HealthDisplay">
-    <Position X="15" Y="12.5" Width="2.25" />
-    <InheritanceLine Type="Microsoft.Xna.Framework.DrawableGameComponent" FixedToPoint="true">
-      <Path>
-        <Point X="17" Y="9.309" />
-        <Point X="17" Y="10.014" />
-        <Point X="14.625" Y="10.014" />
-        <Point X="14.625" Y="14.562" />
-        <Point X="15" Y="14.562" />
-      </Path>
-    </InheritanceLine>
+    <Position X="41.75" Y="0.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQIAEBCAAAAAwAAAIAAIAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
       <FileName>Components\Display\HealthDisplay.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.ScoreDisplay">
-    <Position X="15" Y="18" Width="2" />
-    <InheritanceLine Type="Microsoft.Xna.Framework.DrawableGameComponent" FixedToPoint="true">
-      <Path>
-        <Point X="17" Y="9.309" />
-        <Point X="17" Y="10.014" />
-        <Point X="14.625" Y="10.014" />
-        <Point X="14.625" Y="19.875" />
-        <Point X="15" Y="19.875" />
-      </Path>
-    </InheritanceLine>
+    <Position X="45" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAYIAEAAAAAAAwAAAAAAIAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Display\ScoreDisplay.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.FixedTile">
-    <Position X="32" Y="20" Width="1.5" />
-    <InheritanceLine Type="CaptainCPA.Tile" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="36.312" Y="18.059" />
-        <Point X="36.312" Y="21.5" />
-        <Point X="33.5" Y="21.5" />
-      </Path>
-    </InheritanceLine>
+    <Position X="32.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAQAAEAAAABAAQAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>Components\FixedTile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.HighScoreComponent">
-    <Position X="10" Y="10.75" Width="2.25" />
+    <Position X="48.25" Y="0.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AIYABEIAAAgAAwCAGAEAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\HighScoreComponent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.MenuComponent">
-    <Position X="2" Y="10.75" Width="2.5" />
+    <Position X="38.25" Y="0.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAYAAEAAAAgAAwAAAAAQIAAAAAAAgAiAAIAAAAAAAAA=</HashCode>
       <FileName>Components\MenuComponent.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.MoveableTile">
-    <Position X="39.75" Y="12.25" Width="1.75" />
+    <Position X="20" Y="5.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAQAAAgAQCAIA0AAAAAAAAAAAAAAAAAAAAQBAAAEAAA=</HashCode>
       <FileName>Components\MoveableTile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Pickup">
-    <Position X="22.75" Y="23.75" Width="1.5" />
+    <Position X="38" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAACAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Components\Pickup.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Tile">
-    <Position X="35.25" Y="11.5" Width="2.25" />
-    <InheritanceLine Type="Microsoft.Xna.Framework.DrawableGameComponent" ManuallyRouted="true">
-      <Path>
-        <Point X="17" Y="9.309" />
-        <Point X="17" Y="10.014" />
-        <Point X="23.105" Y="10.014" Type="JumpStart" />
-        <Point X="23.271" Y="10.014" Type="JumpEnd" />
-        <Point X="28.542" Y="10.014" Type="JumpStart" />
-        <Point X="28.708" Y="10.014" Type="JumpEnd" />
-        <Point X="36.375" Y="10.014" />
-        <Point X="36.375" Y="11.5" />
-      </Path>
-    </InheritanceLine>
+    <Position X="27" Y="1.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>CAQAAEEIAAAACwAgACCAIAACCABAAgiEAAIChAAAAgA=</HashCode>
       <FileName>Components\Tile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.GameManager">
-    <Position X="43" Y="0.5" Width="3.25" />
+    <Position X="55.5" Y="1.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AEQgGWUAgFoASxgAAEAAAIsRAQAAgAgAFAACAAQAAAw=</HashCode>
       <FileName>GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.CharacterCollisionManager">
-    <Position X="26" Y="18.5" Width="2.25" />
+    <Position X="27" Y="18.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\CharacterCollisionManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.CharacterStateManager">
-    <Position X="22" Y="12" Width="2.25" />
-    <InheritanceLine Type="Microsoft.Xna.Framework.GameComponent" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="22.25" Y="4.43" />
-        <Point X="22.25" Y="4.808" />
-        <Point X="23.188" Y="4.808" />
-        <Point X="23.188" Y="12" />
-      </Path>
-    </InheritanceLine>
+    <Position X="44.5" Y="6" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAQGgCAUAAAAAAAAAAACgEAAEAAAQBAAIEAAA=</HashCode>
       <FileName>Managers\CharacterStateManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.CollisionManager">
-    <Position X="27.25" Y="10.75" Width="2.75" />
-    <InheritanceLine Type="Microsoft.Xna.Framework.GameComponent" ManuallyRouted="true">
-      <Path>
-        <Point X="22.25" Y="4.43" />
-        <Point X="22.25" Y="4.814" />
-        <Point X="28.625" Y="4.814" />
-        <Point X="28.625" Y="10.75" />
-      </Path>
-    </InheritanceLine>
+    <Position X="29.5" Y="15" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAQBACAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\CollisionManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.PhysicsManager">
-    <Position X="23.75" Y="18.5" Width="1.75" />
+    <Position X="30.25" Y="18.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\PhysicsManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.TileCollisionPositioningManager">
-    <Position X="20.5" Y="18.5" Width="2.5" />
-    <InheritanceLine Type="CaptainCPA.CollisionManager" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="28.625" Y="13.011" />
-        <Point X="28.625" Y="17.625" />
-        <Point X="21.75" Y="17.625" />
-        <Point X="21.75" Y="18.5" />
-      </Path>
-    </InheritanceLine>
+    <Position X="32.5" Y="18.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Managers\TileCollisionPositioningManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CaptainCPA.Program">
-    <Position X="30.75" Y="0.5" Width="1.5" />
+  <Class Name="CaptainCPA.Program" Collapsed="true">
+    <Position X="54" Y="11.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.AboutScene">
-    <Position X="7.25" Y="27.75" Width="2" />
-    <InheritanceLine Type="CaptainCPA.GameScene" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="27" />
-        <Point X="8.312" Y="27" />
-        <Point X="8.312" Y="27.75" />
-      </Path>
-    </InheritanceLine>
+    <Position X="1.25" Y="6.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAwAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scenes\AboutScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.ActionScene">
-    <Position X="16.75" Y="25.25" Width="4.25" />
-    <InheritanceLine Type="CaptainCPA.GameScene" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="27" />
-        <Point X="16.75" Y="27" />
-      </Path>
-    </InheritanceLine>
+    <Position X="10" Y="15.25" Width="3.75" />
     <TypeIdentifier>
       <HashCode>ABQIgAAEACAABQCAAwAAAIAAAgAAAUEABAIAAAAASIA=</HashCode>
       <FileName>Scenes\ActionScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.GameOverMenuScene">
-    <Position X="9.25" Y="16.25" Width="3.25" />
-    <InheritanceLine Type="CaptainCPA.GameScene" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="18.063" />
-        <Point X="9.25" Y="18.063" />
-      </Path>
-    </InheritanceLine>
+    <Position X="1.25" Y="16" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAwgAAAAAAAAAwAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scenes\GameOverMenuScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.GameScene">
-    <Position X="5.75" Y="10.75" Width="2.75" />
-    <InheritanceLine Type="Microsoft.Xna.Framework.DrawableGameComponent" ManuallyRouted="true">
-      <Path>
-        <Point X="17" Y="9.309" />
-        <Point X="17" Y="10.023" />
-        <Point X="7.125" Y="10.023" />
-        <Point X="7.125" Y="10.75" />
-      </Path>
-    </InheritanceLine>
+    <Position X="5" Y="3.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAQAAEBQAAAAA4AAEACAAAAAAAAEAAAAAACAAAAAAAA=</HashCode>
       <FileName>Scenes\GameScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.HelpScene">
-    <Position X="10.25" Y="27.75" Width="2" />
-    <InheritanceLine Type="CaptainCPA.GameScene" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="27" />
-        <Point X="11.562" Y="27" />
-        <Point X="11.562" Y="27.75" />
-      </Path>
-    </InheritanceLine>
+    <Position X="1.25" Y="1.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAwAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scenes\HelpScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.HighScoreScene">
-    <Position X="8.5" Y="20.25" Width="2.25" />
-    <InheritanceLine Type="CaptainCPA.GameScene" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="21.875" />
-        <Point X="8.5" Y="21.875" />
-      </Path>
-    </InheritanceLine>
+    <Position X="1.25" Y="12.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAYABAAAAAAAAwAAAAAAIAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scenes\HighScoreScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.HowToPlayScene">
-    <Position X="8.5" Y="24.25" Width="2" />
-    <InheritanceLine Type="CaptainCPA.GameScene" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="25.688" />
-        <Point X="8.5" Y="25.688" />
-      </Path>
-    </InheritanceLine>
+    <Position X="1.25" Y="4.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAwAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scenes\HowToPlayScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.LevelOverScene">
-    <Position X="13" Y="27.75" Width="2" />
-    <InheritanceLine Type="CaptainCPA.GameScene" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="27" />
-        <Point X="14.25" Y="27" />
-        <Point X="14.25" Y="27.75" />
-      </Path>
-    </InheritanceLine>
+    <Position X="1.25" Y="9.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAYAAAAAAAAAAwAAAAAIAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scenes\LevelOverScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.LevelSelectScene">
-    <Position X="2" Y="24.25" Width="3.25" />
-    <InheritanceLine Type="CaptainCPA.GameScene" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="25.688" />
-        <Point X="5.25" Y="25.688" />
-      </Path>
-    </InheritanceLine>
+    <Position X="10" Y="10" Width="3.25" />
     <TypeIdentifier>
       <HashCode>BAQAAAAAAAgAA4AICAAAAAQAAAAAgAAAAIAAGAAAAAA=</HashCode>
       <FileName>Scenes\LevelSelectScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.PauseMenuScene">
-    <Position X="3.25" Y="20.75" Width="2" />
-    <InheritanceLine Type="CaptainCPA.GameScene" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="21.875" />
-        <Point X="5.25" Y="21.875" />
-      </Path>
-    </InheritanceLine>
+    <Position X="10" Y="6.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAwAAAAAQAAwAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Scenes\PauseMenuScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.StartScene">
-    <Position X="2.5" Y="16" Width="2.75" />
-    <InheritanceLine Type="CaptainCPA.GameScene" FixedToPoint="true">
-      <Path>
-        <Point X="7.125" Y="14.617" />
-        <Point X="7.125" Y="18.062" />
-        <Point X="5.25" Y="18.062" />
-      </Path>
-    </InheritanceLine>
+    <Position X="10" Y="1.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAQAAAEAAAAAAwgAAAAQAAwEAAAoQAAAAAAAAAAgAAA=</HashCode>
       <FileName>Scenes\StartScene.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Block">
-    <Position X="28" Y="23.75" Width="1.5" />
-    <InheritanceLine Type="CaptainCPA.FixedTile" ManuallyRouted="true">
-      <Path>
-        <Point X="32.75" Y="22.905" />
-        <Point X="32.75" Y="23.355" />
-        <Point X="28.75" Y="23.355" />
-        <Point X="28.75" Y="23.75" />
-      </Path>
-    </InheritanceLine>
+    <Position X="27.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tiles\Block.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Character">
-    <Position X="38.5" Y="17.25" Width="2" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
-    <InheritanceLine Type="CaptainCPA.MoveableTile" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="40.625" Y="16.117" />
-        <Point X="40.625" Y="16.889" />
-        <Point X="39.5" Y="16.889" />
-        <Point X="39.5" Y="17.25" />
-      </Path>
-    </InheritanceLine>
+    <Position X="23.75" Y="10.5" Width="2" />
     <TypeIdentifier>
       <HashCode>CWQAAAAgCEAgAwkgBACIAQxAAAJAAAACAAAAAQECgAA=</HashCode>
       <FileName>Tiles\Character.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Boulder">
-    <Position X="43.25" Y="20" Width="1.75" />
+    <Position X="15" Y="14.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAwAAAAAABAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>Tiles\Enemies\Boulder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Mimic">
-    <Position X="40" Y="23.25" Width="2" />
+    <Position X="17.5" Y="17" Width="2" />
     <TypeIdentifier>
       <HashCode>AEQAAAAAAAAAAwEAAAAAAQhAAABAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>Tiles\Enemies\Mimic.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Monstar">
-    <Position X="42.5" Y="23.25" Width="2" />
+    <Position X="20.5" Y="17" Width="2" />
     <TypeIdentifier>
       <HashCode>AEQAAAAAAAAAAwEAAAAAAQhAAABAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>Tiles\Enemies\Monstar.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Enemy">
-    <Position X="42.25" Y="17.25" Width="1.5" />
-    <InheritanceLine Type="CaptainCPA.MoveableTile" FixedFromPoint="true">
-      <Path>
-        <Point X="40.625" Y="16.117" />
-        <Point X="40.625" Y="16.889" />
-        <Point X="43" Y="16.889" />
-        <Point X="43" Y="17.25" />
-      </Path>
-    </InheritanceLine>
+    <Position X="17.75" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Tiles\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.FloppyDisc">
-    <Position X="23" Y="27" Width="2.25" />
+    <Position X="36.5" Y="13.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAwgAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Tiles\FloppyDisc.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.LevelBarrier">
-    <Position X="26.25" Y="23.75" Width="1.5" />
+    <Position X="31.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tiles\LevelBarrier.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.LevelEnd">
-    <Position X="29.75" Y="23.75" Width="1.5" />
+    <Position X="33.5" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tiles\LevelEnd.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CaptainCPA.MovingPlatform">
-    <Position X="30.75" Y="26.25" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAIAAABAQAAAAAAAAAAAAAAAAAAACAAAAAgAAA=</HashCode>
-      <FileName>Tiles\MovingPlatform.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="CaptainCPA.Platform">
-    <Position X="31.5" Y="23.75" Width="1.5" />
+    <Position X="35.75" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tiles\Platform.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.PursuingEnemy">
-    <Position X="41.25" Y="20" Width="1.5" />
+    <Position X="19" Y="14.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tiles\PursuingEnemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Spike">
-    <Position X="24.5" Y="23.75" Width="1.5" />
+    <Position X="40.5" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tiles\Spike.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.LevelLoader">
-    <Position X="33.5" Y="25.75" Width="2.75" />
+    <Position X="47.5" Y="6" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAIAEAAAAAAAAAAAAAAAIAAAACAAQAIAAEAAAAACAE=</HashCode>
       <FileName>Utilities\LevelLoader.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CaptainCPA.Utilities">
-    <Position X="33" Y="0.5" Width="2.75" />
+    <Position X="50.75" Y="5.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABIAAAAAAAAABAAKABAAAAIAAyAAAAEAAA=</HashCode>
       <FileName>Utilities\Utilities.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Microsoft.Xna.Framework.DrawableGameComponent">
-    <Position X="15.25" Y="5.25" Width="3.5" />
-    <InheritanceLine Type="Microsoft.Xna.Framework.GameComponent" FixedFromPoint="true">
-      <Path>
-        <Point X="22.25" Y="4.43" />
-        <Point X="22.25" Y="4.814" />
-        <Point X="17" Y="4.814" />
-        <Point X="17" Y="5.25" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Microsoft.Xna.Framework.GameComponent">
-    <Position X="20.5" Y="0.5" Width="3.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Microsoft.Xna.Framework.Game">
-    <Position X="39" Y="0.5" Width="3" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
   <Struct Name="CaptainCPA.HighScore">
-    <Position X="12.25" Y="20.5" Width="1.5" />
+    <Position X="35.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utilities\HighScore.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Enum Name="CaptainCPA.PauseMenuItems">
-    <Position X="36.5" Y="5" Width="1.5" />
+    <Position X="20" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAgAAQA=</HashCode>
       <FileName>Scenes\PauseMenuScene.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="CaptainCPA.menuItemTitles">
-    <Position X="36.5" Y="2.5" Width="1.5" />
+    <Position X="18.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAIQAEAAAAgAAAAAAAAAAAAAAAAQAAAAQA=</HashCode>
       <FileName>Scenes\StartScene.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="CaptainCPA.Direction">
-    <Position X="36.5" Y="0.5" Width="1.5" />
+    <Position X="16.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAEAAAI=</HashCode>
       <FileName>Utilities\Directions.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="CaptainCPA.TileType">
-    <Position X="32.5" Y="12.5" Width="1.5" />
+    <Position X="21.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAEAgAAIAAAAAAAAAAAACAAAAAAAAAACAAAACAECAA=</HashCode>
       <FileName>Utilities\TileType.cs</FileName>

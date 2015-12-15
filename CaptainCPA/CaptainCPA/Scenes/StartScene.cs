@@ -70,7 +70,7 @@ namespace CaptainCPA
 			levelList = new List<string>() { "level1", "level2"};
 
 			//Set up the menu
-			Vector2 menuPosition = new Vector2(Utilities.Stage.X / 2 + 140, Utilities.Stage.Y / 2 - 60);
+			Vector2 menuPosition = new Vector2(Utilities.Stage.X / 2 + 140, Utilities.Stage.Y / 2 - 110);
 			menu = new MenuComponent(game, spriteBatch,
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				menuItems, menuPosition);
