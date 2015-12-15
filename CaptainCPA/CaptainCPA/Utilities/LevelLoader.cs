@@ -104,7 +104,6 @@ namespace CaptainCPA
 			Texture2D platformTexture = game.Content.Load<Texture2D>("Sprites/Platform");
 			Texture2D platformMiddleTexture = game.Content.Load<Texture2D>("Sprites/Platform-Middle");
 			Texture2D platformEndTexture = game.Content.Load<Texture2D>("Sprites/Platform-End");
-			Texture2D discTexture = game.Content.Load<Texture2D>("Sprites/Disc");
 			Texture2D floppyDiscTexture = game.Content.Load<Texture2D>("Sprites/FloppyDisc");
 			Texture2D floppyDiscOverlayTexture = game.Content.Load<Texture2D>("Sprites/FloppyDiscOverlay");
 			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
