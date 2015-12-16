@@ -25,7 +25,6 @@ namespace CaptainCPA
 		protected Color color;
 		protected Vector2 position;
 		protected Vector2 initPosition;
-		protected TileType tileType;
 		protected Rectangle bounds;
 		protected bool isCollideable;
 
@@ -59,12 +58,6 @@ namespace CaptainCPA
 			set { initPosition = value; }
 		}
 
-		public TileType TileType
-		{
-			get { return tileType; }
-			set { tileType = value; }
-		}
-
 		public bool IsCollideable
 		{
 			get { return isCollideable; }
@@ -91,7 +84,7 @@ namespace CaptainCPA
 		}
 
 
-		public Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position,
+		public Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position,
 			float rotation, float scale, float layerDepth, bool isCollideable = true)
 			: base(game)
 		{
@@ -102,7 +95,6 @@ namespace CaptainCPA
 			this.position = new Vector2(position.X + origin.X, position.Y + origin.Y);
 			this.isCollideable = isCollideable;
 			this.initPosition = position;
-			this.tileType = tileType;
 
 			this.rotation = rotation;
 			this.scale = scale;

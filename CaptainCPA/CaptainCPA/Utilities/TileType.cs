@@ -12,8 +12,8 @@ namespace CaptainCPA
 	/// <summary>
 	/// Enumeration of different Tile types
 	/// </summary>
-	public enum TileType
+	/*public enum TileType
 	{
 		Platform, Block, Character, Enemy, Decoration, Pickup, Obstacle, LevelEnd, LevelBarrier
-	}
+	}*/
 }

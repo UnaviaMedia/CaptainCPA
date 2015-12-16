@@ -10,9 +10,9 @@
  *						Dec-12-2015:	Updated with better logic for determining if tile is withing the necessary columns (bounds) for collision checking
  */
 
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 
 namespace CaptainCPA
 {
@@ -76,16 +76,16 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
-					if (fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup ||
-						fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle || fixedTile.IsCollideable == false)
+					if (fixedTile is Pickup || fixedTile is LevelEnd || fixedTile is Obstacle || fixedTile.IsCollideable == false)
 					{
 						continue;
 					}
 
-                    if (fixedTile.TileType == TileType.LevelBarrier && moveableTile.TileType == TileType.Enemy)
-                    {
-                        continue;
-                    }
+					if (fixedTile is LevelBarrier && moveableTile is Enemy)
+					{
+						continue;
+					}
+
 					//Check whether or not the moveable tile is actually within the vertical bounds of the fixed tile (same columns)
 					//if (f.t <= m.t && f.b > m.t)
 					//else if (f.b >= m.b && f.t < m.b)
@@ -184,16 +184,15 @@ namespace CaptainCPA
 				//Check these horizontal rows - in direction of movement - and determine which is the closest fixed tile
 				foreach (FixedTile fixedTile in fixedTiles)
 				{
-					if (fixedTile.TileType == TileType.Pickup || fixedTile.TileType == TileType.Decoration ||
-                        fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle)
+					if (fixedTile is Pickup || fixedTile is LevelEnd || fixedTile is Obstacle || fixedTile.IsCollideable == false)
 					{
 						continue;
 					}
 
-                    if (fixedTile.TileType == TileType.LevelBarrier && moveableTile.TileType == TileType.Enemy)
-                    {
-                        continue;
-                    }
+					if (fixedTile is LevelBarrier && moveableTile is Enemy)
+					{
+						continue;
+					}
 					
 					//Check whether or not the moveable tile is actually within the horizontal bounds of the fixed tile (same columns)
 					//if (f.r <= m.r && f.r >= m.l)
@@ -247,10 +246,10 @@ namespace CaptainCPA
 				{
 					moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, moveableTile.Velocity.Y + moveableTile.Gravity.Y);
 				}
-                else
-                {
-                    moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 0);
-                }
+				else
+				{
+					moveableTile.Velocity = new Vector2(moveableTile.Velocity.X, 0);
+				}
 
 				if (verticalDirection == Direction.Up)
 				{

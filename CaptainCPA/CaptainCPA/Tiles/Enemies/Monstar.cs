@@ -1,14 +1,14 @@
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
-    public class Monstar : PursuingEnemy
+	/// <summary>
+	/// This is a game component that implements IUpdateable.
+	/// </summary>
+	public class Monstar : PursuingEnemy
     {
         private Texture2D bigTexture;
         private List<Rectangle> frames;

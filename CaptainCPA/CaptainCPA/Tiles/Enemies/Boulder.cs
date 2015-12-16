@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
-    public class Boulder : Enemy
+	/// <summary>
+	/// This is a game component that implements IUpdateable.
+	/// </summary>
+	public class Boulder : Enemy
     {
         private float rotationFactor = 0f;
         private float rotationChange = 0.06f;

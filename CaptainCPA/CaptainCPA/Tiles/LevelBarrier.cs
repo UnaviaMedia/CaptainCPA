@@ -4,13 +4,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
-    public class LevelBarrier : FixedTile
+	/// <summary>
+	/// This is a game component that implements IUpdateable.
+	/// </summary>
+	public class LevelBarrier : FixedTile
     {
         public LevelBarrier(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
-            : base(game, spriteBatch, texture, TileType.LevelBarrier, color, position, rotation, scale, layerDepth)
+            : base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
         {
 
         }

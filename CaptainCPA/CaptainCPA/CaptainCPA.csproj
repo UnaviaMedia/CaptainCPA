@@ -89,6 +89,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Obstacle.cs" />
     <Compile Include="Tiles\Character.cs" />
     <Compile Include="Tiles\Enemies\Boulder.cs" />
     <Compile Include="Tiles\LevelBarrier.cs" />

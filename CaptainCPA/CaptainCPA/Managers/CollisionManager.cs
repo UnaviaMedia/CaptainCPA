@@ -8,8 +8,8 @@
  *						Dec-11-2015:	Removed Observer pattern
  */
 
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 
 namespace CaptainCPA

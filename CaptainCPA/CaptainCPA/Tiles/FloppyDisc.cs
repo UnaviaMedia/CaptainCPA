@@ -22,7 +22,7 @@ namespace CaptainCPA
 
 		public FloppyDisc(Game game, SpriteBatch spriteBatch, Texture2D texture, Texture2D overlayTexture, Color color, Color overlayColor,
 			Vector2 position, float rotation , float scale, float layerDepth, int points)
-			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth, points)
+			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, points)
 		{
 			this.overlayTexture = overlayTexture;
 			this.overlayColor = overlayColor;

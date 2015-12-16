@@ -12,10 +12,10 @@
  *		Doug Epp						Added level reset after character loses life
  */
 
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace CaptainCPA
 {

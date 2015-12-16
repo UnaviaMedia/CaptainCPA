@@ -12,17 +12,16 @@
  *						Dec-12-2015:	Added collision with enemies (decreases character lives)
  */
 
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using System;
+using System.Collections.Generic;
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// Manage non-positioning collisions (extra logic)
-    /// </summary>
-    public class CharacterCollisionManager : CollisionManager
+	/// <summary>
+	/// Manage non-positioning collisions (extra logic)
+	/// </summary>
+	public class CharacterCollisionManager : CollisionManager
     {
         private Character character;
 
@@ -68,7 +67,7 @@ namespace CaptainCPA
                     continue;
                 }
 
-                if (fixedTile.TileType == TileType.Pickup)
+                if (fixedTile is Pickup)
                 {
                     //Destroy the pickup
                     fixedTile.Destroy();
@@ -81,7 +80,7 @@ namespace CaptainCPA
                     SoundEffect ding = Game.Content.Load<SoundEffect>("Sounds/Ding");
                     ding.Play();
                 }
-                else if (fixedTile.TileType == TileType.Obstacle)
+                else if (fixedTile is Obstacle)
                 {
                     //Update character health
                     character.LoseLife();
@@ -92,7 +91,7 @@ namespace CaptainCPA
                         ((Spike)fixedTile).Color = Color.Red;
                     }
                 }
-                else if (fixedTile.TileType == TileType.LevelEnd)
+                else if (fixedTile is LevelEnd)
                 {
                     //End the level
                     character.LevelComplete = true;

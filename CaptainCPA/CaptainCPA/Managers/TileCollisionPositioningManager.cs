@@ -8,16 +8,16 @@
  *						Nov-29-2015:	Optimizations
  */
 
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// Manages collisions and post-collision positioning between tiles
-    /// </summary>
-    public class TileCollisionPositioningManager : CollisionManager
+	/// <summary>
+	/// Manages collisions and post-collision positioning between tiles
+	/// </summary>
+	public class TileCollisionPositioningManager : CollisionManager
     {
         public TileCollisionPositioningManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
             : base(game, moveableTiles, fixedTiles)
@@ -46,8 +46,7 @@ namespace CaptainCPA
                 //If the tile is hidden or disabled, skip collision detection for it
                 //	Also skip detection if the TileType shouldn't have detection for it
                 if (fixedTile.Visible == false || fixedTile.Enabled == false || fixedTile.IsCollideable == false ||
-                    fixedTile.TileType == TileType.Decoration || fixedTile.TileType == TileType.Pickup ||
-                    fixedTile.TileType == TileType.LevelEnd || fixedTile.TileType == TileType.Obstacle)
+                    fixedTile is Pickup || fixedTile is LevelEnd || fixedTile is Obstacle)
                 {
                     continue;
                 }

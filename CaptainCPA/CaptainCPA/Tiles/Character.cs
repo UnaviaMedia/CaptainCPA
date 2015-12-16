@@ -13,19 +13,19 @@
  *						Dec-14-2015:	Changed speed and jump speed to constant
  */
 
-using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Audio;
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// Character tile and logic
-    /// </summary>
-    public class Character : MoveableTile
+	/// <summary>
+	/// Character tile and logic
+	/// </summary>
+	public class Character : MoveableTile
     {
         public const int MAX_LIVES = 3;
         public const float MOVE_SPEED = 4f;
@@ -83,7 +83,7 @@ namespace CaptainCPA
 
         public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
                             Vector2 velocity, bool onGround, int lives)
-            : base(game, spriteBatch, texture, TileType.Character, color, position, rotation, scale, layerDepth, velocity, onGround)
+            : base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround)
         {
             dimension = new Vector2(64, 64);
             delay = 2;

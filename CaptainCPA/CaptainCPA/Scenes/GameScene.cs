@@ -7,11 +7,10 @@
  *		Kendall Roth	Dec-10-2015:	Added EnableComponents and DisableComponents
  */
 
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 
 namespace CaptainCPA

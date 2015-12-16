@@ -18,7 +18,7 @@ namespace CaptainCPA
 	public class Spike : FixedTile
 	{
 		public Spike(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation , float scale, float layerDepth)
-			: base(game, spriteBatch, texture, TileType.Obstacle, color, position, rotation, scale, layerDepth)
+			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
 		{
 			
 		}

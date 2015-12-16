@@ -6,20 +6,20 @@
  *		Kendall Roth	Nov-24-2015:	Created
  */
 
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Audio;
 using System;
+using System.Collections.Generic;
 
 namespace CaptainCPA
 {
-    /// <summary>
-    /// Main game manager class
-    /// </summary>
-    public class GameManager : Game
+	/// <summary>
+	/// Main game manager class
+	/// </summary>
+	public class GameManager : Game
     {
         const float HORIZONTAL_BLOCKS_ON_SCREEN = 25f;
         const float VERTICAL_BLOCKS_ON_SCREEN = 14f;
