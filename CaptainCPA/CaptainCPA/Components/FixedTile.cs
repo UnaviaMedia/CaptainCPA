@@ -16,7 +16,7 @@ namespace CaptainCPA
 	/// <summary>
 	/// Base class for fixed tiles
 	/// </summary>
-	public class FixedTile : Tile
+	public abstract class FixedTile : Tile
 	{
 		protected int xPosition;
 		protected int yPosition;

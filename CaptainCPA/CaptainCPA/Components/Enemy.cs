@@ -1,26 +1,31 @@
 /*
  * Project: CaptainCPA - Block.cs
- * Purpose: Fixed tile that is used for various decoration purposes
+ * Purpose: Base class for enemies for the character to avoid
  *
  * History:
- *		Kendall Roth	Nov-24-2015:	Created
+ *		Doug Epp		Nov-26-2015:	Created
  */
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Fixed tile that is used for various decoration purposes
+	/// Base class for enemies for the character to avoid
 	/// </summary>
-	public class Block : FixedTile
+	public abstract class Enemy : MoveableTile
 	{
-		public Block(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
-			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
+		protected float xSpeed;
+
+
+		public Enemy(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
+							Vector2 velocity, bool onGround)
+			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
-			
+			xSpeed = velocity.X;
 		}
 
 		/// <summary>
@@ -38,6 +43,14 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
+			if (velocity.X == Math.Abs(velocity.X))
+			{
+				facingRight = true;
+			}
+			else
+			{
+				facingRight = false;
+			}
 			base.Update(gameTime);
 		}
 	}

@@ -14,7 +14,7 @@ namespace CaptainCPA
 	/// <summary>
 	/// Base class for character pickups
 	/// </summary>
-	public class Pickup : FixedTile
+	public abstract class Pickup : FixedTile
 	{
 		protected int points;
 

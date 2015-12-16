@@ -109,8 +109,7 @@ namespace CaptainCPA
 			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
 			Texture2D spikeTopTexture = game.Content.Load<Texture2D>("Sprites/Spike-Top");
 			Texture2D flagTexture = game.Content.Load<Texture2D>("Sprites/Flag");
-            Texture2D dinoSkeletonTexture = game.Content.Load<Texture2D>("Images/Dino-skeleton");
-
+			Texture2D dinoSkeletonTexture = game.Content.Load<Texture2D>("Images/Dino-skeleton");
 			#endregion
 
 			//Randomizer for generating random textures
@@ -236,16 +235,6 @@ namespace CaptainCPA
 							newTile = new Character(game, spriteBatch, characterTexture, color, position, rotation, scale, layerDepth, Vector2.Zero, true, lives);
 							character = (Character)newTile;
 							break;
-						case "enemy":
-							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-							onGround = true;
-							newTile = new Enemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
-							break;
-						case "pursuingEnemy":
-							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-							onGround = true;
-							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
-							break;
 						case "boulder":
 							velocity = new Vector2(-2, 0);
 							onGround = true;
@@ -265,9 +254,9 @@ namespace CaptainCPA
 						case "flag":
 							newTile = new LevelEnd(game, spriteBatch, flagTexture, color, position, rotation, scale, layerDepth);
 							break;
-                        case "dino-skeleton":
-                            newTile = new Block(game, spriteBatch, dinoSkeletonTexture, color, position, rotation, scale, layerDepth);
-                            break;
+						case "dino-skeleton":
+							newTile = new Block(game, spriteBatch, dinoSkeletonTexture, color, position, rotation, scale, layerDepth);
+							break;
 						default:
 							break;
 					}

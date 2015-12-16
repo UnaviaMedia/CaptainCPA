@@ -15,7 +15,7 @@ namespace CaptainCPA
 	/// <summary>
 	/// Moveable platform tile
 	/// </summary>
-	public class MoveableTile : Tile
+	public abstract class MoveableTile : Tile
 	{
 		protected Vector2 velocity;
 		protected Vector2 gravity = new Vector2(0.0f, 0.2f);

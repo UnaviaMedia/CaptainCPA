@@ -18,7 +18,7 @@ namespace CaptainCPA
 	/// <summary>
 	/// Base class for all tiles in a platform level
 	/// </summary>
-	public class Tile : DrawableGameComponent
+	public abstract class Tile : DrawableGameComponent
 	{
 		protected SpriteBatch spriteBatch;
 		protected Texture2D texture;
