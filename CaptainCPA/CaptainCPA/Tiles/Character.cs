@@ -42,8 +42,6 @@ namespace CaptainCPA
 		private bool isAlive;
 		private bool levelComplete;
 		private bool isGhost;
-
-		//Store characters's starting position
 		private Vector2 startingPosition;
 
 		public int Lives

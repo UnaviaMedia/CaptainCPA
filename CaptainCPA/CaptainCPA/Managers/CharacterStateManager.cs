@@ -1,3 +1,11 @@
+/*
+ * Project: CaptainCPA - CollisionManager.cs
+ * Purpose: Base CollisionManager component that handles both fixed and moveable tiles
+ *
+ * History:
+ *		Doug Epp		Nov-26-2015:	Created
+ */
+
 using Microsoft.Xna.Framework;
 
 
@@ -9,11 +17,30 @@ namespace CaptainCPA
 	public class CharacterStateManager : GameComponent
 	{
 		private static Vector2 characterPosition;
+		private static Vector2 velocity;
 		private static bool isMoving;
 		private static bool facingRight;
 		private static bool onGround;
 		private static bool screenMoving;
 		private static bool tooFarRight;
+
+		public static Vector2 Velocity
+		{
+			get { return velocity; }
+			set { velocity = value; }
+		}
+
+		public static bool IsMoving
+		{
+			get { return CharacterStateManager.isMoving; }
+			set { CharacterStateManager.isMoving = value; }
+		}
+
+		public static bool OnGround
+		{
+			get { return CharacterStateManager.onGround; }
+			set { CharacterStateManager.onGround = value; }
+		}
 
 		public static bool TooFarRight
 		{
@@ -27,18 +54,10 @@ namespace CaptainCPA
 			set { CharacterStateManager.screenMoving = value; }
 		}
 
-		private static Vector2 velocity;
-
 		public static Vector2 CharacterPosition
 		{
 			get { return CharacterStateManager.characterPosition; }
 			set { CharacterStateManager.characterPosition = value; }
-		}
-
-		public static bool IsMoving
-		{
-			get { return CharacterStateManager.isMoving; }
-			set { CharacterStateManager.isMoving = value; }
 		}
 
 		public static bool FacingRight
@@ -46,16 +65,8 @@ namespace CaptainCPA
 			get { return CharacterStateManager.facingRight; }
 			set { CharacterStateManager.facingRight = value; }
 		}
-		public static bool OnGround
-		{
-			get { return CharacterStateManager.onGround; }
-			set { CharacterStateManager.onGround = value; }
-		}
-		public static Vector2 Velocity
-		{
-			get { return velocity; }
-			set { velocity = value; }
-		}
+
+
 		public CharacterStateManager(Game game)
 			: base(game)
 		{
