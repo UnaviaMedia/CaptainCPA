@@ -52,12 +52,11 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Draw(GameTime gameTime)
 		{
+			//Necessary override in order to draw the overlay texture properly
 			spriteBatch.Begin();
 			spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
 			spriteBatch.Draw(overlayTexture, position - origin, overlayColor);
 			spriteBatch.End();
-			
-			//base.Draw(gameTime);
 		}
 	}
 }

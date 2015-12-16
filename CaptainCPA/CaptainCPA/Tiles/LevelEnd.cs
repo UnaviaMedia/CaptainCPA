@@ -1,6 +1,6 @@
 /*
  * Project:	PlatformGame - LevelEnd.cs
- * Purpose:	Transparent block that indicates the end of a level once reached
+ * Purpose:	Semi-transparent block that indicates the end of a level once reached
  *
  * History:
  *		Kendall Roth	Dec-13-2015:	Created
@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace CaptainCPA
 {
 	/// <summary>
-	/// Transparent block that indicates the end of a level once reached
+	/// Semi-transparent block that indicates the end of a level once reached
 	/// </summary>
 	public class LevelEnd : FixedTile
 	{
