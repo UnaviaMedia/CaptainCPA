@@ -130,7 +130,6 @@
     <Compile Include="Components\Tile.cs" />
     <Compile Include="Tiles\PursuingEnemy.cs" />
     <Compile Include="Utilities\Directions.cs" />
-    <Compile Include="Utilities\TileType.cs" />
     <Compile Include="Scenes\ActionScene.cs" />
     <Compile Include="Scenes\GameScene.cs" />
     <Compile Include="Scenes\StartScene.cs" />
