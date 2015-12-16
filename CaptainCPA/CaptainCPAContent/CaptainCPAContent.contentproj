@@ -374,8 +374,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Sounds\LevelApplaus.wav">
-      <Name>LevelApplaus</Name>
+    <Compile Include="Sounds\LevelApplause.wav">
+      <Name>LevelApplause</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
