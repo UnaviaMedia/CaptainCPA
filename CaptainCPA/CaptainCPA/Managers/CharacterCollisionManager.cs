@@ -100,7 +100,7 @@ namespace CaptainCPA
 					character.Destroy();
 
 					//Play a level complete sound
-					SoundEffect applause = Game.Content.Load<SoundEffect>("Sounds/applause1");
+					SoundEffect applause = Game.Content.Load<SoundEffect>("Sounds/LevelApplaus");
 
 					applause.Play();
 					//Generic ding

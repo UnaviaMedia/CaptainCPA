@@ -61,10 +61,11 @@ namespace CaptainCPA
 						continue;
 					}
 
-					if (moveableTile is Boulder && fixedTile is LevelBarrier)
+					if (moveableTile is Enemy && fixedTile is LevelBarrier)
 					{
 						continue;
 					}
+
 					//Check for collision
 					if (moveableTile.Bounds.Intersects(fixedTile.Bounds))
 					{
