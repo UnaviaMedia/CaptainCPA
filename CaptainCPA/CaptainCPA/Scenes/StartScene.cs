@@ -34,7 +34,6 @@ namespace CaptainCPA.Scenes
 		private Vector2 scrollingPosition1;
 		private Vector2 scrollingPosition2;
 		private Vector2 scrollingSpeed;
-		private List<string> levelList;
 		private Texture2D menuImage;
 		private string[] menuItems = {"Start Game", "Select Level", "Help", "High Score", "About/Credit", "How to play", "Quit"};
 		
@@ -63,9 +62,6 @@ namespace CaptainCPA.Scenes
 			scrollingPosition1 = Vector2.Zero;
 			scrollingPosition2 = new Vector2(scrollingPosition1.X + scrollingTexture1.Width, scrollingPosition1.Y);
 			scrollingSpeed = new Vector2(1.0f, 0.0f);
-
-			//Create a list of levels
-			levelList = new List<string>() { "level1", "level2"};
 
 			//Set up the menu
 			Vector2 menuPosition = new Vector2(Utilities.Utilities.Stage.X / 2 + 140, Utilities.Utilities.Stage.Y / 2 - 110);
