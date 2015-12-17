@@ -8,11 +8,12 @@
  *						Nov-29-2015:	Optimizations
  */
 
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using CaptainCPA.Components;
+using CaptainCPA.Tiles;
+using Microsoft.Xna.Framework;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Managers
 {
 	/// <summary>
 	/// Manages collisions and post-collision positioning between tiles
@@ -56,7 +57,7 @@ namespace CaptainCPA
 					//If the moveable tile is hidden or disabled, skip collsion detection for it.
 					//	Also skip tiles that are too far away
 					if (moveableTile.Visible == false || moveableTile.Enabled == false ||
-						Vector2.Distance(Utilities.PointToVector2(fixedTile.Bounds.Center), Utilities.PointToVector2(moveableTile.Bounds.Center)) > Utilities.TILE_SIZE * 4)
+						Vector2.Distance(Utilities.Utilities.PointToVector2(fixedTile.Bounds.Center), Utilities.Utilities.PointToVector2(moveableTile.Bounds.Center)) > Utilities.Utilities.TILE_SIZE * 4)
 					{
 						continue;
 					}

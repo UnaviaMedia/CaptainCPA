@@ -12,11 +12,13 @@
  *						Dec-12-2015:	Added collision with enemies (decreases character lives)
  */
 
+using System.Collections.Generic;
+using CaptainCPA.Components;
+using CaptainCPA.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using System.Collections.Generic;
 
-namespace CaptainCPA
+namespace CaptainCPA.Managers
 {
 	/// <summary>
 	/// Manage non-positioning collisions (extra logic)
@@ -61,8 +63,8 @@ namespace CaptainCPA
 				}
 
 				//Skip collision detection if the moveable tile is too far away or doesn't intersect
-				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(fixedTile.Bounds.Center)) > 125 ||
-					character.Bounds.Intersects(fixedTile.Bounds) == false || Utilities.PerPixelCollision(character, fixedTile) == false)
+				if (Vector2.Distance(Utilities.Utilities.PointToVector2(character.Bounds.Center), Utilities.Utilities.PointToVector2(fixedTile.Bounds.Center)) > 125 ||
+					character.Bounds.Intersects(fixedTile.Bounds) == false || Utilities.Utilities.PerPixelCollision(character, fixedTile) == false)
 				{
 					continue;
 				}
@@ -124,8 +126,8 @@ namespace CaptainCPA
 				}
 
 				//Skip collision detection if the moveable tile is too far away or doesn't intersect
-				if (Vector2.Distance(Utilities.PointToVector2(character.Bounds.Center), Utilities.PointToVector2(moveableTile.Bounds.Center)) > 125 ||
-					character.Bounds.Intersects(moveableTile.Bounds) == false || Utilities.PerPixelCollision(character, moveableTile) == false)
+				if (Vector2.Distance(Utilities.Utilities.PointToVector2(character.Bounds.Center), Utilities.Utilities.PointToVector2(moveableTile.Bounds.Center)) > 125 ||
+					character.Bounds.Intersects(moveableTile.Bounds) == false || Utilities.Utilities.PerPixelCollision(character, moveableTile) == false)
 				{
 					continue;
 				}

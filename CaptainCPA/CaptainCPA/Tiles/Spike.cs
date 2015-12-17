@@ -6,11 +6,11 @@
  *		Kendall Roth	Nov-28-2015:	Created
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Spike obstacle for the character to avoid

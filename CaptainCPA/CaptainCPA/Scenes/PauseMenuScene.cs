@@ -7,11 +7,11 @@
  *		Kendall Roth	Dec-08-2015:	Added draw method, menu image
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// Enumerates the menu items in the Pause menu
@@ -44,7 +44,7 @@ namespace CaptainCPA
 		public PauseMenuScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
-			Vector2 menuPosition = new Vector2(Utilities.Stage.X / 2 - 155, Utilities.Stage.Y / 2 - 110);
+			Vector2 menuPosition = new Vector2(Utilities.Utilities.Stage.X / 2 - 155, Utilities.Utilities.Stage.Y / 2 - 110);
 			menu = new MenuComponent(game, spriteBatch,
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				menuItems, menuPosition);

@@ -10,13 +10,14 @@
  *						Dec-14-2015:	Moved Stage and TILE_SIZE in from Utilities
  */
 
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using CaptainCPA.Components;
+using Microsoft.Xna.Framework;
 
-namespace CaptainCPA
+namespace CaptainCPA.Utilities
 {
 	/// <summary>
 	/// Class that contains various utility methods

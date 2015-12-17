@@ -6,11 +6,11 @@
  *		Kendall Roth	Dec-12-2015:	Created
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Disc pickup that gives character points

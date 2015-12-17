@@ -6,11 +6,11 @@
  *		Kendall Roth	Dec-14-2015:	Created
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Impassable tile that can be used for level barriers

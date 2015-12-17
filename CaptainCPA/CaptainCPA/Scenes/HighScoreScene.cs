@@ -9,12 +9,13 @@
  *						Dec-10-2015:	Updated high score system
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
+using CaptainCPA.Utilities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// Display the high scores from an XML file
@@ -29,13 +30,13 @@ namespace CaptainCPA
 		public HighScoreScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
 			: base(game, spriteBatch)
 		{
-			position = new Vector2(Utilities.Stage.X / 2 - 160, Utilities.Stage.Y / 2 - 107);
+			position = new Vector2(Utilities.Utilities.Stage.X / 2 - 160, Utilities.Utilities.Stage.Y / 2 - 107);
 			font = game.Content.Load<SpriteFont>("Fonts/HighScoreFont");
 
 			this.menuImage = menuImage;
 
 			//Get the list of the 5 highest scores
-			highScores = Utilities.LoadHighScores().Take(5).ToList();
+			highScores = Utilities.Utilities.LoadHighScores().Take(5).ToList();
 
 			if (highScores.Count == 0)
 			{

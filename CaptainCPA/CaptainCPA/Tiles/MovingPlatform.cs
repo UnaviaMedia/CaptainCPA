@@ -9,8 +9,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Platform that will move across the screen
@@ -57,7 +56,7 @@ namespace CaptainCPA
 				if (movingRight)
 				{
 					position.X += 1;
-					if (position.X >= fixedPosition + Utilities.TILE_SIZE * range)
+					if (position.X >= fixedPosition + Utilities.Utilities.TILE_SIZE * range)
 					{
 						movingRight = false;
 					}
@@ -76,7 +75,7 @@ namespace CaptainCPA
 				if (!movingRight)
 				{
 					position.X -= 1;
-					if (position.X <= fixedPosition - Utilities.TILE_SIZE * range)
+					if (position.X <= fixedPosition - Utilities.Utilities.TILE_SIZE * range)
 					{
 						movingRight = true;
 					}

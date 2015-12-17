@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using CaptainCPA.Scenes;
 
 namespace CaptainCPA
 {
@@ -76,8 +77,8 @@ namespace CaptainCPA
         {
             //Initialize graphics manager properties
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = (int)(Utilities.TILE_SIZE * HORIZONTAL_BLOCKS_ON_SCREEN);
-            graphics.PreferredBackBufferHeight = (int)(Utilities.TILE_SIZE * VERTICAL_BLOCKS_ON_SCREEN);
+            graphics.PreferredBackBufferWidth = (int)(Utilities.Utilities.TILE_SIZE * HORIZONTAL_BLOCKS_ON_SCREEN);
+            graphics.PreferredBackBufferHeight = (int)(Utilities.Utilities.TILE_SIZE * VERTICAL_BLOCKS_ON_SCREEN);
 
             //Initialize GameScene list
             scenes = new List<GameScene>();
@@ -102,7 +103,7 @@ namespace CaptainCPA
             IsMouseVisible = true;
 
             //Initialize game stage variable
-            Utilities.Stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            Utilities.Utilities.Stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             base.Initialize();
         }
@@ -164,7 +165,7 @@ namespace CaptainCPA
             pauseMenuScene = new PauseMenuScene(this, spriteBatch, pauseMenuBackground);
             scenes.Add(pauseMenuScene);
 
-            levelSelectScene = new LevelSelectScene(this, spriteBatch, levelSelectBackground, NUMBER_OF_LEVELS, Utilities.CheckLevelProgression());
+            levelSelectScene = new LevelSelectScene(this, spriteBatch, levelSelectBackground, NUMBER_OF_LEVELS, Utilities.Utilities.CheckLevelProgression());
             scenes.Add(levelSelectScene);
 
             helpScene = new HelpScene(this, spriteBatch, helpSceneBackground);
@@ -284,7 +285,7 @@ namespace CaptainCPA
                         }
 
                         //Create a new level selector scene
-                        levelSelectScene = new LevelSelectScene(this, spriteBatch, levelSelectBackground, NUMBER_OF_LEVELS, Utilities.CheckLevelProgression());
+                        levelSelectScene = new LevelSelectScene(this, spriteBatch, levelSelectBackground, NUMBER_OF_LEVELS, Utilities.Utilities.CheckLevelProgression());
                         scenes.Add(levelSelectScene);
                         this.Components.Add(levelSelectScene);
 
@@ -344,7 +345,7 @@ namespace CaptainCPA
                     //DEBUG - Reset Level Progression
                     if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R))
                     {
-                        Utilities.ResetLevelProgression();
+                        Utilities.Utilities.ResetLevelProgression();
                     }
 
                     if (ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
@@ -368,7 +369,7 @@ namespace CaptainCPA
                     //DEBUG - Reset the HighScores
                     if (ks.IsKeyDown(Keys.OemTilde) && ks.IsKeyDown(Keys.R))
                     {
-                        Utilities.ResetHighScores();
+                        Utilities.Utilities.ResetHighScores();
                     }
                     if (ks.IsKeyDown(Keys.Enter) && oldState.IsKeyUp(Keys.Enter))
                     {
@@ -412,9 +413,9 @@ namespace CaptainCPA
                             actionScene.DisableComponents();
 
                             //Update the Level Progression if necessary
-                            if (currentLevel + 1 > Utilities.CheckLevelProgression())
+                            if (currentLevel + 1 > Utilities.Utilities.CheckLevelProgression())
                             {
-                                Utilities.UpdateLevelProgression(currentLevel + 1);
+                                Utilities.Utilities.UpdateLevelProgression(currentLevel + 1);
                             }
 
                             //Remove the current LevelOver menu scene if one exists
@@ -445,7 +446,7 @@ namespace CaptainCPA
                             actionScene.Character.LevelComplete = false;
 
                             //Update the Level Progression file
-                            Utilities.UpdateLevelProgression(NUMBER_OF_LEVELS);
+                            Utilities.Utilities.UpdateLevelProgression(NUMBER_OF_LEVELS);
 
                             //Play the game over sound effect
                             SoundEffect gameOver = Content.Load<SoundEffect>("Sounds/GameOver");

@@ -7,12 +7,13 @@
  *						Dec-08-2015:	Added draw method, menu image, scrolling backgrounds
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using CaptainCPA.Components;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// Enumeration of Main Menu Items
@@ -70,7 +71,7 @@ namespace CaptainCPA
 			levelList = new List<string>() { "level1", "level2"};
 
 			//Set up the menu
-			Vector2 menuPosition = new Vector2(Utilities.Stage.X / 2 + 140, Utilities.Stage.Y / 2 - 110);
+			Vector2 menuPosition = new Vector2(Utilities.Utilities.Stage.X / 2 + 140, Utilities.Utilities.Stage.Y / 2 - 110);
 			menu = new MenuComponent(game, spriteBatch,
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				menuItems, menuPosition);

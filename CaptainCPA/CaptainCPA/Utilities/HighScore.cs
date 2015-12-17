@@ -7,7 +7,7 @@
  */
 
 
-namespace CaptainCPA
+namespace CaptainCPA.Utilities
 {
 	/// <summary>
 	/// Data structure for player highscores

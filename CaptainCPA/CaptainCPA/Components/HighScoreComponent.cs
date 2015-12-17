@@ -8,14 +8,15 @@
  *										Added player score to display regardless of high score placement
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using CaptainCPA.Utilities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
 	/// High Score component
@@ -49,7 +50,7 @@ namespace CaptainCPA
 			highScoreEntered = false;
 			playerHasHighScore = false;
 			playerName = "";
-			highScores = Utilities.LoadHighScores().Take(3).ToList();
+			highScores = Utilities.Utilities.LoadHighScores().Take(3).ToList();
 
 			//Determine whether or not the player has gotten a high score
 			if (highScores.Count == 3)
@@ -119,7 +120,7 @@ namespace CaptainCPA
 							}
 							
 							//Add the high score to the list of high scores
-							Utilities.UpdateHighScores(new HighScore() { Name = playerName, Score = playerScore });
+							Utilities.Utilities.UpdateHighScores(new HighScore() { Name = playerName, Score = playerScore });
 
 							//The high score has been entered, and the game is now finished
 							highScoreEntered = true;
@@ -192,7 +193,7 @@ namespace CaptainCPA
 
 			//Draw the player's score regardless of whether or not they got a high score
 			spriteBatch.DrawString(font, playerScore.ToString(), 
-				new Vector2((Utilities.Stage.X / 2) - (font.MeasureString(playerScore.ToString()).X / 2), position.Y - 28), Color.White);
+				new Vector2((Utilities.Utilities.Stage.X / 2) - (font.MeasureString(playerScore.ToString()).X / 2), position.Y - 28), Color.White);
 
 			if (highScores.Count != 0)
 			{

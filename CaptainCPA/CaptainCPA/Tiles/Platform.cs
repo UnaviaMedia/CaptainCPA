@@ -6,11 +6,11 @@
  *		Kendall Roth	Nov-24-2015:	Created
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Platform tile

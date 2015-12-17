@@ -12,12 +12,18 @@
  *		Doug Epp						Added level reset after character loses life
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using CaptainCPA.Components;
+using CaptainCPA.Components.Display;
+using CaptainCPA.Managers;
+using CaptainCPA.Tiles;
+using CaptainCPA.Tiles.Enemies;
+using CaptainCPA.Utilities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// Displays the game to the user
@@ -101,7 +107,7 @@ namespace CaptainCPA
 			#region DisplayComponents
 			//Create display components
 			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 scorePosition = new Vector2(Utilities.TILE_SIZE + 15);
+			Vector2 scorePosition = new Vector2(Utilities.Utilities.TILE_SIZE + 15);
 			scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
 			this.components.Add(scoreDisplay);			
 
@@ -267,7 +273,7 @@ namespace CaptainCPA
 			if (CharacterStateManager.IsMoving)
 			{
 				//Character is within range of the right side of the screen
-				if (character.Bounds.Right >= Utilities.Stage.X - CHARACTER_SCREEN_BUFFER)
+				if (character.Bounds.Right >= Utilities.Utilities.Stage.X - CHARACTER_SCREEN_BUFFER)
 				{
 					CharacterStateManager.TooFarRight = true;
 					if (CharacterStateManager.FacingRight) //Character is moving to the right

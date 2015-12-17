@@ -6,12 +6,12 @@
  *		Doug Epp		Dec-11-2015:	Created
  */
 
+using System.Collections.Generic;
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles.Enemies
 {
 	/// <summary>
 	/// Type of pursuing enemy

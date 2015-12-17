@@ -13,14 +13,16 @@
  *						Dec-14-2015:	Changed speed and jump speed to constant
  */
 
+using System;
+using System.Collections.Generic;
+using CaptainCPA.Components;
+using CaptainCPA.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
 
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Character tile and logic

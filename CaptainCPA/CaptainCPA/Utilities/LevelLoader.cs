@@ -9,13 +9,16 @@
  *						Dec-12-2015:	Removed Character speed and jump
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using CaptainCPA.Components;
+using CaptainCPA.Tiles;
+using CaptainCPA.Tiles.Enemies;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Utilities
 {
 	/// <summary>
 	/// Loads the specified XMl level file

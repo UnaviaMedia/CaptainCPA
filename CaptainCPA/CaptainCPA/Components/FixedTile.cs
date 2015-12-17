@@ -7,11 +7,11 @@
  *						Nov-28-2015:	Added X and Y coordinates
  */
 
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
 	/// Base class for fixed tiles
@@ -25,7 +25,7 @@ namespace CaptainCPA
 		{
 			get
 			{
-				return (int)Math.Floor(position.X / Utilities.TILE_SIZE);
+				return (int)Math.Floor(position.X / Utilities.Utilities.TILE_SIZE);
 			}
 		}
 
@@ -33,7 +33,7 @@ namespace CaptainCPA
 		{
 			get
 			{
-				return (int)Math.Floor(position.Y / Utilities.TILE_SIZE);
+				return (int)Math.Floor(position.Y / Utilities.Utilities.TILE_SIZE);
 			}
 		}
 

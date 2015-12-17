@@ -6,10 +6,11 @@
  *		Kendall Roth	Dec-12-2015:	Created
  */
 
+using CaptainCPA.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Components.Display
 {
 	/// <summary>
 	/// Displays the health for the character

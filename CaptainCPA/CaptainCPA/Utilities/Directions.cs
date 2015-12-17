@@ -7,7 +7,7 @@
  */
 
 
-namespace CaptainCPA
+namespace CaptainCPA.Utilities
 {
 	/// <summary>
 	/// Enumeration of different Tile types

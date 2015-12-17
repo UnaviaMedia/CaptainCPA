@@ -10,11 +10,14 @@
  *						Dec-12-2015:	Updated with better logic for determining if tile is withing the necessary columns (bounds) for collision checking
  */
 
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using CaptainCPA.Components;
+using CaptainCPA.Tiles;
+using CaptainCPA.Utilities;
+using Microsoft.Xna.Framework;
 
-namespace CaptainCPA
+namespace CaptainCPA.Managers
 {
 	/// <summary>
 	/// Manages physics and collision avoidance for tiles

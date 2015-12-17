@@ -8,8 +8,7 @@
 
 using Microsoft.Xna.Framework;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Managers
 {
 	/// <summary>
 	/// Manages the state of the character

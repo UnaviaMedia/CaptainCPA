@@ -10,7 +10,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// Displays the game's about information from a text file

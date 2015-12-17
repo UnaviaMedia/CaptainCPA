@@ -8,11 +8,11 @@
  *						Dec-11-2015:	Removed Observer pattern
  */
 
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using CaptainCPA.Components;
+using Microsoft.Xna.Framework;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Managers
 {
 	/// <summary>
 	/// Base CollisionManager component that handles both fixed and moveable tiles

@@ -6,12 +6,12 @@
  *		Doug Epp		Nov-26-2015:	Created
  */
 
+using System;
+using CaptainCPA.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
 	/// Base class for enemies that will follow the player
@@ -53,7 +53,7 @@ namespace CaptainCPA
 			}
 
 			//If the enemy is directly above or below the character, pace back and forth
-			if (position.X >= CharacterStateManager.CharacterPosition.X - (Utilities.TILE_SIZE) && position.X <= CharacterStateManager.CharacterPosition.X + Utilities.TILE_SIZE / 2)
+			if (position.X >= CharacterStateManager.CharacterPosition.X - (Utilities.Utilities.TILE_SIZE) && position.X <= CharacterStateManager.CharacterPosition.X + Utilities.Utilities.TILE_SIZE / 2)
 			{
 				velocity.X = (facingRight) ? Math.Abs(xSpeed) : -Math.Abs(xSpeed);
 			}

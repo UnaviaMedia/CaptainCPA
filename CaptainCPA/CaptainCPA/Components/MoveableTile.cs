@@ -9,8 +9,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
 	/// Moveable platform tile

@@ -13,7 +13,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
 	/// Base class for all tiles in a platform level
@@ -138,7 +138,7 @@ namespace CaptainCPA
 			spriteBatch.Begin();
 
 			//Draw if tile is on screen
-			if (position.X >= -texture.Width && position.X + texture.Width <= Utilities.Stage.X + (2 * texture.Width))
+			if (position.X >= -texture.Width && position.X + texture.Width <= Utilities.Utilities.Stage.X + (2 * texture.Width))
 			{
 				spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
 			}

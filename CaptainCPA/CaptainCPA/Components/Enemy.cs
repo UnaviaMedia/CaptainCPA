@@ -6,12 +6,11 @@
  *		Doug Epp		Nov-26-2015:	Created
  */
 
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
 	/// Base class for enemies for the character to avoid

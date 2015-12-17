@@ -6,10 +6,11 @@
  *		Kendall Roth	Dec-13-2015:	Created
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Semi-transparent block that indicates the end of a level once reached

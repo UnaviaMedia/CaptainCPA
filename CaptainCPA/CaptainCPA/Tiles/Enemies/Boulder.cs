@@ -6,11 +6,11 @@
  *		Kendall Roth	Nov-28-2015:	Created
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles.Enemies
 {
 	/// <summary>
 	/// Type of patrolling enemy
@@ -25,7 +25,7 @@ namespace CaptainCPA
 							Vector2 velocity, bool onGround)
 			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
-			initPosition = new Vector2(Utilities.Stage.X, 3 * Utilities.TILE_SIZE);
+			initPosition = new Vector2(Utilities.Utilities.Stage.X, 3 * Utilities.Utilities.TILE_SIZE);
 			texture = game.Content.Load<Texture2D>("Sprites/Meteor1");
 			origin = new Vector2(texture.Width / 2, texture.Height / 2);
 		}
@@ -50,7 +50,7 @@ namespace CaptainCPA
 			{
 				rotationFactor -= rotationChange;
 			}
-			if (position.X <= 0 - Utilities.TILE_SIZE * 3)
+			if (position.X <= 0 - Utilities.Utilities.TILE_SIZE * 3)
 			{
 				position = initPosition;
 			}
