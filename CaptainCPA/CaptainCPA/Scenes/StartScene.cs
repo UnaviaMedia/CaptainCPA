@@ -36,7 +36,7 @@ namespace CaptainCPA.Scenes
 		private Vector2 scrollingSpeed;
 		private List<string> levelList;
 		private Texture2D menuImage;
-		private string[] menuItems = {"START Game", "SELECT Level", "HELP", "High Score", "ABOUT/Credit", "How to play", "QUIT"};
+		private string[] menuItems = {"Start Game", "Select Level", "Help", "High Score", "About/Credit", "How to play", "Quit"};
 		
 		public MenuComponent Menu { get; set; }
 

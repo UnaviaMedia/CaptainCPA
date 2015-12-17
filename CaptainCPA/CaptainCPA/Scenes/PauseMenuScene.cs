@@ -27,7 +27,7 @@ namespace CaptainCPA.Scenes
 	public class PauseMenuScene : GameScene
 	{
 		private Texture2D menuImage;
-		string[] menuItems = {"RESUME Game", "How to play", "Exit to Main Menu", "QUIT"};
+		string[] menuItems = {"Resume Game", "How to play", "Exit to Main Menu", "Quit"};
 
 		public MenuComponent Menu { get; set; }
 
