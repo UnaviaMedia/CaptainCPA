@@ -31,9 +31,6 @@ Captian CPA is a platformer game created in XNA Game Studio by two second year C
 ####Game Play
 ![Game Play - Level 4](https://cloud.githubusercontent.com/assets/12562420/11855587/222ce388-a419-11e5-87ce-1793bdaaee50.png)
 
-####Class Diagram
-![Class Diagram](https://cloud.githubusercontent.com/assets/12562420/11859495/890fb0f6-a439-11e5-9971-3b5bc1b4528a.png)
-
 ##History
 |   Date   |   Change   |
 |----------|------------|
@@ -50,3 +47,6 @@ Captian CPA is a platformer game created in XNA Game Studio by two second year C
 ##Collaborators
 - [Kendall Roth](https://github.com/UnaviaMedia)
 - [Doug Epp](https://github.com/DougEpp)
+
+##Class Diagram
+![Class Diagram](https://cloud.githubusercontent.com/assets/12562420/11859495/890fb0f6-a439-11e5-9971-3b5bc1b4528a.png)
