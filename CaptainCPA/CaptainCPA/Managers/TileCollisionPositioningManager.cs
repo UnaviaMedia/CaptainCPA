@@ -8,6 +8,7 @@
  *						Nov-29-2015:	Optimizations
  */
 
+using System;
 using System.Collections.Generic;
 using CaptainCPA.Components;
 using CaptainCPA.Tiles;
@@ -111,7 +112,7 @@ namespace CaptainCPA.Managers
 						else
 						{
 							//DEBUG - Nothing needs to happen here, just for testing
-							//Console.WriteLine("Perfectly square collision rectangle has occurred");
+							Console.WriteLine("Perfectly square collision rectangle has occurred");
 						}
 
 						//Update the position of the moveable tile

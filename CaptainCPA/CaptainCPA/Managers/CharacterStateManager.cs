@@ -1,6 +1,6 @@
 /*
- * Project: CaptainCPA - CollisionManager.cs
- * Purpose: Base CollisionManager component that handles both fixed and moveable tiles
+ * Project: CaptainCPA - CharacterStateManager.cs
+ * Purpose: Character state manager that manages character state
  *
  * History:
  *		Doug Epp		Nov-26-2015:	Created
@@ -15,55 +15,19 @@ namespace CaptainCPA.Managers
 	/// </summary>
 	public class CharacterStateManager : GameComponent
 	{
-		private static Vector2 characterPosition;
-		private static Vector2 velocity;
-		private static bool isMoving;
-		private static bool facingRight;
-		private static bool onGround;
-		private static bool screenMoving;
-		private static bool tooFarRight;
+		public static Vector2 Velocity { get; set; }
 
-		public static Vector2 Velocity
-		{
-			get { return velocity; }
-			set { velocity = value; }
-		}
+		public static bool IsMoving { get; set; }
 
-		public static bool IsMoving
-		{
-			get { return CharacterStateManager.isMoving; }
-			set { CharacterStateManager.isMoving = value; }
-		}
+		public static bool OnGround { get; set; }
 
-		public static bool OnGround
-		{
-			get { return CharacterStateManager.onGround; }
-			set { CharacterStateManager.onGround = value; }
-		}
+		public static bool TooFarRight { get; set; }
 
-		public static bool TooFarRight
-		{
-			get { return CharacterStateManager.tooFarRight; }
-			set { CharacterStateManager.tooFarRight = value; }
-		}
+		public static bool ScreenMoving { get; set; }
 
-		public static bool ScreenMoving
-		{
-			get { return CharacterStateManager.screenMoving; }
-			set { CharacterStateManager.screenMoving = value; }
-		}
+		public static Vector2 CharacterPosition { get; set; }
 
-		public static Vector2 CharacterPosition
-		{
-			get { return CharacterStateManager.characterPosition; }
-			set { CharacterStateManager.characterPosition = value; }
-		}
-
-		public static bool FacingRight
-		{
-			get { return CharacterStateManager.facingRight; }
-			set { CharacterStateManager.facingRight = value; }
-		}
+		public static bool FacingRight { get; set; }
 
 
 		public CharacterStateManager(Game game)

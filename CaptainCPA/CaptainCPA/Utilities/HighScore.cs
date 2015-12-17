@@ -1,5 +1,5 @@
 ﻿/*
- * Project: CaptainCPA - HighScore.cs
+ * Project: CaptainCPA - HIGH_SCORE.cs
  * Purpose: Data structure for player highscores
  *
  * History:

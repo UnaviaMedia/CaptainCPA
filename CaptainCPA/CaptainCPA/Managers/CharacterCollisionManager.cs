@@ -25,7 +25,7 @@ namespace CaptainCPA.Managers
 	/// </summary>
 	public class CharacterCollisionManager : CollisionManager
 	{
-		private Character character;
+		private readonly Character character;
 
 		public CharacterCollisionManager(Game game, Character character, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game, moveableTiles, fixedTiles)

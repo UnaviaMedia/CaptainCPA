@@ -27,27 +27,12 @@ namespace CaptainCPA.Utilities
 	{
 		private Game game;
 		private SpriteBatch spriteBatch;
-		private List<MoveableTile> moveableTileList;
-		private List<FixedTile> fixedTileList;
-		private Character character;
 
-		public List<MoveableTile> MoveableTileList
-		{
-			get { return moveableTileList; }
-			set { moveableTileList = value; }
-		}
+		public List<MoveableTile> MoveableTileList { get; set; }
 
-		public List<FixedTile> FixedTileList
-		{
-			get { return fixedTileList; }
-			set { fixedTileList = value; }
-		}
+		public List<FixedTile> FixedTileList { get; set; }
 
-		public Character Character
-		{
-			get { return character; }
-			set { character = value; }
-		}
+		public Character Character { get; set; }
 
 		public LevelLoader(Game game, SpriteBatch spriteBatch)
 		{
@@ -62,8 +47,8 @@ namespace CaptainCPA.Utilities
 		public void LoadGame(string levelName)
 		{
 			//Create lists of level tiles
-			moveableTileList = new List<MoveableTile>();
-			fixedTileList = new List<FixedTile>();
+			MoveableTileList = new List<MoveableTile>();
+			FixedTileList = new List<FixedTile>();
 
 			#region LoadTextures
 			//Load the different block textures
@@ -236,7 +221,7 @@ namespace CaptainCPA.Utilities
 						case "character":
 							int lives = int.Parse(tile.Attributes["lives"].Value);
 							newTile = new Character(game, spriteBatch, characterTexture, color, position, rotation, scale, layerDepth, Vector2.Zero, true, lives);
-							character = (Character)newTile;
+							Character = (Character)newTile;
 							break;
 						case "boulder":
 							velocity = new Vector2(-2, 0);
@@ -273,11 +258,11 @@ namespace CaptainCPA.Utilities
 					//If the tile is not null, add it to the correct tile list
 					if (newTile is MoveableTile)
 					{
-						moveableTileList.Add((MoveableTile)newTile);
+						MoveableTileList.Add((MoveableTile)newTile);
 					}
 					else if (newTile is FixedTile)
 					{
-						fixedTileList.Add((FixedTile)newTile);
+						FixedTileList.Add((FixedTile)newTile);
 					}
 				}
 			}

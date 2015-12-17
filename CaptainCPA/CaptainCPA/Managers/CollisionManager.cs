@@ -23,7 +23,7 @@ namespace CaptainCPA.Managers
 		protected List<FixedTile> fixedTiles;
 
 
-		public CollisionManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
+		protected CollisionManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game)
 		{
 			this.moveableTiles = moveableTiles;

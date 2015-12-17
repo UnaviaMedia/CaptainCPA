@@ -18,9 +18,9 @@ namespace CaptainCPA.Scenes
 	/// <summary>
 	/// Enumeration of Main Menu Items
 	/// </summary>
-	public enum menuItemTitles
+	public enum MenuItemTitles
 	{
-		Start, Select, Help, HighScore, About, HowTo, Quit
+		START, SELECT, HELP, HIGH_SCORE, ABOUT, HOW_TO, QUIT
 	}
 
 	/// <summary>
@@ -36,14 +36,9 @@ namespace CaptainCPA.Scenes
 		private Vector2 scrollingSpeed;
 		private List<string> levelList;
 		private Texture2D menuImage;
-		private MenuComponent menu;
-		private string[] menuItems = {"Start Game", "Select Level", "Help", "High Score", "About/Credit", "How to play", "Quit"};
+		private string[] menuItems = {"START Game", "SELECT Level", "HELP", "High Score", "ABOUT/Credit", "How to play", "QUIT"};
 		
-		public MenuComponent Menu
-		{
-			get { return menu; }
-			set { menu = value; }
-		}
+		public MenuComponent Menu { get; set; }
 
 
 		public StartScene(Game game, SpriteBatch spriteBatch, Texture2D menuImage)
@@ -52,10 +47,12 @@ namespace CaptainCPA.Scenes
 			this.spriteBatch = spriteBatch;
 
 			//Add the background scrolling images
-			backgroundImages = new List<Texture2D>();
-			backgroundImages.Add(game.Content.Load<Texture2D>("Images/Menu-Background-1"));
-			backgroundImages.Add(game.Content.Load<Texture2D>("Images/Menu-Background-2"));
-			backgroundImages.Add(game.Content.Load<Texture2D>("Images/Menu-Background-3"));
+			backgroundImages = new List<Texture2D>
+			{
+				game.Content.Load<Texture2D>("Images/Menu-Background-1"),
+				game.Content.Load<Texture2D>("Images/Menu-Background-2"),
+				game.Content.Load<Texture2D>("Images/Menu-Background-3")
+			};
 
 			//Randomize the assigned texure
 			Random r = new Random();
@@ -72,10 +69,10 @@ namespace CaptainCPA.Scenes
 
 			//Set up the menu
 			Vector2 menuPosition = new Vector2(Utilities.Utilities.Stage.X / 2 + 140, Utilities.Utilities.Stage.Y / 2 - 110);
-			menu = new MenuComponent(game, spriteBatch,
+			Menu = new MenuComponent(game, spriteBatch,
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				menuItems, menuPosition);
-			this.Components.Add(menu);
+			this.Components.Add(Menu);
 
 			this.menuImage = menuImage;
 		}

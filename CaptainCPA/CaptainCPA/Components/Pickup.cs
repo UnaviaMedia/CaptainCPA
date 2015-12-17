@@ -23,7 +23,7 @@ namespace CaptainCPA.Components
 			get { return points; }
 		}
 
-		public Pickup(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth, int points)
+		protected Pickup(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth, int points)
 			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
 		{
 			this.points = points;

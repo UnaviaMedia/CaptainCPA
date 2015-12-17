@@ -39,47 +39,18 @@ namespace CaptainCPA.Tiles
 		private int delayCounter;
 		private int frameIndex = 0;
 		private Texture2D bigTexture;
-		private int lives;
-		private int score;
-		private bool isAlive;
-		private bool levelComplete;
-		private bool isGhost;
-		private Vector2 startingPosition;
 
-		public int Lives
-		{
-			get { return lives; }
-			set { lives = value; }
-		}
+		public int Lives { get; set; }
 
-		public int Score
-		{
-			get { return score; }
-			set { score = value; }
-		}
+		public int Score { get; set; }
 
-		public bool IsAlive
-		{
-			get { return isAlive; }
-			set { isAlive = value; }
-		}
+		public bool IsAlive { get; set; }
 
-		public bool LevelComplete
-		{
-			get { return levelComplete; }
-			set { levelComplete = value; }
-		}
+		public bool LevelComplete { get; set; }
 
-		public Vector2 StartingPosition
-		{
-			get { return startingPosition; }
-		}
+		public Vector2 StartingPosition { get; }
 
-		public bool IsGhost
-		{
-			get { return isGhost; }
-			set { isGhost = value; }
-		}
+		public bool IsGhost { get; set; }
 
 		public Character(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
 							Vector2 velocity, bool onGround, int lives)
@@ -91,11 +62,11 @@ namespace CaptainCPA.Tiles
 			//source: http://www.swingswingsubmarine.com/2010/11/25/seasons-after-fall-spritesheet-animation/
 			bigTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
 			createFrames();
-			this.lives = lives;
+			this.Lives = lives;
 
-			isAlive = true;
-			startingPosition = position;
-			levelComplete = false;
+			IsAlive = true;
+			StartingPosition = position;
+			LevelComplete = false;
 
 			Console.WriteLine(bounds);
 
@@ -117,7 +88,7 @@ namespace CaptainCPA.Tiles
 		/// </summary>
 		private void ResetScore()
 		{
-			score = 0;
+			Score = 0;
 		}
 
 		/// <summary>
@@ -128,13 +99,13 @@ namespace CaptainCPA.Tiles
 			//Enable God-mode
 			if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) == false)
 			{
-				if (--lives <= 0)
+				if (--Lives <= 0)
 				{
 					Die();
 				}
 				else
 				{
-					isGhost = true;
+					IsGhost = true;
 					velocity.Y = 0;
 
 					//Play the hurt sound effect
@@ -150,7 +121,7 @@ namespace CaptainCPA.Tiles
 		/// </summary>
 		public void Die()
 		{
-			isAlive = false;
+			IsAlive = false;
 
 			//Destroy the character
 			Destroy();
@@ -158,14 +129,6 @@ namespace CaptainCPA.Tiles
 			//Play the game over sound effect
 			SoundEffect gameOver = Game.Content.Load<SoundEffect>("Sounds/GameOver");
 			gameOver.Play();
-		}
-
-		/// <summary>
-		/// Reset the character's position
-		/// </summary>
-		private void ResetPosition()
-		{
-			position = initPosition;
 		}
 
 		/// <summary>
@@ -210,7 +173,7 @@ namespace CaptainCPA.Tiles
 			}
 
 			//If the Up key is pressed and the character is on the ground, add vertical velocity to jump (counteract gravity)
-			if (ks.IsKeyDown(Keys.Up) && onGround == true)
+			if (ks.IsKeyDown(Keys.Up) && onGround)
 			{
 				velocity.Y = JUMP_SPEED;
 				onGround = false;
@@ -248,6 +211,7 @@ namespace CaptainCPA.Tiles
 					}
 				}
 			}
+
 			//texture = bigTexture.GetData<Texture2D>()
 			CharacterStateManager.CharacterPosition = position;
 			CharacterStateManager.FacingRight = facingRight;

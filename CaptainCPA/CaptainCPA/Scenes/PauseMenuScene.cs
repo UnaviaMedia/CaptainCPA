@@ -18,7 +18,7 @@ namespace CaptainCPA.Scenes
 	/// </summary>
 	public enum PauseMenuItems
 	{
-		Resume, HowTo, MainMenu, Quit
+		RESUME, HOW_TO, MAIN_MENU, QUIT
 	}
 
 	/// <summary>
@@ -27,14 +27,9 @@ namespace CaptainCPA.Scenes
 	public class PauseMenuScene : GameScene
 	{
 		private Texture2D menuImage;
-		private MenuComponent menu;
-		string[] menuItems = {"Resume Game", "How to play", "Exit to Main Menu", "Quit"};
+		string[] menuItems = {"RESUME Game", "How to play", "Exit to Main Menu", "QUIT"};
 
-		public MenuComponent Menu
-		{
-			get { return menu; }
-			set { menu = value; }
-		}
+		public MenuComponent Menu { get; set; }
 
 		/// <summary>
 		/// Constructor for the Pause Menu Scene
@@ -45,10 +40,10 @@ namespace CaptainCPA.Scenes
 			: base(game, spriteBatch)
 		{
 			Vector2 menuPosition = new Vector2(Utilities.Utilities.Stage.X / 2 - 155, Utilities.Utilities.Stage.Y / 2 - 110);
-			menu = new MenuComponent(game, spriteBatch,
+			Menu = new MenuComponent(game, spriteBatch,
 				game.Content.Load<SpriteFont>("Fonts/MenuFont"),
 				menuItems, menuPosition);
-			this.Components.Add(menu);
+			this.Components.Add(Menu);
 
 			this.menuImage = menuImage;
 		}

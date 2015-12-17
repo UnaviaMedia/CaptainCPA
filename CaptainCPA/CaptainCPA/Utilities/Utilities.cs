@@ -173,14 +173,14 @@ namespace CaptainCPA.Utilities
 			{
 				loadFile.Load(@"Content/HighScores.xml");
 			}
-			catch (System.Exception)
+			catch (Exception)
 			{
 				ResetHighScores();
 				loadFile.Load(@"Content/HighScores.xml");
 			}
 
-			//Select the high score nodes
-			var scores = loadFile.SelectNodes("/XnaContent/PlatformGame/Scores/*");
+			//SELECT the high score nodes
+			XmlNodeList scores = loadFile.SelectNodes("/XnaContent/PlatformGame/Scores/*");
 
 			foreach (XmlNode highScore in scores)
 			{
@@ -231,20 +231,20 @@ namespace CaptainCPA.Utilities
 			XmlNode root = updateFile.DocumentElement;
 			XmlNode highScoresNode = root.SelectSingleNode("PlatformGame/Scores");
 			
-			//Create a HighScore node
-			XmlNode node = updateFile.CreateElement("HighScore");
+			//Create a HIGH_SCORE node
+			XmlNode node = updateFile.CreateElement("HIGH_SCORE");
 
-			//Create the score attribute of the HighScore node
+			//Create the score attribute of the HIGH_SCORE node
 			XmlAttribute score = updateFile.CreateAttribute("score");
 			score.Value = addHighScore.Score.ToString();
 			node.Attributes.Append(score);
 
-			//Create the name attribute of the HighScore node
+			//Create the name attribute of the HIGH_SCORE node
 			XmlAttribute name = updateFile.CreateAttribute("name");
 			name.Value = addHighScore.Name;
 			node.Attributes.Append(name);
 
-			//Add the HighScore node to the list of HighScores
+			//Add the HIGH_SCORE node to the list of HighScores
 			highScoresNode.AppendChild(node);
 
 			updateFile.Save(@"Content/HighScores.xml");
@@ -272,7 +272,7 @@ namespace CaptainCPA.Utilities
 				levelsFile.Load(@"Content/LevelProgression.xml");
 			}
 
-			//Select the unlocked level node
+			//SELECT the unlocked level node
 			var unlockedLevel = levelsFile.SelectSingleNode("/XnaContent/PlatformGame/LevelProgression/UnlockedLevel");
 
 			try

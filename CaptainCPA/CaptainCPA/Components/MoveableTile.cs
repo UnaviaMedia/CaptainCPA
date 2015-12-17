@@ -40,7 +40,7 @@ namespace CaptainCPA.Components
 			set { onGround = value; }
 		}
 
-		public MoveableTile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth, 
+		protected MoveableTile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth, 
 							Vector2 velocity, bool onGround)
 			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
 		{

@@ -19,12 +19,8 @@ namespace CaptainCPA.Scenes
 	public class GameOverMenuScene : GameScene
 	{
 		private Texture2D menuImage;
-		private HighScoreComponent highScoreComponent;
 
-		public HighScoreComponent HighScoreComponent
-		{
-			get { return highScoreComponent; }
-		}
+		public HighScoreComponent HighScoreComponent { get; }
 
 		/// <summary>
 		/// Constructor for the Pause Menu Scene
@@ -38,8 +34,8 @@ namespace CaptainCPA.Scenes
 
 			//Add the high score component
 			Vector2 highScorePosition = new Vector2(Utilities.Utilities.Stage.X / 2 - 175, Utilities.Utilities.Stage.Y / 2 - 30);
-			highScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition, playerScore);
-			this.components.Add(highScoreComponent);
+			HighScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition, playerScore);
+			this.components.Add(HighScoreComponent);
 		}
 
 		/// <summary>

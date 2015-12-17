@@ -84,7 +84,7 @@ namespace CaptainCPA.Components
 		}
 
 
-		public Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position,
+		protected Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position,
 			float rotation, float scale, float layerDepth, bool isCollideable = true)
 			: base(game)
 		{
@@ -138,7 +138,7 @@ namespace CaptainCPA.Components
 			spriteBatch.Begin();
 
 			//Draw if tile is on screen
-			if (position.X >= -texture.Width && position.X + texture.Width <= Utilities.Utilities.Stage.X + (2 * texture.Width))
+			if ((position.X >= -texture.Width) && (position.X + texture.Width <= Utilities.Utilities.Stage.X + (2 * texture.Width)))
 			{
 				spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
 			}

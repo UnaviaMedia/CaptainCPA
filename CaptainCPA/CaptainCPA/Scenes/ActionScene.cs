@@ -30,35 +30,25 @@ namespace CaptainCPA.Scenes
 	/// </summary>
 	public class ActionScene : GameScene
 	{
-		protected const float CHARACTER_SCREEN_BUFFER = 400;
+		public const float CHARACTER_SCREEN_BUFFER = 400;
 
-		protected LevelLoader levelLoader;
-		protected List<MoveableTile> moveableTileList;
-		protected List<FixedTile> fixedTileList;
-		protected Character character;
+		private LevelLoader levelLoader;
+		private List<MoveableTile> moveableTileList;
+		private List<FixedTile> fixedTileList;
 
-		protected PhysicsManager physicsManager;
-		protected CollisionManager tileCollisionPositioningManager;
-		protected CharacterCollisionManager characterCollisionManager;
-		protected CharacterStateManager characterPositionManager;
+		private PhysicsManager physicsManager;
+		private CollisionManager tileCollisionPositioningManager;
+		private CharacterCollisionManager characterCollisionManager;
+		private CharacterStateManager characterStateManager;
 
-		protected ScoreDisplay scoreDisplay;
-		protected HealthDisplay healthDisplay;
+		private ScoreDisplay scoreDisplay;
+		private HealthDisplay healthDisplay;
 		private int slideBackCounter;
 		private int slideBackCounterLimit;
-		private bool gameOver;
 
-		public Character Character
-		{
-			get { return character; }
-			set { character = value; }
-		}
+		public Character Character { get; set; }
 
-		public bool GameOver
-		{
-			get { return gameOver; }
-			set { gameOver = value; }
-		}
+		public bool GameOver { get; set; }
 
 		/// <summary>
 		/// A list of all tiles excepting the Character
@@ -100,18 +90,16 @@ namespace CaptainCPA.Scenes
 			levelLoader.LoadGame(level);
 			moveableTileList = levelLoader.MoveableTileList;
 			fixedTileList = levelLoader.FixedTileList;
-			character = levelLoader.Character;
-			character.Score = playerScore;
-			character.Lives = playerLives;
+			Character = levelLoader.Character;
+			Character.Score = playerScore;
+			Character.Lives = playerLives;
 
 			#region DisplayComponents
 			//Create display components
-			SpriteFont scoreFont = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
-			Vector2 scorePosition = new Vector2(Utilities.Utilities.TILE_SIZE + 15);
-			scoreDisplay = new ScoreDisplay(game, spriteBatch, character);
+			scoreDisplay = new ScoreDisplay(game, spriteBatch, Character);
 			this.components.Add(scoreDisplay);			
 
-			healthDisplay = new HealthDisplay(game, spriteBatch, character);
+			healthDisplay = new HealthDisplay(game, spriteBatch, Character);
 			this.components.Add(healthDisplay);
 			#endregion
 
@@ -132,7 +120,7 @@ namespace CaptainCPA.Scenes
 			this.Components.Add(physicsManager);
 
 			//Create character collision manager (for pickups, death, etc) and add to list of components
-			characterCollisionManager = new CharacterCollisionManager(game, character, moveableTileList, fixedTileList);
+			characterCollisionManager = new CharacterCollisionManager(game, Character, moveableTileList, fixedTileList);
 			this.Components.Add(characterCollisionManager);
 
 			//Create tile collision manager (in case a collision actually does occur) and add to list of components
@@ -141,7 +129,7 @@ namespace CaptainCPA.Scenes
 			#endregion
 
 			//Set game over to false
-			gameOver = false;
+			GameOver = false;
 
 			//Keep track of all tiles in the scene
 			tiles = new List<Tile>();
@@ -201,20 +189,20 @@ namespace CaptainCPA.Scenes
 		public override void Update(GameTime gameTime)
 		{
 			//Track level completion
-			if (character.LevelComplete == true)
+			if (Character.LevelComplete)
 			{
 				return;
 			}
 
 			//Track player death
-			if (character.IsAlive == false)
+			if (Character.IsAlive == false)
 			{
-				gameOver = true;
+				GameOver = true;
 				return;
 			}
 
 			//smoothly reset level
-			if (character.IsGhost)
+			if (Character.IsGhost)
 			{
 				CharacterStateManager.IsMoving = false;
 				slideBackCounter++;
@@ -231,12 +219,12 @@ namespace CaptainCPA.Scenes
 					if (Math.Abs(diff) > 7)
 					{
 						slideBackCounterLimit = 1;
-						character.Color = Color.Red;
+						Character.Color = Color.Red;
 					}
 					else
 				{
 						slideBackCounterLimit = 2;
-						character.Color = Color.Red;
+						Character.Color = Color.Red;
 					}
 
 					foreach (MoveableTile m in moveableTileList)
@@ -265,7 +253,7 @@ namespace CaptainCPA.Scenes
 						m.Visible = true;
 					}
 					}
-					character.IsGhost = false;
+					Character.IsGhost = false;
 				}
 			}
 
@@ -273,7 +261,7 @@ namespace CaptainCPA.Scenes
 			if (CharacterStateManager.IsMoving)
 			{
 				//Character is within range of the right side of the screen
-				if (character.Bounds.Right >= Utilities.Utilities.Stage.X - CHARACTER_SCREEN_BUFFER)
+				if (Character.Bounds.Right >= Utilities.Utilities.Stage.X - CHARACTER_SCREEN_BUFFER)
 				{
 					CharacterStateManager.TooFarRight = true;
 					if (CharacterStateManager.FacingRight) //Character is moving to the right
@@ -291,7 +279,7 @@ namespace CaptainCPA.Scenes
 				}
 
 				//character is within range of the left side of the screen
-				else if (character.Bounds.Left <= CHARACTER_SCREEN_BUFFER)
+				else if (Character.Bounds.Left <= CHARACTER_SCREEN_BUFFER)
 				{
 					if (!CharacterStateManager.FacingRight) //character is moving to the left
 					{

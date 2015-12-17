@@ -37,7 +37,7 @@ namespace CaptainCPA.Components
 			}
 		}
 
-		public FixedTile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
+		protected FixedTile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
 			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
 		{
 			

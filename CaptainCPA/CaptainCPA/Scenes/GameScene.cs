@@ -17,7 +17,7 @@ namespace CaptainCPA.Scenes
 	/// <summary>
 	/// Base GameScene component
 	/// </summary>
-	public class GameScene : DrawableGameComponent
+	public abstract class GameScene : DrawableGameComponent
 	{
 		protected SpriteBatch spriteBatch;
 		protected List<GameComponent> components;
@@ -34,7 +34,7 @@ namespace CaptainCPA.Scenes
 		/// </summary>
 		/// <param name="game">Game reference</param>
 		/// <param name="spriteBatch">SpriteBatch reference</param>
-		public GameScene(Game game, SpriteBatch spriteBatch)
+		protected GameScene(Game game, SpriteBatch spriteBatch)
 			: base(game)
 		{
 			this.spriteBatch = spriteBatch;

@@ -95,12 +95,12 @@ namespace CaptainCPA.Components
 
 			spriteBatch.Begin();
 
-			for (int i = 0; i < menuItems.Count; i++)
+			foreach (string menuItem in menuItems)
 			{
 				//Record the longest menu item (for menu selector)
-				if (font.MeasureString(menuItems[i]).X > maxItemLength)
+				if (font.MeasureString(menuItem).X > maxItemLength)
 				{
-					maxItemLength = (int)font.MeasureString(menuItems[i]).X;
+					maxItemLength = (int)font.MeasureString(menuItem).X;
 				}
 			}
 
