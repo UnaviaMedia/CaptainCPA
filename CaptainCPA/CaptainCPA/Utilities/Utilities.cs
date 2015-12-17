@@ -8,6 +8,7 @@
  *						Dec-12-2015:	Added level progression checking
  *										Moved ColorConverter from ColorConverter class
  *						Dec-14-2015:	Moved Stage and TILE_SIZE in from Utilities
+ *						Dec-17-2015:	Moved Direction from its own file
  */
 
 using System;
@@ -19,6 +20,14 @@ using Microsoft.Xna.Framework;
 
 namespace CaptainCPA.Utilities
 {
+	/// <summary>
+	/// Enumeration of different Tile types
+	/// </summary>
+	public enum Direction
+	{
+		Up, Right, Down, Left, None
+	}
+
 	/// <summary>
 	/// Class that contains various utility methods
 	/// </summary>

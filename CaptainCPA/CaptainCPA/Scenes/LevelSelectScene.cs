@@ -25,16 +25,11 @@ namespace CaptainCPA.Scenes
 		private Texture2D lockedLevelIndicator;
 		private Texture2D unavailableLockedLevelIndicator;
 		private List<Vector2> levelSelectorPositions;
-		private int selectedIndex;
 		private int numberOfLevels;
 		private int numberOfUnlockedLevels;
 		private KeyboardState oldState;
 
-		public int SelectedIndex
-		{
-			get { return selectedIndex; }
-			set { selectedIndex = value; }
-		}
+		public int SelectedIndex { get; set; }
 
 
 		/// <summary>
@@ -66,7 +61,7 @@ namespace CaptainCPA.Scenes
 			this.numberOfLevels = numberOfLevels;
 			this.numberOfUnlockedLevels = numberOfUnlockedLevels;
 
-			selectedIndex = 0;
+			SelectedIndex = 0;
 		}
 
 		/// <summary>
@@ -89,16 +84,16 @@ namespace CaptainCPA.Scenes
 
 			if ((ks.IsKeyDown(Keys.Right) && oldState.IsKeyUp(Keys.Right)) || (ks.IsKeyDown(Keys.D) && oldState.IsKeyUp(Keys.D)))
 			{
-				if (++selectedIndex == numberOfUnlockedLevels)
+				if (++SelectedIndex == numberOfUnlockedLevels)
 				{
-					selectedIndex = 0;
+					SelectedIndex = 0;
 				}
 			}
 			if ((ks.IsKeyDown(Keys.Left) && oldState.IsKeyUp(Keys.Left)) || (ks.IsKeyDown(Keys.A) && oldState.IsKeyUp(Keys.A)))
 			{
-				if (--selectedIndex == -1)
+				if (--SelectedIndex == -1)
 				{
-					selectedIndex = numberOfUnlockedLevels - 1;
+					SelectedIndex = numberOfUnlockedLevels - 1;
 				}
 			}
 
@@ -128,7 +123,7 @@ namespace CaptainCPA.Scenes
 				spriteBatch.Draw(unavailableLockedLevelIndicator, levelSelectorPositions[i] + new Vector2(5.5f), Color.White);
 			}
 			
-			spriteBatch.Draw(levelSelector, levelSelectorPositions[selectedIndex], Color.White);
+			spriteBatch.Draw(levelSelector, levelSelectorPositions[SelectedIndex], Color.White);
 
 			spriteBatch.End();
 

@@ -30,14 +30,10 @@ namespace CaptainCPA.Components
 		private int playerScore;
 		private string playerName;
 		private bool playerHasHighScore;
-		private bool highScoreEntered;
 		private const string DEFAULT_NAME = "<<Enter Name>>";
 		private KeyboardState oldState;
 
-		public bool NameEntered
-		{
-			get { return highScoreEntered; }
-		}
+		public bool NameEntered { get; private set; }
 
 		public HighScoreComponent(Game game, SpriteBatch spriteBatch, SpriteFont font, Vector2 position, int playerScore)
 			:base(game)
@@ -47,7 +43,7 @@ namespace CaptainCPA.Components
 			this.position = position;
 			this.playerScore = playerScore;
 			
-			highScoreEntered = false;
+			NameEntered = false;
 			playerHasHighScore = false;
 			playerName = "";
 			highScores = Utilities.Utilities.LoadHighScores().Take(3).ToList();
@@ -126,7 +122,7 @@ namespace CaptainCPA.Components
 						Utilities.Utilities.UpdateHighScores(new HighScore() { Name = playerName, Score = playerScore });
 
 						//The high score has been entered, and the game is now finished
-						highScoreEntered = true;
+						NameEntered = true;
 					}
 					else if (font.MeasureString(playerName).X < 225 || playerName == DEFAULT_NAME)
 					{
@@ -157,7 +153,7 @@ namespace CaptainCPA.Components
 				//If the user doesn't get a high score, return to the main menu when they press 'Enter'
 				if (ks.IsKeyDown(Keys.Enter))
 				{
-					highScoreEntered = true;
+					NameEntered = true;
 				}
 			}
 			

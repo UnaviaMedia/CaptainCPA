@@ -55,33 +55,28 @@ namespace CaptainCPA.Utilities
 			Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/Character");
 			//Texture2D characterTexture = game.Content.Load<Texture2D>("Sprites/braidSpriteSheet");
 
-			List<Texture2D> grassTextures = new List<Texture2D>();
-			Texture2D grassTexture1 = game.Content.Load<Texture2D>("Sprites/Grass1");
-			Texture2D grassTexture2 = game.Content.Load<Texture2D>("Sprites/Grass2");
-			Texture2D grassTexture3 = game.Content.Load<Texture2D>("Sprites/Grass3");
-			Texture2D grassTexture4 = game.Content.Load<Texture2D>("Sprites/Grass4");
-			Texture2D grassTexture5 = game.Content.Load<Texture2D>("Sprites/Grass5");
-			grassTextures.Add(grassTexture1);
-			grassTextures.Add(grassTexture2);
-			grassTextures.Add(grassTexture3);
-			grassTextures.Add(grassTexture4);
-			grassTextures.Add(grassTexture5);
+			List<Texture2D> grassTextures = new List<Texture2D>
+			{
+				game.Content.Load<Texture2D>("Sprites/Grass1"),
+				game.Content.Load<Texture2D>("Sprites/Grass2"),
+				game.Content.Load<Texture2D>("Sprites/Grass3"),
+				game.Content.Load<Texture2D>("Sprites/Grass4"),
+				game.Content.Load<Texture2D>("Sprites/Grass5")
+			};
 
-			List<Texture2D> grassEndTexures = new List<Texture2D>();
-			Texture2D grassEndTexture1 = game.Content.Load<Texture2D>("Sprites/GrassEnd1");
-			Texture2D grassEndTexture2 = game.Content.Load<Texture2D>("Sprites/GrassEnd2");
-			Texture2D grassEndTexture3 = game.Content.Load<Texture2D>("Sprites/GrassEnd3");
-			grassEndTexures.Add(grassEndTexture1);
-			grassEndTexures.Add(grassEndTexture2);
-			grassEndTexures.Add(grassEndTexture3);
+			List<Texture2D> grassEndTexures = new List<Texture2D>
+			{
+				game.Content.Load<Texture2D>("Sprites/GrassEnd1"),
+				game.Content.Load<Texture2D>("Sprites/GrassEnd2"),
+				game.Content.Load<Texture2D>("Sprites/GrassEnd3")
+			};
 
-			List<Texture2D> dirtTextures = new List<Texture2D>();
-			Texture2D dirtTexture1 = game.Content.Load<Texture2D>("Sprites/Dirt1");
-			Texture2D dirtTexture2 = game.Content.Load<Texture2D>("Sprites/Dirt2");
-			Texture2D dirtTexture3 = game.Content.Load<Texture2D>("Sprites/Dirt3");
-			dirtTextures.Add(dirtTexture1);
-			dirtTextures.Add(dirtTexture2);
-			dirtTextures.Add(dirtTexture3);
+			List<Texture2D> dirtTextures = new List<Texture2D>
+			{
+				game.Content.Load<Texture2D>("Sprites/Dirt1"),
+				game.Content.Load<Texture2D>("Sprites/Dirt2"),
+				game.Content.Load<Texture2D>("Sprites/Dirt3")
+			};
 
 			Texture2D blockTexture = game.Content.Load<Texture2D>("Sprites/Block");
 			Texture2D ventLeftTexture = game.Content.Load<Texture2D>("Sprites/Vent-Left");
@@ -107,7 +102,7 @@ namespace CaptainCPA.Utilities
 			XmlDocument loadFile = new XmlDocument();
 			loadFile.Load(@"Content/Levels/" + levelName + ".xml");
 			
-			var rows = loadFile.SelectNodes("/XnaContent/PlatformGame/Rows/*");
+			XmlNodeList rows = loadFile.SelectNodes("/XnaContent/PlatformGame/Rows/*");
 
 			foreach (XmlNode row in rows)
 			{
@@ -135,7 +130,6 @@ namespace CaptainCPA.Utilities
 					float layerDepth = 1.0f;
 					Vector2 velocity = Vector2.Zero;
 					bool onGround = true;
-					int points = 0;
 
 					//Initialize the tile depending on its type
 					switch (tileType)
@@ -209,7 +203,7 @@ namespace CaptainCPA.Utilities
 							newTile = new Platform(game, spriteBatch, platformTexture, color, position, rotation, scale, layerDepth);
 							break;
 						case "floppy-disc":
-							points = int.Parse(tile.Attributes["points"].Value);
+							int points = int.Parse(tile.Attributes["points"].Value);
 							newTile = new FloppyDisc(game, spriteBatch, floppyDiscTexture, floppyDiscOverlayTexture, Color.White, color, position, rotation, scale, layerDepth, points);
 							break;
 						case "spike":

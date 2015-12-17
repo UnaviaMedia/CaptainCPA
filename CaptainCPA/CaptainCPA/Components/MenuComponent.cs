@@ -26,15 +26,10 @@ namespace CaptainCPA.Components
 		private Texture2D menuSelectorTexture;
 		private SpriteFont font;
 		private List<string> menuItems;
-		private int selectedIndex = 0;
 		private Color color = Color.White;
 		private KeyboardState oldState;
 
-		public int SelectedIndex
-		{
-			get { return selectedIndex; }
-			set { selectedIndex = value; }
-		}
+		public int SelectedIndex { get; set; }
 
 		public MenuComponent(Game game, SpriteBatch spriteBatch, SpriteFont font, string[] menuItems, Vector2 position)
 			:base(game)
@@ -64,18 +59,18 @@ namespace CaptainCPA.Components
 			KeyboardState ks = Keyboard.GetState();
 			if ((ks.IsKeyDown(Keys.Down) && oldState.IsKeyUp(Keys.Down)) || (ks.IsKeyDown(Keys.S) && oldState.IsKeyUp(Keys.S)))
 			{
-				selectedIndex++;
-				if (selectedIndex == menuItems.Count)
+				SelectedIndex++;
+				if (SelectedIndex == menuItems.Count)
 				{
-					selectedIndex = 0;
+					SelectedIndex = 0;
 				}
 			}
 			if ((ks.IsKeyDown(Keys.Up) && oldState.IsKeyUp(Keys.Up)) || (ks.IsKeyDown(Keys.W) && oldState.IsKeyUp(Keys.W)))
 			{
-				selectedIndex--;
-				if (selectedIndex == -1)
+				SelectedIndex--;
+				if (SelectedIndex == -1)
 				{
-					selectedIndex = menuItems.Count - 1;
+					SelectedIndex = menuItems.Count - 1;
 				}
 			}
 			oldState = ks;
@@ -106,7 +101,7 @@ namespace CaptainCPA.Components
 
 			for (int i = 0; i < menuItems.Count; i++)
 			{
-				if (selectedIndex == i)
+				if (SelectedIndex == i)
 				{
 					//Draw the menu selector
 					Vector2 selectorPosition = new Vector2(tempPos.X - 65, tempPos.Y - (menuSelectorTexture.Height / 2) + (font.LineSpacing / 2) + 2);
