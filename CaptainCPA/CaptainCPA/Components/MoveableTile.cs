@@ -9,13 +9,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
 	/// Moveable platform tile
 	/// </summary>
-	public class MoveableTile : Tile
+	public abstract class MoveableTile : Tile
 	{
 		protected Vector2 velocity;
 		protected Vector2 gravity = new Vector2(0.0f, 0.2f);
@@ -41,9 +40,9 @@ namespace CaptainCPA
 			set { onGround = value; }
 		}
 
-		public MoveableTile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position, float rotation, float scale, float layerDepth, 
+		protected MoveableTile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth, 
 							Vector2 velocity, bool onGround)
-			: base(game, spriteBatch, texture, tileType, color, position, rotation, scale, layerDepth)
+			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
 		{
 			this.velocity = velocity;
 			this.onGround = onGround;

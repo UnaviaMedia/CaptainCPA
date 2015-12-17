@@ -1,24 +1,24 @@
 /*
  * Project: CaptainCPA - Block.cs
- * Purpose: Block tile
+ * Purpose: Fixed tile that is used for various decoration purposes
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
-	/// Block tile
+	/// Fixed tile that is used for various decoration purposes
 	/// </summary>
 	public class Block : FixedTile
 	{
 		public Block(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
-			: base(game, spriteBatch, texture, TileType.Block, color, position, rotation, scale, layerDepth)
+			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
 		{
 			
 		}

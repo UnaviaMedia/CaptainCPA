@@ -9,13 +9,16 @@
  *						Dec-12-2015:	Removed Character speed and jump
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Xml;
+using CaptainCPA.Components;
+using CaptainCPA.Tiles;
+using CaptainCPA.Tiles.Enemies;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Utilities
 {
 	/// <summary>
 	/// Loads the specified XMl level file
@@ -24,27 +27,12 @@ namespace CaptainCPA
 	{
 		private Game game;
 		private SpriteBatch spriteBatch;
-		private List<MoveableTile> moveableTileList;
-		private List<FixedTile> fixedTileList;
-		private Character character;
 
-		public List<MoveableTile> MoveableTileList
-		{
-			get { return moveableTileList; }
-			set { moveableTileList = value; }
-		}
+		public List<MoveableTile> MoveableTileList { get; set; }
 
-		public List<FixedTile> FixedTileList
-		{
-			get { return fixedTileList; }
-			set { fixedTileList = value; }
-		}
+		public List<FixedTile> FixedTileList { get; set; }
 
-		public Character Character
-		{
-			get { return character; }
-			set { character = value; }
-		}
+		public Character Character { get; set; }
 
 		public LevelLoader(Game game, SpriteBatch spriteBatch)
 		{
@@ -59,8 +47,8 @@ namespace CaptainCPA
 		public void LoadGame(string levelName)
 		{
 			//Create lists of level tiles
-			moveableTileList = new List<MoveableTile>();
-			fixedTileList = new List<FixedTile>();
+			MoveableTileList = new List<MoveableTile>();
+			FixedTileList = new List<FixedTile>();
 
 			#region LoadTextures
 			//Load the different block textures
@@ -109,8 +97,7 @@ namespace CaptainCPA
 			Texture2D spikeTexture = game.Content.Load<Texture2D>("Sprites/Spike");
 			Texture2D spikeTopTexture = game.Content.Load<Texture2D>("Sprites/Spike-Top");
 			Texture2D flagTexture = game.Content.Load<Texture2D>("Sprites/Flag");
-            Texture2D dinoSkeletonTexture = game.Content.Load<Texture2D>("Images/Dino-skeleton");
-
+			Texture2D dinoSkeletonTexture = game.Content.Load<Texture2D>("Images/Dino-skeleton");
 			#endregion
 
 			//Randomizer for generating random textures
@@ -234,17 +221,7 @@ namespace CaptainCPA
 						case "character":
 							int lives = int.Parse(tile.Attributes["lives"].Value);
 							newTile = new Character(game, spriteBatch, characterTexture, color, position, rotation, scale, layerDepth, Vector2.Zero, true, lives);
-							character = (Character)newTile;
-							break;
-						case "enemy":
-							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-							onGround = true;
-							newTile = new Enemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
-							break;
-						case "pursuingEnemy":
-							velocity = new Vector2(float.Parse(tile.Attributes["velocityX"].Value), float.Parse(tile.Attributes["velocityY"].Value));
-							onGround = true;
-							newTile = new PursuingEnemy(game, spriteBatch, blockTexture, color, position, rotation, scale, layerDepth, velocity, onGround);
+							Character = (Character)newTile;
 							break;
 						case "boulder":
 							velocity = new Vector2(-2, 0);
@@ -265,9 +242,9 @@ namespace CaptainCPA
 						case "flag":
 							newTile = new LevelEnd(game, spriteBatch, flagTexture, color, position, rotation, scale, layerDepth);
 							break;
-                        case "dino-skeleton":
-                            newTile = new Block(game, spriteBatch, dinoSkeletonTexture, color, position, rotation, scale, layerDepth);
-                            break;
+						case "dino-skeleton":
+							newTile = new Block(game, spriteBatch, dinoSkeletonTexture, color, position, rotation, scale, layerDepth);
+							break;
 						default:
 							break;
 					}
@@ -281,11 +258,11 @@ namespace CaptainCPA
 					//If the tile is not null, add it to the correct tile list
 					if (newTile is MoveableTile)
 					{
-						moveableTileList.Add((MoveableTile)newTile);
+						MoveableTileList.Add((MoveableTile)newTile);
 					}
 					else if (newTile is FixedTile)
 					{
-						fixedTileList.Add((FixedTile)newTile);
+						FixedTileList.Add((FixedTile)newTile);
 					}
 				}
 			}

@@ -8,12 +8,12 @@
  *						Dec-12-2015:	Added locked level indicator and unavailable level indicator
  */
 
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// This is the scene which allows users to select a level

@@ -6,11 +6,11 @@
  *		Kendall Roth	Dec-12-2015:	Created
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Disc pickup that gives character points
@@ -22,7 +22,7 @@ namespace CaptainCPA
 
 		public FloppyDisc(Game game, SpriteBatch spriteBatch, Texture2D texture, Texture2D overlayTexture, Color color, Color overlayColor,
 			Vector2 position, float rotation , float scale, float layerDepth, int points)
-			: base(game, spriteBatch, texture, TileType.Pickup, color, position, rotation, scale, layerDepth, points)
+			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, points)
 		{
 			this.overlayTexture = overlayTexture;
 			this.overlayColor = overlayColor;
@@ -52,12 +52,11 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Draw(GameTime gameTime)
 		{
+			//Necessary override in order to draw the overlay texture properly
 			spriteBatch.Begin();
 			spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
 			spriteBatch.Draw(overlayTexture, position - origin, overlayColor);
 			spriteBatch.End();
-			
-			//base.Draw(gameTime);
 		}
 	}
 }

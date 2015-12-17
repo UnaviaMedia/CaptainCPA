@@ -1,5 +1,5 @@
 ﻿/*
- * Project: CaptainCPA - About.cs
+ * Project: CaptainCPA - ABOUT.cs
  * Purpose: Display the game's about information
  *
  * History:
@@ -10,12 +10,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// Displays the game's about information from a text file
 	/// </summary>
-	class AboutScene : GameScene
+	public class AboutScene : GameScene
 	{
 		private Texture2D menuImage;
 

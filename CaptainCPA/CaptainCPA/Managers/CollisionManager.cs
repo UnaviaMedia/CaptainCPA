@@ -1,6 +1,6 @@
 /*
  * Project: CaptainCPA - CollisionManager.cs
- * Purpose: Base CollisionManager component
+ * Purpose: Base CollisionManager component that handles both fixed and moveable tiles
  *
  * History:
  *		Kendall Roth	Nov-24-2015:	Created
@@ -9,21 +9,21 @@
  */
 
 using System.Collections.Generic;
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Managers
 {
 	/// <summary>
-	/// Base CollisionManager component
+	/// Base CollisionManager component that handles both fixed and moveable tiles
 	/// </summary>
-	public class CollisionManager : GameComponent
+	public abstract class CollisionManager : GameComponent
 	{
 		protected List<MoveableTile> moveableTiles;
 		protected List<FixedTile> fixedTiles;
 
 
-		public CollisionManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
+		protected CollisionManager(Game game, List<MoveableTile> moveableTiles, List<FixedTile> fixedTiles)
 			: base(game)
 		{
 			this.moveableTiles = moveableTiles;

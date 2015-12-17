@@ -9,8 +9,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// Displays the pause menu while game is being played
@@ -67,7 +66,7 @@ namespace CaptainCPA
 
 			//Draw the current score
 			spriteBatch.DrawString(font, currentScore.ToString(),
-				new Vector2((Utilities.Stage.X / 2) - (font.MeasureString(currentScore.ToString()).X / 2), (Utilities.Stage.Y / 2) - 22), Color.White);
+				new Vector2((Utilities.Utilities.Stage.X / 2) - (font.MeasureString(currentScore.ToString()).X / 2), (Utilities.Utilities.Stage.Y / 2) - 22), Color.White);
 
 			spriteBatch.End();
 

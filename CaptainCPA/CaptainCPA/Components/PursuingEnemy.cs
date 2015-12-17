@@ -1,16 +1,24 @@
+/*
+ * Project: CaptainCPA - Pursuing Enemy.cs
+ * Purpose: Base class for enemies that will follow the player
+ *
+ * History:
+ *		Doug Epp		Nov-26-2015:	Created
+ */
+
 using System;
+using CaptainCPA.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
-	/// This is a game component that implements IUpdateable.
+	/// Base class for enemies that will follow the player
 	/// </summary>
-	public class PursuingEnemy : Enemy
+	public abstract class PursuingEnemy : Enemy
 	{
-		public PursuingEnemy(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
+		protected PursuingEnemy(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth,
 							Vector2 velocity, bool onGround)
 			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth, velocity, onGround)
 		{
@@ -32,22 +40,22 @@ namespace CaptainCPA
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		public override void Update(GameTime gameTime)
 		{
-			//chase character to the left
+			//Chase character to the left
 			if (position.X > CharacterStateManager.CharacterPosition.X)
 			{
 				velocity.X = -(Math.Abs(xSpeed));
 			}
-			//chase character to the right
+
+			//Chase character to the right
 			else if (position.X < CharacterStateManager.CharacterPosition.X)
 			{
 				velocity.X = Math.Abs(xSpeed);
 			}
+
 			//If the enemy is directly above or below the character, pace back and forth
-			if (position.X >= CharacterStateManager.CharacterPosition.X - (Utilities.TILE_SIZE) && position.X <= CharacterStateManager.CharacterPosition.X + Utilities.TILE_SIZE / 2)
+			if (position.X >= CharacterStateManager.CharacterPosition.X - (Utilities.Utilities.TILE_SIZE) && position.X <= CharacterStateManager.CharacterPosition.X + Utilities.Utilities.TILE_SIZE / 2)
 			{
 				velocity.X = (facingRight) ? Math.Abs(xSpeed) : -Math.Abs(xSpeed);
-				//if (facingRight) velocity.X = Math.Abs(xSpeed);
-				//else velocity.X = -Math.Abs(xSpeed);
 			}
 
 			base.Update(gameTime);

@@ -7,10 +7,11 @@
  *						Dec-10-2015:	Removed dependency on menu system
  */
 
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Scenes
 {
 	/// <summary>
 	/// Displays the Game Over screen after the game has ended
@@ -18,12 +19,8 @@ namespace CaptainCPA
 	public class GameOverMenuScene : GameScene
 	{
 		private Texture2D menuImage;
-		private HighScoreComponent highScoreComponent;
 
-		public HighScoreComponent HighScoreComponent
-		{
-			get { return highScoreComponent; }
-		}
+		public HighScoreComponent HighScoreComponent { get; }
 
 		/// <summary>
 		/// Constructor for the Pause Menu Scene
@@ -36,9 +33,9 @@ namespace CaptainCPA
 			this.menuImage = menuImage;
 
 			//Add the high score component
-			Vector2 highScorePosition = new Vector2(Utilities.Stage.X / 2 - 175, Utilities.Stage.Y / 2 - 30);
-			highScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition, playerScore);
-			this.components.Add(highScoreComponent);
+			Vector2 highScorePosition = new Vector2(Utilities.Utilities.Stage.X / 2 - 175, Utilities.Utilities.Stage.Y / 2 - 30);
+			HighScoreComponent = new HighScoreComponent(game, spriteBatch, game.Content.Load<SpriteFont>("Fonts/HighScoreFont"), highScorePosition, playerScore);
+			this.components.Add(HighScoreComponent);
 		}
 
 		/// <summary>

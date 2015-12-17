@@ -13,19 +13,18 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CaptainCPA
+namespace CaptainCPA.Components
 {
 	/// <summary>
 	/// Base class for all tiles in a platform level
 	/// </summary>
-	public class Tile : DrawableGameComponent
+	public abstract class Tile : DrawableGameComponent
 	{
 		protected SpriteBatch spriteBatch;
 		protected Texture2D texture;
 		protected Color color;
 		protected Vector2 position;
 		protected Vector2 initPosition;
-		protected TileType tileType;
 		protected Rectangle bounds;
 		protected bool isCollideable;
 
@@ -59,12 +58,6 @@ namespace CaptainCPA
 			set { initPosition = value; }
 		}
 
-		public TileType TileType
-		{
-			get { return tileType; }
-			set { tileType = value; }
-		}
-
 		public bool IsCollideable
 		{
 			get { return isCollideable; }
@@ -91,7 +84,7 @@ namespace CaptainCPA
 		}
 
 
-		public Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, TileType tileType, Color color, Vector2 position,
+		protected Tile(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position,
 			float rotation, float scale, float layerDepth, bool isCollideable = true)
 			: base(game)
 		{
@@ -102,7 +95,6 @@ namespace CaptainCPA
 			this.position = new Vector2(position.X + origin.X, position.Y + origin.Y);
 			this.isCollideable = isCollideable;
 			this.initPosition = position;
-			this.tileType = tileType;
 
 			this.rotation = rotation;
 			this.scale = scale;
@@ -146,7 +138,7 @@ namespace CaptainCPA
 			spriteBatch.Begin();
 
 			//Draw if tile is on screen
-			if (position.X >= -texture.Width && position.X + texture.Width <= Utilities.Stage.X + (2 * texture.Width))
+			if ((position.X >= -texture.Width) && (position.X + texture.Width <= Utilities.Utilities.Stage.X + (2 * texture.Width)))
 			{
 				spriteBatch.Draw(texture, position, null, color, rotation, origin, scale, spriteEffect, layerDepth);
 			}

@@ -6,19 +6,11 @@
  *		Kendall Roth	Nov-24-2015:	Created
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using CaptainCPA.Components;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
-
-namespace CaptainCPA
+namespace CaptainCPA.Tiles
 {
 	/// <summary>
 	/// Platform tile
@@ -26,7 +18,7 @@ namespace CaptainCPA
 	public class Platform : FixedTile
 	{
 		public Platform(Game game, SpriteBatch spriteBatch, Texture2D texture, Color color, Vector2 position, float rotation, float scale, float layerDepth)
-			: base(game, spriteBatch, texture, TileType.Platform, color, position, rotation, scale, layerDepth)
+			: base(game, spriteBatch, texture, color, position, rotation, scale, layerDepth)
 		{
 			
 		}
