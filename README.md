@@ -1,10 +1,10 @@
-#CaptainCPA
+# CaptainCPA
 Captian CPA is a platformer game created in XNA Game Studio by two second year Conestoga Computer Programmer/Analyst students for a final project in Object Orientated Game Programming (2015).
 
-##In-Game Description
+## In-Game Description
 > YOU ARE CAPTAIN CPA, A RENOWNED HERO WHOSE STRENGTH, SPEED, AND JUMPING ABILITY ARE KNOWN THE WORLD OVER! TRAVERSE A HOSTILE WORLD, COLLECT DISCS, AND AVOID ENEMIES TO REACH YOUR GOAL! 
 
-##Feature List
+## Feature List
 *Core Features*
 - 2D Graphics
 	- Sidescroller
@@ -24,14 +24,14 @@ Captian CPA is a platformer game created in XNA Game Studio by two second year C
 - Documentation
 
 
-##Images
-####Main Menu
+## Images
+#### Main Menu
 ![Main Menu](https://cloud.githubusercontent.com/assets/12562420/11855589/22308308-a419-11e5-987d-fcfb3c4c14f3.png)
 
-####Game Play
+#### Game Play
 ![Game Play - Level 4](https://cloud.githubusercontent.com/assets/12562420/11855587/222ce388-a419-11e5-87ce-1793bdaaee50.png)
 
-##History
+## History
 |   Date   |   Change   |
 |----------|------------|
 | November 24 | Basic component layout and classes created<br>Menu system added<br>Game scene added<br>Level loader added |
@@ -44,9 +44,9 @@ Captian CPA is a platformer game created in XNA Game Studio by two second year C
 | December 13 | Level updates |
 | December 14 | Documentation created |
 
-##Collaborators
+## Collaborators
 - [Kendall Roth](https://github.com/KendallRoth)
 - [Doug Epp](https://github.com/DougEpp)
 
-##Class Diagram
+## Class Diagram
 ![Class Diagram](https://cloud.githubusercontent.com/assets/12562420/11859495/890fb0f6-a439-11e5-9971-3b5bc1b4528a.png)
